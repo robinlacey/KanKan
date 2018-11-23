@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="KanKan.sln" t="IncludeFlat" />
+      <e p="KanKanCore" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="KanKan.cs" t="Include" />
+        <e p="KanKanCore.csproj" t="IncludeRecursive" />
+        <e p="Karass" t="Include">
+          <e p="Interface" t="Include">
+            <e p="IKarass.cs" t="Include" />
+            <e p="IKarassMessage.cs" t="Include" />
+          </e>
+          <e p="Karass.cs" t="Include" />
+          <e p="Message" t="Include">
+            <e p="KarassMessage.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="KanKanCore.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="KanKanTest" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="KanKanCurrentTests.cs" t="Include" />
+        <e p="KanKanFrameProgressionTests.cs" t="Include" />
+        <e p="KanKanMessageTests.cs" t="Include" />
+        <e p="KanKanResetTests.cs" t="Include" />
+        <e p="KanKanReturnTests.cs" t="Include" />
+        <e p="KanKanSetupTeardownTests.cs" t="Include" />
+        <e p="KanKanTest.csproj" t="IncludeRecursive" />
+        <e p="KanKanTest.csproj.DotSettings" t="Include" />
+        <e p="KarassMessageTests.cs" t="Include" />
+        <e p="Mocks" t="Include">
+          <e p="UAction" t="Include">
+            <e p="KarassDummy.cs" t="Include" />
+            <e p="KarassFramesStub.cs" t="Include" />
+            <e p="KarassMessageDummy.cs" t="Include" />
+            <e p="KarassNumberOfFramesStub.cs" t="Include" />
+            <e p="KarassSetupTeardownSpy.cs" t="Include" />
+            <e p="KarassStringDummy.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="KanKanTest.AssemblyInfo.cs" t="Include" />
+              <e p="KanKanTest.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_KanKan.1689740154.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+  </component>
+</project>

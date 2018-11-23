@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bea00359-007e-42fc-976a-b00c3e8e5700" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KanKanTest/UActionMessageTests.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <folding>
+                <marker date="1542981447656" expanded="true" signature="6:28" ph="..." />
+                <marker date="1542981447656" expanded="true" signature="50:1007" ph="{...}" />
+                <marker date="1542981447656" expanded="true" signature="89:1005" ph="{...}" />
+                <marker date="1542981447656" expanded="true" signature="178:490" ph="{...}" />
+                <marker date="1542981447656" expanded="true" signature="587:999" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerCurrentTests.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1542981447327" expanded="false" signature="6:86" ph="..." />
+                <marker date="1542981447327" expanded="true" signature="109:1514" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="154:1512" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="229:400" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="476:741" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="836:1250" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="1113:1240" ph="{...}" />
+                <marker date="1542981447327" expanded="true" signature="1335:1506" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/KanKanTest/KanKanTest.csproj.DotSettings">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>OnFrame</find>
+      <find>MoveNex</find>
+    </findStrings>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/KanKan/Karass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKan/IKarassMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKan/KarassMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKan/KanKan.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassNumberOfFramesStub.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassMessageDummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassStringDummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerSetupTeardownTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassSetupTeardownSpy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerMessageTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKan/IKarass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassDummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerResetTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerCurrentTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassFramesStub.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionMessageTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerFrameProgressionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerMoveNextReturnValues.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/UActionsTest/UActionDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionsSetupTeardownTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionSetupSpy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunner.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/IUAction.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UAction.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionStringStub.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionSetupSpy.cs" />
+        <option value="$PROJECT_DIR$/UActions/Class1.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/FrameTicker/FrameTicker.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/EngineFake/EngineFake.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionsDegenerateTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionFramesStub.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionSetupTeardownSpy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionStringDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionFrameDegenerateTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionFrameDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionFrame/UActionFrameDummy.cs" />
+        <option value="$PROJECT_DIR$/UActions/IUActionMessage.cs" />
+        <option value="$PROJECT_DIR$/UActions/IUAction.cs" />
+        <option value="$PROJECT_DIR$/UActions/IUActionFrame.cs" />
+        <option value="$PROJECT_DIR$/UActions/UActionFrame.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionFramesStub.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionFrame/UActionFrameMessageSpy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UActionFrame/UActionFrameStub.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionFrameTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerDegenerateTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionSetupTeardownSpy.cs" />
+        <option value="$PROJECT_DIR$/UActions/UActionMessage.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionDegenerateTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionMessageTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionStringDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionNumberOfFramesStub.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerMoveNextReturnValues.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerFrameProgressionTests.cs" />
+        <option value="$PROJECT_DIR$/UActions/UAction.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerSetupTeardownTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/Mocks/UAction/UActionMessageDummy.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerResetTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerMessageTests.cs" />
+        <option value="$PROJECT_DIR$/UActionsTest/UActionRunnerCurrentTests.cs" />
+        <option value="$PROJECT_DIR$/UActions/UActionRunner.cs" />
+        <option value="$PROJECT_DIR$/KanKan/KanKan.csproj" />
+        <option value="$PROJECT_DIR$/KanKan/IKarass.cs" />
+        <option value="$PROJECT_DIR$/KanKan/IKarassMessage.cs" />
+        <option value="$PROJECT_DIR$/KanKan/Karass.cs" />
+        <option value="$PROJECT_DIR$/KanKan/KanKan.cs" />
+        <option value="$PROJECT_DIR$/KanKanTest/UActionMessageTests.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="716" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="UActions" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="UActions" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="UActions" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="UActions" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dependencies" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bea00359-007e-42fc-976a-b00c3e8e5700" name="Default Changelist" comment="" />
+      <created>1542446004813</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542446004813</updated>
+      <workItem from="1542446007068" duration="10299000" />
+      <workItem from="1542456357137" duration="6576000" />
+      <workItem from="1542631091151" duration="196000" />
+      <workItem from="1542891929519" duration="2614000" />
+      <workItem from="1542907165800" duration="3470000" />
+      <workItem from="1542910909261" duration="399000" />
+      <workItem from="1542974724355" duration="95000" />
+      <workItem from="1542974840212" duration="95000" />
+      <workItem from="1542974956955" duration="63000" />
+      <workItem from="1542975036411" duration="63000" />
+      <workItem from="1542981403884" duration="61000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="23931000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23319027" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info anchor="bottom" id="Docker" order="0" />
+      <window_info anchor="bottom" id="Unit Tests" order="1" sideWeight="0.49722221" visible="true" weight="0.29759037" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Change Signature" order="6" sideWeight="0.50277776" side_tool="true" weight="0.29847237" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4973913" weight="0.32891566" />
+      <window_info anchor="bottom" id="NuGet" order="8" weight="0.32891566" />
+      <window_info anchor="bottom" id="Message" order="9" />
+      <window_info anchor="bottom" id="Find" order="10" />
+      <window_info anchor="bottom" id="Run" order="11" />
+      <window_info anchor="bottom" id="Debug" order="12" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="15" />
+      <window_info anchor="bottom" id="Inspection Results" order="16" weight="0.32891566" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Errors In Solution" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2048611" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="0" />
+      <window_info anchor="bottom" id="Unit Tests" order="1" sideWeight="0.49722221" visible="true" weight="0.29847237" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.32913166" />
+      <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Change Signature" order="6" sideWeight="0.50277776" side_tool="true" visible="true" weight="0.29847237" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4973913" weight="0.32913166" />
+      <window_info anchor="bottom" id="NuGet" order="8" />
+      <window_info anchor="bottom" id="Message" order="9" />
+      <window_info anchor="bottom" id="Find" order="10" />
+      <window_info anchor="bottom" id="Run" order="11" />
+      <window_info anchor="bottom" id="Debug" order="12" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="15" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Errors In Solution" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/UActions/Class1.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/FrameTicker/FrameTicker.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CB5BE0C7-4433-425A-AE2A-B70ED6C7054C/0e/d4afb88d/Array.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CB5BE0C7-4433-425A-AE2A-B70ED6C7054C/77/f8772818/IEnumerator.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B8B10B82-47CB-413E-AB51-75C26A5956A7/98/69fe64f6/ITestResultMessage.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B8B10B82-47CB-413E-AB51-75C26A5956A7/71/3ee2fe57/ITestMessage.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9E14BD5A-733B-451F-A522-C72988F72F94/1f/a4114f72/HashSet`1.cs" />
+    <entry file="file://$PROJECT_DIR$/UActions/IUActionFrame.cs" />
+    <entry file="file://$PROJECT_DIR$/UActions/UActionFrame.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/Mocks/UActionFrame/UActionFrameMessageSpy.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/Mocks/UActionFrame/UActionFrameStub.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/UActionFrameTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassFramesStub.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassSetupTeardownSpy.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/Mocks/EngineFake/EngineFake.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/UActionDegenerateTests.cs" />
+    <entry file="file://$PROJECT_DIR$/UActionsTest/UActionRunnerDegenerateTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/KarassMessage.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassStringDummy.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassDummy.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassNumberOfFramesStub.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerFrameProgressionTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerMessageTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerResetTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/IKarass.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/IKarassMessage.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/Karass.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/KanKan.csproj" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerSetupTeardownTests.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/UAction/KarassMessageDummy.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerMoveNextReturnValues.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKan/KanKan.cs" />
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionMessageTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding>
+            <marker date="1542981447656" expanded="true" signature="6:28" ph="..." />
+            <marker date="1542981447656" expanded="true" signature="50:1007" ph="{...}" />
+            <marker date="1542981447656" expanded="true" signature="89:1005" ph="{...}" />
+            <marker date="1542981447656" expanded="true" signature="178:490" ph="{...}" />
+            <marker date="1542981447656" expanded="true" signature="587:999" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanTest/UActionRunnerCurrentTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1542981447327" expanded="false" signature="6:86" ph="..." />
+            <marker date="1542981447327" expanded="true" signature="109:1514" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="154:1512" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="229:400" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="476:741" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="836:1250" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="1113:1240" ph="{...}" />
+            <marker date="1542981447327" expanded="true" signature="1335:1506" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanTest/KanKanTest.csproj.DotSettings">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
