@@ -39,14 +39,15 @@
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
         <e p="KarassMessageTests.cs" t="Include" />
+        <e p="KarassMonoidTests.cs" t="Include" />
+        <e p="KarassParamTests.cs" t="Include" />
+        <e p="KarassSetupTeardownTests.cs" t="Include" />
         <e p="Mocks" t="Include">
           <e p="UAction" t="Include">
             <e p="KarassDummy.cs" t="Include" />
             <e p="KarassFramesStub.cs" t="Include" />
             <e p="KarassMessageDummy.cs" t="Include" />
             <e p="KarassNumberOfFramesStub.cs" t="Include" />
-            <e p="KarassSetupTeardownSpy.cs" t="Include" />
-            <e p="KarassStringDummy.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -60,8 +61,8 @@
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_KanKan.1689740154.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_KanKan.1689740154.00" t="ExcludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
   </component>
 </project>

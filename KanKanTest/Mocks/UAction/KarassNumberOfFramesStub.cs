@@ -1,24 +1,24 @@
 using System;
-using KanKanCore;
+using System.Collections.Generic;
 using KanKanCore.Karass;
 
 namespace KanKanTest.Mocks.UAction
 {
-    public class KarassNumberOfFramesStub:Karass<object>
+    public class KarassNumberOfFramesStub:Karass
     {
-        public KarassNumberOfFramesStub(int frameCount ) : base(new object())
+        private static List<Func<string,bool>[]> GetFakeFrames(int frameCount)
         {
-            Frames = new Func<string,bool>[frameCount];
+            Func<string, bool>[] frames = new Func<string,bool>[frameCount];
             for (int i = 0; i < frameCount; i++)
             {
-                Frames[i] = (s) => true;
+                frames[i] = (s) => true;
             }
+            return new List<Func<string, bool>[]>(){frames};
         }
-        
-        public override void Setup() {}
 
-        public override void Teardown() {}
-
-        public sealed override Func<string,bool>[] Frames { get; }
+        public KarassNumberOfFramesStub(int framesCount) : base( new Action[0], new Action[0], GetFakeFrames(framesCount))
+        {
+           
+        }
     }
 }

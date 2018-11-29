@@ -1,18 +1,72 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using KanKanCore.Karass.Interface;
 
 // Karass: team of individuals who do God's will without ever discovering what they are doing; every person belongs to one
 
 namespace KanKanCore.Karass
 {
-    public abstract class Karass<T> : IKarass
+    public class Karass : IKarass 
     {
-        protected Karass(T param){}
+        public void Setup()
+        {
+            SetupActions.ToList().ForEach(setup=>setup.Invoke());
+        }
 
-        public abstract void Setup();
+        public void Teardown()
+        {
+            TeardownActions.ToList().ForEach(setup=>setup.Invoke());
+        }
 
-        public abstract void Teardown();
+        public IEnumerable<Action> SetupActions { get;  private set; }
+        public IEnumerable<Action> TeardownActions { get; private set; }
+        public List<Func<string, bool>[]> Frames { get; protected set; }
+        public readonly Dictionary<int,int> CurrentFrames = new Dictionary<int, int>();
+
+        public Karass(IEnumerable<Action> setup, IEnumerable<Action>teardown, IEnumerable<Func<string, bool>[]> frames)
+        {
+          
+            Frames =  (List<Func<string, bool>[]>) frames;
+            SetupActions = setup;
+            TeardownActions = teardown;
+        }
         
-        public abstract Func<string,bool>[] Frames { get; }
+//
+//        private void Example_SetFrames()
+//        {
+//            for (int i = 0; i < Frames.Count; i++)
+//            {
+//                if (Frames[i].Any())
+//                {
+//                    CurrentFrames.Add(i, 0);
+//                }
+//            }
+//        }
+//
+//        // Something like .... 
+//        void Example_Update()
+//        {
+//         // Go through frames
+//            for (int i = 0; i < Frames.Count; i++)
+//            {
+//                // tick method
+//                var func = Frames[i][CurrentFrames[i]];
+//                bool goToNextFrame = func("message");
+//                CurrentFrames[i] += goToNextFrame ? 1 : 0;
+//                if (CurrentFrames[i] > Frames[i].Length - 1)
+//                {
+//                    // Remove
+//                }
+//            }
+//        }
+//        
+        public static Karass operator+ (Karass karassOne, Karass karassTwo) {
+           
+            return new Karass(
+                karassOne.SetupActions.Concat(karassTwo.SetupActions), 
+                karassOne.TeardownActions.Concat(karassTwo.TeardownActions), 
+                new List<Func<string, bool>[]>(karassOne.Frames.Concat(karassTwo.Frames)) );
+        }
     }
 }

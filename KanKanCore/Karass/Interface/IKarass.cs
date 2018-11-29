@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace KanKanCore.Karass.Interface
 {
@@ -6,6 +7,6 @@ namespace KanKanCore.Karass.Interface
     {
         void Setup();
         void Teardown();
-        Func<string,bool>[]  Frames { get;}
+        List<Func<string, bool>[]> Frames { get; }
     }
 }

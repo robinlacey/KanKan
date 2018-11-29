@@ -1,8 +1,24 @@
 using System.Collections;
+using System.Linq;
 using KanKanCore.Karass.Interface;
 
 // Kan-Kan: The instrument that brings individuals into their karass
 
+// TODO : 
+// Karass as a monoid
+// Combine Setup and Teardown
+ // (Action[])
+// Combine inputted Params ? (later)
+// Combine Functions 
+// 
+//  K+K = K (Associative)
+// Neutral Element  = no functions
+// Multiple Karass
+//     Chain
+//     Run at same time (
+// KanKan.Run(Karass) - just one
+// KanKan.Run(Karass1 + Karass2 + Karass3) - all at the same time
+// KanKan.Run(Karass[]) Run one after another
 namespace KanKanCore
 {
     public class KanKan :IEnumerator
@@ -22,7 +38,7 @@ namespace KanKanCore
 
         public bool MoveNext()
         {
-            if (IsFirstFrame())
+            if (_frame ==0)
             {
                 Karass.Setup();
             }
@@ -60,7 +76,13 @@ namespace KanKanCore
         
         private bool ShouldProgressToNextFrame()
         {
-            return Karass.Frames[_frame].Invoke(_message.Message);
+            if (Karass.Frames.Count > 0)
+            {
+                return Karass.Frames[0][_frame].Invoke(_message.Message);
+            }
+
+            return true;
+           
         }
 
         private bool ShouldClearMessage()
@@ -70,12 +92,13 @@ namespace KanKanCore
 
         private bool IsLastFrame()
         {
-            return _frame > Karass.Frames.Length - 1;
-        }
+            if (Karass.Frames.Count > 0)
+            {
+                return _frame > Karass.Frames[0].Length - 1;
+            }
 
-        private bool IsFirstFrame()
-        {
-            return _frame == 0;
+            return true;
+
         }
     }
 }

@@ -1,20 +1,13 @@
 using System;
-using KanKanCore;
+using System.Collections.Generic;
 using KanKanCore.Karass;
 
 namespace KanKanTest.Mocks.UAction
 {
-    public class KarassFramesStub : Karass<object>
+    public class KarassFramesStub : Karass
     {
-        public KarassFramesStub(Func<string,bool>[] frames ) : base(new object())
+        public KarassFramesStub(List<Func<string, bool>[]> frames) : base(new Action[0], new Action[0], frames)
         {
-            Frames = frames;
         }
-
-        public override void Setup() {}
-
-        public override void Teardown() {}
-
-        public override Func<string,bool>[] Frames { get; }
     }
 }
