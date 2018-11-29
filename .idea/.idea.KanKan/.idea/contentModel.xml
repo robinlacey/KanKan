@@ -36,6 +36,8 @@
         <e p="KanKanResetTests.cs" t="Include" />
         <e p="KanKanReturnTests.cs" t="Include" />
         <e p="KanKanSetupTeardownTests.cs" t="Include" />
+        <e p="KanKanSetupTests.cs" t="Include" />
+        <e p="KanKanTeardownTests.cs" t="Include" />
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
         <e p="KarassMessageTests.cs" t="Include" />

@@ -38,7 +38,7 @@ namespace KanKanCore
 
         public bool MoveNext()
         {
-            if (_frame ==0)
+            if (_frame == 0)
             {
                 Karass.Setup();
             }
@@ -96,9 +96,7 @@ namespace KanKanCore
             {
                 return _frame > Karass.Frames[0].Length - 1;
             }
-
             return true;
-
         }
     }
 }

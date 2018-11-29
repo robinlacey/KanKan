@@ -4,26 +4,12 @@ using KanKanCore;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.UAction;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace KanKanTest
 {
-    public class KanKanSetupTeardownTests
+    public class KanKanSetupAndTeardownTests
     {
-        [Fact]
-        void SetupIsRunOnMoveNext()
-        {
-            int setupCounter = 0;
-            Action setup = () => { setupCounter++; };
-            Karass testKarass = new Karass(new[] {setup}, new Action[0],
-                new List<Func<string, bool>[]>());
-
-            KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-            actionRunner.MoveNext();
-            Assert.True(setupCounter > 0);
-        }
-
-
+       
         public class GivenNoFrames
         {
             [Fact]
@@ -39,8 +25,7 @@ namespace KanKanTest
                 KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
 
                 actionRunner.MoveNext();
-
-
+                
                 Assert.True(setupCounter == 1);
                 Assert.True(teardownCounter == 1);
             }
@@ -82,44 +67,6 @@ namespace KanKanTest
                     Assert.True(teardownCounter == 0);
 
                     Assert.True(_frameRun);
-                }
-            }
-
-            public class WithMultipleFrames
-            {
-                private readonly ITestOutputHelper _output;
-
-                public WithMultipleFrames(ITestOutputHelper output)
-                {
-                    _output = output;
-                }
-                bool FrameOne(string message) => true;
-                bool FrameTwo(string message) => true;
-
-                private List<Func<string, bool>[]> Frames => new List<Func<string, bool>[]>()
-                {
-                    new Func<string, bool>[]
-                    {
-                        FrameOne,
-                        FrameTwo
-                    }
-                };
-
-                [Fact]
-                void SetupIsRunOnFirstMoveNextOnly()
-                {
-                    int setupCounter = 0;
-                    Action setup = () => { setupCounter++; };
-                    Karass testKarass = new Karass(new[] {setup}, new Action[0], Frames);
-
-                    KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-                    actionRunner.MoveNext();
-                    _output.WriteLine(setupCounter.ToString());
-                    Assert.True(setupCounter == 1);
-                    actionRunner.MoveNext();
-                    _output.WriteLine(setupCounter.ToString());
-                    Assert.True(setupCounter == 1);
-                    
                 }
             }
         }
