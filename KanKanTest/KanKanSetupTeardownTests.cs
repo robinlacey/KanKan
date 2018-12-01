@@ -4,6 +4,7 @@ using KanKanCore;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.UAction;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace KanKanTest
 {
@@ -35,6 +36,12 @@ namespace KanKanTest
         {
             public class WithOneFrame
             {
+                private readonly ITestOutputHelper _output;
+
+                public WithOneFrame(ITestOutputHelper output)
+                {
+                    _output = output;
+                }
                 private bool _frameRun;
 
                 bool FrameSpy(string message)
@@ -52,7 +59,7 @@ namespace KanKanTest
                 };
 
                 [Fact]
-                void SetupIsRunAndTearDownIsNot()
+                void SetupAndTeardownIsRun()
                 {
                     int setupCounter = 0;
                     int teardownCounter = 0;
@@ -61,11 +68,14 @@ namespace KanKanTest
                     Karass testKarass = new Karass(new[] {setup}, new[] {teardown}, Frames);
 
                     KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-
+                    _output.WriteLine(actionRunner._frame.ToString() + 
+                                      " " + (actionRunner._frame > actionRunner.Karass.FramesCollection[0].Length - 1));
                     actionRunner.MoveNext();
+                    _output.WriteLine(actionRunner._frame.ToString()+ 
+                                      " " + (actionRunner._frame > actionRunner.Karass.FramesCollection[0].Length - 1));
+                    
                     Assert.True(setupCounter == 1);
-                    Assert.True(teardownCounter == 0);
-
+                    Assert.True(teardownCounter == 1);
                     Assert.True(_frameRun);
                 }
             }

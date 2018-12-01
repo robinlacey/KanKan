@@ -40,6 +40,7 @@
         <e p="KanKanTeardownTests.cs" t="Include" />
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
+        <e p="KarassFrameCollectionTests.cs" t="Include" />
         <e p="KarassMessageTests.cs" t="Include" />
         <e p="KarassMonoidTests.cs" t="Include" />
         <e p="KarassParamTests.cs" t="Include" />

@@ -7,6 +7,10 @@ namespace KanKanCore.Karass.Interface
     {
         void Setup();
         void Teardown();
-        List<Func<string, bool>[]> Frames { get; }
+        
+        IEnumerable<Action> SetupActions { get;   set; }
+        IEnumerable<Action> TeardownActions { get;  set; }
+        
+        List<Func<string, bool>[]> FramesCollection { get; }
     }
 }

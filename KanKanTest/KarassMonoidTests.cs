@@ -144,9 +144,9 @@ namespace KanKanTest
 
                     Karass combinedKarass = karassOne + karassTwo;
 
-                    Assert.True(combinedKarass.Frames.Count == 2);
-                    Assert.True(combinedKarass.Frames.Contains(frameSetArrayOne));
-                    Assert.True(combinedKarass.Frames.Contains(frameSetArrayTwo));
+                    Assert.True(combinedKarass.FramesCollection.Count == 2);
+                    Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayOne));
+                    Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayTwo));
                 }
 
                 [Fact]
@@ -204,14 +204,14 @@ namespace KanKanTest
 
                     Karass combinedKarass = karassOne + karassTwo;
 
-                    Assert.True(combinedKarass.Frames.Count == 2);
-                    Assert.True(combinedKarass.Frames.Contains(frameSetArrayOne));
-                    Assert.True(combinedKarass.Frames.Contains(frameSetArrayTwo));
+                    Assert.True(combinedKarass.FramesCollection.Count == 2);
+                    Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayOne));
+                    Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayTwo));
 
-                    Assert.True(combinedKarass.Frames.Any(_ => _.Contains(FrameSetOneFrameOne)));
-                    Assert.True(combinedKarass.Frames.Any(_ => _.Contains(FrameSetOneFrameTwo)));
-                    Assert.True(combinedKarass.Frames.Any(_ => _.Contains(FrameSetTwoFrameOne)));
-                    Assert.True(combinedKarass.Frames.Any(_ => _.Contains(FrameSetTwoFrameTwo)));
+                    Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetOneFrameOne)));
+                    Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetOneFrameTwo)));
+                    Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetTwoFrameOne)));
+                    Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetTwoFrameTwo)));
                 }
             }
         }

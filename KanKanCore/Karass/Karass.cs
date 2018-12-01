@@ -19,19 +19,20 @@ namespace KanKanCore.Karass
             TeardownActions.ToList().ForEach(setup=>setup.Invoke());
         }
 
-        public IEnumerable<Action> SetupActions { get;  private set; }
-        public IEnumerable<Action> TeardownActions { get; private set; }
-        public List<Func<string, bool>[]> Frames { get; protected set; }
-        public readonly Dictionary<int,int> CurrentFrames = new Dictionary<int, int>();
-
-        public Karass(IEnumerable<Action> setup, IEnumerable<Action>teardown, IEnumerable<Func<string, bool>[]> frames)
+        public IEnumerable<Action> SetupActions { get;   set; }
+        public IEnumerable<Action> TeardownActions { get;  set; }
+        public List<Func<string, bool>[]> FramesCollection { get; protected set; }
+       
+        public Karass(IEnumerable<Action> setup, IEnumerable<Action>teardown, IEnumerable<Func<string, bool>[]> framesCollection)
         {
           
-            Frames =  (List<Func<string, bool>[]>) frames;
+            FramesCollection =  (List<Func<string, bool>[]>) framesCollection;
+  
             SetupActions = setup;
             TeardownActions = teardown;
         }
-        
+
+
 //
 //        private void Example_SetFrames()
 //        {
@@ -66,7 +67,7 @@ namespace KanKanCore.Karass
             return new Karass(
                 karassOne.SetupActions.Concat(karassTwo.SetupActions), 
                 karassOne.TeardownActions.Concat(karassTwo.TeardownActions), 
-                new List<Func<string, bool>[]>(karassOne.Frames.Concat(karassTwo.Frames)) );
+                new List<Func<string, bool>[]>(karassOne.FramesCollection.Concat(karassTwo.FramesCollection)) );
         }
     }
 }

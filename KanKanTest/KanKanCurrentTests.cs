@@ -1,18 +1,18 @@
-//using System.Collections;
-//using KanKanCore;
-//using KanKanCore.Karass.Interface;
-//using KanKanTest.Mocks.UAction;
-//using Xunit;
-//
-//
-//namespace KanKanTest
-//{
-//    public class KanKanCurrentTests
-//    {
+using System.Collections;
+using KanKanCore;
+using KanKanCore.Karass.Interface;
+using KanKanTest.Mocks.UAction;
+using Xunit;
+
+
+namespace KanKanTest
+{
+    public class KanKanCurrentTests
+    {
 //        [Fact]
 //        public void GivenNoFramesCurrentReturnsNull()
 //        {
-//            IEnumerator uActionRunner = new KanKan(new KarassStringDummy(),new KarassMessageDummy());
+//            IEnumerator uActionRunner = new KanKan(new KarassDummy(),new KarassMessageDummy());
 //            Assert.Null(uActionRunner.Current); 
 //        }
 //        
@@ -20,7 +20,7 @@
 //        public void GivenOneFrameCurrentIsNotNull()
 //        {
 //            IKarass karass = new KarassNumberOfFramesStub(1);
-//            Assert.True(karass.Frames.Length == 1);
+//            Assert.True(karass.FramesCollection.Count  == 1);
 //            KanKan kanKan = new KanKan(karass,new KarassMessageDummy());
 //            Assert.NotNull(kanKan.Current); 
 //            
@@ -46,5 +46,5 @@
 //            IEnumerator uActionRunner = new KanKan(new KarassStringDummy(),new KarassMessageDummy());
 //            Assert.Null(uActionRunner.Current); 
 //        }
-//    }
-//}
+    }
+}

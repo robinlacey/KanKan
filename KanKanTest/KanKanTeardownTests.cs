@@ -9,89 +9,141 @@ namespace KanKanTest
 {
     public class KanKanTeardownTests
     {
-        public class GivenOneFrameSetAndOneFrame
+        public class GivenOneFrameSet
         {
-            [Fact]
-            public void TeardownActionsAreCalled()
+            public class WithOneFrame
             {
-                bool teardownCalled = false;
-                bool frameCalled = false;
-
-                bool FrameSpy(string message)
+                [Fact]
+                public void TeardownActionsAreCalled()
                 {
-                    frameCalled = true;
-                    return true;
+                    bool teardownCalled = false;
+                    bool frameCalled = false;
+
+                    bool FrameSpy(string message)
+                    {
+                        frameCalled = true;
+                        return true;
+                    }
+
+                    Func<string, bool>[] frames =
+                    {
+                        FrameSpy
+                    };
+
+                    Karass karass = new Karass(new Action[0], new Action[] {() => { teardownCalled = true; }},
+                        new List<Func<string, bool>[]> {frames});
+                    KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+
+                    kankan.MoveNext();
+                    Assert.True(frameCalled);
+                    kankan.MoveNext();
+                    Assert.True(teardownCalled);
                 }
+            }
 
-                Func<string, bool>[] frames = new Func<string, bool>[]
+            public class WithMultipleFrames
+            {
+                [Fact]
+                public void TeardownActionsAreCalledOnLastFrame()
                 {
-                    FrameSpy
-                };
+                    bool teardownCalled = false;
+                    bool frameOneCalled = false;
 
-                Karass karass = new Karass(new Action[0], new Action[] {() => { teardownCalled = true; }},
-                    new List<Func<string, bool>[]> {frames});
-                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                    bool FrameOneSpy(string message)
+                    {
+                        frameOneCalled = true;
+                        return true;
+                    }
+                    
+                    bool frameTwoCalled = false;
+                    bool FrameTwoSpy(string message)
+                    {
+                        frameTwoCalled = true;
+                        return true;
+                    }
+                    bool frameThreeCalled = false;
+                    bool FrameThreeSpy(string message)
+                    {
+                        frameThreeCalled = true;
+                        return true;
+                    }
+                    
 
-                kankan.MoveNext();
-                Assert.True(frameCalled);
-                kankan.MoveNext();
-                Assert.True(teardownCalled);
+                    Func<string, bool>[] frames =
+                    {
+                        FrameOneSpy,
+                        FrameTwoSpy,
+                        FrameThreeSpy
+                    };
+
+                    Karass karass = new Karass(new Action[0], new Action[] {() => { teardownCalled = true; }},
+                        new List<Func<string, bool>[]> {frames});
+                    KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+
+                    kankan.MoveNext();
+                    Assert.True(frameOneCalled);
+                    Assert.False(teardownCalled);
+                    kankan.MoveNext();
+                    Assert.True(frameTwoCalled);
+                    Assert.False(teardownCalled);
+                    kankan.MoveNext();
+                    Assert.True(frameThreeCalled);
+                    Assert.True(teardownCalled);
+                }
             }
         }
 
-        public class GivenMultipleSetsWithOneFrame
-        {
-            // Bookmark
-            // This is where we have to make the jump to iterating over frame arrays 
-          
-            [Fact]
-            public void TeadownActionsAreCalled()
-            {
-                bool setOneTeardownCalled = false;
-                bool setOneFrameCalled = false;
-
-                bool SetOneFrameSpy(string message)
-                {
-                    setOneFrameCalled = true;
-                    return true;
-                }
-
-                Func<string, bool>[] setOneFrames = new Func<string, bool>[]
-                {
-                    SetOneFrameSpy
-                };
-
-
-                bool setTwoTeardownCalled = false;
-                bool setTwoFrameCalled = false;
-
-                bool SetTwoFrameSpy(string message)
-                {
-                    setTwoFrameCalled = true;
-                    return true;
-                }
-
-                Func<string, bool>[] setTwoFrames = new Func<string, bool>[]
-                {
-                    SetTwoFrameSpy
-                };
-
-
-                Karass karass = new Karass(new Action[0], new Action[]
-                {
-                    () => { setOneTeardownCalled = true; },
-                    () => { setTwoTeardownCalled = true; }
-                }, new List<Func<string, bool>[]> {setOneFrames, setTwoFrames});
-                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
-
-                kankan.MoveNext();
-
-                Assert.True(setOneFrameCalled);
-                Assert.True(setTwoFrameCalled);
-                kankan.MoveNext();
-                Assert.True(setOneTeardownCalled);
-                Assert.True(setTwoTeardownCalled);
-            }
-        }
+//        public class GivenMultipleSetsWithOneFrame
+//        {
+//            // Bookmark
+//            // This is where we have to make the jump to iterating over frame arrays 
+//          
+//            [Fact]
+//            public void TeardownActionsAreCalled()
+//            {
+//                bool setOneTeardownCalled = false;
+//                bool setOneFrameCalled = false;
+//
+//                bool SetOneFrameSpy(string message)
+//                {
+//                    setOneFrameCalled = true;
+//                    return true;
+//                }
+//
+//                Func<string, bool>[] setOneFrames = new Func<string, bool>[]
+//                {
+//                    SetOneFrameSpy
+//                };
+//
+//
+//                bool setTwoTeardownCalled = false;
+//                bool setTwoFrameCalled = false;
+//
+//                bool SetTwoFrameSpy(string message)
+//                {
+//                    setTwoFrameCalled = true;
+//                    return true;
+//                }
+//
+//                Func<string, bool>[] setTwoFrames = {
+//                    SetTwoFrameSpy
+//                };
+//
+//
+//                Karass karass = new Karass(new Action[0], new Action[]
+//                {
+//                    () => { setOneTeardownCalled = true; },
+//                    () => { setTwoTeardownCalled = true; }
+//                }, new List<Func<string, bool>[]> {setOneFrames, setTwoFrames});
+//                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+//
+//                kankan.MoveNext();
+//
+//                Assert.True(setOneFrameCalled);
+//                Assert.True(setTwoFrameCalled);
+//                Assert.True(setOneTeardownCalled);
+//                Assert.True(setTwoTeardownCalled);
+//            }
+//        }
     }
 }
