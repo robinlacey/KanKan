@@ -20,7 +20,7 @@ namespace KanKanTest
                 int teardownCounter = 0;
                 Action setup = () => { setupCounter++; };
                 Action teardown = () => { teardownCounter++; };
-                Karass testKarass = new Karass(new[] {setup}, new[] {teardown},
+                Karass testKarass = new Karass(CreateActionListWith(setup),CreateActionListWith(teardown),
                     new List<Func<string, bool>[]>());
 
                 KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
@@ -65,7 +65,7 @@ namespace KanKanTest
                     int teardownCounter = 0;
                     Action setup = () => { setupCounter++; };
                     Action teardown = () => { teardownCounter++; };
-                    Karass testKarass = new Karass(new[] {setup}, new[] {teardown}, Frames);
+                    Karass testKarass = new Karass(CreateActionListWith(setup), CreateActionListWith(teardown), Frames);
 
                     KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
                     _output.WriteLine(actionRunner._frame.ToString() + 
@@ -80,5 +80,113 @@ namespace KanKanTest
                 }
             }
         }
+
+        public class GivenMultipleSetupAndTeardownArrays
+        {
+            public class WhenSetupIsGivenAnIndex
+            {
+                [Fact]
+                void ThenCorrectSetupActionsAreCalled_ExampleOne()
+                {
+                    bool karassOneSetupCalled = false;
+                    void KarassOneSetupSpy()
+                    {
+                        karassOneSetupCalled = true;
+                    }
+                    
+                    bool karassTwoSetupCalled = false;
+                    void KarassTwoSetupSpy()
+                    {
+                        karassTwoSetupCalled = true;
+                    }
+                    Karass karassOne = new Karass(CreateActionListWith(KarassOneSetupSpy), new List<List<Action>>(), new List<Func<string, bool>[]>() );
+                    Karass karassTwo = new Karass(CreateActionListWith(KarassTwoSetupSpy), new List<List<Action>>(), new List<Func<string, bool>[]>() );
+
+                    Karass combinedKarass = karassOne + karassTwo;
+                    
+                    combinedKarass.Setup(0);
+                    Assert.True(karassOneSetupCalled);
+                    Assert.False(karassTwoSetupCalled);
+                }
+                
+                [Fact]
+                void ThenCorrectSetupActionsAreCalled_ExampleTwo()
+                {
+                    bool karassOneSetupCalled = false;
+                    void KarassOneSetupSpy()
+                    {
+                        karassOneSetupCalled = true;
+                    }
+                    
+                    bool karassTwoSetupCalled = false;
+                    void KarassTwoSetupSpy()
+                    {
+                        karassTwoSetupCalled = true;
+                    }
+                    Karass karassOne = new Karass(CreateActionListWith(KarassOneSetupSpy), new List<List<Action>>(), new List<Func<string, bool>[]>() );
+                    Karass karassTwo = new Karass(CreateActionListWith(KarassTwoSetupSpy), new List<List<Action>>(), new List<Func<string, bool>[]>() );
+
+                    Karass combinedKarass = karassOne + karassTwo;
+                    
+                    combinedKarass.Setup(1);
+                    Assert.False(karassOneSetupCalled);
+                    Assert.True(karassTwoSetupCalled);
+                }
+            }
+            
+             public class WhenTeardownIsGivenAnIndex
+            {
+                [Fact]
+                void ThenCorrectTeardownActionsAreCalled_ExampleOne()
+                {
+                    bool karassOneTeardownCalled = false;
+                    void KarassOneTeardownSpy()
+                    {
+                        karassOneTeardownCalled = true;
+                    }
+                    
+                    bool karassTwoTeardownCalled = false;
+                    void KarassTwoTeardownSpy()
+                    {
+                        karassTwoTeardownCalled = true;
+                    }
+                    Karass karassOne = new Karass(new List<List<Action>>(),CreateActionListWith(KarassOneTeardownSpy), new List<Func<string, bool>[]>() );
+                    Karass karassTwo = new Karass(new List<List<Action>>(),CreateActionListWith(KarassTwoTeardownSpy), new List<Func<string, bool>[]>() );
+
+                    Karass combinedKarass = karassOne + karassTwo;
+                    
+                    combinedKarass.Teardown(0);
+                    Assert.True(karassOneTeardownCalled);
+                    Assert.False(karassTwoTeardownCalled);
+                }
+                
+                [Fact]
+                void ThenCorrectTeardownActionsAreCalled_ExampleTwo()
+                {
+                    bool karassOneTeardownCalled = false;
+                    void KarassOneTeardownSpy()
+                    {
+                        karassOneTeardownCalled = true;
+                    }
+                    
+                    bool karassTwoTeardownCalled = false;
+                    void KarassTwoTeardownSpy()
+                    {
+                        karassTwoTeardownCalled = true;
+                    }
+                    Karass karassOne = new Karass(new List<List<Action>>(),CreateActionListWith(KarassOneTeardownSpy), new List<Func<string, bool>[]>() );
+                    Karass karassTwo = new Karass(new List<List<Action>>(),CreateActionListWith(KarassTwoTeardownSpy), new List<Func<string, bool>[]>() );
+
+                    Karass combinedKarass = karassOne + karassTwo;
+                    
+                    combinedKarass.Teardown(1);
+                    Assert.False(karassOneTeardownCalled);
+                    Assert.True(karassTwoTeardownCalled);
+                }
+            }
+        }
+
+        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
+        
     }
 }

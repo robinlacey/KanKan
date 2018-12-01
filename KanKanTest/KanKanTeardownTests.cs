@@ -9,6 +9,7 @@ namespace KanKanTest
 {
     public class KanKanTeardownTests
     {
+        
         public class GivenOneFrameSet
         {
             public class WithOneFrame
@@ -30,7 +31,13 @@ namespace KanKanTest
                         FrameSpy
                     };
 
-                    Karass karass = new Karass(new Action[0], new Action[] {() => { teardownCalled = true; }},
+                    void TeardownSpy()
+                    {
+                        teardownCalled = true;
+                    }
+                    Karass karass = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(TeardownSpy),
                         new List<Func<string, bool>[]> {frames});
                     KanKan kankan = new KanKan(karass, new KarassMessageDummy());
 
@@ -76,7 +83,13 @@ namespace KanKanTest
                         FrameThreeSpy
                     };
 
-                    Karass karass = new Karass(new Action[0], new Action[] {() => { teardownCalled = true; }},
+                    void TeardownSpy()
+                    {
+                        teardownCalled = true;
+                    }
+                    Karass karass = new Karass(new List<List<Action>>(), 
+                        CreateActionListWith(TeardownSpy),
+                        
                         new List<Func<string, bool>[]> {frames});
                     KanKan kankan = new KanKan(karass, new KarassMessageDummy());
 
@@ -92,7 +105,7 @@ namespace KanKanTest
                 }
             }
         }
-
+        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
 //        public class GivenMultipleSetsWithOneFrame
 //        {
 //            // Bookmark

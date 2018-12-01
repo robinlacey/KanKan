@@ -56,7 +56,9 @@ namespace KanKanTest
                         tearDownRun = true;
                     }
 
-                    Karass karass = new Karass(new Action[] {SetupSpy}, new Action[] {TeardownSpy},
+                    Karass karass = new Karass(
+                        CreateActionListWith(SetupSpy), 
+                        CreateActionListWith(TeardownSpy),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -100,8 +102,8 @@ namespace KanKanTest
                     CheckThirdFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
                    
                 }
-                
 
+                
                 private void CheckFirstFrame(KanKan kankan, bool setupRun, bool frameOneRun, bool tearDownRun, bool frameTwoRun,
                     bool frameThreeRun)
                 {
@@ -185,7 +187,7 @@ namespace KanKanTest
                         }
 
 
-                        Karass karass = new Karass(new Action[] {}, new Action[] {},
+                        Karass karass = new Karass(new List<List<Action>>(), new List<List<Action>>(),
                             new List<Func<string, bool>[]>
                             {
                                 new Func<string, bool>[]
@@ -230,6 +232,9 @@ namespace KanKanTest
                 }
             }
         }
+        
+        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
+
 
         // Given Single Set Multple frames
         // current Frame contains frames

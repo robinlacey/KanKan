@@ -13,7 +13,7 @@ namespace KanKanTest
         {
             int setupCounter = 0;
             Action setup = () => { setupCounter++; };
-            Karass testKarass = new Karass(new[] {setup}, new Action[0],
+            Karass testKarass = new Karass(CreateActionListWith(setup),new List<List<Action>>(), 
                 new List<Func<string, bool>[]>());
 
             KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
@@ -40,7 +40,7 @@ namespace KanKanTest
             {
                 int setupCounter = 0;
                 Action setup = () => { setupCounter++; };
-                Karass testKarass = new Karass(new[] {setup}, new Action[0], Frames);
+                Karass testKarass = new Karass(CreateActionListWith(setup), new List<List<Action>>(), Frames);
 
                 KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
                 actionRunner.MoveNext();
@@ -50,5 +50,9 @@ namespace KanKanTest
                     
             }
         }
+        
+        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
+
+
     }
 }

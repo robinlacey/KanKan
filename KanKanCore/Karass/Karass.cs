@@ -9,64 +9,43 @@ namespace KanKanCore.Karass
 {
     public class Karass : IKarass 
     {
-        public void Setup()
+        public void Setup(int index)
         {
-            SetupActions.ToList().ForEach(setup=>setup.Invoke());
+            if (SetupActions == null || SetupActions.Count - 1 < index)
+            {
+                return;
+            }
+            SetupActions[index].ForEach(setup=>setup.Invoke());
         }
 
-        public void Teardown()
+        public void Teardown(int index)
         {
-            TeardownActions.ToList().ForEach(setup=>setup.Invoke());
+            if (TeardownActions == null || TeardownActions.Count - 1 < index)
+            {
+                return;
+            }   
+            TeardownActions[index].ForEach(teardown=>teardown.Invoke());
         }
 
-        public IEnumerable<Action> SetupActions { get;   set; }
-        public IEnumerable<Action> TeardownActions { get;  set; }
+        public List<List<Action>> SetupActions { get;   set; }
+        public List<List<Action>> TeardownActions { get;  set; }
         public List<Func<string, bool>[]> FramesCollection { get; protected set; }
        
-        public Karass(IEnumerable<Action> setup, IEnumerable<Action>teardown, IEnumerable<Func<string, bool>[]> framesCollection)
+        public Karass(List<List<Action>> setup, List<List<Action>> teardown, IEnumerable<Func<string, bool>[]> framesCollection)
         {
-          
+           
             FramesCollection =  (List<Func<string, bool>[]>) framesCollection;
   
             SetupActions = setup;
             TeardownActions = teardown;
         }
 
-
-//
-//        private void Example_SetFrames()
-//        {
-//            for (int i = 0; i < Frames.Count; i++)
-//            {
-//                if (Frames[i].Any())
-//                {
-//                    CurrentFrames.Add(i, 0);
-//                }
-//            }
-//        }
-//
-//        // Something like .... 
-//        void Example_Update()
-//        {
-//         // Go through frames
-//            for (int i = 0; i < Frames.Count; i++)
-//            {
-//                // tick method
-//                var func = Frames[i][CurrentFrames[i]];
-//                bool goToNextFrame = func("message");
-//                CurrentFrames[i] += goToNextFrame ? 1 : 0;
-//                if (CurrentFrames[i] > Frames[i].Length - 1)
-//                {
-//                    // Remove
-//                }
-//            }
-//        }
-//        
         public static Karass operator+ (Karass karassOne, Karass karassTwo) {
            
+            
             return new Karass(
-                karassOne.SetupActions.Concat(karassTwo.SetupActions), 
-                karassOne.TeardownActions.Concat(karassTwo.TeardownActions), 
+                karassOne.SetupActions.Concat(karassTwo.SetupActions).ToList(), 
+                karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(), 
                 new List<Func<string, bool>[]>(karassOne.FramesCollection.Concat(karassTwo.FramesCollection)) );
         }
     }

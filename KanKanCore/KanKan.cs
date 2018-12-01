@@ -45,13 +45,13 @@ namespace KanKanCore
         {
             if (_frame == 0)
             {
-                Karass.Setup();
+                Karass.Setup(0);
             
             }
             
             if (IsLastFrame())
             { 
-                Karass.Teardown();
+                Karass.Teardown(0);
                 // False will stop the Karass
                 return false;
             }
@@ -70,7 +70,7 @@ namespace KanKanCore
                 
                 if (IsLastFrame())
                 {
-                    Karass.Teardown();
+                    Karass.Teardown(0);
                     return false;
                 }
                 else

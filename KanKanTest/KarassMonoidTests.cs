@@ -9,6 +9,9 @@ namespace KanKanTest
 {
     public class KarassMonoidTests
     {
+        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
+
+        
         public class KarassAddition
         {
             public class GivenMultipleSetupMethods
@@ -17,46 +20,57 @@ namespace KanKanTest
                 public void WhenAddedThenMethodsAreInInList_ExampleOne()
                 {
                     Action setupOne = () => { };
-                    Karass karassOne = new Karass(new Action[] {setupOne}, new Action[0],
+                    Karass karassOne = new Karass(
+                        CreateActionListWith(setupOne), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
                     Action setupTwo = () => { };
-                    Karass karassTwo = new Karass(new Action[] {setupTwo}, new Action[0],
+                    Karass karassTwo = new Karass(
+                        CreateActionListWith(setupTwo), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 
                     Assert.True(combinedKarass.SetupActions.Count() == 2);
-                    Assert.True(combinedKarass.SetupActions.Contains(setupOne));
-                    Assert.True(combinedKarass.SetupActions.Contains(setupTwo));
+                    Assert.True(combinedKarass.SetupActions[0].Contains(setupOne));
+                    Assert.True(combinedKarass.SetupActions[1].Contains(setupTwo));
                 }
 
                 [Fact]
                 public void WhenAddedThenMethodsAreInInList_ExampleTwo()
                 {
                     Action setupOne = () => { };
-                    Karass karassOne = new Karass(new Action[] {setupOne}, new Action[0],
+                    Karass karassOne = new Karass(
+                        CreateActionListWith(setupOne), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
                     Action setupTwo = () => { };
-                    Karass karassTwo = new Karass(new Action[] {setupTwo}, new Action[0],
+                    Karass karassTwo = new Karass(
+                        CreateActionListWith(setupTwo), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
 
                     Action setupThree = () => { };
-                    Karass karassThree = new Karass(new Action[] {setupThree}, new Action[0],
+                    Karass karassThree = new Karass(
+                        CreateActionListWith(setupThree), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
 
-
                     Action setupFour = () => { };
-                    Karass karassFour = new Karass(new Action[] {setupFour}, new Action[0],
+                    Karass karassFour = new Karass(
+                        CreateActionListWith(setupFour), 
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>());
 
 
                     Karass combinedKarass = karassOne + karassTwo + karassThree + karassFour;
 
                     Assert.True(combinedKarass.SetupActions.Count() == 4);
-                    Assert.True(combinedKarass.SetupActions.Contains(setupOne));
-                    Assert.True(combinedKarass.SetupActions.Contains(setupTwo));
-                    Assert.True(combinedKarass.SetupActions.Contains(setupThree));
-                    Assert.True(combinedKarass.SetupActions.Contains(setupFour));
+                    Assert.True(combinedKarass.SetupActions[0].Contains(setupOne));
+                    Assert.True(combinedKarass.SetupActions[1].Contains(setupTwo));
+                    Assert.True(combinedKarass.SetupActions[2].Contains(setupThree));
+                    Assert.True(combinedKarass.SetupActions[3].Contains(setupFour));
                 }
 
                 // has both lists of funct
@@ -72,34 +86,48 @@ namespace KanKanTest
                 public void WhenAddedThenMethodsAreInInList_ExampleOne()
                 {
                     Action teardownOne = () => { };
-                    Karass karassOne = new Karass(new Action[0], new[] {teardownOne},
+                    Karass karassOne = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownOne), 
                         new List<Func<string, bool>[]>());
                     Action teardownTwo = () => { };
-                    Karass karassTwo = new Karass(new Action[0], new[] {teardownTwo},
+                    Karass karassTwo = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownTwo), 
                         new List<Func<string, bool>[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 
                     Assert.True(combinedKarass.TeardownActions.Count() == 2);
+                    Assert.True(combinedKarass.TeardownActions[0].Contains(teardownOne));
+                    Assert.True(combinedKarass.TeardownActions[1].Contains(teardownTwo));
+                    
                 }
 
                 [Fact]
                 public void WhenAddedThenMethodsAreInInList_ExampleTwo()
                 {
                     Action teardownOne = () => { };
-                    Karass karassOne = new Karass(new Action[0], new[] {teardownOne},
+                    Karass karassOne = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownOne), 
                         new List<Func<string, bool>[]>());
                     Action teardownTwo = () => { };
-                    Karass karassTwo = new Karass(new Action[0], new[] {teardownTwo},
+                    Karass karassTwo = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownTwo), 
                         new List<Func<string, bool>[]>());
 
                     Action teardownThree = () => { };
-                    Karass karassThree = new Karass(new Action[0], new[] {teardownThree},
+                    Karass karassThree = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownThree), 
                         new List<Func<string, bool>[]>());
 
-
                     Action teardownFour = () => { };
-                    Karass karassFour = new Karass(new Action[0], new[] {teardownFour},
+                    Karass karassFour = new Karass(
+                        new List<List<Action>>(),
+                        CreateActionListWith(teardownFour), 
                         new List<Func<string, bool>[]>());
 
 
@@ -107,6 +135,10 @@ namespace KanKanTest
 
 
                     Assert.True(combinedKarass.TeardownActions.Count() == 4);
+                    Assert.True(combinedKarass.TeardownActions[0].Contains(teardownOne));
+                    Assert.True(combinedKarass.TeardownActions[1].Contains(teardownTwo));
+                    Assert.True(combinedKarass.TeardownActions[2].Contains(teardownThree));
+                    Assert.True(combinedKarass.TeardownActions[3].Contains(teardownFour));
                 }
 
                 // has both lists of funct
@@ -136,10 +168,14 @@ namespace KanKanTest
                         frameSetArrayTwo
                     };
 
-                    Karass karassOne = new Karass(new Action[0], new Action[0],
+                    Karass karassOne = new Karass(
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         frameSetOne);
 
-                    Karass karassTwo = new Karass(new Action[0], new Action[0],
+                    Karass karassTwo = new Karass(
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         frameSetTwo);
 
                     Karass combinedKarass = karassOne + karassTwo;
@@ -196,10 +232,14 @@ namespace KanKanTest
                         frameSetArrayTwo
                     };
 
-                    Karass karassOne = new Karass(new Action[0], new Action[0],
+                    Karass karassOne = new Karass(
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         frameSetOne);
 
-                    Karass karassTwo = new Karass(new Action[0], new Action[0],
+                    Karass karassTwo = new Karass(
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         frameSetTwo);
 
                     Karass combinedKarass = karassOne + karassTwo;
