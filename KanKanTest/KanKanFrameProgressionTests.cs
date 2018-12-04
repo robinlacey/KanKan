@@ -5,6 +5,7 @@ using KanKanCore;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.UAction;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace KanKanTest
 {
@@ -112,10 +113,6 @@ namespace KanKanTest
                     Assert.True(frameOneRun);
                     Assert.False(frameTwoRun);
                     Assert.False(frameThreeRun);
-                    
-                    
-                   
-                    
                 }
 
                 private void CheckSecondFrame(bool setupRun, bool frameOneRun, bool tearDownRun, bool frameTwoRun,
@@ -138,21 +135,170 @@ namespace KanKanTest
                     Assert.True(frameThreeRun);
                 }
             }
+            
+            
+            public class WhenThereIsACombinedKarass{
+               
+                [Fact]
+                public void ThenFrameSetsAreRunIndependently()
+                {
+                    bool setOneSetupRun = false;
+                    void FrameSetOneSetupSpy()
+                    {
+                        setOneSetupRun = true;
+                       
+                    }
+                    
+                    bool setOneTeardownRun = false;
+                    void FrameSetOneTeardownSpy()
+                    {
+                        setOneTeardownRun = true;
+                        
+                    }
+
+                    bool setOneFrameOneRun = false;
+                    bool FrameSetOneFrameOneSpy(string message)
+                    {
+                        setOneFrameOneRun = true;
+                        return true;
+                    }
+                    
+                    bool setOneFrameTwoRun = false;
+                    bool FrameSetOneFrameTwoSpy(string message)
+                    {
+                        setOneFrameTwoRun = true;
+                        return true;
+                    }
+                    
+                    bool setOneFrameThreeRun = false;
+                    bool FrameSetOneFrameThreeSpy(string message)
+                    {
+                        setOneFrameThreeRun = true;
+                        return true;
+                    }
+
+                    
+                    bool setTwoSetupRun = false;
+                    void FrameSetTwoSetupSpy()
+                    {
+                        setTwoSetupRun = true;
+                       
+                    }
+                    
+                    bool setTwoTeardownRun = false;
+                    void FrameSetTwoTeardownSpy()
+                    {
+                        setTwoTeardownRun = true;
+                        
+                    }
+                    
+                    bool setTwoFrameOneRun = false;
+                    bool FrameSetTwoFrameOneSpy(string message)
+                    {
+                        setTwoFrameOneRun = true;
+                        return true;
+                    }
+
+                    bool setTwoFrameTwoRun = false;
+                    bool FrameSetTwoFrameTwoSpy(string message)
+                    {
+                        setTwoFrameTwoRun = true;
+                        return true;
+                    }
+
+                   
+                    Karass karassOne = new Karass(CreateActionListWith(FrameSetOneSetupSpy),CreateActionListWith(FrameSetOneTeardownSpy), 
+                        new List<Func<string, bool>[]>
+                        {
+                           new Func<string, bool>[]
+                           {
+                               FrameSetOneFrameOneSpy,
+                               FrameSetOneFrameTwoSpy,
+                               FrameSetOneFrameThreeSpy
+                           }
+                        } );
+                    
+                    Karass karassTwo = new Karass(CreateActionListWith(FrameSetTwoSetupSpy),CreateActionListWith(FrameSetTwoTeardownSpy), 
+                        new List<Func<string, bool>[]>
+                        {
+                            new Func<string, bool>[]
+                            {
+                                FrameSetTwoFrameOneSpy,
+                                FrameSetTwoFrameTwoSpy
+                                
+                            }
+                        } );
+                    
+                    KanKan kankan = new KanKan(karassOne+karassTwo, new KarassMessageDummy());
+                    
+                    // First Frames correctly in NextFrames
+                    Assert.True(kankan.NextFrames.Contains(FrameSetOneFrameOneSpy));
+                    Assert.True(kankan.NextFrames.Contains(FrameSetTwoFrameOneSpy));
+                    Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameTwoSpy));
+                    Assert.False(kankan.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
+                    Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameThreeSpy));
+                    
+                    //Run first frame
+                    kankan.MoveNext();
+              
+                    Assert.True(setOneSetupRun);
+                    Assert.True(setTwoSetupRun);
+                    Assert.False(setOneTeardownRun);
+                    Assert.False(setTwoTeardownRun);
+
+                    // Check frames
+                    Assert.True(setOneFrameOneRun);
+                    Assert.True(setTwoFrameOneRun);
+
+                    Assert.False(setOneFrameTwoRun);
+                    Assert.False(setOneFrameThreeRun);
+                    Assert.False(setTwoFrameTwoRun);
+                    
+                    
+                    kankan.MoveNext();
+                    
+                    
+                    Assert.True(setOneSetupRun);
+                    Assert.True(setTwoSetupRun);
+                    Assert.False(setOneTeardownRun);
+                    Assert.True(setTwoTeardownRun);
+
+                    // Check frames
+                    Assert.True(setOneFrameOneRun);
+                    Assert.True(setTwoFrameOneRun);
+                    Assert.True(setOneFrameTwoRun);
+                    Assert.True(setTwoFrameTwoRun);
+                    
+                    Assert.False(setOneFrameThreeRun);
+                    
+
+                    kankan.MoveNext();
+                    
+                    Assert.True(setOneSetupRun);
+                    Assert.True(setTwoSetupRun);
+                    Assert.True(setOneTeardownRun);
+                    Assert.True(setTwoTeardownRun);
+
+                    // Check frames
+                    Assert.True(setOneFrameOneRun);
+                    Assert.True(setTwoFrameOneRun);
+                    Assert.True(setOneFrameTwoRun);
+                    Assert.True(setTwoFrameTwoRun);
+                    Assert.True(setOneFrameThreeRun);
+                }
+            }
         }
         
         
-        // MULTIPLE FRAMES
-        
-        // CORRECTLY PUTTING FRAMES INTO CURRENT FRAMES
-
+      
         public class GivenMultipleFrameSets
         {
-            public class WhenThereAreMultipleFrames
+            public class WhenNextFramesIsUpdated
             {
-                public class WhenFrameCountsAreEqual
+                public class WhenThereAreTwoEqualFrameSets
                 {
                     [Fact]
-                    public void ThenFrameSetsAreRunInParallel()
+                    public void ThenNextFramesIsCorrectlyUpdated()
                     {
                         bool setOneFrameOneRun = false;
 
@@ -203,38 +349,45 @@ namespace KanKanTest
                             });
 
                         KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                       
                         Assert.True(kankan.NextFrames.Contains(SetOneFrameOneSpy));
                         Assert.True(kankan.NextFrames.Contains(SetTwoFrameOneSpy));
+                        
                         kankan.MoveNext();
                         
                         Assert.True(kankan.NextFrames.Contains(SetOneFrameTwoSpy));
                         Assert.True(kankan.NextFrames.Contains(SetTwoFrameTwoSpy));
-                        
+
                         Assert.True(setOneFrameOneRun);
                         Assert.False(setOneFrameTwoRun);
                         Assert.True(setTwoFrameOneRun);
                         Assert.False(setTwoFrameTwoRun);
 
                         kankan.MoveNext();
-                        Assert.False(kankan.NextFrames.Any());
                         
+                        Assert.False(kankan.NextFrames.Any());
+                     
                         Assert.True(setOneFrameOneRun);
                         Assert.True(setOneFrameTwoRun);
                         Assert.True(setTwoFrameOneRun);
                         Assert.True(setTwoFrameTwoRun);
-
-
                     }
                 }
 
-                public class WhenFrameCountsAreNotEqual
+                public class WhenThereAreMultipleUnequalFrameSets
                 {
+                    [Fact]
+                    public void ThenNextFramesIsUpdatedCorrectly()
+                    {
+                        Assert.True(1==2);
+                    }
                 }
+                
             }
         }
         
         private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
-
+        
 
         // Given Single Set Multple frames
         // current Frame contains frames

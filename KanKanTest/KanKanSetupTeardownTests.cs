@@ -10,9 +10,16 @@ namespace KanKanTest
 {
     public class KanKanSetupAndTeardownTests
     {
-       
+     
         public class GivenNoFrames
         {
+            private readonly ITestOutputHelper _outputHelper;
+
+            public GivenNoFrames(ITestOutputHelper outputHelper)
+            {
+                _outputHelper = outputHelper;
+            }
+
             [Fact]
             void SetupAndTearDownAreRun()
             {
@@ -26,7 +33,7 @@ namespace KanKanTest
                 KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
 
                 actionRunner.MoveNext();
-                
+                _outputHelper.WriteLine(teardownCounter.ToString());
                 Assert.True(setupCounter == 1);
                 Assert.True(teardownCounter == 1);
             }
@@ -68,11 +75,8 @@ namespace KanKanTest
                     Karass testKarass = new Karass(CreateActionListWith(setup), CreateActionListWith(teardown), Frames);
 
                     KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-                    _output.WriteLine(actionRunner._frame.ToString() + 
-                                      " " + (actionRunner._frame > actionRunner.Karass.FramesCollection[0].Length - 1));
+                    
                     actionRunner.MoveNext();
-                    _output.WriteLine(actionRunner._frame.ToString()+ 
-                                      " " + (actionRunner._frame > actionRunner.Karass.FramesCollection[0].Length - 1));
                     
                     Assert.True(setupCounter == 1);
                     Assert.True(teardownCounter == 1);

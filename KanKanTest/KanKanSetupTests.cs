@@ -4,10 +4,19 @@ using KanKanCore;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.UAction;
 using Xunit;
+using Xunit.Abstractions;
+
 namespace KanKanTest
 {
     public class KanKanSetupTests
     {
+        private readonly ITestOutputHelper _output;
+
+        public KanKanSetupTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         [Fact]
         void SetupIsRunOnMoveNext()
         {
@@ -18,6 +27,7 @@ namespace KanKanTest
 
             KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
             actionRunner.MoveNext();
+            _output.WriteLine(setupCounter.ToString());
             Assert.True(setupCounter > 0);
         }
         
@@ -52,7 +62,5 @@ namespace KanKanTest
         }
         
         private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
-
-
     }
 }

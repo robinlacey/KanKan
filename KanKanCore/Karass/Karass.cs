@@ -48,5 +48,7 @@ namespace KanKanCore.Karass
                 karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(), 
                 new List<Func<string, bool>[]>(karassOne.FramesCollection.Concat(karassTwo.FramesCollection)) );
         }
+        
+       
     }
 }

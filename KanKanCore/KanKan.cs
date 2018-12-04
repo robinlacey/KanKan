@@ -25,76 +25,164 @@ namespace KanKanCore
 {
     public class KanKan :IEnumerator
     {
-        public object Current => IsLastFrame() ? null : Karass.FramesCollection[_frame];
+        public object Current => null; //IsLastFrame() ? null : Karass.FramesCollection[_frame];
 
         public List<Func<string, bool>> NextFrames { get; } = new List<Func<string, bool>>();
-        
-        public IKarass Karass { get; }
-        public int _frame;
-        private int _messageFrame;
+        private List<bool> _complete = new List<bool>();
+        private IKarass Karass { get; }
+       
         private readonly IKarassMessage _message;
       
+        Dictionary<Func<string,bool>[],int> _currentFrames = new Dictionary<Func<string, bool>[], int>();
         public KanKan(IKarass karass,IKarassMessage karassMessage)
         {
             AddFirstFrames(karass.FramesCollection);
+            
             Karass = karass;
+            for (int i = 0; i < Karass.FramesCollection.Count; i++)
+            {
+                _currentFrames.Add(Karass.FramesCollection[i], 0);
+                _complete.Add(false);
+            }
+            
             _message = karassMessage;
         }
 
         public bool MoveNext()
         {
-            if (_frame == 0)
+            int lastFrameCount = 0;
+
+            if (EmptyKarass())
             {
-                Karass.Setup(0);
-            
-            }
-            
-            if (IsLastFrame())
-            { 
-                Karass.Teardown(0);
-                // False will stop the Karass
+                InvokeAllSetupActions();
+                InvokeAllTeardownActions();
+
                 return false;
             }
             
-            if (ShouldClearMessage())
+            NextFrames.Clear();
+            
+            for (int i = 0; i < Karass.FramesCollection.Count; i++)
             {
-                _message.ClearMessage();
-            }
-
-         
-            if ( ShouldProgressToNextFrame())
-            {
-                NextFrames.Clear();
-               
-                _frame++;
-                
-                if (IsLastFrame())
+                if (FrameSetAlreadyFinished(i))
                 {
-                    Karass.Teardown(0);
+                    continue;
+                }
+                
+                Func<string, bool>[] allFrames = Karass.FramesCollection[i];
+                int currentFrame = _currentFrames[allFrames];
+                
+                InvokeSetupActionsOnFirstFrame(currentFrame, i);
+
+                InvokeTeardownActionsOnLastFrame(i, currentFrame, allFrames, ref lastFrameCount, out bool shouldComplete);
+                if (shouldComplete)
+                {
                     return false;
                 }
-                else
+                
+                bool goToNextFrame = InvokeCurrentFrame(i, currentFrame);
+
+                if (!goToNextFrame) continue;
+                
+                currentFrame += 1;
+                _currentFrames[allFrames] = currentFrame;
+   
+                InvokeTeardownActionsIfMovedOnToLastFrame(i, currentFrame, allFrames, ref lastFrameCount, out shouldComplete);
+                if (shouldComplete)
                 {
-                    
-                    NextFrames.Add(Karass.FramesCollection[0][_frame]);
+                    return false;
                 }
             }
-       
+            _message.ClearMessage();
+            
             return true;
+        }
+        
+        private bool InvokeCurrentFrame(int index, int currentFrame)
+        {
+            return Karass.FramesCollection[index][currentFrame].Invoke(_message.Message);
+        }
+
+  
+        private void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown)
+        {
+            Karass.Teardown(index);
+            _complete[index] = true;
+            // False will stop the Karass
+            lastFrameCount++;
+            // Abort if all frames have been false
+
+            allFramesTornDown = lastFrameCount == Karass.FramesCollection.Count;
+        }
+
+        private bool InvokeTeardownActionsOnLastFrame(int index, int currentFrame, Func<string, bool>[] allFrames, ref int lastFrameCount, out bool shouldComplete)
+        {
+            shouldComplete = false;
+            if (IsLastFrame(currentFrame, allFrames))
+            {
+                TeardownKarass(index, ref lastFrameCount, out shouldComplete);
+              
+            }
+    
+            return true;
+        }
+        
+        private void InvokeTeardownActionsIfMovedOnToLastFrame(int index, int currentFrame, Func<string, bool>[] allFrames, ref int lastFrameCount, out bool shouldComplete)
+        {
+            shouldComplete = false;
+            if (IsLastFrame(currentFrame, allFrames))
+            {
+                TeardownKarass(index, ref lastFrameCount, out shouldComplete);
+            }
+            else
+            {
+                NextFrames.Add(Karass.FramesCollection[index][currentFrame]);
+            }
+        }
+        
+
+        private void InvokeSetupActionsOnFirstFrame(int currentFrame, int index)
+        {
+            if (currentFrame == 0)
+            {
+                Karass.Setup(index);
+            }
+        }
+
+        private bool FrameSetAlreadyFinished(int index)
+        {
+            return _complete[index];
+        }
+
+        private void InvokeAllTeardownActions()
+        {
+            for (int i = 0; i < Karass.TeardownActions.Count; i++)
+            {
+                Karass.Teardown(i);
+            }
+        }
+
+        private void InvokeAllSetupActions()
+        {
+            for (int i = 0; i < Karass.SetupActions.Count; i++)
+            {
+                Karass.Setup(i);
+            }
+        }
+
+        private bool EmptyKarass()
+        {
+            return Karass.FramesCollection.Count == 0;
         }
 
         public void Reset()
         {
-            _frame = 0;
-            _messageFrame = 0;
         }
 
         public void SendMessage(string message)
         {
             _message.SetMessage(message);
-            _messageFrame = _frame;
         }
-        
         
         private void AddFirstFrames(IEnumerable<Func<string, bool>[]> framesCollection)
         {
@@ -107,27 +195,11 @@ namespace KanKanCore
             }
         }
         
-        private bool ShouldProgressToNextFrame()
+        private bool IsLastFrame(int currentFrame,  Func<string, bool>[] allFrames )
         {
             if (Karass.FramesCollection.Count > 0)
             {
-                return Karass.FramesCollection[0][_frame].Invoke(_message.Message);
-            }
-
-            return true;
-           
-        }
-
-        private bool ShouldClearMessage()
-        {
-            return _messageFrame < _frame;
-        }
-
-        private bool IsLastFrame()
-        {
-            if (Karass.FramesCollection.Count > 0)
-            {
-                return _frame > Karass.FramesCollection[0].Length - 1;
+                return currentFrame > allFrames.Length - 1;
             }
             return true;
         }
