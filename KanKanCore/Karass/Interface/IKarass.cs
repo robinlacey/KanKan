@@ -8,8 +8,8 @@ namespace KanKanCore.Karass.Interface
         void Setup(int index);
         void Teardown(int index);
         
-        List<List<Action>>  SetupActions { get;   set; }
-        List<List<Action>>  TeardownActions { get;  set; }
+        List<List<Action>>  SetupActions { get; }
+        List<List<Action>>  TeardownActions { get; }
         
         List<Func<string, bool>[]> FramesCollection { get; }
     }

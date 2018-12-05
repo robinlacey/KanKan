@@ -16,7 +16,8 @@ namespace KanKanTest.Mocks.UAction
             return new List<Func<string, bool>[]>(){frames};
         }
 
-        public KarassNumberOfFramesStub(int framesCount) : base(new List<List<Action>>(),new List<List<Action>>(), GetFakeFrames(framesCount))
+        public KarassNumberOfFramesStub(int framesCount) : base(new List<List<Action>>(), new List<List<Action>>(),
+            GetFakeFrames(framesCount))
         {
            
         }

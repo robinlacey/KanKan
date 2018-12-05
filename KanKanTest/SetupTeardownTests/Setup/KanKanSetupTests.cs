@@ -6,7 +6,7 @@ using KanKanTest.Mocks.UAction;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace KanKanTest
+namespace KanKanTest.SetupTeardownTests.Setup
 {
     public class KanKanSetupTests
     {
@@ -22,7 +22,7 @@ namespace KanKanTest
         {
             int setupCounter = 0;
             Action setup = () => { setupCounter++; };
-            Karass testKarass = new Karass(CreateActionListWith(setup),new List<List<Action>>(), 
+            Karass testKarass = new Karass(CreateActionListWith(setup), new List<List<Action>>(),
                 new List<Func<string, bool>[]>());
 
             KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
@@ -30,13 +30,13 @@ namespace KanKanTest
             _output.WriteLine(setupCounter.ToString());
             Assert.True(setupCounter > 0);
         }
-        
+
         public class GivenMultipleFrames
         {
             bool FrameOne(string message) => true;
             bool FrameTwo(string message) => true;
 
-            private List<Func<string, bool>[]> Frames => new List<Func<string, bool>[]>()
+            private List<Func<string, bool>[]> Frames => new List<Func<string, bool>[]>
             {
                 new Func<string, bool>[]
                 {
@@ -57,10 +57,10 @@ namespace KanKanTest
                 Assert.True(setupCounter == 1);
                 actionRunner.MoveNext();
                 Assert.True(setupCounter == 1);
-                    
             }
         }
-        
-        private static List<List<Action>> CreateActionListWith(Action a) => new List<List<Action>> { new List<Action> { a } };
+
+        private static List<List<Action>> CreateActionListWith(Action a) =>
+            new List<List<Action>> {new List<Action> {a}};
     }
 }

@@ -2,7 +2,7 @@ using KanKanCore.Karass.Interface;
 
 namespace KanKanTest.Mocks.UAction
 {
-    public class KarassMessageDummy: IKarassMessage
+    public class KarassMessageDummy : IKarassMessage
     {
         public void SetMessage(string message)
         {

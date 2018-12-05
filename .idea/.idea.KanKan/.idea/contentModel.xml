@@ -29,22 +29,24 @@
         </e>
       </e>
       <e p="KanKanTest" t="IncludeRecursive">
+        <e p="AdditionTests" t="Include">
+          <e p="KarassAdditionTests.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="KanKanCurrentTests.cs" t="Include" />
-        <e p="KanKanFrameProgressionTests.cs" t="Include" />
-        <e p="KanKanMessageTests.cs" t="Include" />
-        <e p="KanKanResetTests.cs" t="Include" />
-        <e p="KanKanReturnTests.cs" t="Include" />
-        <e p="KanKanSetupTeardownTests.cs" t="Include" />
-        <e p="KanKanSetupTests.cs" t="Include" />
-        <e p="KanKanTeardownTests.cs" t="Include" />
+        <e p="FrameCollectionTests" t="Include">
+          <e p="KarassFrameCollectionTests.cs" t="Include" />
+        </e>
+        <e p="IEnumeratorTests" t="Include">
+          <e p="KanKanCurrentTests.cs" t="Include" />
+          <e p="KanKanResetTests.cs" t="Include" />
+          <e p="KanKanReturnTests.cs" t="Include" />
+        </e>
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
-        <e p="KarassFrameCollectionTests.cs" t="Include" />
-        <e p="KarassMessageTests.cs" t="Include" />
-        <e p="KarassMonoidTests.cs" t="Include" />
-        <e p="KarassParamTests.cs" t="Include" />
-        <e p="KarassSetupTeardownTests.cs" t="Include" />
+        <e p="MessageTests" t="Include">
+          <e p="KanKanMessageTests.cs" t="Include" />
+          <e p="KarassMessageTests.cs" t="Include" />
+        </e>
         <e p="Mocks" t="Include">
           <e p="UAction" t="Include">
             <e p="KarassDummy.cs" t="Include" />
@@ -59,6 +61,19 @@
               <e p="KanKanTest.AssemblyInfo.cs" t="Include" />
               <e p="KanKanTest.Program.cs" t="Include" />
             </e>
+          </e>
+        </e>
+        <e p="ProgressionTests" t="Include">
+          <e p="GivenASingleFrameSet.cs" t="Include" />
+          <e p="GivenMultipleFrameSets.cs" t="Include" />
+          <e p="KanKanFrameProgressionTests.cs" t="Include" />
+        </e>
+        <e p="SetupTeardownTests" t="Include">
+          <e p="KanKanSetupTeardownTests.cs" t="Include" />
+          <e p="KanKanTeardownTests.cs" t="Include" />
+          <e p="KarassSetupTeardownTests.cs" t="Include" />
+          <e p="Setup" t="Include">
+            <e p="KanKanSetupTests.cs" t="Include" />
           </e>
         </e>
       </e>

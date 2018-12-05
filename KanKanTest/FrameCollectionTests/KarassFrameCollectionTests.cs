@@ -5,7 +5,7 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Message;
 using Xunit;
 
-namespace KanKanTest
+namespace KanKanTest.FrameCollectionTests
 {
     public class KanKanFirstFrameTests
     {
@@ -18,8 +18,8 @@ namespace KanKanTest
                 {
                     bool Frame(string message) => true;
                     Karass karass = new Karass(
-                       new List<List<Action>>(), 
-                       new List<List<Action>>(), 
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -42,8 +42,8 @@ namespace KanKanTest
                     bool FrameThree(string message) => false;
                     bool FrameFour(string message) => false;
                     Karass karass = new Karass(
-                        new List<List<Action>>(), 
-                        new List<List<Action>>(), 
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -73,8 +73,8 @@ namespace KanKanTest
                     bool SetOneFrame(string message) => true;
                     bool SetTwoFrame(string message) => true;
                     Karass karass = new Karass(
-                        new List<List<Action>>(), 
-                        new List<List<Action>>(), 
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -106,8 +106,8 @@ namespace KanKanTest
                     bool SetTwoFrameTwo(string message) => true;
                     bool SetTwoFrameThree(string message) => true;
                     Karass karass = new Karass(
-                        new List<List<Action>>(), 
-                        new List<List<Action>>(), 
+                        new List<List<Action>>(),
+                        new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -136,5 +136,4 @@ namespace KanKanTest
             }
         }
     }
-    
 }
