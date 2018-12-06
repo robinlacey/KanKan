@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using KanKanCore;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
 using Xunit;
 
@@ -10,6 +12,9 @@ namespace KanKanTest.ProgressionTests
 {
     public class GivenMultipleFrameSets : KanKanFrameProgressionTests
     {
+        
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+
         public class WhenNextFramesIsUpdated
         {
             public class WhenThereAreTwoEqualFrameSets
@@ -50,7 +55,7 @@ namespace KanKanTest.ProgressionTests
                     }
 
 
-                    Karass karass = new Karass(new List<List<Action>>(), new List<List<Action>>(),
+                    Karass karass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]
@@ -170,7 +175,7 @@ namespace KanKanTest.ProgressionTests
                     }
 
 
-                    Karass karass = new Karass(new List<List<Action>>(), new List<List<Action>>(),
+                    Karass karass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
                         new List<Func<string, bool>[]>
                         {
                             new Func<string, bool>[]

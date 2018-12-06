@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanTest.Mocks.Dependencies;
 using Xunit;
 
 namespace KanKanTest.SetupTeardownTests
 {
     public class KarassSetupTeardownTests
     {
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+
         private static List<List<Action>> CreateActionListWith(Action[] a) => new List<List<Action>> {a.ToList()};
 
 
@@ -20,7 +24,7 @@ namespace KanKanTest.SetupTeardownTests
             Action setupOne = () => { setupOneRun = true; };
             Action setupTwo = () => { setupTwoRun = true; };
             Action setupThree = () => { setupThreeRun = true; };
-            Karass testKarass = new Karass(
+            Karass testKarass = KarassFactory.Get(
                 CreateActionListWith(new[] {setupOne, setupTwo, setupThree}),
                 new List<List<Action>>(),
                 new List<Func<string, bool>[]>());
@@ -42,7 +46,7 @@ namespace KanKanTest.SetupTeardownTests
             Action teardownOne = () => { teardownOneRun = true; };
             Action teardownTwo = () => { teardownTwoRun = true; };
             Action teardownThree = () => { teardownThreeRun = true; };
-            Karass testKarass = new Karass(
+            Karass testKarass = KarassFactory.Get(
                 new List<List<Action>>(),
                 CreateActionListWith(new[] {teardownOne, teardownTwo, teardownThree}),
                 new List<Func<string, bool>[]>());
@@ -57,7 +61,7 @@ namespace KanKanTest.SetupTeardownTests
         [Fact]
         void KarassHasASetupMethod()
         {
-            Karass testKarass = new Karass(new List<List<Action>>(), new List<List<Action>>(),
+            Karass testKarass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
                 new List<Func<string, bool>[]>());
             testKarass.Setup(0);
         }
@@ -65,7 +69,7 @@ namespace KanKanTest.SetupTeardownTests
         [Fact]
         void KarassHasATeardownMethod()
         {
-            Karass testKarass = new Karass(new List<List<Action>>(), new List<List<Action>>(),
+            Karass testKarass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
                 new List<Func<string, bool>[]>());
             testKarass.Teardown(0);
         }

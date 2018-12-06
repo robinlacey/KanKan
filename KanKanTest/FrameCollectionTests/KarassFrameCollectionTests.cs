@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using KanKanCore;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Message;
+using KanKanTest.Mocks.Dependencies;
 using Xunit;
 
 namespace KanKanTest.FrameCollectionTests
 {
     public class KanKanFirstFrameTests
     {
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+
         public class GivenOneFrameSet
         {
             public class WhenThereIsOneFrame
@@ -17,7 +21,7 @@ namespace KanKanTest.FrameCollectionTests
                 public void ThenTheFrameIsInCurrentFrames()
                 {
                     bool Frame(string message) => true;
-                    Karass karass = new Karass(
+                    Karass karass = KarassFactory.Get(
                         new List<List<Action>>(),
                         new List<List<Action>>(),
                         new List<Func<string, bool>[]>
@@ -41,7 +45,7 @@ namespace KanKanTest.FrameCollectionTests
                     bool FrameTwo(string message) => false;
                     bool FrameThree(string message) => false;
                     bool FrameFour(string message) => false;
-                    Karass karass = new Karass(
+                    Karass karass = KarassFactory.Get(
                         new List<List<Action>>(),
                         new List<List<Action>>(),
                         new List<Func<string, bool>[]>
@@ -72,7 +76,7 @@ namespace KanKanTest.FrameCollectionTests
                 {
                     bool SetOneFrame(string message) => true;
                     bool SetTwoFrame(string message) => true;
-                    Karass karass = new Karass(
+                    Karass karass =  KarassFactory.Get(
                         new List<List<Action>>(),
                         new List<List<Action>>(),
                         new List<Func<string, bool>[]>
@@ -105,7 +109,7 @@ namespace KanKanTest.FrameCollectionTests
                     bool SetTwoFrameOne(string message) => true;
                     bool SetTwoFrameTwo(string message) => true;
                     bool SetTwoFrameThree(string message) => true;
-                    Karass karass = new Karass(
+                    Karass karass = KarassFactory.Get(
                         new List<List<Action>>(),
                         new List<List<Action>>(),
                         new List<Func<string, bool>[]>

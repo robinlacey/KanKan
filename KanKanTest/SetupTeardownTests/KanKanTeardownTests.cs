@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using KanKanCore;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
 using Xunit;
 
@@ -9,6 +11,8 @@ namespace KanKanTest.SetupTeardownTests
 {
     public class KanKanTeardownTests
     {
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+
         public class GivenOneFrameSet
         {
             public class WithOneFrame
@@ -35,7 +39,7 @@ namespace KanKanTest.SetupTeardownTests
                         teardownCalled = true;
                     }
 
-                    Karass karass = new Karass(
+                    Karass karass = KarassFactory.Get(
                         new List<List<Action>>(),
                         CreateActionListWith(TeardownSpy),
                         new List<Func<string, bool>[]> {frames});
@@ -91,7 +95,7 @@ namespace KanKanTest.SetupTeardownTests
                         teardownCalled = true;
                     }
 
-                    Karass karass = new Karass(new List<List<Action>>(),
+                    Karass karass = KarassFactory.Get(new List<List<Action>>(),
                         CreateActionListWith(TeardownSpy),
                         new List<Func<string, bool>[]> {frames});
                     KanKan kankan = new KanKan(karass, new KarassMessageDummy());

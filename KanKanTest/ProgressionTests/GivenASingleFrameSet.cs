@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using KanKanCore;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
 using Xunit;
 
@@ -10,6 +12,8 @@ namespace KanKanTest.ProgressionTests
 {
     public class GivenASingleFrameSet : KanKanFrameProgressionTests
     {
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+
         public class WhenThereAreMultipleFrames
         {
             [Fact]
@@ -54,7 +58,7 @@ namespace KanKanTest.ProgressionTests
                     tearDownRun = true;
                 }
 
-                Karass karass = new Karass(
+                Karass karass = KarassFactory.Get(
                     CreateActionListWith(SetupSpy),
                     CreateActionListWith(TeardownSpy),
                     new List<Func<string, bool>[]>
@@ -207,7 +211,7 @@ namespace KanKanTest.ProgressionTests
                 }
 
 
-                Karass karassOne = new Karass(CreateActionListWith(FrameSetOneSetupSpy),
+                Karass karassOne = KarassFactory.Get(CreateActionListWith(FrameSetOneSetupSpy),
                     CreateActionListWith(FrameSetOneTeardownSpy),
                     new List<Func<string, bool>[]>
                     {
@@ -219,7 +223,7 @@ namespace KanKanTest.ProgressionTests
                         }
                     });
 
-                Karass karassTwo = new Karass(CreateActionListWith(FrameSetTwoSetupSpy),
+                Karass karassTwo = KarassFactory.Get(CreateActionListWith(FrameSetTwoSetupSpy),
                     CreateActionListWith(FrameSetTwoTeardownSpy),
                     new List<Func<string, bool>[]>
                     {
