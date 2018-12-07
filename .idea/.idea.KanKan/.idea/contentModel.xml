@@ -14,6 +14,9 @@
         <e p="KanKan.cs" t="Include" />
         <e p="KanKanCore.csproj" t="IncludeRecursive" />
         <e p="Karass" t="Include">
+          <e p="Dependencies" t="Include">
+            <e p="KarassDependencies.cs" t="Include" />
+          </e>
           <e p="Interface" t="Include">
             <e p="IDependencies.cs" t="Include" />
             <e p="IKarass.cs" t="Include" />
@@ -38,6 +41,9 @@
           <e p="KarassAdditionTests.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="DependenciesTests" t="Include">
+          <e p="KarassDependenciesTests.cs" t="Include" />
+        </e>
         <e p="FrameCollectionTests" t="Include">
           <e p="KarassFrameCollectionTests.cs" t="Include" />
         </e>
