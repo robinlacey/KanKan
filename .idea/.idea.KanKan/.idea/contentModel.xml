@@ -88,6 +88,9 @@
           <e p="GivenMultipleFrameSets.cs" t="Include" />
           <e p="KanKanFrameProgressionTests.cs" t="Include" />
         </e>
+        <e p="SequentialKarassTests" t="Include">
+          <e p="SequentialKarassTests.cs" t="Include" />
+        </e>
         <e p="SetupTeardownTests" t="Include">
           <e p="KanKanSetupTeardownTests.cs" t="Include" />
           <e p="KanKanTeardownTests.cs" t="Include" />

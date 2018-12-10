@@ -31,6 +31,11 @@ namespace KanKanCore
             }
         }
 
+        public KanKan(IKarass[] karass, IKarassMessage karassMessage)
+        {
+            
+        }
+
         public void SendMessage(string message)
         {
             _message.SetMessage(message);
