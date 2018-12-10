@@ -33,7 +33,7 @@ namespace KanKanTest.IEnumeratorTests
             KanKan kanKan = new KanKan(karass, new KarassMessageDummy());
             for (int i = 0; i < 10; i++)
             {
-                Assert.Equal(kanKan.Current, kanKan.NextFrames);
+                Assert.Equal(kanKan.Current, kanKan.CurrentData.NextFrames);
                 kanKan.MoveNext();
             }
         }

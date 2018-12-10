@@ -73,15 +73,15 @@ namespace KanKanTest.ProgressionTests
 
                 KanKan kankan = new KanKan(karass, new KarassMessageDummy());
 
-                Assert.True(kankan.NextFrames.Contains(FrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameThreeSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameThreeSpy));
 
                 kankan.MoveNext();
 
-                Assert.False(kankan.NextFrames.Contains(FrameOneSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameThreeSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameOneSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameThreeSpy));
 
 
                 CheckFirstFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
@@ -89,16 +89,16 @@ namespace KanKanTest.ProgressionTests
 
                 kankan.MoveNext();
 
-                Assert.False(kankan.NextFrames.Contains(FrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameTwoSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameThreeSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameTwoSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameThreeSpy));
 
 
                 CheckSecondFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
 
                 kankan.MoveNext();
 
-                Assert.False(kankan.NextFrames.Any());
+                Assert.False(kankan.CurrentData.NextFrames.Any());
 
                 CheckThirdFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
             }
@@ -237,38 +237,38 @@ namespace KanKanTest.ProgressionTests
                 KanKan kankan = new KanKan(karassOne + karassTwo, new KarassMessageDummy());
 
 
-                Assert.True(kankan.NextFrames.Contains(FrameSetOneFrameOneSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameSetTwoFrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameThreeSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameOneSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameThreeSpy));
 
 
                 kankan.MoveNext();
 
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetTwoFrameOneSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameSetOneFrameTwoSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameThreeSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameOneSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameTwoSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameThreeSpy));
 
                 CheckFirstFrame(setOneSetupRun, setTwoSetupRun, setOneTeardownRun, setTwoTeardownRun, setOneFrameOneRun,
                     setTwoFrameOneRun, setOneFrameTwoRun, setOneFrameThreeRun, setTwoFrameTwoRun);
 
 
                 kankan.MoveNext();
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetTwoFrameOneSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetOneFrameTwoSpy));
-                Assert.False(kankan.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
-                Assert.True(kankan.NextFrames.Contains(FrameSetOneFrameThreeSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameOneSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameTwoSpy));
+                Assert.False(kankan.CurrentData.NextFrames.Contains(FrameSetTwoFrameTwoSpy));
+                Assert.True(kankan.CurrentData.NextFrames.Contains(FrameSetOneFrameThreeSpy));
 
                 CheckSecondFrame(setOneSetupRun, setTwoSetupRun, setOneTeardownRun, setTwoTeardownRun,
                     setOneFrameOneRun, setTwoFrameOneRun, setOneFrameTwoRun, setTwoFrameTwoRun, setOneFrameThreeRun);
 
 
                 kankan.MoveNext();
-                Assert.False(kankan.NextFrames.Any());
+                Assert.False(kankan.CurrentData.NextFrames.Any());
                 CheckThirdFrame(setOneSetupRun, setTwoSetupRun, setOneTeardownRun, setTwoTeardownRun, setOneFrameOneRun,
                     setTwoFrameOneRun, setOneFrameTwoRun, setTwoFrameTwoRun, setOneFrameThreeRun);
             }
