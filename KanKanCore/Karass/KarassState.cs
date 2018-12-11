@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass.Interface;
 
-namespace KanKanCore
+namespace KanKanCore.Karass
 {
     public class KarassState
     {

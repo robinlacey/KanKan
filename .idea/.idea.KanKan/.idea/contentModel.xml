@@ -24,12 +24,12 @@
             <e p="IKarassMessage.cs" t="Include" />
           </e>
           <e p="Karass.cs" t="Include" />
+          <e p="KarassState.cs" t="Include" />
+          <e p="KarassStateBehaviour.cs" t="Include" />
           <e p="Message" t="Include">
             <e p="KarassMessage.cs" t="Include" />
           </e>
         </e>
-        <e p="KarassState.cs" t="Include" />
-        <e p="KarassStateBehaviour.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">

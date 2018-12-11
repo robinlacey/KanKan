@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 
 // Kan-Kan: the instrument that brings individuals into their karass

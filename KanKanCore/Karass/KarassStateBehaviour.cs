@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Interface;
 
-namespace KanKanCore
+namespace KanKanCore.Karass
 {
     public static class KarassStateBehaviour
     {
