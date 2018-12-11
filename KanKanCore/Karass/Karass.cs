@@ -4,6 +4,7 @@ using System.Linq;
 using KanKanCore.Karass.Interface;
 
 // Karass: team of individuals who do God's will without ever discovering what they are doing; every person belongs to one
+// (Cat's Cradle - Kurt Vonnegut)
 
 namespace KanKanCore.Karass
 {

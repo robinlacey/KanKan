@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass.Interface;
 
+// Kan-Kan: the instrument that brings individuals into their karass
+// (Cat's Cradle - Kurt Vonnegut)
+
 namespace KanKanCore
 {
     public class KanKan : IEnumerator
     {
-        public object Current => CurrentData.NextFrames;
+        public object Current => CurrentState.NextFrames;
         private readonly IKarassMessage _message;
         private int _currentKarass;
-        public KarassData CurrentData => _allKarassData[_currentKarass];
-        private List<KarassData> _allKarassData;
+        public KarassState CurrentState => _allKarassStates[_currentKarass];
+        private readonly List<KarassState> _allKarassStates;
 
 
         public KanKan(IKarass karass, IKarassMessage karassMessage)
         {
-            _allKarassData = new List<KarassData> {new KarassData(karass)};
+            _allKarassStates = new List<KarassState> {new KarassState(karass)};
             _message = karassMessage;
         }
 
         public KanKan(IKarass[] karass, IKarassMessage karassMessage)
         {
-            _allKarassData = karass.ToList().Select(_ => new KarassData(_)).ToList();
+            _allKarassStates = karass.ToList().Select(_ => new KarassState(_)).ToList();
 
             for (int i = 0; i < karass.Length; i++)
             {
-                _allKarassData[i] = new KarassData(karass[i]);
+                _allKarassStates[i] = new KarassState(karass[i]);
             }
 
             _message = karassMessage;
@@ -40,57 +43,65 @@ namespace KanKanCore
 
         public bool MoveNext()
         {
-            KarassData currentKarass = _allKarassData[_currentKarass];
+            KarassState karassState = _allKarassStates[_currentKarass];
 
             int lastFrameCount = 0;
 
-            if (currentKarass.EmptyKarass())
+            if (KarassStateBehaviour.EmptyKarass(karassState.Karass))
             {
-                currentKarass.InvokeAllSetupActions();
-                currentKarass.InvokeAllTeardownActions();
+                KarassStateBehaviour.InvokeAllSetupActions(karassState.Karass);
+                KarassStateBehaviour.InvokeAllTeardownActions(karassState.Karass);
 
-                if (_allKarassData.Count - 1 >= _currentKarass + 1)
+                if (_allKarassStates.Count - 1 < _currentKarass + 1)
                 {
-                    _currentKarass++;
-                    return MoveNext();
+                    return false;
                 }
 
-                return false;
+                _currentKarass++;
+                return MoveNext();
             }
 
-            currentKarass.NextFrames.Clear();
+            karassState.NextFrames.Clear();
 
-            for (int i = 0; i < currentKarass.Karass.FramesCollection.Count; i++)
+            for (int index = 0; index < karassState.Karass.FramesCollection.Count; index++)
             {
-                if (currentKarass.FrameSetAlreadyFinished(i))
+                if (KarassStateBehaviour.FrameSetAlreadyFinished(index, karassState.Complete))
                 {
                     continue;
                 }
 
-                currentKarass.InvokeSetupActionsOnFirstFrame(
-                    currentKarass.CurrentFrames[currentKarass.Karass.FramesCollection[i]], i);
+                KarassStateBehaviour.InvokeSetupActionsOnFirstFrame(
+                    karassState.CurrentFrames[karassState.Karass.FramesCollection[index]],
+                    index,
+                    karassState.Karass);
 
-                if (!currentKarass.InvokeCurrentFrame(i,
-                    currentKarass.CurrentFrames[currentKarass.Karass.FramesCollection[i]], _message)) continue;
-
-                currentKarass.InvokeTeardownActionsIfLastFrame(i,
-                    currentKarass.AddFrame(currentKarass.Karass.FramesCollection[i]),
-                    currentKarass.Karass.FramesCollection[i],
-                    ref lastFrameCount,
-                    out bool shouldComplete);
-
-                if (shouldComplete)
+                if (!KarassStateBehaviour.InvokeCurrentFrame(index,
+                    karassState.CurrentFrames[karassState.Karass.FramesCollection[index]],
+                    _message,
+                    karassState.Karass))
                 {
-                    // _currentKarass ++ 
-                    // if no more then false
-                    if (_allKarassData.Count - 1 >= _currentKarass + 1)
-                    {
-                        _currentKarass++;
-                        return true;
-                    }
+                    continue;
+                }
 
+                KarassStateBehaviour.InvokeTeardownActionsIfLastFrame(
+                    index,
+                    KarassStateBehaviour.AddFrame(karassState.Karass.FramesCollection[index], karassState.CurrentFrames),
+                    ref lastFrameCount,
+                    out bool shouldComplete,
+                    karassState);
+
+                if (!shouldComplete)
+                {
+                    continue;
+                }
+
+                if (_allKarassStates.Count - 1 < _currentKarass + 1)
+                {
                     return false;
                 }
+
+                _currentKarass++;
+                return true;
             }
 
             _message.ClearMessage();
@@ -98,12 +109,11 @@ namespace KanKanCore
             return true;
         }
 
-
         public void Reset()
         {
-            for (int i = 0; i < _allKarassData.Count; i++)
+            foreach (var data in _allKarassStates)
             {
-                _allKarassData[i].Reset();
+                data.Reset();
             }
         }
     }

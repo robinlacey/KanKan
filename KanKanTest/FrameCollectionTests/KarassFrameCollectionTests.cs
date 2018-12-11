@@ -32,7 +32,7 @@ namespace KanKanTest.FrameCollectionTests
                             }
                         });
                     KanKan kanKan = new KanKan(karass, new KarassMessage());
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(Frame));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(Frame));
                 }
             }
 
@@ -59,10 +59,10 @@ namespace KanKanTest.FrameCollectionTests
                             }
                         });
                     KanKan kanKan = new KanKan(karass, new KarassMessage());
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(FrameOne));
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(FrameTwo));
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(FrameThree));
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(FrameFour));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(FrameOne));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameTwo));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameThree));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameFour));
                 }
             }
         }
@@ -91,8 +91,8 @@ namespace KanKanTest.FrameCollectionTests
                             }
                         });
                     KanKan kanKan = new KanKan(karass, new KarassMessage());
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(SetOneFrame));
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(SetTwoFrame));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(SetOneFrame));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(SetTwoFrame));
                 }
             }
 
@@ -128,14 +128,14 @@ namespace KanKanTest.FrameCollectionTests
                             }
                         });
                     KanKan kanKan = new KanKan(karass, new KarassMessage());
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(SetOneFrameOne));
-                    Assert.True(kanKan.CurrentData.NextFrames.Contains(SetTwoFrameOne));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(SetOneFrameOne));
+                    Assert.True(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameOne));
 
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(SetOneFrameTwo));
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(SetTwoFrameTwo));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(SetOneFrameTwo));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameTwo));
 
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(SetOneFrameTwo));
-                    Assert.False(kanKan.CurrentData.NextFrames.Contains(SetTwoFrameTwo));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(SetOneFrameTwo));
+                    Assert.False(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameTwo));
                 }
             }
         }
