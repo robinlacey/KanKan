@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5218d0f-b7b9-4263-a497-611193b1eb54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/KanKanCore/KarassState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/KanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/KanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Karass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Karass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/KarassData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/FrameCollectionTests/KarassFrameCollectionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/FrameCollectionTests/KarassFrameCollectionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/IEnumeratorTests/KanKanCurrentTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/IEnumeratorTests/KanKanCurrentTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenASingleFrameSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenASingleFrameSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenMultipleFrameSets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenMultipleFrameSets.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,72 +32,72 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="4908" />
+          <entry key="cs" value="5308" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="4908" />
+          <entry key="C#" value="5308" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KanKanCore/KanKan.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="905">
-              <caret line="109" column="9" lean-forward="true" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
+            <state relative-caret-position="1853">
+              <caret line="109" column="9" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
               <folding>
-                <marker date="1544531171382" expanded="true" signature="6:113" ph="..." />
-                <marker date="1544531171382" expanded="true" signature="115:217" ph="/* Kan-Kan: the instrument that brings individuals into their karass ... */" />
-                <marker date="1544531171382" expanded="true" signature="239:3609" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="279:3607" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="637:775" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="846:1141" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="998:1092" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="1190:1252" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="1285:3443" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="1474:1873" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="1719:1789" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="2011:3369" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="2119:2185" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="2643:2709" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="3085:3151" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="3221:3291" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="3472:3601" ph="{...}" />
-                <marker date="1544531171382" expanded="true" signature="3533:3591" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="6:113" ph="..." />
+                <marker date="1544531275224" expanded="true" signature="115:217" ph="/* Kan-Kan: the instrument that brings individuals into their karass ... */" />
+                <marker date="1544531275224" expanded="true" signature="239:3617" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="279:3615" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="637:775" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="846:1141" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="998:1092" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="1190:1252" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="1285:3451" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="1475:1876" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="1722:1792" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="2014:3377" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="2123:2189" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="2649:2715" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="3093:3159" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="3229:3299" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="3480:3609" ph="{...}" />
+                <marker date="1544531275224" expanded="true" signature="3541:3599" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehavior.cs">
+        <entry file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehaviour.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+            <state relative-caret-position="60">
+              <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
               <folding>
-                <marker date="1544518732998" expanded="true" signature="6:82" ph="..." />
-                <marker date="1544518732998" expanded="true" signature="104:2935" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="150:2933" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="239:295" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="364:515" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="441:505" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="581:726" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="655:716" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="782:857" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="979:1049" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="1166:1275" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="1408:1741" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="1977:2419" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2142:2262" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2279:2409" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2523:2643" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2568:2633" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2742:2927" ph="{...}" />
-                <marker date="1544518732998" expanded="true" signature="2803:2891" ph="{...}" />
+                <marker date="1544531275234" expanded="false" signature="6:82" ph="..." />
+                <marker date="1544531275234" expanded="true" signature="104:2936" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="151:2934" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="240:296" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="365:516" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="442:506" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="582:727" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="656:717" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="783:858" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="980:1050" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="1167:1276" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="1409:1742" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="1978:2420" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2143:2263" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2280:2410" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2524:2644" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2569:2634" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2743:2928" ph="{...}" />
+                <marker date="1544531275234" expanded="true" signature="2804:2892" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -175,37 +166,62 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="705">
+              <caret line="426" column="374" selection-start-line="426" selection-start-column="16" selection-end-line="426" selection-end-column="374" />
               <folding>
-                <marker date="1544477700344" expanded="true" signature="6:236" ph="..." />
-                <marker date="1544477700344" expanded="true" signature="280:11776" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="321:11774" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="368:1936" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="459:1926" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="654:736" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="827:909" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="1006:1091" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="1188:1273" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="1977:11768" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="2052:6220" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="2247:2329" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="2420:2502" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="2599:2684" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="2781:2866" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="3188:3499" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="3263:3477" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="3824:4135" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="3899:4113" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="6601:7147" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="7529:8074" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="8455:8998" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="9380:9920" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="10301:10840" ph="{...}" />
-                <marker date="1544477700344" expanded="true" signature="11221:11758" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="6:236" ph="..." />
+                <marker date="1544532682528" expanded="true" signature="280:28489" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="321:28487" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="368:1936" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="459:1926" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="654:736" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="827:909" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="1006:1091" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="1188:1273" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2000:11791" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2075:6243" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2270:2352" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2443:2525" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2622:2707" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="2804:2889" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="3211:3522" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="3286:3500" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="3847:4158" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="3922:4136" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="6624:7170" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="7552:8097" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="8478:9021" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="9403:9943" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="10324:10863" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="11244:11781" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="11846:28481" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="11928:18826" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="12123:12205" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="12318:12403" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="12654:12839" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="12729:12817" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="12933:13015" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="13111:13196" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="13534:13845" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="13609:13823" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="13992:14076" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="14176:14263" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="14505:14693" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="14580:14671" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="14855:14938" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="15036:15122" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="15412:15661" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="15487:15639" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="19361:20200" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="20733:21573" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="22106:22948" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="23482:24327" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="24860:25707" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="26241:27089" ph="{...}" />
+                <marker date="1544532682528" expanded="true" signature="27622:28471" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -329,7 +345,7 @@
     <setting file="file://$PROJECT_DIR$/KanKanTest/KarassFactoryTests/KarassFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KanKanCore/Factories/KarassFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarassFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehavior.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KanKanCore/KarassState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KanKanTest/IEnumeratorTests/KanKanResetTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CB5BE0C7-4433-425A-AE2A-B70ED6C7054C/e2/670d8467/Func`2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -342,7 +358,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/KanKanTest/KanKan/Message/KanKanMessageTests.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKan/Progression/GivenASingleFrameSet.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/Message/KanKanMessageTests.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/SetupTeardown/Setup/KanKanSetupTests.cs" />
@@ -387,12 +402,13 @@
         <option value="$PROJECT_DIR$/KanKanTest/IEnumeratorTests/KanKanCurrentTests.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenASingleFrameSet.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/ProgressionTests/GivenMultipleFrameSets.cs" />
-        <option value="$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KarassData.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KarassState.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/Karass/Karass.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KarassStateBehavior.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KanKan.cs" />
+        <option value="$PROJECT_DIR$/KanKanCore/KarassStateBehaviour.cs" />
+        <option value="$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs" />
       </list>
     </option>
   </component>
@@ -434,6 +450,13 @@
               <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
               <item name="KanKanCore" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Karass" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanCore" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Karass" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dependencies" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
@@ -504,12 +527,12 @@
       <workItem from="1543997591432" duration="1524000" />
       <workItem from="1544107864623" duration="47000" />
       <workItem from="1544132704047" duration="5874000" />
-      <workItem from="1544444641496" duration="8897000" />
+      <workItem from="1544444641496" duration="10188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74795000" />
+    <option name="totallyTimeSpent" value="76086000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +547,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.23032904" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23032904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -540,11 +563,11 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Unit Tests" order="11" weight="0.36506024" />
+      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" visible="true" weight="0.36506024" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32913166" />
-      <window_info active="true" anchor="bottom" id="Build" order="15" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Build" order="15" weight="0.32891566" />
       <window_info anchor="bottom" id="Messages" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -916,40 +939,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CB5BE0C7-4433-425A-AE2A-B70ED6C7054C/e2/670d8467/Func`2.cs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding>
-            <marker date="1544477700344" expanded="true" signature="6:236" ph="..." />
-            <marker date="1544477700344" expanded="true" signature="280:11776" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="321:11774" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="368:1936" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="459:1926" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="654:736" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="827:909" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="1006:1091" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="1188:1273" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="1977:11768" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="2052:6220" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="2247:2329" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="2420:2502" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="2599:2684" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="2781:2866" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="3188:3499" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="3263:3477" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="3824:4135" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="3899:4113" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="6601:7147" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="7529:8074" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="8455:8998" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="9380:9920" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="10301:10840" ph="{...}" />
-            <marker date="1544477700344" expanded="true" signature="11221:11758" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarass.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -999,57 +988,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehavior.cs">
+    <entry file="file://$PROJECT_DIR$/KanKanCore/KanKan.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        <state relative-caret-position="1853">
+          <caret line="109" column="9" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
           <folding>
-            <marker date="1544518732998" expanded="true" signature="6:82" ph="..." />
-            <marker date="1544518732998" expanded="true" signature="104:2935" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="150:2933" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="239:295" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="364:515" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="441:505" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="581:726" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="655:716" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="782:857" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="979:1049" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="1166:1275" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="1408:1741" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="1977:2419" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2142:2262" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2279:2409" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2523:2643" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2568:2633" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2742:2927" ph="{...}" />
-            <marker date="1544518732998" expanded="true" signature="2803:2891" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="6:113" ph="..." />
+            <marker date="1544531275224" expanded="true" signature="115:217" ph="/* Kan-Kan: the instrument that brings individuals into their karass ... */" />
+            <marker date="1544531275224" expanded="true" signature="239:3617" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="279:3615" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="637:775" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="846:1141" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="998:1092" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="1190:1252" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="1285:3451" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="1475:1876" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="1722:1792" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="2014:3377" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="2123:2189" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="2649:2715" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="3093:3159" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="3229:3299" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="3480:3609" ph="{...}" />
+            <marker date="1544531275224" expanded="true" signature="3541:3599" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanCore/KanKan.cs">
+    <entry file="file://$PROJECT_DIR$/KanKanCore/KarassStateBehaviour.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="905">
-          <caret line="109" column="9" lean-forward="true" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
+        <state relative-caret-position="60">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding>
-            <marker date="1544531171382" expanded="true" signature="6:113" ph="..." />
-            <marker date="1544531171382" expanded="true" signature="115:217" ph="/* Kan-Kan: the instrument that brings individuals into their karass ... */" />
-            <marker date="1544531171382" expanded="true" signature="239:3609" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="279:3607" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="637:775" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="846:1141" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="998:1092" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="1190:1252" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="1285:3443" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="1474:1873" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="1719:1789" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="2011:3369" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="2119:2185" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="2643:2709" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="3085:3151" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="3221:3291" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="3472:3601" ph="{...}" />
-            <marker date="1544531171382" expanded="true" signature="3533:3591" ph="{...}" />
+            <marker date="1544531275234" expanded="false" signature="6:82" ph="..." />
+            <marker date="1544531275234" expanded="true" signature="104:2936" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="151:2934" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="240:296" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="365:516" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="442:506" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="582:727" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="656:717" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="783:858" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="980:1050" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="1167:1276" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="1409:1742" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="1978:2420" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2143:2263" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2280:2410" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2524:2644" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2569:2634" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2743:2928" ph="{...}" />
+            <marker date="1544531275234" expanded="true" signature="2804:2892" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanTest/SequentialKarassTests/SequentialKarassTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="426" column="374" selection-start-line="426" selection-start-column="16" selection-end-line="426" selection-end-column="374" />
+          <folding>
+            <marker date="1544532682528" expanded="true" signature="6:236" ph="..." />
+            <marker date="1544532682528" expanded="true" signature="280:28489" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="321:28487" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="368:1936" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="459:1926" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="654:736" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="827:909" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="1006:1091" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="1188:1273" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2000:11791" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2075:6243" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2270:2352" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2443:2525" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2622:2707" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="2804:2889" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="3211:3522" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="3286:3500" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="3847:4158" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="3922:4136" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="6624:7170" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="7552:8097" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="8478:9021" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="9403:9943" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="10324:10863" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="11244:11781" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="11846:28481" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="11928:18826" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="12123:12205" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="12318:12403" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="12654:12839" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="12729:12817" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="12933:13015" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="13111:13196" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="13534:13845" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="13609:13823" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="13992:14076" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="14176:14263" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="14505:14693" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="14580:14671" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="14855:14938" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="15036:15122" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="15412:15661" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="15487:15639" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="19361:20200" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="20733:21573" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="22106:22948" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="23482:24327" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="24860:25707" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="26241:27089" ph="{...}" />
+            <marker date="1544532682528" expanded="true" signature="27622:28471" ph="{...}" />
           </folding>
         </state>
       </provider>
