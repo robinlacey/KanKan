@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass.Interface;
 
-// Karass: team of individuals who do God's will without ever discovering what they are doing; every person belongs to one
+// Karass: "We Bokononists believe that humanity is organized into teams, teams that do God's Will without ever discovering what they are doing. Such a team is called a karass by Bokonon"
 // (Cat's Cradle - Kurt Vonnegut)
 
 namespace KanKanCore.Karass

@@ -4,7 +4,7 @@ using System.Linq;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 
-// Kan-Kan: the instrument that brings individuals into their karass
+// Kan-Kan - "A Kan-Kan is the instrument which brings one into his or her karass"
 // (Cat's Cradle - Kurt Vonnegut)
 
 namespace KanKanCore
