@@ -1,16 +1,17 @@
 # Kan Kan
 
-Kan-Kan is a game engine agnostic state and actions system. It's been written as a replacement to the legacy [Quote](http://quote-game.com) state machine.
+Kan-Kan is a game engine agnostic state and actions system. It's been written as a replacement to the legacy 
+Quote](http://quote-game.com) state machine.
 
 
 ***Please note:*** KanKan is still in early development so things might change without warning. Hopefully for the better. 
 
-##What is it?
+## What is it?
 
 A KanKan will run a an action - known as a Karass. Karass can be combined `Karass1 + Karass2 = Karass3` to be run in parallel or passed into a KanKan as an Array `new []{Karass1,Karass2` to be run sequentially.
 
 
-###Goals
+### Goals
 * To have a easily maintainable state/actions system that can handle complex behaviours.
 
 * Avoid [spaghetti](https://en.wikipedia.org/wiki/Spaghetti_code) and [lasagne](http://wiki.c2.com/?LasagnaCode) code (See Why?) and not be tied to [God Objects](https://en.wikipedia.org/wiki/God_object) ('Managers', singletons etc)
@@ -37,7 +38,7 @@ A KanKan will run a an action - known as a Karass. Karass can be combined `Karas
 
 
 
-##How it works
+## How it works
 
 ### Structure of Karass
 
@@ -50,25 +51,25 @@ A Karass always has:
 3. Teardown Action(s)
 
 
-####Setup
+#### Setup
 An array of `Action` or `void Setup(){}`
 
-####Teardown
+#### Teardown
 An array of `Action` or `void Setup(){}`
 
-####Frames
+#### Frames
 A single frame is a method that takes a string parameter and returns a boolean: `Func<string,bool>` or `bool Frame(string message){} `
 
 The string is the message, which is sent from the `KarassMessage` inside the KanKan. The return boolean tells the Karass whether to move onto the best frame.
 
-####Running order
+#### Running order
 All Setup Actions will be called before first Frame. All Teardown Actions will be called after last Frame.
 If there are no Frames, Setup and Teardowns Actions will be called.
 
 
 
 
-##Why?
+## Why?
 
 In systems with multiple, complex, moving parts a state machine can become the glue that binds your components together. It can end up knowing everything about the system and - as it becomes more complex - becomes fragile and incredibly hard to test.
 We found this when developing [Quote](http://quote-game.com). The SM was perfect for what we wanted at the beginning but, over the development duration, it grew, morphed and eventually became unmanageable. The moment we stopped attending to it daily it started to rot and - after some time away from the project - became unworkable.
@@ -89,7 +90,7 @@ In the end we ended up with nightmare coroutines that felt a bit like:
 Punch knows everything about the entire system so, if ParticleManager is changed, the *whole lot* blows up. 
 [Things don't have to be like this...](https://cleancoders.com/)
 
-###Naming
+### Naming
 The words KanKan and Karass were taken from [Kurt Vonneguts 'Cats Cradle'](https://en.wikipedia.org/wiki/Cat%27s_Cradle).
 
 *KanKan: the instrument that brings individuals into their karass (Cat's Cradle - Kurt Vonnegut)*
@@ -97,9 +98,9 @@ The words KanKan and Karass were taken from [Kurt Vonneguts 'Cats Cradle'](https
 
 *Karass: "We Bokononists believe that humanity is organized into teams, teams that do God's Will without ever discovering what they are doing. Such a team is called a karass by Bokonon"*`
 
-##Getting Started
+## Getting Started
 Detailed instructions coming soon. In the meantime:
 
-1. [Clone repo] (https://help.github.com/articles/cloning-a-repository/)
-2. [Compile to .dll] (https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli)
-3. [Import to engine] (https://docs.unity3d.com/Manual/UsingDLL.html)
+1. [Clone repo](https://help.github.com/articles/cloning-a-repository/)
+2. [Compile to .dll](https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli)
+3. [Import to engine](https://docs.unity3d.com/Manual/UsingDLL.html)
