@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests
 {
@@ -12,7 +12,13 @@ namespace KanKanTest.IEnumeratorTests
         private int _timesFirstFrameRun;
         private int _timesSecondFrameRun;
 
-        [Fact]
+        [SetUp]
+        public void Setup()
+        {
+            _timesFirstFrameRun = 0;
+            _timesSecondFrameRun = 0;
+        }
+        [Test]
         public void GivenNoMoveNextFirstFrameReturnedOnReset()
         {
             KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>
@@ -25,7 +31,7 @@ namespace KanKanTest.IEnumeratorTests
             Assert.True(_timesFirstFrameRun == 2);
         }
 
-        [Fact]
+        [Test]
         public void GivenMoveNextCalledFirstFrameReturnedOnReset()
         {
             KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>()

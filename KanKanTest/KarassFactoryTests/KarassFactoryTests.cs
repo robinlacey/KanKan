@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.KarassFactoryTests
 {
@@ -15,7 +15,7 @@ namespace KanKanTest.KarassFactoryTests
 
             public class WhenThereIsASingleSetupAndTeardown
             {
-                [Fact]
+                [Test]
                 public void ThenMethodsArePutIntoCorrectArrays()
                 {
                     void SetupDummy()
@@ -32,14 +32,14 @@ namespace KanKanTest.KarassFactoryTests
                     Assert.NotNull(karass);
                     Assert.True(karass.SetupActions[0].Contains(SetupDummy));
                     Assert.True(karass.TeardownActions[0].Contains(TearDownDummy));
-                    Assert.Equal(karass.FramesCollection[0], Frames);
-                    Assert.Equal(karass.Dependencies, dependencies);
+                    Assert.AreEqual(karass.FramesCollection[0], Frames);
+                    Assert.AreEqual(karass.Dependencies, dependencies);
                 }
             }
 
             public class WhenThereAnArrayOfSetupAndTeardown
             {
-                [Fact]
+                [Test]
                 public void ThenMethodsArePutIntoCorrectArrays()
                 {
                     void SetupDummyOne()
@@ -75,17 +75,17 @@ namespace KanKanTest.KarassFactoryTests
                     Karass karass = karassFactory.Get(setup, teardown, Frames);
                     Assert.NotNull(karass);
 
-                    Assert.Equal(karass.SetupActions[0], setup);
-                    Assert.Equal(karass.TeardownActions[0], teardown);
+                    Assert.AreEqual(karass.SetupActions[0], setup);
+                    Assert.AreEqual(karass.TeardownActions[0], teardown);
 
-                    Assert.Equal(karass.FramesCollection[0], Frames);
+                    Assert.AreEqual(karass.FramesCollection[0], Frames);
 
-                    Assert.Equal(karass.Dependencies, dependencies);
+                    Assert.AreEqual(karass.Dependencies, dependencies);
                 }
 
                 public class WhenThereAnNestedArrayOfSetupAndTeardown
                 {
-                    [Fact]
+                    [Test]
                     public void ThenMethodsArePutIntoCorrectArrays()
                     {
                         void SetupOneDummyOne()
@@ -158,18 +158,18 @@ namespace KanKanTest.KarassFactoryTests
                         Karass karass = karassFactory.Get(setup, teardown, Frames);
                         Assert.NotNull(karass);
 
-                        Assert.Equal(karass.SetupActions[0], setupOne);
-                        Assert.Equal(karass.SetupActions[1], setupTwo);
+                        Assert.AreEqual(karass.SetupActions[0], setupOne);
+                        Assert.AreEqual(karass.SetupActions[1], setupTwo);
 
-                        Assert.Equal(karass.SetupActions, setup);
+                        Assert.AreEqual(karass.SetupActions, setup);
 
-                        Assert.Equal(karass.TeardownActions[0], teardownOne);
-                        Assert.Equal(karass.TeardownActions[1], teardownTwo);
+                        Assert.AreEqual(karass.TeardownActions[0], teardownOne);
+                        Assert.AreEqual(karass.TeardownActions[1], teardownTwo);
 
-                        Assert.Equal(karass.TeardownActions, teardown);
-                        Assert.Equal(karass.FramesCollection[0], Frames);
+                        Assert.AreEqual(karass.TeardownActions, teardown);
+                        Assert.AreEqual(karass.FramesCollection[0], Frames);
 
-                        Assert.Equal(karass.Dependencies, dependencies);
+                        Assert.AreEqual(karass.Dependencies, dependencies);
                     }
                 }
 
@@ -195,7 +195,7 @@ namespace KanKanTest.KarassFactoryTests
 
             public class WhenThereIsASingleSetupAndTeardown
             {
-                [Fact]
+                [Test]
                 public void ThenMethodsArePutIntoCorrectArrays()
                 {
                     void SetupDummy()
@@ -212,15 +212,15 @@ namespace KanKanTest.KarassFactoryTests
                     Assert.NotNull(karass);
                     Assert.True(karass.SetupActions[0].Contains(SetupDummy));
                     Assert.True(karass.TeardownActions[0].Contains(TearDownDummy));
-                    Assert.Equal(karass.FramesCollection, Frames);
+                    Assert.AreEqual(karass.FramesCollection, Frames);
 
-                    Assert.Equal(karass.Dependencies, dependencies);
+                    Assert.AreEqual(karass.Dependencies, dependencies);
                 }
             }
 
             public class WhenThereAnArrayOfSetupAndTeardown
             {
-                [Fact]
+                [Test]
                 public void ThenMethodsArePutIntoCorrectArrays()
                 {
                     void SetupDummyOne()
@@ -256,17 +256,17 @@ namespace KanKanTest.KarassFactoryTests
                     Karass karass = karassFactory.Get(setup, teardown, Frames);
                     Assert.NotNull(karass);
 
-                    Assert.Equal(karass.SetupActions[0], setup);
-                    Assert.Equal(karass.TeardownActions[0], teardown);
+                    Assert.AreEqual(karass.SetupActions[0], setup);
+                    Assert.AreEqual(karass.TeardownActions[0], teardown);
 
-                    Assert.Equal(karass.FramesCollection, Frames);
+                    Assert.AreEqual(karass.FramesCollection, Frames);
 
-                    Assert.Equal(karass.Dependencies, dependencies);
+                    Assert.AreEqual(karass.Dependencies, dependencies);
                 }
 
                 public class WhenThereAnNestedArrayOfSetupAndTeardown
                 {
-                    [Fact]
+                    [Test]
                     public void ThenMethodsArePutIntoCorrectArrays()
                     {
                         void SetupOneDummyOne()
@@ -339,18 +339,18 @@ namespace KanKanTest.KarassFactoryTests
                         Karass karass = karassFactory.Get(setup, teardown, Frames);
                         Assert.NotNull(karass);
 
-                        Assert.Equal(karass.SetupActions[0], setupOne);
-                        Assert.Equal(karass.SetupActions[1], setupTwo);
+                        Assert.AreEqual(karass.SetupActions[0], setupOne);
+                        Assert.AreEqual(karass.SetupActions[1], setupTwo);
 
-                        Assert.Equal(karass.SetupActions, setup);
+                        Assert.AreEqual(karass.SetupActions, setup);
 
-                        Assert.Equal(karass.TeardownActions[0], teardownOne);
-                        Assert.Equal(karass.TeardownActions[1], teardownTwo);
+                        Assert.AreEqual(karass.TeardownActions[0], teardownOne);
+                        Assert.AreEqual(karass.TeardownActions[1], teardownTwo);
 
-                        Assert.Equal(karass.TeardownActions, teardown);
-                        Assert.Equal(karass.FramesCollection, Frames);
+                        Assert.AreEqual(karass.TeardownActions, teardown);
+                        Assert.AreEqual(karass.FramesCollection, Frames);
 
-                        Assert.Equal(karass.Dependencies, dependencies);
+                        Assert.AreEqual(karass.Dependencies, dependencies);
                     }
                 }
             }

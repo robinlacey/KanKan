@@ -4,7 +4,7 @@ using System.Linq;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.AdditionTests
 {
@@ -17,7 +17,7 @@ namespace KanKanTest.AdditionTests
 
         public class GivenMultipleSetupMethods
         {
-            [Fact]
+            [Test]
             public void WhenAddedThenMethodsAreInInList_ExampleOne()
             {
                 Action setupOne = () => { };
@@ -38,7 +38,7 @@ namespace KanKanTest.AdditionTests
                 Assert.True(combinedKarass.SetupActions[1].Contains(setupTwo));
             }
 
-            [Fact]
+            [Test]
             public void WhenAddedThenMethodsAreInInList_ExampleTwo()
             {
                 Action setupOne = () => { };
@@ -77,7 +77,7 @@ namespace KanKanTest.AdditionTests
 
         public class GivenMultipleTeardownMethods
         {
-            [Fact]
+            [Test]
             public void WhenAddedThenMethodsAreInInList_ExampleOne()
             {
                 Action teardownOne = () => { };
@@ -98,7 +98,7 @@ namespace KanKanTest.AdditionTests
                 Assert.True(combinedKarass.TeardownActions[1].Contains(teardownTwo));
             }
 
-            [Fact]
+            [Test]
             public void WhenAddedThenMethodsAreInInList_ExampleTwo()
             {
                 Action teardownOne = () => { };
@@ -138,7 +138,7 @@ namespace KanKanTest.AdditionTests
 
         public class GivenMultipleFrameSets
         {
-            [Fact]
+            [Test]
             public void WhenAddedThenFrameSetsContainArrays()
             {
                 Func<string, bool>[] frameSetArrayOne = { };
@@ -173,7 +173,7 @@ namespace KanKanTest.AdditionTests
                 Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayTwo));
             }
 
-            [Fact]
+            [Test]
             public void WhenAddedThenFrameSetsContainFrames()
             {
                 bool FrameSetOneFrameOne(string message)

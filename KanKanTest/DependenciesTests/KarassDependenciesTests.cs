@@ -1,65 +1,39 @@
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Interface;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.DependenciesTests
 {
-    public class KarassDependenciesTests
+    public class GivenValidInput
     {
-        public class GivenValidInput
+      
+        private interface ITestInterface
         {
-            public class ExampleOne
-            {
-                private interface ITestInterface
-                {
-                    string Test();
-                }
-
-                private class TestClass : ITestInterface
-                {
-                    public string Test()
-                    {
-                        return "Doggo";
-                    }
-                }
-
-                [Fact]
-                public void ThenCorrectlyReturnType()
-                {
-                    KarassDependencies dependencies = new KarassDependencies();
-                    dependencies.Register<ITestInterface>(new TestClass());
-                    Assert.True(dependencies.Get<ITestInterface>().Test() == "Doggo");
-
-                }
-            }
-            
-            public class ExampleTwo
-            {
-                
-                private interface ITestScoutInterface
-                {
-                    string Test();
-                }
-
-                private class TestScoutClass : ITestScoutInterface
-                {
-                
-                    public string Test()
-                    {
-                        return "Scout";
-                    }
-                }
-
-                [Fact]
-                public void ThenCorrectlyReturnType()
-                {
-                    KarassDependencies dependencies = new KarassDependencies();
-                    dependencies.Register<ITestScoutInterface>(new TestScoutClass());
-                    Assert.True(dependencies.Get<ITestScoutInterface>().Test() == "Scout");
-
-                }
-            }
-            
+            string Test();
         }
+
+        private class TestClass : ITestInterface
+        {
+            private readonly string _returnValue;
+
+            public TestClass(string returnValue)
+            {
+                _returnValue = returnValue;
+            }
+            public string Test()
+            {
+                return _returnValue;
+            }
+        }
+
+        [TestCase("Doggo", ExpectedResult= "Doggo")]
+        [TestCase("Scout", ExpectedResult= "Scout")]
+        public string ThenCorrectlyReturnType(string name)
+        {
+            KarassDependencies dependencies = new KarassDependencies();
+            dependencies.Register<ITestInterface>(new TestClass(name));
+            return dependencies.Get<ITestInterface>().Test();
+        }
+  
     }
 }

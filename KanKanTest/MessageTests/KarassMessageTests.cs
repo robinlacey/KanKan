@@ -1,12 +1,12 @@
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.MessageTests
 {
     public class KarassMessageTests
     {
-        [Fact]
+        [Test]
         public void UActionMessageGetMessageReturnsLastSetMessage()
         {
             IKarassMessage karassMessage = new KarassMessage();
@@ -18,7 +18,7 @@ namespace KanKanTest.MessageTests
             Assert.True(karassMessage.Message == "Dog");
         }
 
-        [Fact]
+        [Test]
         public void UActionMessageClearMessageSetsMessageToStringEmpty()
         {
             IKarassMessage karassMessage = new KarassMessage();

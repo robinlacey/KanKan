@@ -5,26 +5,20 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
-using Xunit;
-using Xunit.Abstractions;
+using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
 {
+    [TestFixture]
     public class KanKanSetupAndTeardownTests
     {
         private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
 
         public class GivenNoFrames
         {
-            private readonly ITestOutputHelper _outputHelper;
 
-            public GivenNoFrames(ITestOutputHelper outputHelper)
-            {
-                _outputHelper = outputHelper;
-            }
-
-            [Fact]
-            void SetupAndTearDownAreRun()
+            [Test]
+            public void SetupAndTearDownAreRun()
             {
                 int setupCounter = 0;
                 int teardownCounter = 0;
@@ -36,7 +30,6 @@ namespace KanKanTest.SetupTeardownTests
                 KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
 
                 actionRunner.MoveNext();
-                _outputHelper.WriteLine(teardownCounter.ToString());
                 Assert.True(setupCounter == 1);
                 Assert.True(teardownCounter == 1);
             }
@@ -62,8 +55,8 @@ namespace KanKanTest.SetupTeardownTests
                     }
                 };
 
-                [Fact]
-                void SetupAndTeardownIsRun()
+                [Test]
+                public void SetupAndTeardownIsRun()
                 {
                     int setupCounter = 0;
                     int teardownCounter = 0;
@@ -86,8 +79,8 @@ namespace KanKanTest.SetupTeardownTests
         {
             public class WhenSetupIsGivenAnIndex
             {
-                [Fact]
-                void ThenCorrectSetupActionsAreCalled_ExampleOne()
+                [Test]
+                public void ThenCorrectSetupActionsAreCalled_ExampleOne()
                 {
                     bool karassOneSetupCalled = false;
 
@@ -115,8 +108,8 @@ namespace KanKanTest.SetupTeardownTests
                     Assert.False(karassTwoSetupCalled);
                 }
 
-                [Fact]
-                void ThenCorrectSetupActionsAreCalled_ExampleTwo()
+                [Test]
+                public void ThenCorrectSetupActionsAreCalled_ExampleTwo()
                 {
                     bool karassOneSetupCalled = false;
 
@@ -147,8 +140,8 @@ namespace KanKanTest.SetupTeardownTests
 
             public class WhenTeardownIsGivenAnIndex
             {
-                [Fact]
-                void ThenCorrectTeardownActionsAreCalled_ExampleOne()
+                [Test]
+                public void ThenCorrectTeardownActionsAreCalled_ExampleOne()
                 {
                     bool karassOneTeardownCalled = false;
 
@@ -176,8 +169,8 @@ namespace KanKanTest.SetupTeardownTests
                     Assert.False(karassTwoTeardownCalled);
                 }
 
-                [Fact]
-                void ThenCorrectTeardownActionsAreCalled_ExampleTwo()
+                [Test]
+                public void ThenCorrectTeardownActionsAreCalled_ExampleTwo()
                 {
                     bool karassOneTeardownCalled = false;
 

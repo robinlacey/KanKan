@@ -5,8 +5,7 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
-using Xunit;
-using Xunit.Abstractions;
+using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests.Setup
 {
@@ -14,8 +13,8 @@ namespace KanKanTest.SetupTeardownTests.Setup
     {
         private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
 
-        [Fact]
-        void SetupIsRunOnMoveNext()
+        [Test]
+        public void SetupIsRunOnMoveNext()
         {
             int setupCounter = 0;
             Action setup = () => { setupCounter++; };
@@ -41,8 +40,8 @@ namespace KanKanTest.SetupTeardownTests.Setup
                 }
             };
 
-            [Fact]
-            void SetupIsRunOnFirstMoveNextOnly()
+            [Test]
+            public void SetupIsRunOnFirstMoveNextOnly()
             {
                 int setupCounter = 0;
                 Action setup = () => { setupCounter++; };

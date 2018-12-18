@@ -6,7 +6,7 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.ProgressionTests
 {
@@ -16,7 +16,7 @@ namespace KanKanTest.ProgressionTests
 
         public class WhenThereAreMultipleFrames
         {
-            [Fact]
+            [Test]
             public void ThenNextFramesCorrectlyProgressThroughFrames()
             {
                 bool frameOneRun = false;
@@ -138,7 +138,7 @@ namespace KanKanTest.ProgressionTests
 
         public class WhenThereIsACombinedKarass
         {
-            [Fact]
+            [Test]
             public void ThenFrameSetsAreRunIndependently()
             {
                 bool setOneSetupRun = false;

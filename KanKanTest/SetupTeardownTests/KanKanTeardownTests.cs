@@ -5,19 +5,19 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
 {
     public class KanKanTeardownTests
     {
         private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
-
+        [TestFixture]
         public class GivenOneFrameSet
         {
             public class WithOneFrame
             {
-                [Fact]
+                [Test]
                 public void TeardownActionsAreCalled()
                 {
                     bool teardownCalled = false;
@@ -54,7 +54,7 @@ namespace KanKanTest.SetupTeardownTests
 
             public class WithMultipleFrames
             {
-                [Fact]
+                [Test]
                 public void TeardownActionsAreCalledOnLastFrame()
                 {
                     bool teardownCalled = false;

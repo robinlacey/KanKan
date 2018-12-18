@@ -2,7 +2,7 @@ using KanKanCore;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests
 {
@@ -10,8 +10,8 @@ namespace KanKanTest.IEnumeratorTests
     {
         public class GivenNoFrames
         {
-            [Fact]
-            void GivenNoFramesReturnFalse()
+            [Test]
+            public void GivenNoFramesReturnFalse()
             {
                 Karass karass = new KarassDummy();
                 KanKan kankan = new KanKan(karass, new KarassMessageDummy());
@@ -21,8 +21,8 @@ namespace KanKanTest.IEnumeratorTests
 
         public class GivenMultipleFrames
         {
-            [Fact]
-            void WithTwoFramesReturnCorrectValues()
+            [Test]
+            public void WithTwoFramesReturnCorrectValues()
             {
                 IKarass karass = new KarassNumberOfFramesStub(2);
                 KanKan kankan = new KanKan(karass, new KarassMessageDummy());
@@ -30,8 +30,8 @@ namespace KanKanTest.IEnumeratorTests
                 Assert.False(kankan.MoveNext());
             }
 
-            [Fact]
-            void WithThreeFramesReturnCorrectValues()
+            [Test]
+            public void WithThreeFramesReturnCorrectValues()
             {
                 IKarass karass = new KarassNumberOfFramesStub(2);
                 KanKan kankan = new KanKan(karass, new KarassMessageDummy());
@@ -39,8 +39,8 @@ namespace KanKanTest.IEnumeratorTests
                 Assert.False(kankan.MoveNext());
             }
 
-            [Fact]
-            void WithMultipleFramesReturnCorrectValues()
+            [Test]
+            public void WithMultipleFramesReturnCorrectValues()
             {
                 int number = 42;
                 IKarass karass = new KarassNumberOfFramesStub(number);

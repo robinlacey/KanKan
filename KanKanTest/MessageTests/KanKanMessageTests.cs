@@ -4,7 +4,7 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.MessageTests
 {
@@ -13,7 +13,7 @@ namespace KanKanTest.MessageTests
         string _firstFrameMessage = string.Empty;
         string _secondFrameMessage = string.Empty;
 
-        [Fact]
+        [Test]
         public void UActionRunnerHasSendMessageMethod()
         {
             IKarassMessage karassMessage = new KarassMessage();
@@ -22,7 +22,7 @@ namespace KanKanTest.MessageTests
             kanKan.SendMessage("Cat");
         }
 
-        [Fact]
+        [Test]
         public void UActionRunnerSendMessageSendsMessageToNextFrame()
         {
             IKarassMessage karassMessage = new KarassMessage();
@@ -40,7 +40,7 @@ namespace KanKanTest.MessageTests
             Assert.True(_secondFrameMessage == "Doggo");
         }
 
-        [Fact]
+        [Test]
         public void MessagesOnlyLastForOneFrame()
         {
             IKarassMessage karassMessage = new KarassMessage();

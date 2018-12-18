@@ -6,7 +6,7 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.Dependencies;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.SequentialKarassTests
 {
@@ -14,7 +14,7 @@ namespace KanKanTest.SequentialKarassTests
     {
         public class GivenTwoEmptyKarass
         {
-            [Fact]
+            [Test]
             public void BothKarassSetupAndTeardownWillBeRun()
             {
                 KarassFactory karassFactory = new KarassFactory(new DependenciesDummy());
@@ -66,7 +66,7 @@ namespace KanKanTest.SequentialKarassTests
 
         public class GivenTwoFullKarassWithMatchingFrameCounts
         {
-            [Fact]
+            [Test]
             public void BothKarassWillBeRun()
             {
                 KarassFactory karassFactory = new KarassFactory(new DependenciesDummy());
@@ -282,7 +282,7 @@ namespace KanKanTest.SequentialKarassTests
         
          public class GivenMultipleFullKarass
         {
-            [Fact]
+            [Test]
             public void ThenKarassWillRunCorrectly()
             {
                 KarassFactory karassFactory = new KarassFactory(new DependenciesDummy());

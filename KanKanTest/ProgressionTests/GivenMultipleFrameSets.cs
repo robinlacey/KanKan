@@ -6,20 +6,19 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.ProgressionTests
 {
     public class GivenMultipleFrameSets : KanKanFrameProgressionTests
     {
-        
         private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
 
         public class WhenNextFramesIsUpdated
         {
             public class WhenThereAreTwoEqualFrameSets
             {
-                [Fact]
+                [Test]
                 public void ThenNextFramesIsCorrectlyUpdated()
                 {
                     bool setOneFrameOneRun = false;
@@ -98,7 +97,7 @@ namespace KanKanTest.ProgressionTests
 
             public class WhenThereAreMultipleUnequalFrameSets
             {
-                [Fact]
+                [Test]
                 public void ThenNextFramesIsUpdatedCorrectly()
                 {
                     bool setOneFrameOneRun = false;

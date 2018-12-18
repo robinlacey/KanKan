@@ -2,20 +2,20 @@ using System.Collections;
 using KanKanCore;
 using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.UAction;
-using Xunit;
+using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests
 {
     public class KanKanCurrentTests
     {
-        [Fact]
+        [Test]
         public void GivenNoFramesCurrentReturnsNotNull()
         {
             IEnumerator uActionRunner = new KanKan(new KarassDummy(), new KarassMessageDummy());
             Assert.NotNull(uActionRunner.Current);
         }
 
-        [Fact]
+        [Test]
         public void GivenOneFrameCurrentIsNotNull()
         {
             IKarass karass = new KarassNumberOfFramesStub(1);
@@ -24,7 +24,7 @@ namespace KanKanTest.IEnumeratorTests
             Assert.NotNull(kanKan.Current);
         }
 
-        [Fact]
+        [Test]
         public void CurrentFramesReturnsNextFrames()
         {
             int frames = 10;
@@ -33,7 +33,7 @@ namespace KanKanTest.IEnumeratorTests
             KanKan kanKan = new KanKan(karass, new KarassMessageDummy());
             for (int i = 0; i < 10; i++)
             {
-                Assert.Equal(kanKan.Current, kanKan.CurrentState.NextFrames);
+                Assert.AreEqual(kanKan.Current, kanKan.CurrentState.NextFrames);
                 kanKan.MoveNext();
             }
         }

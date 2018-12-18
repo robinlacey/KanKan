@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.11.2/build/netcoreapp1.0/nunit.engine.netstandard.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.11.2/build/netcoreapp1.0/NUnit3.TestAdapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.11.2/build/netcoreapp1.0/NUnit3.TestAdapter.pdb" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="KanKan.sln" t="IncludeFlat" />
       <e p="KanKanCore" t="IncludeRecursive">
@@ -47,7 +47,8 @@
           <e p="KarassDependenciesTests.cs" t="Include" />
         </e>
         <e p="FrameCollectionTests" t="Include">
-          <e p="KarassFrameCollectionTests.cs" t="Include" />
+          <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
+          <e p="GivenOneFrameSetInFrameCollection.cs" t="Include" />
         </e>
         <e p="IEnumeratorTests" t="Include">
           <e p="KanKanCurrentTests.cs" t="Include" />
