@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/robinlacey/KanKan.svg?branch=master)](https://travis-ci.org/robinlacey/KanKan)
+
 # Kan Kan
 
 Kan-Kan is a game engine agnostic state and actions system. It's been written as a replacement to the legacy 
