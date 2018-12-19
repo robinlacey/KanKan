@@ -2,20 +2,24 @@ using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Interface;
 
-namespace KanKanCore.Karass.Dependencies
+namespace KanKanTest.Mocks.Dependencies
 {
-    // NOTE: Highly recommended you use an established DI framework and map functionality to IDependencies interface;
-    public class KarassDependencies : IDependencies
+    
+    public class KarassDependenciesSpy: IDependencies
     {
+        public int GetCallCount { get; private set; }
+        public int RegisterCallCount { get; private set; }
         private readonly Dictionary<Type, Func<dynamic>> _dependency = new Dictionary<Type, Func<dynamic>>();
 
         public T Get<T>() where T : class
         {
+            GetCallCount++;
             return _dependency[typeof(T)]() as T;
         }
 
         public void Register<T>(Func<dynamic> resolver)
         {
+            RegisterCallCount++;
             _dependency.Add(typeof(T), resolver);
         }
     }
