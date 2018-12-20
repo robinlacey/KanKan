@@ -1,19 +1,12 @@
-using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.KarassFrame.FrameStruct;
-
+using KanKanCore.Karass.Frame;
 namespace KanKanTest.Mocks.KarassFrame
 {
-    class KarassFrameSpy : IKarassFrame<FrameStructDummy>
+    class KarassFrameSpy<T>:KarassFrame<T>
     {
-        public FrameStructDummy RequestData { get; set; }
-        public string Message { get; set; }
-            
         public int ExecuteCallCount { get; private set; }
-        public bool Execute(FrameStructDummy payload, string message)
+        protected override bool ExecuteCustomLogic()
         {
             ExecuteCallCount++;
-            Message = message;
-            RequestData = payload;
             return true;
         }
     }

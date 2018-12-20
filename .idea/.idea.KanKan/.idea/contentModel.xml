@@ -18,6 +18,12 @@
           <e p="Dependencies" t="Include">
             <e p="KarassDependencies.cs" t="Include" />
           </e>
+          <e p="Frame" t="Include">
+            <e p="KarassFrame.cs" t="Include" />
+            <e p="SimpleKarassFrame" t="Include">
+              <e p="SimpleKarassFrame.cs" t="Include" />
+            </e>
+          </e>
           <e p="Interface" t="Include">
             <e p="IDependencies.cs" t="Include" />
             <e p="IKarass.cs" t="Include" />
