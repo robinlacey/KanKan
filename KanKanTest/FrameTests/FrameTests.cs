@@ -1,6 +1,5 @@
-using System;
 using KanKanCore.Factories;
-using KanKanCore.Karass.Frame.SimpleKarassFrame;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.KarassFrame;
@@ -12,85 +11,68 @@ namespace KanKanTest.FrameTests
     public class FrameFactoryTests
     {
         [Test]
-        public void FrameFactoryHasRegisterMethodWhichTakesStructIKarassFrame()
-        {  
+        public void HasRegisterMethodWhichTakesStructIKarassFrame()
+        {
             IDependencies dependencies = new DependenciesDummy();
             FrameFactory frameFactory = new FrameFactory(dependencies);
-            
             frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
         }
 
-       
 
         [TestCase("Scout", "The Dog")]
         [TestCase("Cats", "Meow")]
-        public void FrameFactoryGetMethodReturnsCorrectData(string testString, string message)
+        public void GetMethodReturnsCorrectData(string testString, string message)
         {
+            // Arrange
             KarassDependenciesSpy dependenciesSpy = new KarassDependenciesSpy();
-      
             FrameStructDummy frameActionData = new FrameStructDummy
             {
                 Test = testString
             };
-           
             KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>();
-            dependenciesSpy.Register<IKarassFrame<FrameStructDummy>>(()=> frameAction);
-
+            dependenciesSpy.Register<IKarassFrame<FrameStructDummy>>(() => frameAction);
             FrameFactory frameFactory = new FrameFactory(dependenciesSpy);
-            frameFactory.RegisterRoute<FrameStructDummy,IKarassFrame<FrameStructDummy>>();
-      
+            frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
+
+            //Act
             IKarassFrame<FrameStructDummy> frame = frameFactory.Get<FrameStructDummy>();
-            
             frame.Execute(message, frameActionData);
-       
+
+            
+            //Assert
             Assert.True(dependenciesSpy.GetCallCount == 1);
             Assert.True(dependenciesSpy.RegisterCallCount == 1);
             Assert.True(frameAction.ExecuteCallCount == 1);
             Assert.True(frame.Message == message);
             Assert.True(frame.RequestData.Test == testString);
-        }    
-    }
-
-    public class KarassFrameTests
-    {
-        [Test]
-        public void KarassFrameExists()
-        {
-            IKarassFrame<object> karassFrame = new KarassFrameDummy<object>();
         }
 
-
-        public class SimpleKarassFrameTests
+        [TestCase("What is Scout?", "Scout is a Dog")]
+        [TestCase("What is Scout not?", "Scout is not a Cat")]
+        public void ExecuteMethodCorrectlyExecutesFrameRequest(string testMessage, string testActionDataPayload)
         {
-           
-            [TestCase("Scout")]
-            [TestCase("Is")]
-            [TestCase("A")]
-            [TestCase("Good")]
-            [TestCase("Dog")]
-            [TestCase(null)]
-            
-            public void SimpleKarassFrameExecutesFunc(string testMessage)
+            //Arrange
+            KarassDependenciesSpy dependenciesSpy = new KarassDependenciesSpy();
+            FrameStructDummy frameActionData = new FrameStructDummy
             {
-                
-                 bool simpleFrameSpyRun = false;
-                 string simpleFrameSpyMessage = string.Empty;
-        
-                 bool SimpleFrameSpy(string message)
-                {
-                    simpleFrameSpyRun = true;
-                    simpleFrameSpyMessage = message;
-                    return true;
-                }
+                Test = testActionDataPayload
+            };
 
+            FrameRequest frameRequest = new FrameRequest(frameActionData);
+            KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>();
+            dependenciesSpy.Register<IKarassFrame<FrameStructDummy>>(() => frameAction);
+            FrameFactory frameFactory = new FrameFactory(dependenciesSpy);
+            frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
             
-                 SimpleKarassFrame simpleKarassFrame = new SimpleKarassFrame(SimpleFrameSpy);
-                 simpleKarassFrame.Execute(testMessage);
-                 Assert.True(simpleFrameSpyRun);
-                 Assert.True(simpleFrameSpyMessage == testMessage);
-            }
-            
-           
+            //Act
+            frameFactory.Execute(frameRequest, testMessage);
+
+            //Assert
+            Assert.True(dependenciesSpy.RegisterCallCount == 1);
+            Assert.True(dependenciesSpy.GetCallCount == 1);
+            Assert.True(frameAction.ExecuteCallCount == 1);
+            Assert.True(frameAction.RequestData.Test == testActionDataPayload);
+            Assert.True(frameAction.Message == testMessage);
         }
     }
 }

@@ -19,6 +19,7 @@
             <e p="KarassDependencies.cs" t="Include" />
           </e>
           <e p="Frame" t="Include">
+            <e p="FrameRequest.cs" t="Include" />
             <e p="KarassFrame.cs" t="Include" />
             <e p="SimpleKarassFrame" t="Include">
               <e p="SimpleKarassFrame.cs" t="Include" />
@@ -60,6 +61,7 @@
         </e>
         <e p="FrameTests" t="Include">
           <e p="FrameTests.cs" t="Include" />
+          <e p="KarassFrameTests.cs" t="Include" />
         </e>
         <e p="IEnumeratorTests" t="Include">
           <e p="KanKanCurrentTests.cs" t="Include" />
