@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using KanKanCore.Factories;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Karass
@@ -33,14 +35,14 @@ namespace KanKanCore.Karass
         }
 
 
-        public static int AddFrame(Func<string, bool>[] allFrames, Dictionary<Func<string, bool>[], int> currentFrames)
+        public static int AddFrame(FrameRequest[] allFrames, Dictionary<FrameRequest[], int> currentFrames)
         {
             return currentFrames[allFrames] += 1;
         }
 
-        public static bool InvokeCurrentFrame(int index, int currentFrame, IKarassMessage message, IKarass karass )
+        public static bool InvokeCurrentFrame(int index, int currentFrame, IKarassMessage message, IKarass karass)
         {
-            return karass.FramesCollection[index][currentFrame].Invoke(message.Message);
+            return karass.FrameFactory.Execute(karass.FramesCollection[index][currentFrame], message.Message);
         }
 
 
@@ -83,7 +85,7 @@ namespace KanKanCore.Karass
             }
         }
 
-        static bool IsLastFrame(int currentFrame, Func<string, bool>[] allFrames, IKarass karass)
+        static bool IsLastFrame(int currentFrame, FrameRequest[] allFrames, IKarass karass)
         {
             if (karass.FramesCollection.Count > 0)
             {

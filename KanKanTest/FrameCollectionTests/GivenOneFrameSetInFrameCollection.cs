@@ -3,64 +3,73 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.Dependencies;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.FrameCollectionTests
 {
     public class GivenOneFrameSetInFrameCollection
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+        private static KarassFactory KarassFactory => new KarassFactory(
+            new DependenciesDummy(),
+            new FrameFactoryDummy());
 
         public class WhenThereIsOneFrame
         {
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+
             [Test]
             public void ThenTheFrameIsInCurrentFrames()
             {
-                bool Frame(string message) => true;
+                FrameRequest frame = _mockFramesFactory.GetInvalidFrameRequest();
+
                 Karass karass = KarassFactory.Get(
                     new List<List<Action>>(),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>
+                    new List<FrameRequest[]>
                     {
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            Frame
+                            frame
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new KarassMessage());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(Frame));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(frame));
             }
         }
 
         public class WhenThereAreMultipleFrames
         {
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+
             [Test]
-            public void ThenOnlyContainsFirstFramew()
+            public void ThenOnlyContainsFirstFrame()
             {
-                bool FrameOne(string message) => false;
-                bool FrameTwo(string message) => false;
-                bool FrameThree(string message) => false;
-                bool FrameFour(string message) => false;
+                FrameRequest frameOne = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest frameTwo = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest frameThree = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest frameFour = _mockFramesFactory.GetInvalidFrameRequest();
                 Karass karass = KarassFactory.Get(
                     new List<List<Action>>(),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>
+                    new List<FrameRequest[]>
                     {
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            FrameOne,
-                            FrameTwo,
-                            FrameThree,
-                            FrameFour
+                            frameOne,
+                            frameTwo,
+                            frameThree,
+                            frameFour
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new KarassMessage());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(FrameOne));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameTwo));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameThree));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(FrameFour));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(frameOne));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameTwo));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameThree));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameFour));
             }
         }
     }

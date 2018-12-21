@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Karass
 {
     public class KarassState
     {
-        public List<Func<string, bool>> NextFrames { get; set; } = new List<Func<string, bool>>();
-        public Dictionary<Func<string, bool>[], int> CurrentFrames = new Dictionary<Func<string, bool>[], int>();
+        public List<FrameRequest> NextFrames { get; set; } = new List<FrameRequest>();
+        public Dictionary<FrameRequest[], int> CurrentFrames = new Dictionary<FrameRequest[], int>();
         public readonly List<bool> Complete = new List<bool>();
         public IKarass Karass { get; }
 
@@ -22,8 +23,8 @@ namespace KanKanCore.Karass
 
         public void Reset()
         {
-            NextFrames = new List<Func<string, bool>>();
-            CurrentFrames = new Dictionary<Func<string, bool>[], int>();
+            NextFrames = new List<FrameRequest>();
+            CurrentFrames = new Dictionary<FrameRequest[], int>();
             Complete.Clear();
 
             AddFirstFrames(Karass.FramesCollection,NextFrames);
@@ -44,7 +45,7 @@ namespace KanKanCore.Karass
             }
         }
         
-        private void AddFirstFrames(IEnumerable<Func<string, bool>[]> framesCollection, List<Func<string, bool>> nextFrames)
+        private void AddFirstFrames(IEnumerable<FrameRequest[]> framesCollection, List<FrameRequest> nextFrames)
         {
             nextFrames.AddRange(from frames in framesCollection where frames.Any() select frames[0]);
         }

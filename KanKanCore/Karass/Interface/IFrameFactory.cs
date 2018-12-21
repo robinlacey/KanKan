@@ -1,0 +1,11 @@
+using KanKanCore.Karass.Frame;
+
+namespace KanKanCore.Karass.Interface
+{
+    public interface IFrameFactory
+    {
+        void RegisterRoute<TRequestType, TKarassFrameType>() where TKarassFrameType : IKarassFrame<TRequestType>;
+        IKarassFrame<T> Get<T>();
+        bool Execute(FrameRequest frameRequest, string message);
+    }
+}

@@ -1,8 +1,12 @@
-using System;
 using System.Collections.Generic;
 using KanKanCore;
+using KanKanCore.Factories;
+using KanKanCore.Karass.Dependencies;
+using KanKanCore.Karass.Frame;
+using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.Karass;
+using KanKanTest.Mocks.KarassMocks;
 using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests
@@ -11,18 +15,30 @@ namespace KanKanTest.IEnumeratorTests
     {
         private int _timesFirstFrameRun;
         private int _timesSecondFrameRun;
-
+        private  MockFramesFactory _mockFramesFactory;
+        private IDependencies _dependencies;
+        private IFrameFactory _frameFactory;
         [SetUp]
         public void Setup()
         {
+            _dependencies = new KarassDependencies();
+            _frameFactory = new FrameFactory(_dependencies);
+            _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
             _timesFirstFrameRun = 0;
             _timesSecondFrameRun = 0;
         }
         [Test]
         public void GivenNoMoveNextFirstFrameReturnedOnReset()
         {
-            KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>
-                {new Func<string, bool>[] {FirstFrameSpy}});
+            KarassFramesStub karass = new KarassFramesStub(
+                new List<FrameRequest[]> {
+                    new[]
+                {
+                    _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy,string.Empty)
+                }}, 
+                _dependencies,
+                _frameFactory
+                );
             KanKan kanKan = new KanKan(karass, new KarassMessageDummy());
 
             kanKan.MoveNext();
@@ -34,8 +50,16 @@ namespace KanKanTest.IEnumeratorTests
         [Test]
         public void GivenMoveNextCalledFirstFrameReturnedOnReset()
         {
-            KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>()
-                {new Func<string, bool>[] {FirstFrameSpy, SecondFrameSpy}});
+            KarassFramesStub karass = new KarassFramesStub(
+                new List<FrameRequest[]>
+                {
+                    new []
+                    {
+                        _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy,string.Empty),
+                        _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy,string.Empty)
+                    }}, 
+                _dependencies,
+                _frameFactory);
             KanKan kanKan = new KanKan(karass, new KarassMessage());
 
             kanKan.MoveNext();

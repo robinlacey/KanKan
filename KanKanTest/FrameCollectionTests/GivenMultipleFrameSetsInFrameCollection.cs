@@ -3,83 +3,94 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.Dependencies;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.FrameCollectionTests
 {
     public class GivenMultipleFrameSetsInFrameCollection
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
-
+        private static KarassFactory KarassFactory => new KarassFactory(
+            new DependenciesDummy(),
+            new FrameFactoryDummy()
+            );
+        
+       
         public class WhenThereIsOneFrame
         {
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(),new DependenciesDummy());
+
             [Test]
             public void ThenBothFramesAreInCurrentFrames()
             {
-                bool SetOneFrame(string message) => true;
-                bool SetTwoFrame(string message) => true;
+                FrameRequest setOneFrame = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest setTwoFrame = _mockFramesFactory.GetInvalidFrameRequest();
+                
                 Karass karass = KarassFactory.Get(
                     new List<List<Action>>(),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>
+                    new List<FrameRequest[]>
                     {
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            SetOneFrame
+                            setOneFrame
                         },
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            SetTwoFrame
+                            setTwoFrame
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new KarassMessage());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(SetOneFrame));
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(SetTwoFrame));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(setOneFrame));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(setTwoFrame));
             }
         }
 
         public class WhenThereAreMultipleFrames
         {
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(),new DependenciesDummy());
+
             [Test]
             public void ThenOnlyTheFirstFramesAreInCurrentFrames()
             {
-                bool SetOneFrameOne(string message) => true;
-                bool SetOneFrameTwo(string message) => true;
-                bool SetOneFrameThree(string message) => true;
+                FrameRequest setOneFrameOne = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest setOneFrameTwo = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest setOneFrameThree = _mockFramesFactory.GetInvalidFrameRequest();
 
 
-                bool SetTwoFrameOne(string message) => true;
-                bool SetTwoFrameTwo(string message) => true;
-                bool SetTwoFrameThree(string message) => true;
+                FrameRequest setTwoFrameOne = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest setTwoFrameTwo = _mockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest setTwoFrameThree = _mockFramesFactory.GetInvalidFrameRequest();
                 Karass karass = KarassFactory.Get(
                     new List<List<Action>>(),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>
+                    new List<FrameRequest[]>
                     {
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            SetOneFrameOne,
-                            SetOneFrameTwo,
-                            SetOneFrameThree
+                            setOneFrameOne,
+                            setOneFrameTwo,
+                            setOneFrameThree
                         },
-                        new Func<string, bool>[]
+                        new[]
                         {
-                            SetTwoFrameOne,
-                            SetTwoFrameTwo,
-                            SetTwoFrameThree
+                            setTwoFrameOne,
+                            setTwoFrameTwo,
+                            setTwoFrameThree
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new KarassMessage());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(SetOneFrameOne));
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameOne));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(setOneFrameOne));
+                Assert.True(kanKan.CurrentState.NextFrames.Contains(setTwoFrameOne));
 
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(SetOneFrameTwo));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameTwo));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(setOneFrameTwo));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(setTwoFrameTwo));
 
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(SetOneFrameTwo));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(SetTwoFrameTwo));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(setOneFrameTwo));
+                Assert.False(kanKan.CurrentState.NextFrames.Contains(setTwoFrameTwo));
             }
         }
     }

@@ -27,6 +27,7 @@
           </e>
           <e p="Interface" t="Include">
             <e p="IDependencies.cs" t="Include" />
+            <e p="IFrameFactory.cs" t="Include" />
             <e p="IKarass.cs" t="Include" />
             <e p="IKarassFactory.cs" t="Include" />
             <e p="IKarassFrame.cs" t="Include" />
@@ -78,26 +79,28 @@
           <e p="KanKanMessageTests.cs" t="Include" />
           <e p="KarassMessageTests.cs" t="Include" />
         </e>
+        <e p="MockFramesFactory.cs" t="Include" />
         <e p="Mocks" t="Include">
           <e p="Dependencies" t="Include">
             <e p="DependenciesDummy.cs" t="Include" />
             <e p="KarassDependenciesSpy.cs" t="Include" />
           </e>
           <e p="KarassFrame" t="Include">
+            <e p="FrameFactoryDummy.cs" t="Include" />
             <e p="FrameStruct" t="Include">
               <e p="FrameStructDummy.cs" t="Include" />
             </e>
             <e p="KarassFrameDummy.cs" t="Include" />
             <e p="KarassFrameSpy.cs" t="Include" />
           </e>
-          <e p="Messages" t="Include">
-            <e p="KarassMessageSpy.cs" t="Include" />
-          </e>
-          <e p="UAction" t="Include">
+          <e p="KarassMocks" t="Include">
             <e p="KarassDummy.cs" t="Include" />
             <e p="KarassFramesStub.cs" t="Include" />
             <e p="KarassMessageDummy.cs" t="Include" />
             <e p="KarassNumberOfFramesStub.cs" t="Include" />
+          </e>
+          <e p="Messages" t="Include">
+            <e p="KarassMessageSpy.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">

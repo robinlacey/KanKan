@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using KanKanCore.Factories;
+using KanKanCore.Karass.Frame;
 
 namespace KanKanCore.Karass.Interface
 {
@@ -10,7 +12,9 @@ namespace KanKanCore.Karass.Interface
         
         List<List<Action>>  SetupActions { get; }
         List<List<Action>>  TeardownActions { get; }
+       
+        List<FrameRequest[]> FramesCollection { get; }
         
-        List<Func<string, bool>[]> FramesCollection { get; }
+        IFrameFactory FrameFactory { get; }
     }
 }

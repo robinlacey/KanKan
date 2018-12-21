@@ -5,16 +5,18 @@ using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Factories
 {
-    public class FrameFactory
+    public class FrameFactory : IFrameFactory
     {
-        private readonly IDependencies _dependencies;
+        public IDependencies Dependencies { get; }
+
         private readonly Dictionary<Type, Type> _routing = new Dictionary<Type, Type>();
 
         public FrameFactory(IDependencies dependencies)
         {
-            _dependencies = dependencies;
+            Dependencies = dependencies;
         }
 
+       
         public void RegisterRoute<TRequestType, TKarassFrameType>() where TKarassFrameType : IKarassFrame<TRequestType>
         {
             _routing.Add(typeof(TRequestType), typeof(TKarassFrameType));
@@ -24,22 +26,23 @@ namespace KanKanCore.Factories
         {
             // Credit to @craigjbass 
             object dependency = 
-                _dependencies.GetType()
+                Dependencies.GetType()
                 .GetMethod("Get")
                 .MakeGenericMethod(_routing[typeof(T)])
-                .Invoke(_dependencies, Array.Empty<object>());
+                .Invoke(Dependencies, Array.Empty<object>());
             return (IKarassFrame<T>) dependency;
         }
 
-        public void Execute(FrameRequest frameRequest, string message)
+        public bool Execute(FrameRequest frameRequest, string message)
         {
             object karassFrameObject = 
-                _dependencies.GetType().GetMethod("Get")
+                Dependencies.GetType().GetMethod("Get")
                 .MakeGenericMethod(_routing[frameRequest.RequestType])
-                .Invoke(_dependencies, Array.Empty<object>());
+                .Invoke(Dependencies, Array.Empty<object>());
 
-            karassFrameObject.GetType().GetMethod("Execute")
+            object returnValue = karassFrameObject.GetType().GetMethod("Execute")
                 .Invoke(karassFrameObject, new[] {message, frameRequest.RequestObject});
+            return (bool) returnValue;
         }
     }
 }

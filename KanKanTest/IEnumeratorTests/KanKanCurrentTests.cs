@@ -1,7 +1,8 @@
 using System.Collections;
 using KanKanCore;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.Karass;
+using KanKanTest.Mocks.KarassMocks;
 using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests

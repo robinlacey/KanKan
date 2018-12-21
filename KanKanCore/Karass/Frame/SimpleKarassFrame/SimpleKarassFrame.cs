@@ -3,20 +3,20 @@ using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Karass.Frame.SimpleKarassFrame
 {
-    public class SimpleKarassFrame : IKarassFrame<object>
+    public class SimpleKarassFrame<T> : IKarassFrame<T>
     {
-        private Func<string, bool> _simpleMethod;
+        private readonly Func<string, bool> _simpleMethod;
 
-        public SimpleKarassFrame(Func<string, bool> method)
+        public SimpleKarassFrame(Func<string, bool> method, T requestData)
         {
             _simpleMethod = method;
-            RequestData = new object();
+            RequestData = requestData;
         }
 
-        public object RequestData { get; }
+        public T RequestData { get; }
         public string Message { get; set; }
 
-        public bool Execute(string message, object payload = null)
+        public bool Execute(string message, T payload)
         {
             Message = message;
             return _simpleMethod.Invoke(message);
