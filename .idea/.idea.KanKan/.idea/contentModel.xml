@@ -45,6 +45,9 @@
             <e p="netcoreapp2.1" t="Include">
               <e p="KanKanCore.AssemblyInfo.cs" t="Include" />
             </e>
+            <e p="netstandard2.0" t="Include">
+              <e p="KanKanCore.AssemblyInfo.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>
@@ -53,7 +56,6 @@
           <e p="KarassAdditionTests.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="coverage.xml" t="Include" />
         <e p="DependenciesTests" t="Include">
           <e p="KarassDependenciesTests.cs" t="Include" />
         </e>
