@@ -53,6 +53,7 @@
           <e p="KarassAdditionTests.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="coverage.xml" t="Include" />
         <e p="DependenciesTests" t="Include">
           <e p="KarassDependenciesTests.cs" t="Include" />
         </e>
