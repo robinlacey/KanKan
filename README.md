@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/robinlacey/KanKan.svg?branch=master)](https://travis-ci.org/robinlacey/KanKan)
+[![codecov](https://codecov.io/gh/robinlacey/KanKan/branch/master/graph/badge.svg)](https://codecov.io/gh/robinlacey/KanKan)
 
 # Kan Kan 👯‍♂
 
@@ -178,3 +179,6 @@ Detailed instructions coming soon. In the meantime please read the example and:
 1. [Clone repo](https://help.github.com/articles/cloning-a-repository/)
 2. [Compile to .dll](https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli)
 3. [Import to engine](https://docs.unity3d.com/Manual/UsingDLL.html)
+
+## Code Coverage
+![](https://codecov.io/gh/robinlacey/KanKan/branch/master/graphs/icicle.svg)
