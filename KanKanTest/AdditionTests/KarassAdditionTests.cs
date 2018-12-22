@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanTest.Mocks.Dependencies;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.AdditionTests
 {
     public class KarassAdditionTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
-        
+        private static KarassFactory KarassFactory => new KarassFactory(
+            new DependenciesDummy(),
+            new FrameFactoryDummy()
+            );
+        private static MockFramesFactory MockFramesFactory => new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
         private static List<List<Action>> CreateActionListWith(Action a) =>
             new List<List<Action>> {new List<Action> {a}};
 
@@ -24,12 +29,12 @@ namespace KanKanTest.AdditionTests
                 Karass karassOne = KarassFactory.Get(
                     CreateActionListWith(setupOne),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
                 Action setupTwo = () => { };
                 Karass karassTwo = KarassFactory.Get(
                     CreateActionListWith(setupTwo),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Karass combinedKarass = karassOne + karassTwo;
 
@@ -45,24 +50,24 @@ namespace KanKanTest.AdditionTests
                 Karass karassOne = KarassFactory.Get(
                     CreateActionListWith(setupOne),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
                 Action setupTwo = () => { };
                 Karass karassTwo = KarassFactory.Get(
                     CreateActionListWith(setupTwo),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Action setupThree = () => { };
                 Karass karassThree =KarassFactory.Get(
                     CreateActionListWith(setupThree),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Action setupFour = () => { };
                 Karass karassFour = KarassFactory.Get(
                     CreateActionListWith(setupFour),
                     new List<List<Action>>(),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
 
                 Karass combinedKarass = karassOne + karassTwo + karassThree + karassFour;
@@ -84,12 +89,12 @@ namespace KanKanTest.AdditionTests
                 Karass karassOne = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownOne),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
                 Action teardownTwo = () => { };
                 Karass karassTwo = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownTwo),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Karass combinedKarass = karassOne + karassTwo;
 
@@ -105,24 +110,24 @@ namespace KanKanTest.AdditionTests
                 Karass karassOne = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownOne),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
                 Action teardownTwo = () => { };
                 Karass karassTwo = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownTwo),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Action teardownThree = () => { };
                 Karass karassThree = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownThree),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
                 Action teardownFour = () => { };
                 Karass karassFour = KarassFactory.Get(
                     new List<List<Action>>(),
                     CreateActionListWith(teardownFour),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
 
                 Karass combinedKarass = karassOne + karassTwo + karassThree + karassFour;
@@ -141,17 +146,17 @@ namespace KanKanTest.AdditionTests
             [Test]
             public void WhenAddedThenFrameSetsContainArrays()
             {
-                Func<string, bool>[] frameSetArrayOne = { };
+                FrameRequest[] frameSetArrayOne = { };
 
-                List<Func<string, bool>[]> frameSetOne = new List<Func<string, bool>[]>
+                List<FrameRequest[]> frameSetOne = new List<FrameRequest[]>
                 {
                     frameSetArrayOne
                 };
 
 
-                Func<string, bool>[] frameSetArrayTwo = { };
+                FrameRequest[] frameSetArrayTwo = { };
 
-                List<Func<string, bool>[]> frameSetTwo = new List<Func<string, bool>[]>
+                List<FrameRequest[]> frameSetTwo = new List<FrameRequest[]>
                 {
                     frameSetArrayTwo
                 };
@@ -176,46 +181,28 @@ namespace KanKanTest.AdditionTests
             [Test]
             public void WhenAddedThenFrameSetsContainFrames()
             {
-                bool FrameSetOneFrameOne(string message)
+                FrameRequest frameSetOneFrameOne = MockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest frameSetOneFrameTwo = MockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest[] frameSetArrayOne =
                 {
-                    return true;
-                }
-
-                bool FrameSetOneFrameTwo(string message)
-                {
-                    return true;
-                }
-
-                Func<string, bool>[] frameSetArrayOne =
-                {
-                    FrameSetOneFrameOne,
-                    FrameSetOneFrameTwo
+                    frameSetOneFrameOne,
+                    frameSetOneFrameTwo
                 };
 
-                List<Func<string, bool>[]> frameSetOne = new List<Func<string, bool>[]>
+                List<FrameRequest[]> frameSetOne = new List<FrameRequest[]>
                 {
                     frameSetArrayOne
                 };
 
-
-                bool FrameSetTwoFrameOne(string message)
+                FrameRequest frameSetTwoFrameOne = MockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest frameSetTwoFrameTwo = MockFramesFactory.GetInvalidFrameRequest();
+                FrameRequest[] frameSetArrayTwo =
                 {
-                    return true;
-                }
-
-                bool FrameSetTwoFrameTwo(string message)
-                {
-                    return true;
-                }
-
-
-                Func<string, bool>[] frameSetArrayTwo =
-                {
-                    FrameSetTwoFrameOne,
-                    FrameSetTwoFrameTwo
+                    frameSetTwoFrameOne,
+                    frameSetTwoFrameTwo
                 };
 
-                List<Func<string, bool>[]> frameSetTwo = new List<Func<string, bool>[]>
+                List<FrameRequest[]> frameSetTwo = new List<FrameRequest[]>
                 {
                     frameSetArrayTwo
                 };
@@ -236,10 +223,10 @@ namespace KanKanTest.AdditionTests
                 Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayOne));
                 Assert.True(combinedKarass.FramesCollection.Contains(frameSetArrayTwo));
 
-                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetOneFrameOne)));
-                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetOneFrameTwo)));
-                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetTwoFrameOne)));
-                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(FrameSetTwoFrameTwo)));
+                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(frameSetOneFrameOne)));
+                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(frameSetOneFrameTwo)));
+                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(frameSetTwoFrameOne)));
+                Assert.True(combinedKarass.FramesCollection.Any(_ => _.Contains(frameSetTwoFrameTwo)));
             }
         }
     }

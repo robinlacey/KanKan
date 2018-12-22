@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Dependencies;
+using KanKanCore.Karass.Frame;
+using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.Karass;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
@@ -12,10 +16,10 @@ namespace KanKanTest.SetupTeardownTests
     [TestFixture]
     public class KanKanSetupAndTeardownTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
-
         public class GivenNoFrames
         {
+            private KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
+
 
             [Test]
             public void SetupAndTearDownAreRun()
@@ -25,11 +29,11 @@ namespace KanKanTest.SetupTeardownTests
                 Action setup = () => { setupCounter++; };
                 Action teardown = () => { teardownCounter++; };
                 Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), CreateActionListWith(teardown),
-                    new List<Func<string, bool>[]>());
+                    new List<FrameRequest[]>());
 
-                KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
 
-                actionRunner.MoveNext();
+                kankan.MoveNext();
                 Assert.True(setupCounter == 1);
                 Assert.True(teardownCounter == 1);
             }
@@ -39,6 +43,21 @@ namespace KanKanTest.SetupTeardownTests
         {
             public class WithOneFrame
             {
+                private KarassFactory _karassFactory;
+                private IDependencies _dependencies;
+                private IFrameFactory _frameFactory;
+                private MockFramesFactory _mockFramesFactory;
+
+                [SetUp]
+                public void Setup()
+                {
+                    _dependencies = new KarassDependencies();
+                    _frameFactory = new FrameFactory(_dependencies);
+                    _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+                    _karassFactory = new KarassFactory(_dependencies, _frameFactory);
+                }
+
+
                 private bool _frameRun;
 
                 bool FrameSpy(string message)
@@ -47,11 +66,11 @@ namespace KanKanTest.SetupTeardownTests
                     return true;
                 }
 
-                private List<Func<string, bool>[]> Frames => new List<Func<string, bool>[]>
+                private List<FrameRequest[]> Frames => new List<FrameRequest[]>
                 {
-                    new Func<string, bool>[]
+                    new[]
                     {
-                        FrameSpy
+                        _mockFramesFactory.GetValidFrameRequest(FrameSpy)
                     }
                 };
 
@@ -62,11 +81,12 @@ namespace KanKanTest.SetupTeardownTests
                     int teardownCounter = 0;
                     Action setup = () => { setupCounter++; };
                     Action teardown = () => { teardownCounter++; };
-                    Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), CreateActionListWith(teardown), Frames);
+                    Karass testKarass = _karassFactory.Get(CreateActionListWith(setup), CreateActionListWith(teardown),
+                        Frames);
 
-                    KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
+                    KanKan kanKan = new KanKan(testKarass, new KarassMessageDummy());
 
-                    actionRunner.MoveNext();
+                    kanKan.MoveNext();
 
                     Assert.True(setupCounter == 1);
                     Assert.True(teardownCounter == 1);
@@ -79,6 +99,10 @@ namespace KanKanTest.SetupTeardownTests
         {
             public class WhenSetupIsGivenAnIndex
             {
+                private KarassFactory KarassFactory =>
+                    new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
+
+
                 [Test]
                 public void ThenCorrectSetupActionsAreCalled_ExampleOne()
                 {
@@ -96,10 +120,12 @@ namespace KanKanTest.SetupTeardownTests
                         karassTwoSetupCalled = true;
                     }
 
-                    Karass karassOne = KarassFactory.Get(CreateActionListWith(KarassOneSetupSpy), new List<List<Action>>(),
-                        new List<Func<string, bool>[]>());
-                    Karass karassTwo = KarassFactory.Get(CreateActionListWith(KarassTwoSetupSpy), new List<List<Action>>(),
-                        new List<Func<string, bool>[]>());
+                    Karass karassOne = KarassFactory.Get(CreateActionListWith(KarassOneSetupSpy),
+                        new List<List<Action>>(),
+                        new List<FrameRequest[]>());
+                    Karass karassTwo = KarassFactory.Get(CreateActionListWith(KarassTwoSetupSpy),
+                        new List<List<Action>>(),
+                        new List<FrameRequest[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 
@@ -125,10 +151,12 @@ namespace KanKanTest.SetupTeardownTests
                         karassTwoSetupCalled = true;
                     }
 
-                    Karass karassOne = KarassFactory.Get(CreateActionListWith(KarassOneSetupSpy), new List<List<Action>>(),
-                        new List<Func<string, bool>[]>());
-                    Karass karassTwo = KarassFactory.Get(CreateActionListWith(KarassTwoSetupSpy), new List<List<Action>>(),
-                        new List<Func<string, bool>[]>());
+                    Karass karassOne = KarassFactory.Get(CreateActionListWith(KarassOneSetupSpy),
+                        new List<List<Action>>(),
+                        new List<FrameRequest[]>());
+                    Karass karassTwo = KarassFactory.Get(CreateActionListWith(KarassTwoSetupSpy),
+                        new List<List<Action>>(),
+                        new List<FrameRequest[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 
@@ -140,6 +168,9 @@ namespace KanKanTest.SetupTeardownTests
 
             public class WhenTeardownIsGivenAnIndex
             {
+                private KarassFactory KarassFactory =>
+                    new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
+
                 [Test]
                 public void ThenCorrectTeardownActionsAreCalled_ExampleOne()
                 {
@@ -157,10 +188,12 @@ namespace KanKanTest.SetupTeardownTests
                         karassTwoTeardownCalled = true;
                     }
 
-                    Karass karassOne = KarassFactory.Get(new List<List<Action>>(), CreateActionListWith(KarassOneTeardownSpy),
-                        new List<Func<string, bool>[]>());
-                    Karass karassTwo =KarassFactory.Get(new List<List<Action>>(), CreateActionListWith(KarassTwoTeardownSpy),
-                        new List<Func<string, bool>[]>());
+                    Karass karassOne = KarassFactory.Get(new List<List<Action>>(),
+                        CreateActionListWith(KarassOneTeardownSpy),
+                        new List<FrameRequest[]>());
+                    Karass karassTwo = KarassFactory.Get(new List<List<Action>>(),
+                        CreateActionListWith(KarassTwoTeardownSpy),
+                        new List<FrameRequest[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 
@@ -186,10 +219,12 @@ namespace KanKanTest.SetupTeardownTests
                         karassTwoTeardownCalled = true;
                     }
 
-                    Karass karassOne = KarassFactory.Get(new List<List<Action>>(), CreateActionListWith(KarassOneTeardownSpy),
-                        new List<Func<string, bool>[]>());
-                    Karass karassTwo = KarassFactory.Get(new List<List<Action>>(), CreateActionListWith(KarassTwoTeardownSpy),
-                        new List<Func<string, bool>[]>());
+                    Karass karassOne = KarassFactory.Get(new List<List<Action>>(),
+                        CreateActionListWith(KarassOneTeardownSpy),
+                        new List<FrameRequest[]>());
+                    Karass karassTwo = KarassFactory.Get(new List<List<Action>>(),
+                        CreateActionListWith(KarassTwoTeardownSpy),
+                        new List<FrameRequest[]>());
 
                     Karass combinedKarass = karassOne + karassTwo;
 

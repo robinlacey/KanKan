@@ -1,7 +1,8 @@
 using System.Collections;
 using KanKanCore;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.Karass;
+using KanKanTest.Mocks.KarassMocks;
 using NUnit.Framework;
 
 namespace KanKanTest.IEnumeratorTests
@@ -11,8 +12,8 @@ namespace KanKanTest.IEnumeratorTests
         [Test]
         public void GivenNoFramesCurrentReturnsNotNull()
         {
-            IEnumerator uActionRunner = new KanKan(new KarassDummy(), new KarassMessageDummy());
-            Assert.NotNull(uActionRunner.Current);
+            IEnumerator ukankan = new KanKan(new KarassDummy(), new KarassMessageDummy());
+            Assert.NotNull(ukankan.Current);
         }
 
         [Test]

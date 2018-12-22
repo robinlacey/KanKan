@@ -1,9 +1,11 @@
-using System;
 using System.Collections.Generic;
+using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Dependencies;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.KarassMocks;
 using NUnit.Framework;
 
 namespace KanKanTest.MessageTests
@@ -13,8 +15,22 @@ namespace KanKanTest.MessageTests
         string _firstFrameMessage = string.Empty;
         string _secondFrameMessage = string.Empty;
 
+        private MockFramesFactory _mockFramesFactory;
+        private FrameRequest _firstFrameRequest;
+        private FrameRequest _secondFrameRequest;
+        private IDependencies _dependencies;
+        private IFrameFactory _frameFactory;
+        [SetUp]
+        public void Setup()
+        {
+            _dependencies = new KarassDependencies();
+            _frameFactory = new FrameFactory(_dependencies);
+            _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+            _firstFrameRequest = _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy);
+            _secondFrameRequest = _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy);
+        }
         [Test]
-        public void UActionRunnerHasSendMessageMethod()
+        public void UkankanHasSendMessageMethod()
         {
             IKarassMessage karassMessage = new KarassMessage();
             Karass karass = new KarassDummy();
@@ -23,11 +39,20 @@ namespace KanKanTest.MessageTests
         }
 
         [Test]
-        public void UActionRunnerSendMessageSendsMessageToNextFrame()
+        public void UkankanSendMessageSendsMessageToNextFrame()
         {
             IKarassMessage karassMessage = new KarassMessage();
-            KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>
-                {new Func<string, bool>[] {FirstFrameSpy, SecondFrameSpy}});
+            KarassFramesStub karass = new KarassFramesStub(
+                new List<FrameRequest[]>
+                {
+                    new[]
+                    {
+                        _firstFrameRequest,
+                        _secondFrameRequest
+                    }
+                },
+                _dependencies, 
+               _frameFactory);
             KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, karassMessage);
 
             kanKan.SendMessage("Cat");
@@ -44,8 +69,18 @@ namespace KanKanTest.MessageTests
         public void MessagesOnlyLastForOneFrame()
         {
             IKarassMessage karassMessage = new KarassMessage();
-            KarassFramesStub karass = new KarassFramesStub(new List<Func<string, bool>[]>
-                {new Func<string, bool>[] {FirstFrameSpy, SecondFrameSpy}});
+            KarassFramesStub karass = new KarassFramesStub(
+                new List<FrameRequest[]>
+                {
+                    new[]
+                    {
+                        _firstFrameRequest,
+                        _secondFrameRequest
+                    }
+                },
+                _dependencies, 
+                _frameFactory);
+            
             KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, karassMessage);
 
             kanKan.SendMessage("Cat");

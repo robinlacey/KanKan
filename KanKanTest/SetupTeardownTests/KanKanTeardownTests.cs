@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
-using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.UAction;
+using KanKanCore.Karass.Dependencies;
+using KanKanCore.Karass.Frame;
+using KanKanCore.Karass.Interface;
+using KanKanTest.Mocks.Karass;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
 {
     public class KanKanTeardownTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
         [TestFixture]
         public class GivenOneFrameSet
         {
             public class WithOneFrame
             {
+                private KarassFactory _karassFactory;
+                private IDependencies _dependencies;
+                private IFrameFactory _frameFactory;
+                private MockFramesFactory _mockFramesFactory;
+
+                [SetUp]
+                public void Setup()
+                {
+                    _dependencies = new KarassDependencies();
+                    _frameFactory = new FrameFactory(_dependencies);
+                    _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+                    _karassFactory = new KarassFactory(_dependencies, _frameFactory);
+                }
+
                 [Test]
                 public void TeardownActionsAreCalled()
                 {
@@ -29,20 +44,22 @@ namespace KanKanTest.SetupTeardownTests
                         return true;
                     }
 
-                    Func<string, bool>[] frames =
-                    {
-                        FrameSpy
-                    };
-
                     void TeardownSpy()
                     {
                         teardownCalled = true;
                     }
 
-                    Karass karass = KarassFactory.Get(
+                    FrameRequest frameRequest = _mockFramesFactory.GetValidFrameRequest(FrameSpy);
+                    Karass karass = _karassFactory.Get(
                         new List<List<Action>>(),
                         CreateActionListWith(TeardownSpy),
-                        new List<Func<string, bool>[]> {frames});
+                        new List<FrameRequest[]>
+                        {
+                            new[]
+                            {
+                                frameRequest
+                            }
+                        });
                     KanKan kankan = new KanKan(karass, new KarassMessageDummy());
 
                     kankan.MoveNext();
@@ -54,6 +71,20 @@ namespace KanKanTest.SetupTeardownTests
 
             public class WithMultipleFrames
             {
+                private KarassFactory _karassFactory;
+                private IDependencies _dependencies;
+                private IFrameFactory _frameFactory;
+                private MockFramesFactory _mockFramesFactory;
+
+                [SetUp]
+                public void Setup()
+                {
+                    _dependencies = new KarassDependencies();
+                    _frameFactory = new FrameFactory(_dependencies);
+                    _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+                    _karassFactory = new KarassFactory(_dependencies, _frameFactory);
+                }
+
                 [Test]
                 public void TeardownActionsAreCalledOnLastFrame()
                 {
@@ -82,22 +113,22 @@ namespace KanKanTest.SetupTeardownTests
                         return true;
                     }
 
-
-                    Func<string, bool>[] frames =
-                    {
-                        FrameOneSpy,
-                        FrameTwoSpy,
-                        FrameThreeSpy
-                    };
-
                     void TeardownSpy()
                     {
                         teardownCalled = true;
                     }
 
-                    Karass karass = KarassFactory.Get(new List<List<Action>>(),
+                    Karass karass = _karassFactory.Get(new List<List<Action>>(),
                         CreateActionListWith(TeardownSpy),
-                        new List<Func<string, bool>[]> {frames});
+                        new List<FrameRequest[]>
+                        {
+                            new[]
+                            {
+                                _mockFramesFactory.GetValidFrameRequest(FrameOneSpy),
+                                _mockFramesFactory.GetValidFrameRequest(FrameTwoSpy),
+                                _mockFramesFactory.GetValidFrameRequest(FrameThreeSpy),
+                            }
+                        });
                     KanKan kankan = new KanKan(karass, new KarassMessageDummy());
 
                     kankan.MoveNext();

@@ -1,5 +1,4 @@
 using KanKanCore.Karass.Dependencies;
-using KanKanCore.Karass.Interface;
 using NUnit.Framework;
 
 namespace KanKanTest.DependenciesTests
@@ -31,8 +30,10 @@ namespace KanKanTest.DependenciesTests
         public string ThenCorrectlyReturnType(string name)
         {
             KarassDependencies dependencies = new KarassDependencies();
-            dependencies.Register<ITestInterface>(new TestClass(name));
-            return dependencies.Get<ITestInterface>().Test();
+            TestClass testClass = new TestClass(name);
+            dependencies.Register<ITestInterface>(() => testClass);
+            ITestInterface t = dependencies.Get<ITestInterface>();
+            return t.Test();
         }
   
     }

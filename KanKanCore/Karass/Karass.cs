@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 
 // Karass: "We Bokononists believe that humanity is organized into teams, teams that do God's Will without ever discovering what they are doing. Such a team is called a karass by Bokonon"
@@ -12,14 +13,16 @@ namespace KanKanCore.Karass
     {
         public List<List<Action>> SetupActions { get; }
         public List<List<Action>> TeardownActions { get; }
-        public List<Func<string, bool>[]> FramesCollection { get; }
+        public List<FrameRequest[]> FramesCollection { get; }
         public IDependencies Dependencies { get; }
+        
+        public IFrameFactory FrameFactory { get; }
 
-        public Karass(IDependencies dependencies, List<List<Action>> setup, List<List<Action>> teardown,
-            IEnumerable<Func<string, bool>[]> framesCollection)
+        public Karass(IDependencies dependencies, IFrameFactory frameFactory, List<List<Action>> setup, List<List<Action>> teardown,
+            List<FrameRequest[]> framesCollection)
         {
-            FramesCollection = (List<Func<string, bool>[]>) framesCollection;
-
+            FrameFactory = frameFactory;
+            FramesCollection = framesCollection;
             SetupActions = setup;
             TeardownActions = teardown;
             Dependencies = dependencies;
@@ -28,10 +31,11 @@ namespace KanKanCore.Karass
         public static Karass operator +(Karass karassOne, Karass karassTwo)
         {
             return new Karass(
-                karassOne.Dependencies,
-                karassOne.SetupActions.Concat(karassTwo.SetupActions).ToList(),
-                karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(),
-                new List<Func<string, bool>[]>(karassOne.FramesCollection.Concat(karassTwo.FramesCollection)));
+            karassOne.Dependencies,
+            karassOne.FrameFactory,
+            karassOne.SetupActions.Concat(karassTwo.SetupActions).ToList(),
+            karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(),
+            new List<FrameRequest[]> (karassOne.FramesCollection.Concat(karassTwo.FramesCollection)));
         }
 
         public void Setup(int index)

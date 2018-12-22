@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Dependencies;
+using KanKanCore.Karass.Frame;
+using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.UAction;
+using KanKanTest.Mocks.Karass;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests.Setup
 {
     public class KanKanSetupTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy(),new FrameFactoryDummy());
 
         [Test]
         public void SetupIsRunOnMoveNext()
@@ -19,24 +23,38 @@ namespace KanKanTest.SetupTeardownTests.Setup
             int setupCounter = 0;
             Action setup = () => { setupCounter++; };
             Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), new List<List<Action>>(),
-                new List<Func<string, bool>[]>());
+                new List<FrameRequest[]>());
 
-            KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-            actionRunner.MoveNext();
+            KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
+            kankan.MoveNext();
             Assert.True(setupCounter > 0);
         }
 
         public class GivenMultipleFrames
         {
+            
+            private IDependencies _dependencies;
+            private IFrameFactory _frameFactory;
+            private MockFramesFactory _mockFramesFactory;
+
+            [SetUp]
+            public void Setup()
+            {
+                _dependencies = new KarassDependencies();
+                _frameFactory = new FrameFactory(_dependencies);
+                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+            }
+
+            
             bool FrameOne(string message) => true;
             bool FrameTwo(string message) => true;
 
-            private List<Func<string, bool>[]> Frames => new List<Func<string, bool>[]>
+            private List<FrameRequest[]> Frames => new List<FrameRequest[]>
             {
-                new Func<string, bool>[]
+                new[]
                 {
-                    FrameOne,
-                    FrameTwo
+                    _mockFramesFactory.GetValidFrameRequest(FrameOne),
+                    _mockFramesFactory.GetValidFrameRequest(FrameTwo),
                 }
             };
 
@@ -47,10 +65,10 @@ namespace KanKanTest.SetupTeardownTests.Setup
                 Action setup = () => { setupCounter++; };
                 Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), new List<List<Action>>(), Frames);
 
-                KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
-                actionRunner.MoveNext();
+                KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
+                kankan.MoveNext();
                 Assert.True(setupCounter == 1);
-                actionRunner.MoveNext();
+                kankan.MoveNext();
                 Assert.True(setupCounter == 1);
             }
         }

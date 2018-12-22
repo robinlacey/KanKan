@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanTest.Mocks.Dependencies;
+using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
 {
-  
     public class KarassSetupTeardownTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy());
+        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
 
         private static List<List<Action>> CreateActionListWith(Action[] a) => new List<List<Action>> {a.ToList()};
 
@@ -28,7 +29,7 @@ namespace KanKanTest.SetupTeardownTests
             Karass testKarass = KarassFactory.Get(
                 CreateActionListWith(new[] {setupOne, setupTwo, setupThree}),
                 new List<List<Action>>(),
-                new List<Func<string, bool>[]>());
+                new List<FrameRequest[]>());
 
             testKarass.Setup(0);
 
@@ -50,7 +51,7 @@ namespace KanKanTest.SetupTeardownTests
             Karass testKarass = KarassFactory.Get(
                 new List<List<Action>>(),
                 CreateActionListWith(new[] {teardownOne, teardownTwo, teardownThree}),
-                new List<Func<string, bool>[]>());
+                new List<FrameRequest[]>());
 
             testKarass.Teardown(0);
 
@@ -63,7 +64,7 @@ namespace KanKanTest.SetupTeardownTests
         public void KarassHasASetupMethod()
         {
             Karass testKarass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
-                new List<Func<string, bool>[]>());
+                new List<FrameRequest[]>());
             testKarass.Setup(0);
         }
 
@@ -71,7 +72,7 @@ namespace KanKanTest.SetupTeardownTests
         public void KarassHasATeardownMethod()
         {
             Karass testKarass = KarassFactory.Get(new List<List<Action>>(), new List<List<Action>>(),
-                new List<Func<string, bool>[]>());
+                new List<FrameRequest[]>());
             testKarass.Teardown(0);
         }
     }
