@@ -177,7 +177,8 @@ The CanCan is also a dance (👯‍♂) which ties in quite nicely...
 Detailed instructions coming soon. In the meantime please read the example and:
 
 1. [Clone repo](https://help.github.com/articles/cloning-a-repository/)
-2. [Compile to .dll](https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli)
+2. [Compile to .dll](https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli) 
+( Note for Unity you should: `dotnet publish -c Release --framework netstandard2.0`)
 3. [Import to engine](https://docs.unity3d.com/Manual/UsingDLL.html)
 
 ## Code Coverage
