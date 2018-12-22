@@ -10,4 +10,4 @@ script:
  - dotnet test KanKanTest/KanKanTest.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
-        - bash <(curl -s https://codecov.io/bash)
+        - bash <(curl -s https://codecov.io/bash) 
