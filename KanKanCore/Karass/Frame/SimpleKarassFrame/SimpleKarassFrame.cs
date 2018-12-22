@@ -12,6 +12,11 @@ namespace KanKanCore.Karass.Frame.SimpleKarassFrame
             _simpleMethod = method;
             RequestData = requestData;
         }
+        
+        public SimpleKarassFrame(Func<string, bool> method)
+        {
+            _simpleMethod = method;
+        }
 
         public T RequestData { get; }
         public string Message { get; set; }

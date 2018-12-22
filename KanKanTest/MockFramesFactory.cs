@@ -1,16 +1,15 @@
 using System;
-using KanKanCore.Factories;
+using System.Reflection;
+using System.Reflection.Emit;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Frame.SimpleKarassFrame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.KarassFrame.FrameStruct;
 
 namespace KanKanTest
 {
     public class MockFramesFactory
     {
         private int _ticker;
-        private int _frameStructDummyTicker;
         private readonly IFrameFactory _frameFactory;
         private readonly IDependencies _dependencies;
 
@@ -20,38 +19,43 @@ namespace KanKanTest
             _dependencies = dependencies;
         }
 
-        public FrameRequest GetValidFrameRequest(Func<string, bool> func, string testMessage)
+        Type GetRandomType()
         {
-           
+            string name = Guid.NewGuid() + "-" + _ticker;
+            AssemblyBuilder ab = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(name),
+                AssemblyBuilderAccess.Run);
+            ModuleBuilder mb = ab.DefineDynamicModule(name);
+            return mb.DefineType(
+                    name,
+                    TypeAttributes.Public | TypeAttributes.Class | TypeAttributes.Serializable)
+                .CreateType();
+        }
 
-            if (_frameStructDummyTicker == 0)
+        public FrameRequest GetValidFrameRequest(Func<string, bool> func)
+        {
+            Type randomType = GetRandomType();
+            Type simpleKarassFrameClass = typeof(SimpleKarassFrame<>);
+            Type constructedClass = simpleKarassFrameClass.MakeGenericType(randomType);
+            
+            object randomKarassFrameAction = Activator.CreateInstance(constructedClass, new object[] {func});
+            dynamic Resolver() => randomKarassFrameAction;
+            object[] args =
             {
-                FrameStructDummyOne frameActionData = new FrameStructDummyOne()
-                {
-                    Test = testMessage
-                };
-                IKarassFrame<FrameStructDummyOne> frameAction =
-                    new SimpleKarassFrame<FrameStructDummyOne>(func, frameActionData);
-                _dependencies.Register<IKarassFrame<FrameStructDummyOne>>(() => frameAction);
-                _frameFactory.RegisterRoute<FrameStructDummyOne, IKarassFrame<FrameStructDummyOne>>();
+                (Func<dynamic>) Resolver,
+            };
 
-                _frameStructDummyTicker++;
-                return new FrameRequest(frameActionData);
-            }
-            else
-            {
-                FrameStructDummyTwo frameActionData = new FrameStructDummyTwo()
-                {
-                    Test = testMessage
-                };
-                IKarassFrame<FrameStructDummyTwo> frameAction =
-                    new SimpleKarassFrame<FrameStructDummyTwo>(func, frameActionData);
-                _dependencies.Register<IKarassFrame<FrameStructDummyTwo>>(() => frameAction);
-                _frameFactory.RegisterRoute<FrameStructDummyTwo, IKarassFrame<FrameStructDummyTwo>>();
+            _dependencies.GetType()
+                .GetMethod("Register")
+                .MakeGenericMethod(randomKarassFrameAction.GetType())
+                .Invoke(_dependencies, args);
 
-                _frameStructDummyTicker++;
-                return new FrameRequest(frameActionData);
-            }
+            _frameFactory.GetType()
+                .GetMethod("RegisterRoute")
+                .MakeGenericMethod(randomType, randomKarassFrameAction.GetType())
+                .Invoke(_frameFactory, Array.Empty<object>());
+            
+            _ticker++;
+            return new FrameRequest(Activator.CreateInstance(randomType));
         }
 
         public FrameRequest GetInvalidFrameRequest()

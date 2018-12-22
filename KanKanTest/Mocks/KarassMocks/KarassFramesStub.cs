@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.KarassFrame;
 
 namespace KanKanTest.Mocks.KarassMocks
 {

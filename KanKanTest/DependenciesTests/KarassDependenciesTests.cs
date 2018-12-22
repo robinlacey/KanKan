@@ -1,6 +1,4 @@
-using System;
 using KanKanCore.Karass.Dependencies;
-using KanKanCore.Karass.Interface;
 using NUnit.Framework;
 
 namespace KanKanTest.DependenciesTests
@@ -15,7 +13,7 @@ namespace KanKanTest.DependenciesTests
 
         private class TestClass : ITestInterface
         {
-            public readonly string _returnValue;
+            private readonly string _returnValue;
 
             public TestClass(string returnValue)
             {

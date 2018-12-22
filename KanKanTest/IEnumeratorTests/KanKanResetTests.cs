@@ -34,7 +34,7 @@ namespace KanKanTest.IEnumeratorTests
                 new List<FrameRequest[]> {
                     new[]
                 {
-                    _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy,string.Empty)
+                    _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy)
                 }}, 
                 _dependencies,
                 _frameFactory
@@ -55,8 +55,8 @@ namespace KanKanTest.IEnumeratorTests
                 {
                     new []
                     {
-                        _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy,string.Empty),
-                        _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy,string.Empty)
+                        _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy),
+                        _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy)
                     }}, 
                 _dependencies,
                 _frameFactory);

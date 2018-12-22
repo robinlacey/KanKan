@@ -7,7 +7,7 @@ namespace KanKanCore.Factories
 {
     public class FrameFactory : IFrameFactory
     {
-        public IDependencies Dependencies { get; }
+        private IDependencies Dependencies { get; }
 
         private readonly Dictionary<Type, Type> _routing = new Dictionary<Type, Type>();
 
