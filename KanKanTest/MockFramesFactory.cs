@@ -4,6 +4,7 @@ using System.Reflection.Emit;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Frame.SimpleKarassFrame;
 using KanKanCore.Karass.Interface;
+using KanKanTest.Mocks.Dependencies;
 
 namespace KanKanTest
 {
@@ -37,7 +38,11 @@ namespace KanKanTest
             Type simpleKarassFrameClass = typeof(SimpleKarassFrame<>);
             Type constructedClass = simpleKarassFrameClass.MakeGenericType(randomType);
             
-            object randomKarassFrameAction = Activator.CreateInstance(constructedClass, new object[] {func});
+            object randomKarassFrameAction = Activator.CreateInstance(constructedClass, new object[]
+            {
+                func,
+                new DependenciesDummy()
+            });
             dynamic Resolver() => randomKarassFrameAction;
             object[] args =
             {

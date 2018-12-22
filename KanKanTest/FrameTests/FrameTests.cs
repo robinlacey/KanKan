@@ -30,14 +30,14 @@ namespace KanKanTest.FrameTests
             {
                 Test = testString
             };
-            KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>();
+            KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>(dependenciesSpy);
             dependenciesSpy.Register<IKarassFrame<FrameStructDummy>>(() => frameAction);
             FrameFactory frameFactory = new FrameFactory(dependenciesSpy);
             frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
 
             //Act
             IKarassFrame<FrameStructDummy> frame = frameFactory.Get<FrameStructDummy>();
-            frame.Execute(message, frameActionData, dependenciesSpy);
+            frame.Execute(message, frameActionData);
 
             
             //Assert
@@ -61,7 +61,7 @@ namespace KanKanTest.FrameTests
             };
 
             FrameRequest frameRequest = new FrameRequest(frameActionData);
-            KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>();
+            KarassFrameSpy<FrameStructDummy> frameAction = new KarassFrameSpy<FrameStructDummy>(dependenciesSpy);
             dependenciesSpy.Register<IKarassFrame<FrameStructDummy>>(() => frameAction);
             FrameFactory frameFactory = new FrameFactory(dependenciesSpy);
             frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();

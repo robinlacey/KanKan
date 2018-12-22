@@ -44,8 +44,7 @@ namespace KanKanCore.Factories
             object returnValue = karassFrameObject.GetType().GetMethod("Execute")
                 .Invoke(karassFrameObject, new[] {
                     message, 
-                    frameRequest.RequestObject,
-                    Dependencies});
+                    frameRequest.RequestObject});
             return (bool) returnValue;
         }
     }
