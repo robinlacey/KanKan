@@ -20,8 +20,7 @@ namespace KanKanCore.Karass.Frame.SimpleKarassFrame
 
         public T RequestData { get; }
         public string Message { get; set; }
-
-        public bool Execute(string message, T payload)
+        public bool Execute(string message, T payload, IDependencies dependencies = null)
         {
             Message = message;
             return _simpleMethod.Invoke(message);

@@ -12,8 +12,8 @@ namespace KanKanTest.IEnumeratorTests
         [Test]
         public void GivenNoFramesCurrentReturnsNotNull()
         {
-            IEnumerator uActionRunner = new KanKan(new KarassDummy(), new KarassMessageDummy());
-            Assert.NotNull(uActionRunner.Current);
+            IEnumerator ukankan = new KanKan(new KarassDummy(), new KarassMessageDummy());
+            Assert.NotNull(ukankan.Current);
         }
 
         [Test]

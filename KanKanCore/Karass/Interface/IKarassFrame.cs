@@ -4,6 +4,6 @@ namespace KanKanCore.Karass.Interface
     {
         TRequestType RequestData { get; }
         string Message { get; }
-        bool Execute(string message, TRequestType payload);
+        bool Execute(string message, TRequestType payload, IDependencies dependencies);
     }
 }

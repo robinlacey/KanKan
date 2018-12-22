@@ -15,5 +15,6 @@ namespace KanKanCore.Karass.Interface
         List<FrameRequest[]> FramesCollection { get; }
         
         IFrameFactory FrameFactory { get; }
+        IDependencies Dependencies { get; }
     }
 }

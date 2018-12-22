@@ -30,7 +30,7 @@ namespace KanKanTest.MessageTests
             _secondFrameRequest = _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy);
         }
         [Test]
-        public void UActionRunnerHasSendMessageMethod()
+        public void UkankanHasSendMessageMethod()
         {
             IKarassMessage karassMessage = new KarassMessage();
             Karass karass = new KarassDummy();
@@ -39,7 +39,7 @@ namespace KanKanTest.MessageTests
         }
 
         [Test]
-        public void UActionRunnerSendMessageSendsMessageToNextFrame()
+        public void UkankanSendMessageSendsMessageToNextFrame()
         {
             IKarassMessage karassMessage = new KarassMessage();
             KarassFramesStub karass = new KarassFramesStub(

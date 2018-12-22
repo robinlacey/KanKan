@@ -31,9 +31,9 @@ namespace KanKanTest.SetupTeardownTests
                 Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), CreateActionListWith(teardown),
                     new List<FrameRequest[]>());
 
-                KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
 
-                actionRunner.MoveNext();
+                kankan.MoveNext();
                 Assert.True(setupCounter == 1);
                 Assert.True(teardownCounter == 1);
             }
@@ -84,9 +84,9 @@ namespace KanKanTest.SetupTeardownTests
                     Karass testKarass = _karassFactory.Get(CreateActionListWith(setup), CreateActionListWith(teardown),
                         Frames);
 
-                    KanKan actionRunner = new KanKan(testKarass, new KarassMessageDummy());
+                    KanKan kanKan = new KanKan(testKarass, new KarassMessageDummy());
 
-                    actionRunner.MoveNext();
+                    kanKan.MoveNext();
 
                     Assert.True(setupCounter == 1);
                     Assert.True(teardownCounter == 1);

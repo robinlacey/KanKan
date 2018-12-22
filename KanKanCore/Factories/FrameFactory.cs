@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using KanKanCore.Factories;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 
@@ -41,7 +42,10 @@ namespace KanKanCore.Factories
                 .Invoke(Dependencies, Array.Empty<object>());
 
             object returnValue = karassFrameObject.GetType().GetMethod("Execute")
-                .Invoke(karassFrameObject, new[] {message, frameRequest.RequestObject});
+                .Invoke(karassFrameObject, new[] {
+                    message, 
+                    frameRequest.RequestObject,
+                    Dependencies});
             return (bool) returnValue;
         }
     }

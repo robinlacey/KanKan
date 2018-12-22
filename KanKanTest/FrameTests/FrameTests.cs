@@ -1,3 +1,4 @@
+using System;
 using KanKanCore.Factories;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
@@ -36,7 +37,7 @@ namespace KanKanTest.FrameTests
 
             //Act
             IKarassFrame<FrameStructDummy> frame = frameFactory.Get<FrameStructDummy>();
-            frame.Execute(message, frameActionData);
+            frame.Execute(message, frameActionData, dependenciesSpy);
 
             
             //Assert
@@ -45,6 +46,7 @@ namespace KanKanTest.FrameTests
             Assert.True(frameAction.ExecuteCallCount == 1);
             Assert.True(frame.Message == message);
             Assert.True(frame.RequestData.Test == testString);
+            Assert.AreEqual(frameAction.Dependencies , dependenciesSpy);
         }
 
         [TestCase("What is Scout?", "Scout is a Dog")]
@@ -73,6 +75,7 @@ namespace KanKanTest.FrameTests
             Assert.True(frameAction.ExecuteCallCount == 1);
             Assert.True(frameAction.RequestData.Test == testActionDataPayload);
             Assert.True(frameAction.Message == testMessage);
+            Assert.True(frameAction.Dependencies == dependenciesSpy);
         }
     }
 }
