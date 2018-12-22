@@ -25,7 +25,7 @@ namespace KanKanTest.MessageTests
         {
             _dependencies = new KarassDependencies();
             _frameFactory = new FrameFactory(_dependencies);
-            _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+            _mockFramesFactory = new MockFramesFactory(_frameFactory);
             _firstFrameRequest = _mockFramesFactory.GetValidFrameRequest(FirstFrameSpy);
             _secondFrameRequest = _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy);
         }
@@ -34,7 +34,7 @@ namespace KanKanTest.MessageTests
         {
             IKarassMessage karassMessage = new KarassMessage();
             Karass karass = new KarassDummy();
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, karassMessage);
+            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, new FrameFactory(new KarassDependencies()));
             kanKan.SendMessage("Cat");
         }
 
@@ -53,7 +53,7 @@ namespace KanKanTest.MessageTests
                 },
                 _dependencies, 
                _frameFactory);
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, karassMessage);
+            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
 
             kanKan.SendMessage("Cat");
             kanKan.MoveNext();
@@ -81,7 +81,7 @@ namespace KanKanTest.MessageTests
                 _dependencies, 
                 _frameFactory);
             
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, karassMessage);
+            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
 
             kanKan.SendMessage("Cat");
             kanKan.MoveNext();

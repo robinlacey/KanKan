@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
 using KanKanTest.Mocks.Dependencies;
@@ -13,15 +14,11 @@ namespace KanKanTest.FrameCollectionTests
 {
     public class GivenMultipleFrameSetsInFrameCollection
     {
-        private static KarassFactory KarassFactory => new KarassFactory(
-            new DependenciesDummy(),
-            new FrameFactoryDummy()
-            );
-        
-       
+        private static KarassFactory KarassFactory => new KarassFactory();
+             
         public class WhenThereIsOneFrame
         {
-            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(),new DependenciesDummy());
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy());
 
             [Test]
             public void ThenBothFramesAreInCurrentFrames()
@@ -43,7 +40,7 @@ namespace KanKanTest.FrameCollectionTests
                             setTwoFrame
                         }
                     });
-                KanKan kanKan = new KanKan(karass, new KarassMessage());
+                KanKan kanKan = new KanKan(karass,  new FrameFactory(new KarassDependencies()));
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(setOneFrame));
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(setTwoFrame));
             }
@@ -51,7 +48,7 @@ namespace KanKanTest.FrameCollectionTests
 
         public class WhenThereAreMultipleFrames
         {
-            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(),new DependenciesDummy());
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy());
 
             [Test]
             public void ThenOnlyTheFirstFramesAreInCurrentFrames()
@@ -82,7 +79,7 @@ namespace KanKanTest.FrameCollectionTests
                             setTwoFrameThree
                         }
                     });
-                KanKan kanKan = new KanKan(karass, new KarassMessage());
+                KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(setOneFrameOne));
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(setTwoFrameOne));
 

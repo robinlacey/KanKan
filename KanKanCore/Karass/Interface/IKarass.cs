@@ -13,8 +13,5 @@ namespace KanKanCore.Karass.Interface
         List<List<Action>>  TeardownActions { get; }
        
         List<FrameRequest[]> FramesCollection { get; }
-        
-        IFrameFactory FrameFactory { get; }
-        IDependencies Dependencies { get; }
     }
 }

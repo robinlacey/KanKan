@@ -23,7 +23,7 @@ namespace KanKanTest.IEnumeratorTests
         {
             _dependencies = new KarassDependencies();
             _frameFactory = new FrameFactory(_dependencies);
-            _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+            _mockFramesFactory = new MockFramesFactory(_frameFactory);
             _timesFirstFrameRun = 0;
             _timesSecondFrameRun = 0;
         }
@@ -39,7 +39,7 @@ namespace KanKanTest.IEnumeratorTests
                 _dependencies,
                 _frameFactory
                 );
-            KanKan kanKan = new KanKan(karass, new KarassMessageDummy());
+            KanKan kanKan = new KanKan(karass, _frameFactory);
 
             kanKan.MoveNext();
             kanKan.Reset();
@@ -60,7 +60,7 @@ namespace KanKanTest.IEnumeratorTests
                     }}, 
                 _dependencies,
                 _frameFactory);
-            KanKan kanKan = new KanKan(karass, new KarassMessage());
+            KanKan kanKan = new KanKan(karass,  _frameFactory);
 
             kanKan.MoveNext();
             kanKan.Reset();

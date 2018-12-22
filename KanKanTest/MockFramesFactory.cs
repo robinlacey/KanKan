@@ -14,10 +14,10 @@ namespace KanKanTest
         private readonly IFrameFactory _frameFactory;
         private readonly IDependencies _dependencies;
 
-        public MockFramesFactory(IFrameFactory frameFactory, IDependencies dependencies)
+        public MockFramesFactory(IFrameFactory frameFactory)
         {
             _frameFactory = frameFactory;
-            _dependencies = dependencies;
+            _dependencies = frameFactory.Dependencies;
         }
 
         Type GetRandomType()

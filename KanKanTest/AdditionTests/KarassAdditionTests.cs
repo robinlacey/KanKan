@@ -12,11 +12,8 @@ namespace KanKanTest.AdditionTests
 {
     public class KarassAdditionTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(
-            new DependenciesDummy(),
-            new FrameFactoryDummy()
-            );
-        private static MockFramesFactory MockFramesFactory => new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+        private static KarassFactory KarassFactory => new KarassFactory();
+        private static MockFramesFactory MockFramesFactory => new MockFramesFactory(new FrameFactoryDummy());
         private static List<List<Action>> CreateActionListWith(Action a) =>
             new List<List<Action>> {new List<Action> {a}};
 

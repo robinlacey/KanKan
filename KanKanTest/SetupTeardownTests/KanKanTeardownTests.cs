@@ -6,7 +6,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.Karass;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
@@ -28,8 +27,8 @@ namespace KanKanTest.SetupTeardownTests
                 {
                     _dependencies = new KarassDependencies();
                     _frameFactory = new FrameFactory(_dependencies);
-                    _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
-                    _karassFactory = new KarassFactory(_dependencies, _frameFactory);
+                    _mockFramesFactory = new MockFramesFactory(_frameFactory);
+                    _karassFactory = new KarassFactory();
                 }
 
                 [Test]
@@ -60,7 +59,7 @@ namespace KanKanTest.SetupTeardownTests
                                 frameRequest
                             }
                         });
-                    KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                    KanKan kankan = new KanKan(karass, _frameFactory);
 
                     kankan.MoveNext();
                     Assert.True(frameCalled);
@@ -81,8 +80,8 @@ namespace KanKanTest.SetupTeardownTests
                 {
                     _dependencies = new KarassDependencies();
                     _frameFactory = new FrameFactory(_dependencies);
-                    _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
-                    _karassFactory = new KarassFactory(_dependencies, _frameFactory);
+                    _mockFramesFactory = new MockFramesFactory(_frameFactory);
+                    _karassFactory = new KarassFactory();
                 }
 
                 [Test]
@@ -129,7 +128,7 @@ namespace KanKanTest.SetupTeardownTests
                                 _mockFramesFactory.GetValidFrameRequest(FrameThreeSpy),
                             }
                         });
-                    KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                    KanKan kankan = new KanKan(karass, _frameFactory);
 
                     kankan.MoveNext();
                     Assert.True(frameOneCalled);

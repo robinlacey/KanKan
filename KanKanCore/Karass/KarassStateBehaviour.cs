@@ -38,11 +38,6 @@ namespace KanKanCore.Karass
             return currentFrames[allFrames] += 1;
         }
 
-        public static bool InvokeCurrentFrame(int index, int currentFrame, IKarassMessage message, IKarass karass)
-        {
-            return karass.FrameFactory.Execute(karass.FramesCollection[index][currentFrame], message.Message);
-        }
-
 
         private static void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown, KarassState karassState)
         {

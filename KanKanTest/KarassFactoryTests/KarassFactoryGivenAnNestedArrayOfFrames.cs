@@ -13,7 +13,7 @@ namespace KanKanTest.KarassFactoryTests
     {
         private static readonly IDependencies Dependencies = new KarassDependencies();
         private static readonly IFrameFactory FrameFactory = new FrameFactory(Dependencies);
-        static readonly MockFramesFactory MockFramesFactory = new MockFramesFactory(FrameFactory,Dependencies);
+        static readonly MockFramesFactory MockFramesFactory = new MockFramesFactory(FrameFactory);
         static bool FrameOne(string message) => true;
         private static readonly FrameRequest FrameRequestOne = MockFramesFactory.GetValidFrameRequest(FrameOne);
         static bool FrameTwo(string message) => true;
@@ -42,14 +42,12 @@ namespace KanKanTest.KarassFactoryTests
                 {
                 }
 
-                KarassFactory karassFactory = new KarassFactory(Dependencies,FrameFactory);
+                KarassFactory karassFactory = new KarassFactory();
                 Karass karass = karassFactory.Get(SetupDummy, TearDownDummy, Frames);
                 Assert.NotNull(karass);
                 Assert.True(karass.SetupActions[0].Contains(SetupDummy));
                 Assert.True(karass.TeardownActions[0].Contains(TearDownDummy));
                 Assert.AreEqual(karass.FramesCollection, Frames);
-
-                Assert.AreEqual(karass.Dependencies, Dependencies);
             }
         }
 
@@ -86,7 +84,7 @@ namespace KanKanTest.KarassFactoryTests
                     TearDownDummyTwo
                 };
 
-                KarassFactory karassFactory = new KarassFactory(Dependencies,FrameFactory);
+                KarassFactory karassFactory = new KarassFactory();
                 Karass karass = karassFactory.Get(setup, teardown, Frames);
                 Assert.NotNull(karass);
 
@@ -95,7 +93,6 @@ namespace KanKanTest.KarassFactoryTests
 
                 Assert.AreEqual(karass.FramesCollection, Frames);
 
-                Assert.AreEqual(karass.Dependencies, Dependencies);
             }
 
             public class WhenThereAnNestedArrayOfSetupAndTeardown
@@ -168,7 +165,7 @@ namespace KanKanTest.KarassFactoryTests
                         teardownTwo
                     };
 
-                    KarassFactory karassFactory = new KarassFactory(Dependencies,FrameFactory);
+                    KarassFactory karassFactory = new KarassFactory();
                     Karass karass = karassFactory.Get(setup, teardown, Frames);
                     Assert.NotNull(karass);
 
@@ -183,7 +180,6 @@ namespace KanKanTest.KarassFactoryTests
                     Assert.AreEqual(karass.TeardownActions, teardown);
                     Assert.AreEqual(karass.FramesCollection, Frames);
 
-                    Assert.AreEqual(karass.Dependencies, Dependencies);
                 }
             }
         }
