@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5218d0f-b7b9-4263-a497-611193b1eb54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/KanKanCore/KanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/KanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/MessageTests/KanKanMessageTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/MessageTests/KanKanMessageTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,229 +27,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KanKanTest/FrameTests/KarassFrameTests.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding>
+                <marker date="1545557112633" expanded="false" signature="6:71" ph="..." />
+                <marker date="1545557112633" expanded="true" signature="104:1130" ph="{...}" />
+                <marker date="1545557112633" expanded="true" signature="140:1128" ph="{...}" />
+                <marker date="1545557112633" expanded="true" signature="190:1122" ph="{...}" />
+                <marker date="1545557112633" expanded="true" signature="453:1112" ph="{...}" />
+                <marker date="1545557112633" expanded="true" signature="629:797" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/KanKan.cs">
+        <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+            <state relative-caret-position="195">
+              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
               <folding>
-                <marker date="1545556289049" expanded="false" signature="6:171" ph="..." />
-                <marker date="1545556289049" expanded="true" signature="173:289" ph="/* Kan-Kan - &quot;A Kan-Kan is the instrument which brings one into his or her karass&quot; ... */" />
-                <marker date="1545556289049" expanded="true" signature="311:4112" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="351:4110" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="791:988" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1057:1400" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1209:1303" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1449:1511" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1544:3689" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1734:2135" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="1981:2051" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="2273:3615" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="2382:2448" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="2887:2953" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="3331:3397" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="3467:3537" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="3810:3946" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="3975:4104" ph="{...}" />
-                <marker date="1545556289049" expanded="true" signature="4036:4094" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CB5BE0C7-4433-425A-AE2A-B70ED6C7054C/dc/ea04445b/IEnumerator.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/KarassStateBehaviour.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-              <folding>
-                <marker date="1545508922739" expanded="false" signature="6:99" ph="..." />
-                <marker date="1545508922739" expanded="true" signature="128:2716" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="175:2714" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="264:320" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="389:540" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="466:530" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="606:751" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="680:741" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="807:882" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="992:1062" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="1195:1528" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="1764:2206" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="1929:2049" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="2066:2196" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="2310:2430" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="2355:2420" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="2523:2708" ph="{...}" />
-                <marker date="1545508922739" expanded="true" signature="2584:2672" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/KarassState.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1545480327299" expanded="true" signature="6:118" ph="..." />
-                <marker date="1545480327299" expanded="true" signature="147:1605" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="178:1603" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="520:680" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="709:1114" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="993:1104" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="1162:1353" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="1232:1343" ph="{...}" />
-                <marker date="1545480327299" expanded="true" signature="1475:1597" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Karass.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-              <folding>
-                <marker date="1545508344653" expanded="false" signature="6:132" ph="..." />
-                <marker date="1545508344653" expanded="true" signature="134:355" ph="/* Karass: &quot;We Bokononists believe that humanity is organized into teams, teams that do God's Will without ever d ... */" />
-                <marker date="1545508344653" expanded="true" signature="384:1788" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="420:1786" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="732:875" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="952:1264" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="1302:1513" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="1384:1436" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="1554:1780" ph="{...}" />
-                <marker date="1545508344653" expanded="true" signature="1642:1694" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Message/KarassMessage.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="30" />
-              <folding>
-                <marker date="1542983063005" expanded="true" signature="71:401" ph="{...}" />
-                <marker date="1542983063005" expanded="true" signature="120:399" ph="{...}" />
-                <marker date="1542983063005" expanded="true" signature="206:258" ph="{...}" />
-                <marker date="1542983063005" expanded="true" signature="294:349" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanTest/MessageTests/KanKanMessageTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="66" column="57" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
-              <folding>
-                <marker date="1545556176172" expanded="true" signature="6:296" ph="..." />
-                <marker date="1545556176172" expanded="true" signature="331:5956" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="369:5954" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="764:1150" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="1214:1434" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="1677:2413" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="1805:1982" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="1853:1964" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="2586:3287" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="2714:2891" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="2762:2873" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="3469:5691" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="3658:3758" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="3996:4096" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="4339:4441" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="5737:5818" ph="{...}" />
-                <marker date="1545556176172" expanded="true" signature="5865:5948" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanCore/Factories/KarassFactory.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-              <folding>
-                <marker date="1545508816038" expanded="false" signature="6:113" ph="..." />
-                <marker date="1545508816038" expanded="true" signature="145:1987" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="195:1985" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="288:535" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="635:844" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="956:1115" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="1209:1429" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="1535:1717" ph="{...}" />
-                <marker date="1545508816038" expanded="true" signature="1847:1979" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanTest/KarassFactoryTests/KarassFactoryGivenAnArrayOfFrames.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-              <folding>
-                <marker date="1545509237034" expanded="false" signature="6:227" ph="..." />
-                <marker date="1545509237034" expanded="true" signature="268:5607" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="321:5605" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="455:1292" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="545:1282" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="593:629" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="667:703" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1349:5599" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1439:2635" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1490:1526" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1564:1600" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1641:1677" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1718:1754" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1826:1914" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="1990:2084" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="2702:5589" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="2804:5575" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="2866:2910" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="2955:2999" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3044:3088" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3133:3177" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3225:3269" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3317:3361" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3409:3453" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3501:3545" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3628:3734" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="3817:3923" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="4010:4122" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="4208:4320" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="4412:4502" ph="{...}" />
-                <marker date="1545509237034" expanded="true" signature="4598:4694" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/KarassMocks/KarassFramesStub.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="9" column="125" selection-start-line="9" selection-start-column="125" selection-end-line="9" selection-end-column="125" />
-              <folding>
-                <marker date="1545509320424" expanded="false" signature="6:113" ph="..." />
-                <marker date="1545509320424" expanded="true" signature="153:460" ph="{...}" />
-                <marker date="1545509320424" expanded="true" signature="216:458" ph="{...}" />
-                <marker date="1545509320424" expanded="true" signature="432:452" ph="{...}" />
+                <marker date="1545557102737" expanded="false" signature="6:48" ph="..." />
+                <marker date="1545557102737" expanded="true" signature="101:571" ph="{...}" />
+                <marker date="1545557102737" expanded="true" signature="158:569" ph="{...}" />
+                <marker date="1545557102737" expanded="true" signature="288:389" ph="{...}" />
+                <marker date="1545557102737" expanded="true" signature="507:563" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -259,7 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>//</find>
       <find>AddFir</find>
       <find>lastframe</find>
       <find>[Fact]</find>
@@ -289,6 +93,7 @@
       <find>FrameFactory</find>
       <find>Console</find>
       <find>Dependencies</find>
+      <find>§§</find>
     </findStrings>
     <replaceStrings>
       <replace>[Test]</replace>
@@ -382,8 +187,6 @@
         <option value="$PROJECT_DIR$/KanKanTest/Mocks/KarassFrame/FrameStruct/FrameStructDummy.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KanKanCore.csproj" />
         <option value="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarassFrame.cs" />
-        <option value="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" />
-        <option value="$PROJECT_DIR$/KanKanTest/FrameTests/KarassFrameTests.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/Mocks/KarassFrame/KarassFrameDummy.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/Mocks/KarassFrame/KarassFrameSpy.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/Karass/Frame/KarassFrame.cs" />
@@ -418,6 +221,8 @@
         <option value="$PROJECT_DIR$/KanKanTest/SetupTeardownTests/KarassSetupTeardownTests.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/MessageTests/KanKanMessageTests.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KanKan.cs" />
+        <option value="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" />
+        <option value="$PROJECT_DIR$/KanKanTest/FrameTests/KarassFrameTests.cs" />
       </list>
     </option>
   </component>
@@ -471,6 +276,24 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
               <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="AdditionTests" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="DependenciesTests" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="KanKan" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="KanKanTest" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="FrameCollectionTests" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
@@ -551,12 +374,12 @@
       <workItem from="1545502192229" duration="4000" />
       <workItem from="1545504875288" duration="198000" />
       <workItem from="1545507144718" duration="3383000" />
-      <workItem from="1545516921809" duration="2118000" />
+      <workItem from="1545516921809" duration="2427000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135982000" />
+    <option name="totallyTimeSpent" value="136291000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -694,21 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanTest/FrameTests/KarassFrameTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <marker date="1545507597335" expanded="false" signature="6:71" ph="..." />
-            <marker date="1545507597335" expanded="true" signature="104:1130" ph="{...}" />
-            <marker date="1545507597335" expanded="true" signature="140:1128" ph="{...}" />
-            <marker date="1545507597335" expanded="true" signature="190:1122" ph="{...}" />
-            <marker date="1545507597335" expanded="true" signature="453:1112" ph="{...}" />
-            <marker date="1545507597335" expanded="true" signature="629:797" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KanKanTest/Mocks/KarassFrame/FrameStruct/FrameStructDummy.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -756,21 +564,6 @@
             <marker date="1545507822675" expanded="true" signature="83:510" ph="{...}" />
             <marker date="1545507822675" expanded="true" signature="144:508" ph="{...}" />
             <marker date="1545507822675" expanded="true" signature="440:501" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <marker date="1545507465844" expanded="false" signature="6:48" ph="..." />
-            <marker date="1545507465844" expanded="true" signature="101:791" ph="{...}" />
-            <marker date="1545507465844" expanded="true" signature="158:789" ph="{...}" />
-            <marker date="1545507465844" expanded="true" signature="288:389" ph="{...}" />
-            <marker date="1545507465844" expanded="true" signature="514:609" ph="{...}" />
-            <marker date="1545507465844" expanded="true" signature="727:783" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -866,7 +659,6 @@
           <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
             <marker date="1545509299328" expanded="false" signature="6:65" ph="..." />
-            <marker date="1545509299328" expanded="true" signature="105:653" ph="{...}" />
             <marker date="1545509299328" expanded="true" signature="157:651" ph="{...}" />
             <marker date="1545509299328" expanded="true" signature="335:411" ph="{...}" />
             <marker date="1545509299328" expanded="true" signature="452:528" ph="{...}" />
@@ -1606,6 +1398,35 @@
             <marker date="1545556289049" expanded="true" signature="3810:3946" ph="{...}" />
             <marker date="1545556289049" expanded="true" signature="3975:4104" ph="{...}" />
             <marker date="1545556289049" expanded="true" signature="4036:4094" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanTest/FrameTests/KarassFrameTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding>
+            <marker date="1545557112633" expanded="false" signature="6:71" ph="..." />
+            <marker date="1545557112633" expanded="true" signature="104:1130" ph="{...}" />
+            <marker date="1545557112633" expanded="true" signature="140:1128" ph="{...}" />
+            <marker date="1545557112633" expanded="true" signature="190:1122" ph="{...}" />
+            <marker date="1545557112633" expanded="true" signature="453:1112" ph="{...}" />
+            <marker date="1545557112633" expanded="true" signature="629:797" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <marker date="1545557102737" expanded="false" signature="6:48" ph="..." />
+            <marker date="1545557102737" expanded="true" signature="101:571" ph="{...}" />
+            <marker date="1545557102737" expanded="true" signature="158:569" ph="{...}" />
+            <marker date="1545557102737" expanded="true" signature="288:389" ph="{...}" />
+            <marker date="1545557102737" expanded="true" signature="507:563" ph="{...}" />
           </folding>
         </state>
       </provider>

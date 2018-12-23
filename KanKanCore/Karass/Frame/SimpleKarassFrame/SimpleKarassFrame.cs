@@ -12,12 +12,6 @@ namespace KanKanCore.Karass.Frame.SimpleKarassFrame
             Message = message;
             return _simpleMethod.Invoke(message);
         }
-
-        public SimpleKarassFrame(Func<string, bool> method, T requestData, IDependencies dependencies) : base(dependencies)
-        {
-            _simpleMethod = method;
-            RequestData = requestData;
-        }
         
         public SimpleKarassFrame(Func<string, bool> method, IDependencies dependencies) : base(dependencies)
         {
