@@ -6,6 +6,7 @@ using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
+using KanKanTest.Factories;
 using KanKanTest.Mocks.KarassMocks;
 using NUnit.Framework;
 

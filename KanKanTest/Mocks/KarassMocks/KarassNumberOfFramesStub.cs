@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
+using KanKanTest.Factories;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.KarassFrame;
 

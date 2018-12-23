@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
+using KanKanCore.Karass.Struct;
 
 namespace KanKanCore.Karass
 {
@@ -33,9 +34,9 @@ namespace KanKanCore.Karass
         }
 
 
-        public static int AddFrame(FrameRequest[] allFrames, Dictionary<FrameRequest[], int> currentFrames)
+        public static int AddFrame(UniqueKarassFrameRequestID frameRequestID, Dictionary<UniqueKarassFrameRequestID, int>currentFrames)
         {
-            return currentFrames[allFrames] += 1;
+            return currentFrames[frameRequestID] += 1;
         }
 
 

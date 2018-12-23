@@ -6,6 +6,7 @@ namespace KanKanCore.Karass.Interface
 {
     public interface IKarass
     {
+        string ID { get; }
         void Setup(int index);
         void Teardown(int index);
         

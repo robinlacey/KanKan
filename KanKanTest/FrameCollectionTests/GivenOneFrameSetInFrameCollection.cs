@@ -5,6 +5,7 @@ using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
+using KanKanTest.Factories;
 using KanKanTest.Mocks.Dependencies;
 using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;

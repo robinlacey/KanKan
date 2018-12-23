@@ -43,6 +43,9 @@
           <e p="Message" t="Include">
             <e p="KarassMessage.cs" t="Include" />
           </e>
+          <e p="Struct" t="Include">
+            <e p="UniqueKarassFrameRequestID.cs" t="Include" />
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -62,6 +65,9 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DependenciesTests" t="Include">
           <e p="KarassDependenciesTests.cs" t="Include" />
+        </e>
+        <e p="Factories" t="Include">
+          <e p="MockFramesFactory.cs" t="Include" />
         </e>
         <e p="FrameCollectionTests" t="Include">
           <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
@@ -86,11 +92,13 @@
           <e p="KarassFactoryGivenAnArrayOfFrames.cs" t="Include" />
           <e p="KarassFactoryGivenAnNestedArrayOfFrames.cs" t="Include" />
         </e>
+        <e p="KarassTests" t="Include">
+          <e p="KarassTests.cs" t="Include" />
+        </e>
         <e p="MessageTests" t="Include">
           <e p="KanKanMessageTests.cs" t="Include" />
           <e p="KarassMessageTests.cs" t="Include" />
         </e>
-        <e p="MockFramesFactory.cs" t="Include" />
         <e p="Mocks" t="Include">
           <e p="Dependencies" t="Include">
             <e p="DependenciesDummy.cs" t="Include" />

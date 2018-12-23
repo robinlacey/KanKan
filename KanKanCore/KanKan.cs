@@ -4,6 +4,7 @@ using System.Linq;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
+using KanKanCore.Karass.Struct;
 
 // Kan-Kan - "A Kan-Kan is the instrument which brings one into his or her karass"
 // (Cat's Cradle - Kurt Vonnegut)
@@ -75,12 +76,12 @@ namespace KanKanCore
                 }
 
                 KarassStateBehaviour.InvokeSetupActionsOnFirstFrame(
-                    karassState.CurrentFrames[karassState.Karass.FramesCollection[index]],
+                    karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
                     index,
                     karassState.Karass);
 
                 if (!InvokeCurrentFrame(index,
-                    karassState.CurrentFrames[karassState.Karass.FramesCollection[index]],
+                    karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
                     _message,
                     karassState.Karass))
                 {
@@ -89,7 +90,7 @@ namespace KanKanCore
 
                 KarassStateBehaviour.InvokeTeardownActionsIfLastFrame(
                     index,
-                    KarassStateBehaviour.AddFrame(karassState.Karass.FramesCollection[index], karassState.CurrentFrames),
+                    KarassStateBehaviour.AddFrame(GetIDAndFrameRequests(karassState, index), karassState.CurrentFrames),
                     ref lastFrameCount,
                     out bool shouldComplete,
                     karassState);
@@ -111,6 +112,11 @@ namespace KanKanCore
             _message.ClearMessage();
 
             return true;
+        }
+
+        private UniqueKarassFrameRequestID GetIDAndFrameRequests(KarassState karassState, int index)
+        {
+            return new UniqueKarassFrameRequestID(karassState.Karass.ID,index,karassState.Karass.FramesCollection[index]);
         }
 
         private bool InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)

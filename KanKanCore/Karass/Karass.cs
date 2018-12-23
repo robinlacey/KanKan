@@ -14,10 +14,11 @@ namespace KanKanCore.Karass
         public List<List<Action>> SetupActions { get; }
         public List<List<Action>> TeardownActions { get; }
         public List<FrameRequest[]> FramesCollection { get; }
-
+        public string ID { get; }
         public Karass(List<List<Action>> setup, List<List<Action>> teardown,
             List<FrameRequest[]> framesCollection)
         {
+            ID = Guid.NewGuid().ToString();
             FramesCollection = framesCollection;
             SetupActions = setup;
             TeardownActions = teardown;
@@ -30,6 +31,8 @@ namespace KanKanCore.Karass
             karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(),
             new List<FrameRequest[]> (karassOne.FramesCollection.Concat(karassTwo.FramesCollection)));
         }
+
+  
 
         public void Setup(int index)
         {
