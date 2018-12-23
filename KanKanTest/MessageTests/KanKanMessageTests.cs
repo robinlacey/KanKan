@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
@@ -30,18 +31,19 @@ namespace KanKanTest.MessageTests
             _secondFrameRequest = _mockFramesFactory.GetValidFrameRequest(SecondFrameSpy);
         }
         [Test]
-        public void UkankanHasSendMessageMethod()
+        public void KanKanHasSendMessageMethod()
         {
-            IKarassMessage karassMessage = new KarassMessage();
             Karass karass = new KarassDummy();
             KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, new FrameFactory(new KarassDependencies()));
             kanKan.SendMessage("Cat");
         }
 
-        [Test]
-        public void UkankanSendMessageSendsMessageToNextFrame()
+        [TestCase("Dog","Doggo")]
+        [TestCase("Cat","Catto")]
+        [TestCase("Cow","Cowwo")]
+        [TestCase("Chicken","Chickenno")]
+        public void KanKanSendMessageSendsMessageToNextFrame(string messageOne,string messageTwo)
         {
-            IKarassMessage karassMessage = new KarassMessage();
             KarassFramesStub karass = new KarassFramesStub(
                 new List<FrameRequest[]>
                 {
@@ -55,20 +57,22 @@ namespace KanKanTest.MessageTests
                _frameFactory);
             KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
 
-            kanKan.SendMessage("Cat");
+            kanKan.SendMessage(messageOne);
             kanKan.MoveNext();
 
-            Assert.True(_firstFrameMessage == "Cat");
+            Assert.True(_firstFrameMessage == messageOne);
 
-            kanKan.SendMessage("Doggo");
+            kanKan.SendMessage(messageTwo);
             kanKan.MoveNext();
-            Assert.True(_secondFrameMessage == "Doggo");
+            Assert.True(_secondFrameMessage == messageTwo);
         }
 
-        [Test]
-        public void MessagesOnlyLastForOneFrame()
+        [TestCase("Dog")]
+        [TestCase("Cat")]
+        [TestCase("Cow")]
+        [TestCase("Chicken")]
+        public void MessagesOnlyLastForOneFrame(string message)
         {
-            IKarassMessage karassMessage = new KarassMessage();
             KarassFramesStub karass = new KarassFramesStub(
                 new List<FrameRequest[]>
                 {
@@ -83,12 +87,73 @@ namespace KanKanTest.MessageTests
             
             KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
 
-            kanKan.SendMessage("Cat");
+            kanKan.SendMessage(message);
             kanKan.MoveNext();
-            Assert.True(_firstFrameMessage == "Cat");
+            Assert.True(_firstFrameMessage == message);
 
             kanKan.MoveNext();
             Assert.True(_secondFrameMessage == string.Empty);
+        }
+
+        [TestCase("Dog")]
+        [TestCase("Cat")]
+        [TestCase("Cow")]
+        [TestCase("Chicken")]
+        
+        public void MessageSendToMultipleKanKan(string message)
+        {
+            IKarassMessage karassMessage = new KarassMessage();
+            string karassOneFrameMessage = string.Empty;
+            
+            bool KarassOneFrameSpy(string m)
+            {
+                karassOneFrameMessage = m;
+                return true;
+            }
+
+            FrameRequest karassOneFrameRequest = _mockFramesFactory.GetValidFrameRequest(KarassOneFrameSpy);
+            
+            string karassTwoFrameMessage = string.Empty;
+            
+            bool KarassTwoFrameSpy(string m)
+            {
+                karassTwoFrameMessage = m;
+                return true;
+            }
+            
+            FrameRequest karassTwoFrameRequest = _mockFramesFactory.GetValidFrameRequest(KarassTwoFrameSpy);
+
+
+            string karassThreeFrameMessage = string.Empty;
+            
+            bool KarassThreeFrameSpy(string m)
+            {
+                karassThreeFrameMessage = m;
+                return true;
+            }
+            
+            FrameRequest karassThreeFrameRequest = _mockFramesFactory.GetValidFrameRequest(KarassThreeFrameSpy);
+
+            
+            KarassFactory karassFactory = new KarassFactory();
+             
+            Karass karassOne = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassOneFrameRequest});
+            Karass karassTwo = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassTwoFrameRequest});
+            Karass karassThree = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassThreeFrameRequest});
+
+            KanKanCore.KanKan kanKanOne = new KanKanCore.KanKan(karassOne, _frameFactory, karassMessage);
+            KanKanCore.KanKan kanKanTwo = new KanKanCore.KanKan(karassTwo, _frameFactory, karassMessage);
+            KanKanCore.KanKan kanKanThree = new KanKanCore.KanKan(karassThree, _frameFactory, karassMessage);
+
+            karassMessage.SetMessage(message);
+
+            kanKanOne.MoveNext();
+            kanKanTwo.MoveNext();
+            kanKanThree.MoveNext();
+
+            Assert.True(karassOneFrameMessage == message);
+            Assert.True(karassTwoFrameMessage == message);
+            Assert.True(karassThreeFrameMessage == message);
         }
 
         private bool FirstFrameSpy(string s)

@@ -19,10 +19,10 @@ namespace KanKanCore
         private readonly List<KarassState> _allKarassStates;
 
         private readonly IFrameFactory _frameFactory;
-        public KanKan(IKarass karass, IFrameFactory frameFactory)
+        public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
-            _message = new KarassMessage();
+            _message = message ?? new KarassMessage();
             _frameFactory = frameFactory;
         }
 
