@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Interface;
+using KanKanCore.Karass.Message;
 
 // Kan-Kan - "A Kan-Kan is the instrument which brings one into his or her karass"
 // (Cat's Cradle - Kurt Vonnegut)
@@ -17,14 +18,15 @@ namespace KanKanCore
         public KarassState CurrentState => _allKarassStates[_currentKarass];
         private readonly List<KarassState> _allKarassStates;
 
-
-        public KanKan(IKarass karass, IKarassMessage karassMessage)
+        private readonly IFrameFactory _frameFactory;
+        public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
-            _message = karassMessage;
+            _message = message ?? new KarassMessage();
+            _frameFactory = frameFactory;
         }
 
-        public KanKan(IKarass[] karass, IKarassMessage karassMessage)
+        public KanKan(IKarass[] karass, IFrameFactory frameFactory)
         {
             _allKarassStates = karass.ToList().Select(_ => new KarassState(_)).ToList();
 
@@ -33,7 +35,8 @@ namespace KanKanCore
                 _allKarassStates[i] = new KarassState(karass[i]);
             }
 
-            _message = karassMessage;
+            _message = new KarassMessage();
+            _frameFactory = frameFactory;
         }
 
         public void SendMessage(string message)
@@ -76,7 +79,7 @@ namespace KanKanCore
                     index,
                     karassState.Karass);
 
-                if (!KarassStateBehaviour.InvokeCurrentFrame(index,
+                if (!InvokeCurrentFrame(index,
                     karassState.CurrentFrames[karassState.Karass.FramesCollection[index]],
                     _message,
                     karassState.Karass))
@@ -108,6 +111,11 @@ namespace KanKanCore
             _message.ClearMessage();
 
             return true;
+        }
+
+        private bool InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)
+        {
+            return _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
         }
 
         public void Reset()

@@ -5,7 +5,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanCore.Karass.Message;
 using NUnit.Framework;
 
 namespace KanKanTest.SequentialKarassTests
@@ -22,8 +21,8 @@ namespace KanKanTest.SequentialKarassTests
         {
             _dependencies = new KarassDependencies();
             _frameFactory = new FrameFactory(_dependencies);
-            _karassFactory = new KarassFactory(_dependencies, _frameFactory);
-            _mockFramesFactory = new MockFramesFactory(_frameFactory, _dependencies);
+            _karassFactory = new KarassFactory();
+            _mockFramesFactory = new MockFramesFactory(_frameFactory);
         }
 
 
@@ -210,8 +209,9 @@ namespace KanKanTest.SequentialKarassTests
                     }
                 });
 
-            KanKan kankan = new KanKan(new IKarass[] {karassOne, karassTwo, karassThree, karassFour},
-                new KarassMessage());
+            KanKan kankan = new KanKan(
+                new IKarass[] {karassOne, karassTwo, karassThree, karassFour},
+                _frameFactory);
             bool moveNext = kankan.MoveNext();
             CheckFirstFrame(karassOneSetupRun, karassOneTeardownRun, karassOneFrameOneRun, karassTwoSetupRun,
                 karassTwoTeardownRun, karassTwoFrameOneRun, karassTwoFrameTwoRun, karassTwoFrameThreeRun, moveNext,

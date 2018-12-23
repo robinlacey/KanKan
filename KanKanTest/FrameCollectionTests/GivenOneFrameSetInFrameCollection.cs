@@ -13,13 +13,11 @@ namespace KanKanTest.FrameCollectionTests
 {
     public class GivenOneFrameSetInFrameCollection
     {
-        private static KarassFactory KarassFactory => new KarassFactory(
-            new DependenciesDummy(),
-            new FrameFactoryDummy());
+        private static KarassFactory KarassFactory => new KarassFactory();
 
         public class WhenThereIsOneFrame
         {
-            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy());
 
             [Test]
             public void ThenTheFrameIsInCurrentFrames()
@@ -36,14 +34,14 @@ namespace KanKanTest.FrameCollectionTests
                             frame
                         }
                     });
-                KanKan kanKan = new KanKan(karass, new KarassMessage());
+                KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(frame));
             }
         }
 
         public class WhenThereAreMultipleFrames
         {
-            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+            private readonly MockFramesFactory _mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy());
 
             [Test]
             public void ThenOnlyContainsFirstFrame()
@@ -65,7 +63,7 @@ namespace KanKanTest.FrameCollectionTests
                             frameFour
                         }
                     });
-                KanKan kanKan = new KanKan(karass, new KarassMessage());
+                KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
                 Assert.True(kanKan.CurrentState.NextFrames.Contains(frameOne));
                 Assert.False(kanKan.CurrentState.NextFrames.Contains(frameTwo));
                 Assert.False(kanKan.CurrentState.NextFrames.Contains(frameThree));

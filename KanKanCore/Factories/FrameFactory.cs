@@ -8,7 +8,7 @@ namespace KanKanCore.Factories
 {
     public class FrameFactory : IFrameFactory
     {
-        private IDependencies Dependencies { get; }
+        public IDependencies Dependencies { get; }
 
         private readonly Dictionary<Type, Type> _routing = new Dictionary<Type, Type>();
 
@@ -44,8 +44,7 @@ namespace KanKanCore.Factories
             object returnValue = karassFrameObject.GetType().GetMethod("Execute")
                 .Invoke(karassFrameObject, new[] {
                     message, 
-                    frameRequest.RequestObject,
-                    Dependencies});
+                    frameRequest.RequestObject});
             return (bool) returnValue;
         }
     }

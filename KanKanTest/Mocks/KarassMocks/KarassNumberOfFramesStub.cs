@@ -10,7 +10,7 @@ namespace KanKanTest.Mocks.KarassMocks
     {
         private static List<FrameRequest[]> GetFakeFrames(int frameCount)
         {
-            MockFramesFactory mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy(), new DependenciesDummy());
+            MockFramesFactory mockFramesFactory = new MockFramesFactory(new FrameFactoryDummy());
             FrameRequest[] frames = new FrameRequest[frameCount];
             for (int i = 0; i < frameCount; i++)
             {
@@ -20,8 +20,6 @@ namespace KanKanTest.Mocks.KarassMocks
         }
 
         public KarassNumberOfFramesStub(int framesCount) : base(
-            new DependenciesDummy(), 
-            new FrameFactoryDummy(),
             new List<List<Action>>(), 
             new List<List<Action>>(),
             GetFakeFrames(framesCount))

@@ -2,11 +2,9 @@ using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanCore.Karass.Message;
-using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.SequentialKarassTests
@@ -16,7 +14,7 @@ namespace KanKanTest.SequentialKarassTests
         [Test]
         public void BothKarassSetupAndTeardownWillBeRun()
         {
-            KarassFactory karassFactory = new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
+            KarassFactory karassFactory = new KarassFactory();
 
             bool karassOneSetupRun = false;
 
@@ -52,7 +50,7 @@ namespace KanKanTest.SequentialKarassTests
             Karass karassTwo = karassFactory.Get(KarassTwoSetupSpy, KarassTwoTeardownSpy,
                 new List<FrameRequest[]>());
 
-            KanKan kankan = new KanKan(new IKarass[] {karassOne, karassTwo}, new KarassMessage());
+            KanKan kankan = new KanKan(new IKarass[] {karassOne, karassTwo}, new FrameFactory(new KarassDependencies()));
 
             kankan.MoveNext();
 

@@ -14,25 +14,18 @@ namespace KanKanCore.Karass
         public List<List<Action>> SetupActions { get; }
         public List<List<Action>> TeardownActions { get; }
         public List<FrameRequest[]> FramesCollection { get; }
-        public IDependencies Dependencies { get; }
-        
-        public IFrameFactory FrameFactory { get; }
 
-        public Karass(IDependencies dependencies, IFrameFactory frameFactory, List<List<Action>> setup, List<List<Action>> teardown,
+        public Karass(List<List<Action>> setup, List<List<Action>> teardown,
             List<FrameRequest[]> framesCollection)
         {
-            FrameFactory = frameFactory;
             FramesCollection = framesCollection;
             SetupActions = setup;
             TeardownActions = teardown;
-            Dependencies = dependencies;
         }
 
         public static Karass operator +(Karass karassOne, Karass karassTwo)
         {
             return new Karass(
-            karassOne.Dependencies,
-            karassOne.FrameFactory,
             karassOne.SetupActions.Concat(karassTwo.SetupActions).ToList(),
             karassOne.TeardownActions.Concat(karassTwo.TeardownActions).ToList(),
             new List<FrameRequest[]> (karassOne.FramesCollection.Concat(karassTwo.FramesCollection)));

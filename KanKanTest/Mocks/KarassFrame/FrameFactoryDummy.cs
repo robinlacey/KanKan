@@ -5,6 +5,8 @@ namespace KanKanTest.Mocks.KarassFrame
 {
     public class FrameFactoryDummy: IFrameFactory
     {
+        public IDependencies Dependencies { get; }
+
         public void RegisterRoute<TRequestType, TKarassFrameType>() where TKarassFrameType : IKarassFrame<TRequestType>
         {
             throw new System.NotImplementedException();

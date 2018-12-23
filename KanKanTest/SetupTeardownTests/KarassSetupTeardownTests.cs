@@ -4,15 +4,13 @@ using System.Linq;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
-using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
 namespace KanKanTest.SetupTeardownTests
 {
     public class KarassSetupTeardownTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy(), new FrameFactoryDummy());
+        private static KarassFactory KarassFactory => new KarassFactory();
 
         private static List<List<Action>> CreateActionListWith(Action[] a) => new List<List<Action>> {a.ToList()};
 

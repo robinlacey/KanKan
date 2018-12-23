@@ -7,7 +7,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.Karass;
 using NUnit.Framework;
 
 namespace KanKanTest.ProgressionTests
@@ -27,8 +26,8 @@ namespace KanKanTest.ProgressionTests
             {
                 _dependencies = new KarassDependencies();
                 _frameFactory = new FrameFactory(_dependencies);
-                _karassFactory = new KarassFactory(_dependencies,_frameFactory);
-                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+                _karassFactory = new KarassFactory();
+                _mockFramesFactory = new MockFramesFactory(_frameFactory);
             }
             
             [Test]
@@ -90,7 +89,7 @@ namespace KanKanTest.ProgressionTests
                         }
                     });
 
-                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(karass, _frameFactory);
                 Assert.True(kankan.CurrentState.NextFrames.Count == 2);
                 Assert.True(kankan.CurrentState.NextFrames.Contains(setOneFrameOneSpyRequest));
                 Assert.True(kankan.CurrentState.NextFrames.Contains(setTwoFrameOneSpyRequest));
@@ -128,8 +127,8 @@ namespace KanKanTest.ProgressionTests
             {
                 _dependencies = new KarassDependencies();
                 _frameFactory = new FrameFactory(_dependencies);
-                _karassFactory = new KarassFactory(_dependencies,_frameFactory);
-                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+                _karassFactory = new KarassFactory();
+                _mockFramesFactory = new MockFramesFactory(_frameFactory);
             }
             
             [Test]
@@ -243,7 +242,7 @@ namespace KanKanTest.ProgressionTests
                         }
                     });
 
-                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(karass, _frameFactory);
                 Assert.True(kankan.CurrentState.NextFrames.Count == 3);
                 Assert.True(kankan.CurrentState.NextFrames.Contains(setOneFrameOneSpyRequest));
                 Assert.True(kankan.CurrentState.NextFrames.Contains(setTwoFrameOneSpyRequest));

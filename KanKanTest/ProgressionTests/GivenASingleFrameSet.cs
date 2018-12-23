@@ -6,7 +6,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.Karass;
 using NUnit.Framework;
 
 namespace KanKanTest.ProgressionTests
@@ -26,8 +25,8 @@ namespace KanKanTest.ProgressionTests
             {
                 _dependencies = new KarassDependencies();
                 _frameFactory = new FrameFactory(_dependencies); 
-                KarassFactory  = new KarassFactory(_dependencies,_frameFactory);
-                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+                KarassFactory  = new KarassFactory();
+                _mockFramesFactory = new MockFramesFactory(_frameFactory);
                 
             }
             [Test]
@@ -90,7 +89,7 @@ namespace KanKanTest.ProgressionTests
                         }
                     });
 
-                KanKan kankan = new KanKan(karass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(karass,_frameFactory);
 
                 Assert.True(kankan.CurrentState.NextFrames.Contains(frameRequestOne));
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestTwo));
@@ -167,8 +166,8 @@ namespace KanKanTest.ProgressionTests
             {
                 _dependencies = new KarassDependencies();
                 _frameFactory = new FrameFactory(_dependencies); 
-                KarassFactory  = new KarassFactory(_dependencies,_frameFactory);
-                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+                KarassFactory  = new KarassFactory();
+                _mockFramesFactory = new MockFramesFactory(_frameFactory);
                 
             }
             
@@ -276,7 +275,7 @@ namespace KanKanTest.ProgressionTests
                         }
                     });
 
-                KanKan kankan = new KanKan(karassOne + karassTwo, new KarassMessageDummy());
+                KanKan kankan = new KanKan(karassOne + karassTwo, _frameFactory);
 
 
                 Assert.True(kankan.CurrentState.NextFrames.Contains(frameSetOneRequestOne));

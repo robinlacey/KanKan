@@ -6,8 +6,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
-using KanKanTest.Mocks.Dependencies;
-using KanKanTest.Mocks.Karass;
 using KanKanTest.Mocks.KarassFrame;
 using NUnit.Framework;
 
@@ -15,7 +13,7 @@ namespace KanKanTest.SetupTeardownTests.Setup
 {
     public class KanKanSetupTests
     {
-        private static KarassFactory KarassFactory => new KarassFactory(new DependenciesDummy(),new FrameFactoryDummy());
+        private static KarassFactory KarassFactory => new KarassFactory();
 
         [Test]
         public void SetupIsRunOnMoveNext()
@@ -25,7 +23,7 @@ namespace KanKanTest.SetupTeardownTests.Setup
             Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), new List<List<Action>>(),
                 new List<FrameRequest[]>());
 
-            KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
+            KanKan kankan = new KanKan(testKarass, new FrameFactoryDummy());
             kankan.MoveNext();
             Assert.True(setupCounter > 0);
         }
@@ -42,7 +40,7 @@ namespace KanKanTest.SetupTeardownTests.Setup
             {
                 _dependencies = new KarassDependencies();
                 _frameFactory = new FrameFactory(_dependencies);
-                _mockFramesFactory = new MockFramesFactory(_frameFactory,_dependencies);
+                _mockFramesFactory = new MockFramesFactory(_frameFactory);
             }
 
             
@@ -65,7 +63,7 @@ namespace KanKanTest.SetupTeardownTests.Setup
                 Action setup = () => { setupCounter++; };
                 Karass testKarass = KarassFactory.Get(CreateActionListWith(setup), new List<List<Action>>(), Frames);
 
-                KanKan kankan = new KanKan(testKarass, new KarassMessageDummy());
+                KanKan kankan = new KanKan(testKarass, _frameFactory);
                 kankan.MoveNext();
                 Assert.True(setupCounter == 1);
                 kankan.MoveNext();

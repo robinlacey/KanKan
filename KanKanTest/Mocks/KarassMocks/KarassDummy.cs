@@ -9,8 +9,6 @@ namespace KanKanTest.Mocks.KarassMocks
     public class KarassDummy : KanKanCore.Karass.Karass
     {
         public KarassDummy() : base(
-            new DependenciesDummy(),
-            new FrameFactoryDummy(), 
             new List<List<Action>>(), 
             new List<List<Action>>(),
             new List<FrameRequest[]>())
