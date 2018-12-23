@@ -6,7 +6,7 @@ using KanKanCore.Karass.Frame.SimpleKarassFrame;
 using KanKanCore.Karass.Interface;
 using KanKanTest.Mocks.Dependencies;
 
-namespace KanKanTest
+namespace KanKanTest.Factories
 {
     public class MockFramesFactory
     {

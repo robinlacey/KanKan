@@ -6,6 +6,7 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
+using KanKanTest.Factories;
 using NUnit.Framework;
 
 namespace KanKanTest.ProgressionTests
@@ -60,8 +61,6 @@ namespace KanKanTest.ProgressionTests
                     return true;
                 }
 
-              
-
                 bool setupRun = false;
 
                 void SetupSpy()
@@ -95,8 +94,8 @@ namespace KanKanTest.ProgressionTests
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestTwo));
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestThree));
 
-                kankan.MoveNext();
-
+                bool kankanReturnValue = kankan.MoveNext();
+                Assert.True(kankanReturnValue);
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestOne));
                 Assert.True(kankan.CurrentState.NextFrames.Contains(frameRequestTwo));
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestThree));
@@ -105,8 +104,8 @@ namespace KanKanTest.ProgressionTests
                 CheckFirstFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
 
 
-                kankan.MoveNext();
-
+                kankanReturnValue = kankan.MoveNext();
+                Assert.True(kankanReturnValue);
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestOne));
                 Assert.False(kankan.CurrentState.NextFrames.Contains(frameRequestTwo));
                 Assert.True(kankan.CurrentState.NextFrames.Contains(frameRequestThree));
@@ -114,8 +113,8 @@ namespace KanKanTest.ProgressionTests
 
                 CheckSecondFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
 
-                kankan.MoveNext();
-
+                kankanReturnValue = kankan.MoveNext();
+                Assert.False(kankanReturnValue);
                 Assert.False(kankan.CurrentState.NextFrames.Any());
 
                 CheckThirdFrame(setupRun, frameOneRun, tearDownRun, frameTwoRun, frameThreeRun);
