@@ -4,7 +4,7 @@
 # Kan Kan 👯‍♂
 
 Kan-Kan is an engine agnostic state and actions system. It's been written as a replacement to the legacy 
-Quote](http://quote-game.com) state machine.
+[Quote](http://quote-game.com) state machine.
 
 
 ***Please note:*** KanKan is still in early development so things might change without warning. Hopefully for the better. It currently has not been optimised and uses Reflection, so performance may vary 
