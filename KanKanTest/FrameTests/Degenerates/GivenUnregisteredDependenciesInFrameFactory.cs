@@ -29,7 +29,8 @@ namespace KanKanTest.FrameTests.Degenerates
                 KarassFrameDummy<FrameStructDummy> dummy = new KarassFrameDummy<FrameStructDummy>(_dependencies);
                 FrameRequest frameRequest = new FrameRequest(new FrameStructDummy());
                 _dependencies.Register<IKarassFrame<FrameStructDummy>>(() => dummy);
-                Assert.Throws<MissingRouteException>(() => _frameFactory.Execute(frameRequest, String.Empty));
+                MissingRouteException missingRouteException  = Assert.Throws<MissingRouteException>(() => _frameFactory.Execute(frameRequest, String.Empty));
+                Assert.True(missingRouteException.Message ==  "No route was found. Register route in IFrameFactory");
             }
         }
 
@@ -50,7 +51,8 @@ namespace KanKanTest.FrameTests.Degenerates
                 KarassFrameDummy<FrameStructDummy> dummy = new KarassFrameDummy<FrameStructDummy>(_dependencies);
                 FrameRequest frameRequest = new FrameRequest(new FrameStructDummy());
                 _frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
-                Assert.Throws<MissingDependencyException>(() => _frameFactory.Execute(frameRequest, String.Empty));
+                MissingDependencyException missingDependencyException = Assert.Throws<MissingDependencyException>(() => _frameFactory.Execute(frameRequest, String.Empty));
+                Assert.True(missingDependencyException.Message ==  "No dependency found. Register dependency in IDependency.");
             }
         }
 
