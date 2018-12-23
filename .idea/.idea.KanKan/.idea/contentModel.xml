@@ -8,6 +8,10 @@
       <e p="KanKan.sln" t="IncludeFlat" />
       <e p="KanKanCore" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Exception" t="Include">
+          <e p="MissingDependencyException.cs" t="Include" />
+          <e p="MissingRouteException.cs" t="Include" />
+        </e>
         <e p="Factories" t="Include">
           <e p="FrameFactory.cs" t="Include" />
           <e p="KarassFactory.cs" t="Include" />
@@ -64,6 +68,10 @@
           <e p="GivenOneFrameSetInFrameCollection.cs" t="Include" />
         </e>
         <e p="FrameTests" t="Include">
+          <e p="Degenerates" t="Include">
+            <e p="GivenDuplicateRegistrationInFrameFactory.cs" t="Include" />
+            <e p="GivenUnregisteredDependenciesInFrameFactory.cs" t="Include" />
+          </e>
           <e p="FrameTests.cs" t="Include" />
           <e p="KarassFrameTests.cs" t="Include" />
         </e>
