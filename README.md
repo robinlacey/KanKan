@@ -101,7 +101,7 @@ class ApplyDamage : IKarassFrame<DamageRequest>
 {
     public DamageRequest RequestData { get; private set; }
     public string Message { get; }
-    public bool Execute(string message, DamageRequest payload, IDependencies dependencies)
+    public bool Execute(string message, DamageRequest payload)
     {
         bool goToNextFrame = true;
         
@@ -129,7 +129,7 @@ private void Setup()
 {
     _dependencies = new KarassDependencies();
     _frameFactory = new FrameFactory(_dependencies); 
-    _karassFactory  = new KarassFactory(_dependencies,_frameFactory);               
+    _karassFactory  = new KarassFactory(_frameFactory);               
 }
 ```
 - 4) When adding a frame to a Karass all you need to do is create a new `DamageRequest` and make a `FrameRequest`. Note the below example has no Setup and Teardown and only one frame.
@@ -153,7 +153,7 @@ Karass applyDamageKarass = _karassFactory.Get(new List<Action>(), new List<Actio
 - 5) Fire up a KanKan to run the Karass:
 
 ```
-KanKan kankan = new KanKan(applyDamageKarass, new KarassMessage());
+KanKan kankan = new KanKan(applyDamageKarass, _frameFactory);
 
 kankan.MoveNext();
 ```
