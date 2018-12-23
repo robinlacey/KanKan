@@ -18,8 +18,7 @@ namespace KanKanTest.FrameTests
             FrameFactory frameFactory = new FrameFactory(dependencies);
             frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
         }
-
-
+        
         [TestCase("Scout", "The Dog")]
         [TestCase("Cats", "Meow")]
         public void GetMethodReturnsCorrectData(string testString, string message)

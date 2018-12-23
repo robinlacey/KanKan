@@ -1,22 +1,37 @@
 using System;
 using System.Collections.Generic;
+using KanKanCore.Exception;
 using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Karass.Dependencies
 {
-    // NOTE: Highly recommended you use an established DI framework and map functionality to IDependencies interface;
     public class KarassDependencies : IDependencies
     {
         private readonly Dictionary<Type, Func<dynamic>> _dependency = new Dictionary<Type, Func<dynamic>>();
 
         public T Get<T>() where T : class
         {
-            return _dependency[typeof(T)]() as T;
+            try
+            {
+                return _dependency[typeof(T)]() as T;
+            }
+            catch
+            {
+                throw new MissingDependencyException();
+            }
         }
 
         public void Register<T>(Func<dynamic> resolver)
         {
-            _dependency.Add(typeof(T), resolver);
+            _dependency.TryGetValue(typeof(T), out Func<dynamic> foundResolver);
+            if (foundResolver!=null)
+            {
+                _dependency[typeof(T)] = resolver;
+            }
+            else
+            {
+                _dependency.Add(typeof(T), resolver);
+            }
         }
     }
 }

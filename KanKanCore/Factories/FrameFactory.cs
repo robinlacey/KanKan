@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+using KanKanCore.Exception;
 using KanKanCore.Factories;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
@@ -17,35 +19,89 @@ namespace KanKanCore.Factories
             Dependencies = dependencies;
         }
 
-       
         public void RegisterRoute<TRequestType, TKarassFrameType>() where TKarassFrameType : IKarassFrame<TRequestType>
         {
-            _routing.Add(typeof(TRequestType), typeof(TKarassFrameType));
+            _routing.TryGetValue(typeof(TRequestType), out Type routeType);
+            if (routeType!=null)
+            {
+                _routing[typeof(TRequestType)] = typeof(TKarassFrameType);
+            }
+            else
+            {
+                _routing.Add(typeof(TRequestType), typeof(TKarassFrameType));
+            }
         }
 
         public IKarassFrame<T> Get<T>()
         {
-            // Credit to @craigjbass 
-            object dependency = 
-                Dependencies.GetType()
-                .GetMethod("Get")
-                .MakeGenericMethod(_routing[typeof(T)])
-                .Invoke(Dependencies, Array.Empty<object>());
-            return (IKarassFrame<T>) dependency;
+            _routing.TryGetValue(typeof(T), out Type routeType);
+            if (routeType == null)
+            {
+                throw new MissingRouteException();
+            }
+
+            return GetKarassFrame<T>(routeType);
         }
 
         public bool Execute(FrameRequest frameRequest, string message)
         {
-            object karassFrameObject = 
-                Dependencies.GetType().GetMethod("Get")
-                .MakeGenericMethod(_routing[frameRequest.RequestType])
-                .Invoke(Dependencies, Array.Empty<object>());
+            _routing.TryGetValue(frameRequest.RequestType, out Type routeType);
+            if (routeType == null)
+            {
+                throw new MissingRouteException();
+            }
+            
+            return ExecuteFrameRequest(frameRequest, message, GetKarassFrameObject(routeType));
+        }
 
-            object returnValue = karassFrameObject.GetType().GetMethod("Execute")
-                .Invoke(karassFrameObject, new[] {
-                    message, 
-                    frameRequest.RequestObject});
-            return (bool) returnValue;
+        private bool ExecuteFrameRequest(FrameRequest frameRequest, string message, object karassFrameObject)
+        {
+            try
+            {
+                return (bool) karassFrameObject
+                    .GetType()
+                    .GetMethod("Execute")
+                    .Invoke(karassFrameObject, new[]
+                    {
+                        message,
+                        frameRequest.RequestObject
+                    });
+            }
+            catch (TargetInvocationException)
+            {
+                throw new MissingDependencyException();
+            }
+        }
+
+        private IKarassFrame<T> GetKarassFrame<T>(Type routeType)
+        {
+            try
+            {
+                return (IKarassFrame<T>)
+                    Dependencies.GetType()
+                        .GetMethod("Get")
+                        .MakeGenericMethod(routeType)
+                        .Invoke(Dependencies, Array.Empty<object>());
+            }
+            catch (TargetInvocationException)
+            {
+                throw new MissingDependencyException();
+            }
+        }
+
+        private object GetKarassFrameObject(Type routeType)
+        {
+            try
+            {
+                return Dependencies.GetType()
+                    .GetMethod("Get")
+                    .MakeGenericMethod(routeType)
+                    .Invoke(Dependencies, Array.Empty<object>());
+            }
+            catch (TargetInvocationException)
+            {
+                throw new MissingDependencyException();
+            }
         }
     }
 }
