@@ -23,4 +23,8 @@
       <ProjectReference Include="..\KanKanCore\KanKanCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="KanKanCoreTests" />
+    </ItemGroup>
+
 </Project>

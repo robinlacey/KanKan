@@ -59,93 +59,95 @@
         </e>
       </e>
       <e p="KanKanTest" t="IncludeRecursive">
-        <e p="AdditionTests" t="Include">
-          <e p="KarassAdditionTests.cs" t="Include" />
-        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="DependenciesTests" t="Include">
-          <e p="KarassDependenciesTests.cs" t="Include" />
-        </e>
-        <e p="Factories" t="Include">
-          <e p="MockFramesFactory.cs" t="Include" />
-        </e>
-        <e p="FrameCollectionTests" t="Include">
-          <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
-          <e p="GivenOneFrameSetInFrameCollection.cs" t="Include" />
-        </e>
-        <e p="FrameTests" t="Include">
-          <e p="Degenerates" t="Include">
-            <e p="GivenDuplicateRegistrationInFrameFactory.cs" t="Include" />
-            <e p="GivenUnregisteredDependenciesInFrameFactory.cs" t="Include" />
+        <e p="KanKanCoreTests" t="Include">
+          <e p="AdditionTests" t="Include">
+            <e p="KarassAdditionTests.cs" t="Include" />
           </e>
-          <e p="FrameTests.cs" t="Include" />
-          <e p="KarassFrameTests.cs" t="Include" />
-        </e>
-        <e p="IEnumeratorTests" t="Include">
-          <e p="KanKanCurrentTests.cs" t="Include" />
-          <e p="KanKanResetTests.cs" t="Include" />
-          <e p="KanKanReturnTests.cs" t="Include" />
+          <e p="DependenciesTests" t="Include">
+            <e p="KarassDependenciesTests.cs" t="Include" />
+          </e>
+          <e p="Factories" t="Include">
+            <e p="MockFramesFactory.cs" t="Include" />
+          </e>
+          <e p="FrameCollectionTests" t="Include">
+            <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
+            <e p="GivenOneFrameSetInFrameCollection.cs" t="Include" />
+          </e>
+          <e p="FrameTests" t="Include">
+            <e p="Degenerates" t="Include">
+              <e p="GivenDuplicateRegistrationInFrameFactory.cs" t="Include" />
+              <e p="GivenUnregisteredDependenciesInFrameFactory.cs" t="Include" />
+            </e>
+            <e p="FrameTests.cs" t="Include" />
+            <e p="KarassFrameTests.cs" t="Include" />
+          </e>
+          <e p="IEnumeratorTests" t="Include">
+            <e p="KanKanCurrentTests.cs" t="Include" />
+            <e p="KanKanResetTests.cs" t="Include" />
+            <e p="KanKanReturnTests.cs" t="Include" />
+          </e>
+          <e p="KarassFactoryTests" t="Include">
+            <e p="KarassFactoryGivenAnArrayOfFrames.cs" t="Include" />
+            <e p="KarassFactoryGivenAnNestedArrayOfFrames.cs" t="Include" />
+          </e>
+          <e p="KarassTests" t="Include">
+            <e p="KarassTests.cs" t="Include" />
+          </e>
+          <e p="MessageTests" t="Include">
+            <e p="KanKanMessageTests.cs" t="Include" />
+            <e p="KarassMessageTests.cs" t="Include" />
+          </e>
+          <e p="Mocks" t="Include">
+            <e p="Dependencies" t="Include">
+              <e p="DependenciesDummy.cs" t="Include" />
+              <e p="KarassDependenciesSpy.cs" t="Include" />
+            </e>
+            <e p="KarassFrame" t="Include">
+              <e p="FrameFactoryDummy.cs" t="Include" />
+              <e p="FrameStruct" t="Include">
+                <e p="FrameStructDummy.cs" t="Include" />
+              </e>
+              <e p="KarassFrameDummy.cs" t="Include" />
+              <e p="KarassFrameSpy.cs" t="Include" />
+            </e>
+            <e p="KarassMocks" t="Include">
+              <e p="KarassDummy.cs" t="Include" />
+              <e p="KarassFramesStub.cs" t="Include" />
+              <e p="KarassMessageDummy.cs" t="Include" />
+              <e p="KarassNumberOfFramesStub.cs" t="Include" />
+            </e>
+            <e p="Messages" t="Include">
+              <e p="KarassMessageSpy.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ProgressionTests" t="Include">
+            <e p="GivenASingleFrameSet.cs" t="Include" />
+            <e p="GivenMultipleFrameSetsWhenNextFramesIsUpdated.cs" t="Include" />
+            <e p="KanKanFrameProgressionTests.cs" t="Include" />
+          </e>
+          <e p="SequentialKarassTests" t="Include">
+            <e p="GivenMultipleFullKarass.cs" t="Include" />
+            <e p="GivenTwoEmptyKarass.cs" t="Include" />
+            <e p="GivenTwoFullKarassWithMatchingFrameCounts.cs" t="Include" />
+          </e>
+          <e p="SetupTeardownTests" t="Include">
+            <e p="KanKanSetupTeardownTests.cs" t="Include" />
+            <e p="KanKanTeardownTests.cs" t="Include" />
+            <e p="KarassSetupTeardownTests.cs" t="Include" />
+            <e p="Setup" t="Include">
+              <e p="KanKanSetupTests.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
-        <e p="KarassFactoryTests" t="Include">
-          <e p="KarassFactoryGivenAnArrayOfFrames.cs" t="Include" />
-          <e p="KarassFactoryGivenAnNestedArrayOfFrames.cs" t="Include" />
-        </e>
-        <e p="KarassTests" t="Include">
-          <e p="KarassTests.cs" t="Include" />
-        </e>
-        <e p="MessageTests" t="Include">
-          <e p="KanKanMessageTests.cs" t="Include" />
-          <e p="KarassMessageTests.cs" t="Include" />
-        </e>
-        <e p="Mocks" t="Include">
-          <e p="Dependencies" t="Include">
-            <e p="DependenciesDummy.cs" t="Include" />
-            <e p="KarassDependenciesSpy.cs" t="Include" />
-          </e>
-          <e p="KarassFrame" t="Include">
-            <e p="FrameFactoryDummy.cs" t="Include" />
-            <e p="FrameStruct" t="Include">
-              <e p="FrameStructDummy.cs" t="Include" />
-            </e>
-            <e p="KarassFrameDummy.cs" t="Include" />
-            <e p="KarassFrameSpy.cs" t="Include" />
-          </e>
-          <e p="KarassMocks" t="Include">
-            <e p="KarassDummy.cs" t="Include" />
-            <e p="KarassFramesStub.cs" t="Include" />
-            <e p="KarassMessageDummy.cs" t="Include" />
-            <e p="KarassNumberOfFramesStub.cs" t="Include" />
-          </e>
-          <e p="Messages" t="Include">
-            <e p="KarassMessageSpy.cs" t="Include" />
-          </e>
-        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
               <e p="KanKanTest.AssemblyInfo.cs" t="Include" />
               <e p="KanKanTest.Program.cs" t="Include" />
             </e>
-          </e>
-        </e>
-        <e p="ProgressionTests" t="Include">
-          <e p="GivenASingleFrameSet.cs" t="Include" />
-          <e p="GivenMultipleFrameSetsWhenNextFramesIsUpdated.cs" t="Include" />
-          <e p="KanKanFrameProgressionTests.cs" t="Include" />
-        </e>
-        <e p="SequentialKarassTests" t="Include">
-          <e p="GivenMultipleFullKarass.cs" t="Include" />
-          <e p="GivenTwoEmptyKarass.cs" t="Include" />
-          <e p="GivenTwoFullKarassWithMatchingFrameCounts.cs" t="Include" />
-        </e>
-        <e p="SetupTeardownTests" t="Include">
-          <e p="KanKanSetupTeardownTests.cs" t="Include" />
-          <e p="KanKanTeardownTests.cs" t="Include" />
-          <e p="KarassSetupTeardownTests.cs" t="Include" />
-          <e p="Setup" t="Include">
-            <e p="KanKanSetupTests.cs" t="Include" />
           </e>
         </e>
       </e>
