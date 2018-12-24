@@ -15,9 +15,17 @@ namespace KanKanTestHelper.Run
         }
         public IKanKanCurrentState For(int frames)
         {
+            _kanKan.Reset();
+            
+            for (int i = 0; i < frames; i++)
+            {
+                _kanKan.MoveNext();
+            }
+
             return new KanKanCurrentState()
             {
-                NextFrames = _kanKan.NextFrames
+                NextFrames = _kanKan.NextFrames,
+                LastFrames = _kanKan.LastFrames
             };
         }
     }
