@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
@@ -71,6 +72,8 @@ namespace KanKanCore.Karass
             }
         }
 
+     
+
         public static void InvokeSetupActionsOnFirstFrame(int currentFrame, int index, IKarass karass)
         {
             if (currentFrame == 0)
@@ -87,6 +90,13 @@ namespace KanKanCore.Karass
             }
 
             return true;
+        }
+        
+        
+        public static void MoveNextFramesToLastFrames(KarassState karassState)
+        {
+            karassState.LastFrames.Clear();
+            karassState.NextFrames.ForEach(f => karassState.LastFrames.Add(f));
         }
     }
 }

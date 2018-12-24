@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace KanKanCore
         public IKarassMessage KarassMessage { get; }
 
         public List<FrameRequest> NextFrames => CurrentState.NextFrames;
-        public List<FrameRequest> LastFrames { get; }
+        public List<FrameRequest> LastFrames => CurrentState.LastFrames;
         
         private int _currentKarass;
         public KarassState CurrentState => _allKarassStates[_currentKarass];
@@ -29,7 +30,6 @@ namespace KanKanCore
         {
             KarassMessage = message ?? new KarassMessage();
             FrameFactory = frameFactory;
-            
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
         }
 
@@ -69,9 +69,12 @@ namespace KanKanCore
                 }
 
                 _currentKarass++;
+                
                 return MoveNext();
             }
-
+           
+            KarassStateBehaviour.MoveNextFramesToLastFrames(karassState);
+            
             karassState.NextFrames.Clear();
 
             for (int index = 0; index < karassState.Karass.FramesCollection.Count; index++)
@@ -91,6 +94,7 @@ namespace KanKanCore
                     KarassMessage,
                     karassState.Karass))
                 {
+                    
                     continue;
                 }
 
@@ -119,6 +123,7 @@ namespace KanKanCore
 
             return true;
         }
+
 
         private UniqueKarassFrameRequestID GetIDAndFrameRequests(KarassState karassState, int index)
         {

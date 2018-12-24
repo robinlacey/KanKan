@@ -11,6 +11,7 @@ namespace KanKanCore.Karass
     {
         public string ID { get; }
         public List<FrameRequest> NextFrames { get; set; } = new List<FrameRequest>();
+        public List<FrameRequest> LastFrames { get; set; } = new List<FrameRequest>();
 
         public Dictionary<UniqueKarassFrameRequestID, int>
             CurrentFrames = new Dictionary<UniqueKarassFrameRequestID, int>();
@@ -33,6 +34,7 @@ namespace KanKanCore.Karass
         public void Reset()
         {
             NextFrames = new List<FrameRequest>();
+            LastFrames = new List<FrameRequest>();
             CurrentFrames =  new Dictionary<UniqueKarassFrameRequestID, int>();
             Complete.Clear();
 
