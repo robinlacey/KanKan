@@ -32,6 +32,7 @@
           <e p="Interface" t="Include">
             <e p="IDependencies.cs" t="Include" />
             <e p="IFrameFactory.cs" t="Include" />
+            <e p="IKanKan.cs" t="Include" />
             <e p="IKarass.cs" t="Include" />
             <e p="IKarassFactory.cs" t="Include" />
             <e p="IKarassFrame.cs" t="Include" />
@@ -87,6 +88,9 @@
             <e p="KanKanResetTests.cs" t="Include" />
             <e p="KanKanReturnTests.cs" t="Include" />
           </e>
+          <e p="KanKanTests" t="Include">
+            <e p="KanKanTests.cs" t="Include" />
+          </e>
           <e p="KarassFactoryTests" t="Include">
             <e p="KarassFactoryGivenAnArrayOfFrames.cs" t="Include" />
             <e p="KarassFactoryGivenAnNestedArrayOfFrames.cs" t="Include" />
@@ -102,6 +106,9 @@
             <e p="Dependencies" t="Include">
               <e p="DependenciesDummy.cs" t="Include" />
               <e p="KarassDependenciesSpy.cs" t="Include" />
+            </e>
+            <e p="KanKan" t="Include">
+              <e p="KanKanDummy.cs" t="Include" />
             </e>
             <e p="KarassFrame" t="Include">
               <e p="FrameFactoryDummy.cs" t="Include" />
@@ -142,6 +149,13 @@
         </e>
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
+        <e p="KanKanTestHelperTests" t="Include">
+          <e p="Mocks" t="Include">
+            <e p="KanKanCurrentStateDummy.cs" t="Include" />
+            <e p="RunKanKanDummy.cs" t="Include" />
+          </e>
+          <e p="RunTests.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
@@ -149,6 +163,29 @@
               <e p="KanKanTest.Program.cs" t="Include" />
             </e>
           </e>
+        </e>
+      </e>
+      <e p="KanKanTestHelper" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Interface" t="Include">
+          <e p="IKanKanCurrentState.cs" t="Include" />
+          <e p="IKanKanTestHelper.cs" t="Include" />
+          <e p="IRunKanKan.cs" t="Include" />
+        </e>
+        <e p="KanKanTestHelper.cs" t="Include" />
+        <e p="KanKanTestHelper.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="KanKanTestHelper.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Run" t="Include">
+          <e p="CurrentState" t="Include">
+            <e p="KanKanCurrentState.cs" t="Include" />
+          </e>
+          <e p="RunKanKan.cs" t="Include" />
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />

@@ -18,6 +18,7 @@ namespace KanKanCore.Karass
         public Karass(List<List<Action>> setup, List<List<Action>> teardown,
             List<FrameRequest[]> framesCollection)
         {
+            
             ID = Guid.NewGuid().ToString();
             FramesCollection = framesCollection;
             SetupActions = setup;

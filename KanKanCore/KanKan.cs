@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
 using KanKanCore.Karass.Struct;
@@ -11,38 +12,43 @@ using KanKanCore.Karass.Struct;
 
 namespace KanKanCore
 {
-    public class KanKan : IEnumerator
+    public class KanKan : IKanKan
     {
         public object Current => CurrentState.NextFrames;
-        private readonly IKarassMessage _message;
+        public IKarassMessage KarassMessage { get; }
+
+        public List<FrameRequest> NextFrames => CurrentState.NextFrames;
+        public List<FrameRequest> LastFrames { get; }
+        
         private int _currentKarass;
         public KarassState CurrentState => _allKarassStates[_currentKarass];
         private readonly List<KarassState> _allKarassStates;
 
-        private readonly IFrameFactory _frameFactory;
+        public IFrameFactory FrameFactory { get; }
         public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
+            KarassMessage = message ?? new KarassMessage();
+            FrameFactory = frameFactory;
+            
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
-            _message = message ?? new KarassMessage();
-            _frameFactory = frameFactory;
         }
 
         public KanKan(IKarass[] karass, IFrameFactory frameFactory)
         {
+            KarassMessage = new KarassMessage();
+            FrameFactory = frameFactory;
+            
             _allKarassStates = karass.ToList().Select(_ => new KarassState(_)).ToList();
 
             for (int i = 0; i < karass.Length; i++)
             {
                 _allKarassStates[i] = new KarassState(karass[i]);
             }
-
-            _message = new KarassMessage();
-            _frameFactory = frameFactory;
         }
 
         public void SendMessage(string message)
         {
-            _message.SetMessage(message);
+            KarassMessage.SetMessage(message);
         }
 
 
@@ -82,7 +88,7 @@ namespace KanKanCore
 
                 if (!InvokeCurrentFrame(index,
                     karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
-                    _message,
+                    KarassMessage,
                     karassState.Karass))
                 {
                     continue;
@@ -109,7 +115,7 @@ namespace KanKanCore
                 return true;
             }
 
-            _message.ClearMessage();
+            KarassMessage.ClearMessage();
 
             return true;
         }
@@ -121,7 +127,7 @@ namespace KanKanCore
 
         private bool InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)
         {
-            return _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
+            return FrameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
         }
 
         public void Reset()

@@ -21,10 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\KanKanCore\KanKanCore.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="KanKanCoreTests" />
+      <ProjectReference Include="..\KanKanTestHelper\KanKanTestHelper.csproj" />
     </ItemGroup>
 
 </Project>
