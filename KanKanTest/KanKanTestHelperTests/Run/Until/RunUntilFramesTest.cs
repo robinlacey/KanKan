@@ -18,6 +18,9 @@ using NUnit.Framework;
 
 namespace KanKanTest.KanKanTestHelperTests.Run.Until
 {
+    
+    
+        
     public class RunUntilFramesTest
     {
         [Test]
@@ -70,6 +73,29 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 FrameRequest fr = new MockFramesFactory(_frameFactory).GetInvalidFrameRequest();
                 Assert.Throws<NoValidRequestType>(()=>_runUntil.LastFrame(fr));
                 Assert.Throws<NoValidRequestType>(()=>_runUntil.NextFrame(fr));
+            }
+        }
+
+        public class ShouldReturnKanKanStateTests
+        {
+            [Test]
+            public void GivenEmptyFrameRequestList()
+            {
+                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(),"hello" ));
+            }
+            
+            [Test]
+            public void GivenNoMatchingInRequestList()
+            {
+                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){new FrameRequest(42), new FrameRequest(Guid.NewGuid())},"hello" ));
+            }
+            [Test]     
+            public void GivenMatchingFrameRequest()
+            {
+                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest("hello")},"hello"));
+                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(42)},42));
+                Guid testGuid = Guid.NewGuid();
+                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(testGuid)},testGuid));
             }
         }
         

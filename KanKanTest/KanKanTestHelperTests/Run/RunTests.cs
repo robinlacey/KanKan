@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan;
 using KanKanTest.KanKanTestHelperTests.Mocks;
@@ -34,6 +36,5 @@ namespace KanKanTest.KanKanTestHelperTests.Run
             TestHelper kanKanTestHelper = new TestHelper(new RunKanKanDummy(),kankan);
             Assert.AreSame(kankan,runKanKanDummy.KanKan);
         }
-        
     }
 }

@@ -23,11 +23,13 @@ namespace KanKanTestHelper.Run.Until
             KanKan.Reset();
             while (KanKan.MoveNext())
             {
-                IKanKanCurrentState foundState = CheckFrameRequests<T>(KanKan.NextFrames, payload);
-                if (foundState != null)
+                if (ShouldReturnKanKanState<T>(KanKan.LastFrames, payload))
                 {
-                  
-                    return foundState;
+                    return new KanKanCurrentState
+                    {
+                        NextFrames = KanKan.NextFrames,
+                        LastFrames = KanKan.LastFrames
+                    };
                 }
             }
 
@@ -39,23 +41,8 @@ namespace KanKanTestHelper.Run.Until
             KanKan.Reset();
             while (KanKan.MoveNext())
             {
-                IKanKanCurrentState foundState = CheckFrameRequests<T>(KanKan.NextFrames, payload);
-                if (foundState != null)
-                {
-                    return foundState;
-                }
-            }
-
-            throw new NoValidRequestType();
-        }
-
-        private IKanKanCurrentState CheckFrameRequests<T>(List<FrameRequest> frameRequests, T payload)
-        {
-            foreach (FrameRequest frameRequest in frameRequests)
-            {
-                if (frameRequest.RequestType != typeof(T)) { continue;}
-                T requestObject = (T) frameRequest.RequestObject;
-                if (!requestObject.Equals(payload)) { continue;}
+                
+                if (ShouldReturnKanKanState<T>(KanKan.NextFrames, payload))
                 {
                     return new KanKanCurrentState
                     {
@@ -65,7 +52,23 @@ namespace KanKanTestHelper.Run.Until
                 }
             }
 
-            return null;
+            throw new NoValidRequestType();
+        }
+
+        public static bool ShouldReturnKanKanState<T>(List<FrameRequest> frameRequests, T payload)
+        {
+            foreach (FrameRequest frameRequest in frameRequests)
+            {
+                if (frameRequest.RequestType != typeof(T)) { continue;}
+                T requestObject = (T) frameRequest.RequestObject;
+                if (!requestObject.Equals(payload)) { continue;}
+
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
