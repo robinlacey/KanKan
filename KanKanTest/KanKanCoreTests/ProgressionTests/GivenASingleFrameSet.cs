@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using KanKanCore;
@@ -11,8 +12,46 @@ using NUnit.Framework;
 
 namespace KanKanTest.KanKanCoreTests.ProgressionTests
 {
+    
+    public class GivenEmptyFramesSet
+    {
+        private readonly IDependencies _dependencies = new KarassDependencies();
+        private readonly KarassFactory _karassFactory = new KarassFactory();
+        private IFrameFactory _frameFactory;
+        private IKanKan _kankan;
+        [SetUp]
+        public void Setup()
+        {
+            _frameFactory = new FrameFactory(_dependencies);
+        }
+
+
+        [Test]
+        public void ThenThrowNoValidRequestTypeException()
+        {
+            IKarass karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
+                new FrameRequest[] {});
+            _kankan = new KanKan(karass,_frameFactory);
+            
+            
+            karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
+               new List<FrameRequest[]>()
+               {
+                   new FrameRequest[]
+                   {
+                       
+                   }
+               });
+            _kankan = new KanKan(karass,_frameFactory);
+            Assert.False(_kankan.MoveNext());
+        }
+    }
+    
     public class GivenASingleFrameSet : KanKanFrameProgressionTests
     {
+        
+     
+        
        
         public class WhenThereAreMultipleFrames
         {

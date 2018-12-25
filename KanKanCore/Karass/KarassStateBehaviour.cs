@@ -64,6 +64,7 @@ namespace KanKanCore.Karass
             
             if (IsLastFrame(currentFrame, karassState.Karass.FramesCollection[index],karassState.Karass))
             {
+                Console.WriteLine("LAST FRAME");
                 TeardownKarass(index, ref lastFrameCount, out shouldComplete, karassState);
             }
             else

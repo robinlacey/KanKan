@@ -150,11 +150,21 @@
         <e p="KanKanTest.csproj" t="IncludeRecursive" />
         <e p="KanKanTest.csproj.DotSettings" t="Include" />
         <e p="KanKanTestHelperTests" t="Include">
+          <e p="FrameFactoryTests.cs" t="Include" />
           <e p="Mocks" t="Include">
             <e p="KanKanCurrentStateDummy.cs" t="Include" />
             <e p="RunKanKanDummy.cs" t="Include" />
+            <e p="RunUntilDummy.cs" t="Include" />
           </e>
-          <e p="RunTests.cs" t="Include" />
+          <e p="Run" t="Include">
+            <e p="For" t="Include">
+              <e p="RunForFramesTest.cs" t="Include" />
+            </e>
+            <e p="RunTests.cs" t="Include" />
+            <e p="Until" t="Include">
+              <e p="RunUntilFramesTest.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -167,10 +177,14 @@
       </e>
       <e p="KanKanTestHelper" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Exception" t="Include">
+          <e p="NoValidRequestType.cs" t="Include" />
+        </e>
         <e p="Interface" t="Include">
           <e p="IKanKanCurrentState.cs" t="Include" />
           <e p="IKanKanTestHelper.cs" t="Include" />
           <e p="IRunKanKan.cs" t="Include" />
+          <e p="IRunUntil.cs" t="Include" />
         </e>
         <e p="KanKanTestHelper.cs" t="Include" />
         <e p="KanKanTestHelper.csproj" t="IncludeRecursive" />
@@ -186,6 +200,9 @@
             <e p="KanKanCurrentState.cs" t="Include" />
           </e>
           <e p="RunKanKan.cs" t="Include" />
+          <e p="Until" t="Include">
+            <e p="RunUntil.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />

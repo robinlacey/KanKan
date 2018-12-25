@@ -88,7 +88,17 @@ namespace KanKanCore
                     karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
                     index,
                     karassState.Karass);
-
+                
+                
+                if (FrameRequestArrayIsEmpty(karassState, index))
+                {
+                    if (LastFrameCollection(index, karassState))
+                    {
+                        return false;
+                    }
+                    continue; 
+                }
+                
                 if (!InvokeCurrentFrame(index,
                     karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
                     KarassMessage,
@@ -122,6 +132,17 @@ namespace KanKanCore
             KarassMessage.ClearMessage();
 
             return true;
+        }
+
+        private static bool LastFrameCollection(int index, KarassState karassState)
+        {
+            return index == karassState.Karass.FramesCollection.Count - 1;
+        }
+
+        private bool FrameRequestArrayIsEmpty(KarassState karassState, int index)
+        {
+            return !karassState.Karass.FramesCollection[index].Any() ||
+                   karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)] > (karassState.Karass.FramesCollection[index].Length - 1);
         }
 
 

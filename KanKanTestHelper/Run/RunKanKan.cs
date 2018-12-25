@@ -7,26 +7,32 @@ namespace KanKanTestHelper.Run
 {
     public class RunKanKan:IRunKanKan
     {
-        private IKanKan _kanKan;
-
-        public RunKanKan(IKanKan kanKan)
+        public IRunUntil Until { get; }
+        
+        public RunKanKan(IKanKan kanKan, IRunUntil until)
         {
-            _kanKan = kanKan;
+            Until = until;
+            KanKan = kanKan;
         }
+
+        public IKanKan KanKan { get; }
+
         public IKanKanCurrentState For(int frames)
         {
-            _kanKan.Reset();
+            KanKan.Reset();
             
             for (int i = 0; i < frames; i++)
             {
-                _kanKan.MoveNext();
+                KanKan.MoveNext();
             }
 
             return new KanKanCurrentState()
             {
-                NextFrames = _kanKan.NextFrames,
-                LastFrames = _kanKan.LastFrames
+                NextFrames = KanKan.NextFrames,
+                LastFrames = KanKan.LastFrames
             };
         }
+
+       
     }
 }
