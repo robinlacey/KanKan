@@ -34,7 +34,7 @@ namespace KanKanTest.KanKanCoreTests.FrameCollectionTests
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(frame));
+                Assert.True(kanKan.NextFrames.Contains(frame));
             }
         }
 
@@ -63,10 +63,10 @@ namespace KanKanTest.KanKanCoreTests.FrameCollectionTests
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
-                Assert.True(kanKan.CurrentState.NextFrames.Contains(frameOne));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameTwo));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameThree));
-                Assert.False(kanKan.CurrentState.NextFrames.Contains(frameFour));
+                Assert.True(kanKan.NextFrames.Contains(frameOne));
+                Assert.False(kanKan.NextFrames.Contains(frameTwo));
+                Assert.False(kanKan.NextFrames.Contains(frameThree));
+                Assert.False(kanKan.NextFrames.Contains(frameFour));
             }
         }
     }

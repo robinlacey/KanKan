@@ -18,7 +18,7 @@ namespace KanKanCore.Karass
 
         public readonly List<bool> Complete = new List<bool>();
         public IKarass Karass { get; }
-
+        
         public KarassState(IKarass karass)
         {
             Karass = karass;

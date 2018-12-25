@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
 

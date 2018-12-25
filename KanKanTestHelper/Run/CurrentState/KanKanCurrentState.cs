@@ -6,6 +6,7 @@ namespace KanKanTestHelper.Run.CurrentState
 {
     public class KanKanCurrentState:IKanKanCurrentState
     {
+        public int Frame { get; set; }
         public List<FrameRequest> NextFrames { get; set; } = new List<FrameRequest>();
         public List<FrameRequest> LastFrames { get; set; } = new List<FrameRequest>();
     }

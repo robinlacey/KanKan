@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using KanKanCore.Karass;
@@ -13,18 +14,17 @@ namespace KanKanCore
 {
     public class KanKan : IKanKan
     {
-        public object Current => CurrentState.NextFrames;
+        public object Current => CurrentState;
         public IKarassMessage KarassMessage { get; }
 
         public List<FrameRequest> NextFrames => CurrentState.NextFrames;
         public List<FrameRequest> LastFrames => CurrentState.LastFrames;
 
         private int _currentKarass;
-        public KarassState CurrentState => _allKarassStates[_currentKarass];
+        private KarassState CurrentState => _allKarassStates[_currentKarass];
         private readonly List<KarassState> _allKarassStates;
 
-        public IFrameFactory FrameFactory { get; }
-
+        public IFrameFactory FrameFactory { get; } 
         public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
             KarassMessage = message ?? new KarassMessage();
@@ -54,15 +54,16 @@ namespace KanKanCore
         public bool MoveNext()
         {
             KarassState karassState = _allKarassStates[_currentKarass];
-
             return HasNextFrame(karassState);
         }
 
 
         private bool HasNextFrame(KarassState karassState)
         {
+            Console.WriteLine("a");
             if (KarassStateBehaviour.IsEmptyKarass(karassState.Karass))
             {
+                Console.WriteLine("b");
                 return ProcessEmptyKarass(karassState);
             }
 
@@ -70,13 +71,16 @@ namespace KanKanCore
 
             for (int index = 0; index < karassState.Karass.FramesCollection.Count; index++)
             {
+                Console.WriteLine("c"+index);
                 if (ShouldSkipFrame(karassState, index))
                 {
+                  
                     if (LastFrameCollection(index, karassState))
                     {
+                        Console.WriteLine("d");
                         return false;
                     }
-
+                    Console.WriteLine("e");
                     continue;
                 }
 
@@ -85,14 +89,16 @@ namespace KanKanCore
 
                 if (HasNotFinishedFrameCollection(karassState, index))
                 {
+                    Console.WriteLine("f");
                     continue;
                 }
 
                 if (HasFinishedAllFrameCollections())
-                {
+                {     
+                    Console.WriteLine("g");
                     return false;
                 }
-
+                Console.WriteLine("h");
                 _currentKarass++;
                 return true;
             }
@@ -101,7 +107,7 @@ namespace KanKanCore
 
             return true;
         }
-
+        
         private bool HasFinishedAllFrameCollections()
         {
             return _allKarassStates.Count - 1 < _currentKarass + 1;
@@ -143,11 +149,11 @@ namespace KanKanCore
 
             if (LastKarass())
             {
+               
                 return false;
             }
 
             _currentKarass++;
-
             return MoveNext();
         }
 

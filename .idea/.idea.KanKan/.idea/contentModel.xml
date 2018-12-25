@@ -158,6 +158,7 @@
           </e>
           <e p="Run" t="Include">
             <e p="For" t="Include">
+              <e p="ForFramesFrameNumberTests.cs" t="Include" />
               <e p="RunForFramesTest.cs" t="Include" />
             </e>
             <e p="RunTests.cs" t="Include" />

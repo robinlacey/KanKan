@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
@@ -31,37 +32,23 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
         }
 
         [Test]
-        public void CurrentFramesReturnsNextFrames()
+        public void CurrentFramesReturnsKarassState()
         {
             KarassFactory karassFactory = new KarassFactory();
             IDependencies dependencies = new KarassDependencies();
             FrameFactory frameFactory = new FrameFactory(dependencies);
             MockFramesFactory mockFramesFactory = new MockFramesFactory(frameFactory);
           
-            IKarass karass = karassFactory.Get(new List<Action>(), new List<Action>(), new List<FrameRequest[]>()
-            {
-                new FrameRequest[]
-                {
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                    mockFramesFactory.GetValidFrameRequest((_)=>true),
-                }
+            IKarass karass = karassFactory.Get(
+                new List<Action>(), 
+                new List<Action>(), new 
+                    List<FrameRequest[]>
+                    { new FrameRequest[] {}
             });
-            Assert.True(karass.FramesCollection[0].Length == 10);
            
             KanKan kanKan = new KanKan(karass,frameFactory);
-            for (int i = 0; i < 10; i++)
-            {
-                Assert.AreEqual(kanKan.Current, kanKan.CurrentState.NextFrames);
-                kanKan.MoveNext();
-            }
+            KarassState karassState = kanKan.Current as KarassState;
+            Assert.IsNotNull(karassState);
         }
     }
 }

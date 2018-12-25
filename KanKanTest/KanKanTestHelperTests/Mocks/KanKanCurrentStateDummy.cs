@@ -6,6 +6,7 @@ namespace KanKanTest.KanKanTestHelperTests.Mocks
 {
     public class KanKanCurrentStateDummy:IKanKanCurrentState
     {
+        public int Frame { get; set; }
         public List<FrameRequest> NextFrames { get; set; }
         public List<FrameRequest> LastFrames { get; set; }
     }
