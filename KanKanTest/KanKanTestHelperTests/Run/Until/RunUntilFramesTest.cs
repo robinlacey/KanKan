@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using KanKanCore;
 using KanKanCore.Factories;
-using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Interface;
@@ -70,7 +69,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 _runUntil = new RunUntil(_kankan);
                 FrameRequest fr = new MockFramesFactory(_frameFactory).GetInvalidFrameRequest();
                 Assert.Throws<NoValidRequestType>(()=>_runUntil.LastFrame(fr));
-         //       Assert.Throws<NoValidRequestType>(()=>_runUntil.NextFrame(fr));
+                Assert.Throws<NoValidRequestType>(()=>_runUntil.NextFrame(fr));
             }
         }
         

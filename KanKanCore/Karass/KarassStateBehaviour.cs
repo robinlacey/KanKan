@@ -29,7 +29,7 @@ namespace KanKanCore.Karass
             }
         }
 
-        public static bool EmptyKarass(IKarass karass)
+        public static bool IsEmptyKarass(IKarass karass)
         {
             return karass.FramesCollection.Count == 0;
         }
@@ -64,7 +64,6 @@ namespace KanKanCore.Karass
             
             if (IsLastFrame(currentFrame, karassState.Karass.FramesCollection[index],karassState.Karass))
             {
-                Console.WriteLine("LAST FRAME");
                 TeardownKarass(index, ref lastFrameCount, out shouldComplete, karassState);
             }
             else
