@@ -81,7 +81,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             [Test]
             public void GivenEmptyFrameRequestList()
             {
-                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(),"hello" ));
+                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(),"Scout" ));
             }
             
             [Test]
@@ -92,7 +92,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             [Test]     
             public void GivenMatchingFrameRequest()
             {
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest("hello")},"hello"));
+                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest("Scout The Dog")},"Scout The Dog"));
                 Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(42)},42));
                 Guid testGuid = Guid.NewGuid();
                 Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(testGuid)},testGuid));
@@ -106,6 +106,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             private IFrameFactory _frameFactory;
             private IRunUntil _runUntil;
             private IKanKan _kankan;
+            
             [SetUp]
             public void Setup()
             {
@@ -116,8 +117,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                
             }
            
-          
-            public void ThenThrowNoValidRequestTypeException(FrameRequest request)
+            [Test]
+            public void ThenDoesNotThrowException()
             {
                 FrameStructDummy test = new FrameStructDummy()
                 {
@@ -125,7 +126,13 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 };
                 
                 IKarass karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
-                    new FrameRequest[] {new FrameRequest(test)});
+                    new[]
+                    {
+                        new FrameRequest(test)
+                    });
+                var f = _frameFactory.Get<FrameStructDummy>();
+                Console.WriteLine(f);
+                
                 _kankan = new KanKan(karass,_frameFactory);
                 _runUntil = new RunUntil(_kankan);
                 

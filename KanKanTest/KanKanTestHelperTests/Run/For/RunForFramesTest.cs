@@ -4,7 +4,6 @@ using KanKanCore;
 using KanKanCore.Factories;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
-using KanKanTest.KanKanCoreTests.Mocks.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;
 using KanKanTest.KanKanTestHelperTests.Mocks;
@@ -17,13 +16,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 {
     public class RunForFramesTest
     {
-        [Test]
-        public void KanKanTestHelperForReturnsIKanKanCurrentState()
-        {
-            TestHelper kanKanTestHelper = new TestHelper(new RunKanKanDummy(), new KanKanDummy());
-            IKanKanCurrentState currentState = kanKanTestHelper.Run.For(0);
-        }
-
         private static FrameRequest[] CreateFrames(int frameCount)
         {
             FrameRequest[] frames = new FrameRequest[frameCount];
@@ -180,8 +172,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                         KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                         TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan);
-
-                        IKanKanCurrentState currentState = kanKanTestHelper.Run.For(0);
 
                         Assert.True(kanKanTestHelper.Run.For(0).NextFrames.Count == numberOfCombinedKarass);
                         Assert.True(kanKanTestHelper.Run.For(0).LastFrames.Count == 0);

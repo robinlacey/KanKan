@@ -30,10 +30,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run
         [Test]
         public void KanKanSetThroughConstructor()
         {
-           
             IKanKan kankan = new KanKanDummy();
             IRunKanKan runKanKanDummy = new RunKanKan(kankan, new RunUntilDummy());
-            TestHelper kanKanTestHelper = new TestHelper(new RunKanKanDummy(),kankan);
             Assert.AreSame(kankan,runKanKanDummy.KanKan);
         }
     }
