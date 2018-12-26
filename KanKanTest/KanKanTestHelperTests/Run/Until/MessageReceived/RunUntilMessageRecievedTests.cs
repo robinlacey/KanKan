@@ -55,8 +55,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.MessageReceived
                         CreateFrames(frames, "Message Will Not Be Found"));
                     KanKan kankan = new KanKanSetMessageFake(karass,frameFactory,frames-1,"Scout A Dog");
                     IRunUntil runUntil = new RunUntil(kankan);
-                    IRunKanKan runKanKan = new RunKanKan(kankan,runUntil);
-                    IKanKanTestHelper testHelper = new TestHelper(runKanKan,kankan,frameFactory);
+                    IRunKanKan runKanKan = new RunKanKan(runUntil);
+                    IKanKanTestHelper testHelper = new TestHelper(runKanKan,frameFactory);
                
                     Assert.Throws<MessageNotReceivedException>(()=>testHelper.Run.Until.WillReceive("Doggo"));
                     Assert.Throws<MessageNotReceivedException>(()=>testHelper.Run.Until.HasReceived("Doggo"));
@@ -78,8 +78,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.MessageReceived
                         CreateFrames(willReceiveFrame, testMessage));
                     KanKan kankan = new KanKanSetMessageFake(karass,frameFactory,willReceiveFrame-1,testMessage);
                     IRunUntil runUntil = new RunUntil(kankan);
-                    IRunKanKan runKanKan = new RunKanKan(kankan,runUntil);
-                    IKanKanTestHelper testHelper = new TestHelper(runKanKan,kankan,frameFactory);
+                    IRunKanKan runKanKan = new RunKanKan(runUntil);
+                    IKanKanTestHelper testHelper = new TestHelper(runKanKan,frameFactory);
                
                     Assert.True(testHelper.Run.Until.WillReceive(testMessage).Frame == willReceiveFrame);
                     Assert.True(testHelper.Run.Until.HasReceived(testMessage).Frame == willReceiveFrame+1);

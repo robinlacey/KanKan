@@ -23,7 +23,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.NextLastFramesContains
         [Test]
         public void RunContainsIRunUntil()
         {
-            IRunKanKan runKanKan = new RunKanKan(new KanKanDummy(), new RunUntilDummy());
+            IRunKanKan runKanKan = new RunKanKan(new RunUntilDummy(new KanKanDummy()));
             IRunUntil until = (IRunUntil) runKanKan.Until;
             Assert.IsNotNull(until);
         }
@@ -31,8 +31,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.NextLastFramesContains
         [Test]
         public void RunSetsIRunUntilWithConstructor()
         {
-            IRunUntil runUntil = new RunUntilDummy();
-            RunKanKan runKanKan = new RunKanKan(new KanKanDummy(), runUntil);
+            IRunUntil runUntil = new RunUntilDummy(new KanKanDummy());
+            RunKanKan runKanKan = new RunKanKan(runUntil);
             Assert.IsNotNull(runKanKan.Until);
             Assert.AreSame(runUntil, runKanKan.Until);
         }

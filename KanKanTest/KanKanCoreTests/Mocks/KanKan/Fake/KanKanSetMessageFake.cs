@@ -1,4 +1,3 @@
-using System;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Message;
 

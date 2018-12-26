@@ -7,7 +7,7 @@ namespace KanKanTestHelper
     {
         public IFrameFactory FrameFactory { get; }
         public IRunKanKan Run { get; }
-        public TestHelper(IRunKanKan runKanKan, IKanKan kankan, IFrameFactory frameFactory)
+        public TestHelper(IRunKanKan runKanKan, IFrameFactory frameFactory)
         {
             FrameFactory = frameFactory;
             Run = runKanKan;

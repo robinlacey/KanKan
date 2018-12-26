@@ -15,7 +15,7 @@ namespace KanKanTest.KanKanTestHelperTests
         {
             IFrameFactory frameFactoryDummy = new FrameFactoryDummy();
             TestHelper kanKanTestHelper =
-                new TestHelper(new RunKanKanDummy(), new KanKan(new KarassDummy(), frameFactoryDummy),frameFactoryDummy);
+                new TestHelper(new RunKanKanDummy(),frameFactoryDummy);
             Assert.AreSame(kanKanTestHelper.FrameFactory, frameFactoryDummy);
         }
     }

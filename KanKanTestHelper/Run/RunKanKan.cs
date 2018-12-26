@@ -6,26 +6,24 @@ namespace KanKanTestHelper.Run
     public class RunKanKan:IRunKanKan
     {
         public IRunUntil Until { get; }
-        public IKanKan KanKan { get; }
 
-        public RunKanKan(IKanKan kanKan, IRunUntil until)
+        public RunKanKan(IRunUntil until)
         {
             Until = until;
-            KanKan = kanKan;
         }
 
         public IKanKanCurrentState For(int frames)
         {
-            KanKan.Reset();
+            Until.KanKan.Reset();
             for (int i = 0; i < frames; i++)
             {
-               if (!KanKan.MoveNext())
+               if (!Until.KanKan.MoveNext())
                {
                    break;
                }
             }
             
-            return KanKan.GetCurrentState();
+            return Until.KanKan.GetCurrentState();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                     Karass karass = karassFactory.Get(new List<Action>(), new List<Action>(),
                         new List<FrameRequest[]>());
                     KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
-                    TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan, new FrameFactoryDummy());
+                    TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(new RunUntilDummy(kankan)), new FrameFactoryDummy());
 
                     IKanKanCurrentState currentState = kanKanTestHelper.Run.For(0);
 
@@ -63,7 +63,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                         KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                         TestHelper kanKanTestHelper =
-                            new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan, new FrameFactoryDummy());
+                            new TestHelper(new RunKanKan(new RunUntilDummy(kankan)), new FrameFactoryDummy());
 
                         IKanKanCurrentState currentState = kanKanTestHelper.Run.For(0);
 
@@ -88,7 +88,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                         KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                         TestHelper kanKanTestHelper =
-                            new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan, new FrameFactoryDummy());
+                            new TestHelper(new RunKanKan(new RunUntilDummy(kankan)), new FrameFactoryDummy());
 
                         IKanKanCurrentState currentState = kanKanTestHelper.Run.For(0);
                         Assert.True(currentState.NextFrames.Count == numberOfCombinedKarass);
@@ -119,7 +119,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                     Karass karass = karassFactory.Get(new List<Action>(), new List<Action>(),
                         new List<FrameRequest[]>());
                     KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
-                    TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
+                    TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(new RunUntilDummy(kankan)),new FrameFactoryDummy());
 
                     IKanKanCurrentState currentState = kanKanTestHelper.Run.For(frame);
 
@@ -144,7 +144,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                         KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                         TestHelper kanKanTestHelper =
-                            new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
+                            new TestHelper(new RunKanKan(new RunUntilDummy(kankan)),new FrameFactoryDummy());
 
 
                         Assert.True(kanKanTestHelper.Run.For(0).NextFrames.Count == 1);
@@ -175,7 +175,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                         KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                         TestHelper kanKanTestHelper =
-                            new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
+                            new TestHelper(new RunKanKan(new RunUntilDummy(kankan)),new FrameFactoryDummy());
 
                         Assert.True(kanKanTestHelper.Run.For(0).NextFrames.Count == numberOfCombinedKarass);
                         Assert.True(kanKanTestHelper.Run.For(0).LastFrames.Count == 0);

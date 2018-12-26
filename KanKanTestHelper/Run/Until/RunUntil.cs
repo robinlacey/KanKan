@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using KanKanCore.Exception;
 using KanKanCore.Interface;
-using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass.Frame;
 using KanKanTestHelper.Exception;
 using KanKanTestHelper.Interface;
@@ -46,7 +44,6 @@ namespace KanKanTestHelper.Run.Until
 
         public IKanKanCurrentState HasReceived(string message)
         {
-            
             while (KanKan.MoveNext())
             {
                 if (KanKan.GetCurrentState().LastMessage == message)
