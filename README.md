@@ -17,11 +17,18 @@ A KanKan will run a an action - known as a Karass. Karass can be combined `Karas
 ### Goals
 * To have a easily maintainable state/actions system that can handle complex behaviours.
 
-* Avoid [spaghetti](https://en.wikipedia.org/wiki/Spaghetti_code) and [lasagne](http://wiki.c2.com/?LasagnaCode) code (See Why?) and not be tied to [God Objects](https://en.wikipedia.org/wiki/God_object) ('Managers', singletons etc)
+* Testable: Built through [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) and ready for TDD systems.
+	* Has a number of helper methods for Test Driving production systems that will return the current state of the KanKan. This means you can test a KanKan over a number of frames quickly. `KanKanTestHelper` currently includes:
+    * Run Until:
+        * `Has / Will Receive Message`
+        * `Last / Next Frames Receive <T> Payload`
+    * Run For:
+        * `X Frames`
+    
+* Plays nice with [modern development good practices](https://en.wikipedia.org/wiki/SOLID). [DI](https://en.wikipedia.org/wiki/Dependency_injection) is passed into KarassFrame via a factory to help with dependency inversion.
 
-* Built through [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) and ready for TDD systems. 
+* Avoid [spaghetti](https://en.wikipedia.org/wiki/Spaghetti_code) and [lasagne](http://wiki.c2.com/?LasagnaCode) code (See Why?) and not be tied to [God Objects](https://en.wikipedia.org/wiki/God_object)
 
-* Plays nice with [modern development good practices](https://en.wikipedia.org/wiki/SOLID). [DI](https://en.wikipedia.org/wiki/Dependency_injection) is passed into Karass via a factory to help with dependency inversion.
 * A Karass:
 	* can be run over multiple frames
 	* can be combined with another Karass. eg:
