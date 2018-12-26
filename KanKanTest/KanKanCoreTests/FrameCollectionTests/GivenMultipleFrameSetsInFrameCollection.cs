@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
@@ -40,8 +40,8 @@ namespace KanKanTest.KanKanCoreTests.FrameCollectionTests
                         }
                     });
                 KanKan kanKan = new KanKan(karass,  new FrameFactory(new KarassDependencies()));
-                Assert.True(kanKan.NextFrames.Contains(setOneFrame));
-                Assert.True(kanKan.NextFrames.Contains(setTwoFrame));
+                Assert.True(kanKan.GetCurrentState().NextFrames.Contains(setOneFrame));
+                Assert.True(kanKan.GetCurrentState().NextFrames.Contains(setTwoFrame));
             }
         }
 
@@ -79,14 +79,14 @@ namespace KanKanTest.KanKanCoreTests.FrameCollectionTests
                         }
                     });
                 KanKan kanKan = new KanKan(karass, new FrameFactoryDummy());
-                Assert.True(kanKan.NextFrames.Contains(setOneFrameOne));
-                Assert.True(kanKan.NextFrames.Contains(setTwoFrameOne));
+                Assert.True(kanKan.GetCurrentState().NextFrames.Contains(setOneFrameOne));
+                Assert.True(kanKan.GetCurrentState().NextFrames.Contains(setTwoFrameOne));
 
-                Assert.False(kanKan.NextFrames.Contains(setOneFrameTwo));
-                Assert.False(kanKan.NextFrames.Contains(setTwoFrameTwo));
+                Assert.False(kanKan.GetCurrentState().NextFrames.Contains(setOneFrameTwo));
+                Assert.False(kanKan.GetCurrentState().NextFrames.Contains(setTwoFrameTwo));
 
-                Assert.False(kanKan.NextFrames.Contains(setOneFrameTwo));
-                Assert.False(kanKan.NextFrames.Contains(setTwoFrameTwo));
+                Assert.False(kanKan.GetCurrentState().NextFrames.Contains(setOneFrameTwo));
+                Assert.False(kanKan.GetCurrentState().NextFrames.Contains(setTwoFrameTwo));
             }
         }
     }

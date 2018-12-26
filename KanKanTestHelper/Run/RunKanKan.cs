@@ -1,8 +1,7 @@
-using System;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
-using KanKanCore.Karass.Interface;
 using KanKanTestHelper.Interface;
-using KanKanTestHelper.Run.CurrentState;
 
 namespace KanKanTestHelper.Run
 {
@@ -20,26 +19,17 @@ namespace KanKanTestHelper.Run
         public IKanKanCurrentState For(int frames)
         {
             KanKan.Reset();
-            int frame = 0;
             for (int i = 0; i < frames; i++)
             {
+               
                if (!KanKan.MoveNext())
                {
-                   if (UncombinedKarass())
-                   {
-                       frame++;
-                   }
                    break;
                }
-               frame++;
             }
 
-            return new KanKanCurrentState()
-            {
-                Frame = frame,
-                NextFrames = KanKan.NextFrames,
-                LastFrames = KanKan.LastFrames
-            };
+            KanKan test = ( KanKan) KanKan;
+            return KanKan.GetCurrentState();
         }
 
         private bool UncombinedKarass()

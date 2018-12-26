@@ -1,5 +1,5 @@
-using KanKanCore;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassMocks;
 using KanKanTest.KanKanTestHelperTests.Mocks;
@@ -15,7 +15,7 @@ namespace KanKanTest.KanKanTestHelperTests
         {
             IFrameFactory frameFactoryDummy = new FrameFactoryDummy();
             TestHelper kanKanTestHelper =
-                new TestHelper(new RunKanKanDummy(), new KanKan(new KarassDummy(), frameFactoryDummy));
+                new TestHelper(new RunKanKanDummy(), new KanKan(new KarassDummy(), frameFactoryDummy),frameFactoryDummy);
             Assert.AreSame(kanKanTestHelper.FrameFactory, frameFactoryDummy);
         }
     }

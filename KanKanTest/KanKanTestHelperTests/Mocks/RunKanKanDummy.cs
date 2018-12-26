@@ -1,4 +1,4 @@
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 using KanKanTestHelper.Interface;
 
 namespace KanKanTest.KanKanTestHelperTests.Mocks

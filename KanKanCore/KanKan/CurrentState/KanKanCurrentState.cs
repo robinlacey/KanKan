@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
 
-namespace KanKanTest.KanKanTestHelperTests.Mocks
+namespace KanKanCore.KanKan.CurrentState
 {
-    public class KanKanCurrentStateDummy:IKanKanCurrentState
+    public class KanKanCurrentState:IKanKanCurrentState
     {
-        public IFrameFactory FrameFactory { get; }
-        public IKarassMessage KarassMessage { get; }
+        public IFrameFactory FrameFactory { get;  set; }
+        public IKarassMessage KarassMessage { get; set; }
         public int Frame { get; set; }
         public List<FrameRequest> NextFrames { get; set; }
         public List<FrameRequest> LastFrames { get; set; }

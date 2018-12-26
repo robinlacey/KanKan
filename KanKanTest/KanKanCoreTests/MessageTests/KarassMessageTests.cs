@@ -1,4 +1,4 @@
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Message;
 using NUnit.Framework;
 

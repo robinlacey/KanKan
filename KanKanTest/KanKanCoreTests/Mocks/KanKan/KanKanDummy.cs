@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using KanKanCore.Karass;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
 {
@@ -25,6 +24,11 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
         public List<FrameRequest> LastFrames { get; }
 
         public void SendMessage(string message)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IKanKanCurrentState GetCurrentState()
         {
             throw new System.NotImplementedException();
         }

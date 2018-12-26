@@ -1,6 +1,6 @@
 using KanKanCore.Karass.Frame;
 
-namespace KanKanCore.Karass.Interface
+namespace KanKanCore.Interface
 {
     public interface IFrameFactory
     {

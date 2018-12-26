@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
 
-namespace KanKanCore.Karass.Interface
+namespace KanKanCore.Interface
 {
     public interface IKarass
     {

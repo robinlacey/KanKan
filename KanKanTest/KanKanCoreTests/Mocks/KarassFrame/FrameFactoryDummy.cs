@@ -1,5 +1,5 @@
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KarassFrame
 {

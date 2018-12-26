@@ -1,9 +1,9 @@
 using System;
 using KanKanCore.Exception;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;
 using NUnit.Framework;

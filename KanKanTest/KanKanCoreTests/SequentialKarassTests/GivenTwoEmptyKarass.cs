@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using NUnit.Framework;
 
 namespace KanKanTest.KanKanCoreTests.SequentialKarassTests

@@ -16,7 +16,22 @@
           <e p="FrameFactory.cs" t="Include" />
           <e p="KarassFactory.cs" t="Include" />
         </e>
-        <e p="KanKan.cs" t="Include" />
+        <e p="Interface" t="Include">
+          <e p="IDependencies.cs" t="Include" />
+          <e p="IFrameFactory.cs" t="Include" />
+          <e p="IKanKan.cs" t="Include" />
+          <e p="IKanKanCurrentState.cs" t="Include" />
+          <e p="IKarass.cs" t="Include" />
+          <e p="IKarassFactory.cs" t="Include" />
+          <e p="IKarassFrame.cs" t="Include" />
+          <e p="IKarassMessage.cs" t="Include" />
+        </e>
+        <e p="KanKan" t="Include">
+          <e p="CurrentState" t="Include">
+            <e p="KanKanCurrentState.cs" t="Include" />
+          </e>
+          <e p="KanKan.cs" t="Include" />
+        </e>
         <e p="KanKanCore.csproj" t="IncludeRecursive" />
         <e p="Karass" t="Include">
           <e p="Dependencies" t="Include">
@@ -28,15 +43,6 @@
             <e p="SimpleKarassFrame" t="Include">
               <e p="SimpleKarassFrame.cs" t="Include" />
             </e>
-          </e>
-          <e p="Interface" t="Include">
-            <e p="IDependencies.cs" t="Include" />
-            <e p="IFrameFactory.cs" t="Include" />
-            <e p="IKanKan.cs" t="Include" />
-            <e p="IKarass.cs" t="Include" />
-            <e p="IKarassFactory.cs" t="Include" />
-            <e p="IKarassFrame.cs" t="Include" />
-            <e p="IKarassMessage.cs" t="Include" />
           </e>
           <e p="Karass.cs" t="Include" />
           <e p="KarassState.cs" t="Include" />
@@ -182,7 +188,6 @@
           <e p="NoValidRequestType.cs" t="Include" />
         </e>
         <e p="Interface" t="Include">
-          <e p="IKanKanCurrentState.cs" t="Include" />
           <e p="IKanKanTestHelper.cs" t="Include" />
           <e p="IRunKanKan.cs" t="Include" />
           <e p="IRunUntil.cs" t="Include" />
@@ -197,9 +202,6 @@
           </e>
         </e>
         <e p="Run" t="Include">
-          <e p="CurrentState" t="Include">
-            <e p="KanKanCurrentState.cs" t="Include" />
-          </e>
           <e p="RunKanKan.cs" t="Include" />
           <e p="Until" t="Include">
             <e p="RunUntil.cs" t="Include" />

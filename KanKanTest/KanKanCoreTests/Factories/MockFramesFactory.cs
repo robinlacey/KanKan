@@ -1,9 +1,9 @@
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Frame.SimpleKarassFrame;
-using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.Dependencies;
 
 namespace KanKanTest.KanKanCoreTests.Factories

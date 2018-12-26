@@ -1,6 +1,6 @@
 using System;
 
-namespace KanKanCore.Karass.Interface
+namespace KanKanCore.Interface
 {
     public interface IDependencies
     {

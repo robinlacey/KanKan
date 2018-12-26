@@ -1,4 +1,4 @@
-﻿using KanKanCore.Karass.Interface;
+﻿using KanKanCore.Interface;
 using KanKanTestHelper.Interface;
 
 namespace KanKanTestHelper
@@ -7,9 +7,9 @@ namespace KanKanTestHelper
     {
         public IFrameFactory FrameFactory { get; }
         public IRunKanKan Run { get; }
-        public TestHelper(IRunKanKan runKanKan, IKanKan kankan)
+        public TestHelper(IRunKanKan runKanKan, IKanKan kankan, IFrameFactory frameFactory)
         {
-            FrameFactory = kankan.FrameFactory;
+            FrameFactory = frameFactory;
             Run = runKanKan;
         }
     }

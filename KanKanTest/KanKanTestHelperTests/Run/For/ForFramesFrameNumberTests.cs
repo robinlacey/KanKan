@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;
 using KanKanTest.KanKanTestHelperTests.Mocks;
 using KanKanTestHelper;
-using KanKanTestHelper.Interface;
 using KanKanTestHelper.Run;
 using NUnit.Framework;
 
@@ -16,9 +16,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 {
     public class ForFramesFrameNumberTests
     {
-        
-
-    
         [TestCase(5)]
         [TestCase(555)]
         public void ThenReturnKanKanStateWithEmptyNextAndLastFrames(int frame)
@@ -27,10 +24,10 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
             Karass karass = karassFactory.Get(new List<Action>(), new List<Action>(),
                 new List<FrameRequest[]>());
             KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
-            TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan);
+            TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
 
             IKanKanCurrentState currentState = kanKanTestHelper.Run.For(frame);
-
+            Console.WriteLine(currentState.Frame);
             Assert.True(currentState.Frame == 0);
         }
     
@@ -57,7 +54,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                     });
 
                 KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
-                TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan);
+                TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
                 
                 int returnFrameCount = kanKanTestHelper.Run.For(frameCount + 10).Frame;
                 Console.WriteLine(returnFrameCount);
@@ -77,6 +74,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                 return frames;
             }
+            
             [TestCase(1, 4, 15)]
             [TestCase(2, 12, 34)]
             public void ThenReturnKanKanStateWithOneNextAndNoLastFrames(
@@ -92,7 +90,9 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                 }
 
                 KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
-                TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan);
+                TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan, new FrameFactoryDummy());
+                int value = kanKanTestHelper.Run.For(frameCount + 10).Frame;
+                Console.WriteLine(value);
                 Assert.True( kanKanTestHelper.Run.For(frameCount + 10).Frame == frameCount);
             }
 

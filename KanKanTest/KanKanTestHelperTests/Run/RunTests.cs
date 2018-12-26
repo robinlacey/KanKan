@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan;
+using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanTestHelperTests.Mocks;
 using KanKanTestHelper;
 using KanKanTestHelper.Interface;
@@ -15,7 +14,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run
         [Test]
         public void KanKanTestHelperHasAnIRunKanKan()
         {
-            TestHelper kanKanTestHelper = new TestHelper(new RunKanKanDummy(), new KanKanDummy());
+            TestHelper kanKanTestHelper = new TestHelper(new RunKanKanDummy(), new KanKanDummy(),new FrameFactoryDummy());
             Assert.True((IRunKanKan) kanKanTestHelper.Run != null);
         }
 
@@ -23,7 +22,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run
         public void KanKanTestHelperAssignedIRunKanKan()
         {
             IRunKanKan runKanKanDummy = new RunKanKanDummy();
-            TestHelper kanKanTestHelper = new TestHelper(runKanKanDummy, new KanKanDummy());
+            TestHelper kanKanTestHelper = new TestHelper(runKanKanDummy, new KanKanDummy(),new FrameFactoryDummy());
             Assert.AreSame(kanKanTestHelper.Run, runKanKanDummy);
         }
         

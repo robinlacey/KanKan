@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KanKanCore;
 using KanKanCore.Factories;
-using KanKanCore.Karass;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
-using KanKanTest.KanKanCoreTests.Factories;
 using KanKanTest.KanKanCoreTests.Mocks.KarassMocks;
 using NUnit.Framework;
 
@@ -18,8 +16,8 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
         [Test]
         public void GivenNoFramesCurrentReturnsNotNull()
         {
-            IEnumerator ukankan = new KanKan(new KarassDummy(), new FrameFactory(new KarassDependencies()));
-            Assert.NotNull(ukankan.Current);
+            IEnumerator kankan = new KanKan(new KarassDummy(), new FrameFactory(new KarassDependencies()));
+            Assert.NotNull(kankan.Current);
         }
 
         [Test]
@@ -37,7 +35,6 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
             KarassFactory karassFactory = new KarassFactory();
             IDependencies dependencies = new KarassDependencies();
             FrameFactory frameFactory = new FrameFactory(dependencies);
-            MockFramesFactory mockFramesFactory = new MockFramesFactory(frameFactory);
           
             IKarass karass = karassFactory.Get(
                 new List<Action>(), 
@@ -47,7 +44,7 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
             });
            
             KanKan kanKan = new KanKan(karass,frameFactory);
-            KarassState karassState = kanKan.Current as KarassState;
+            IKanKanCurrentState karassState = kanKan.Current as IKanKanCurrentState;
             Assert.IsNotNull(karassState);
         }
     }

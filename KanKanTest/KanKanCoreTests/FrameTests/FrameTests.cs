@@ -1,6 +1,6 @@
 using KanKanCore.Factories;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.Dependencies;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;

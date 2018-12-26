@@ -1,15 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using KanKanCore.Karass.Frame;
 
-namespace KanKanCore.Karass.Interface
+namespace KanKanCore.Interface
 {
-    public interface IKanKan:IEnumerator
+    public interface IKanKanCurrentState
     {
         IFrameFactory FrameFactory { get; }
         IKarassMessage KarassMessage { get; }
-        List<FrameRequest> NextFrames { get; }
+
+        int Frame { get; set; }
+        List<FrameRequest> NextFrames { get;  }
         List<FrameRequest> LastFrames { get; }
-        void SendMessage(string message);
     }
 }

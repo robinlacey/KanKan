@@ -1,5 +1,4 @@
-using System;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 
 namespace KanKanCore.Karass.Frame
 {

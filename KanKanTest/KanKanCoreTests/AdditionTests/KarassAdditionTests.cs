@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Factories;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;

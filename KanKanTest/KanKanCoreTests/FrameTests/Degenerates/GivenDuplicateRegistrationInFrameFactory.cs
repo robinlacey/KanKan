@@ -1,5 +1,5 @@
 using KanKanCore.Factories;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 using KanKanTest.KanKanCoreTests.Mocks.Dependencies;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame.FrameStruct;
 using NUnit.Framework;

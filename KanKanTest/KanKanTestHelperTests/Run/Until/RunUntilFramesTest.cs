@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using KanKanCore;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanTest.KanKanCoreTests.Factories;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
@@ -18,9 +18,6 @@ using NUnit.Framework;
 
 namespace KanKanTest.KanKanTestHelperTests.Run.Until
 {
-    
-    
-        
     public class RunUntilFramesTest
     {
         [Test]
@@ -130,13 +127,11 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                     {
                         new FrameRequest(test)
                     });
-                var f = _frameFactory.Get<FrameStructDummy>();
-                Console.WriteLine(f);
+         
                 
                 _kankan = new KanKan(karass,_frameFactory);
                 _runUntil = new RunUntil(_kankan);
                 
-               
                 Assert.DoesNotThrow(()=>_runUntil.LastFrame(test));
                 Assert.DoesNotThrow(()=>_runUntil.NextFrame(test));
             }

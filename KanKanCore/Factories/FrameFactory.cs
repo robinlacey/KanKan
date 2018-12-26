@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using KanKanCore.Exception;
-using KanKanCore.Factories;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 
 namespace KanKanCore.Factories
 {

@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Struct;
 
 namespace KanKanCore.Karass

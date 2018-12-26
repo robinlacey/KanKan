@@ -1,41 +1,36 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Interface;
+using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass;
-using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
 using KanKanCore.Karass.Struct;
 
 // Kan-Kan - "A Kan-Kan is the instrument which brings one into his or her karass"
 // (Cat's Cradle - Kurt Vonnegut)
 
-namespace KanKanCore
+namespace KanKanCore.KanKan
 {
     public class KanKan : IKanKan
     {
-        public object Current => CurrentState;
-        public IKarassMessage KarassMessage { get; }
-
-        public List<FrameRequest> NextFrames => CurrentState.NextFrames;
-        public List<FrameRequest> LastFrames => CurrentState.LastFrames;
-
+        public object Current => GetCurrentState();
         private int _currentKarass;
-        private KarassState CurrentState => _allKarassStates[_currentKarass];
+        private int _currentFrame;
+        
         private readonly List<KarassState> _allKarassStates;
-
-        public IFrameFactory FrameFactory { get; } 
+        private readonly IKarassMessage _karassMessage;
+        private readonly IFrameFactory _frameFactory;
         public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
-            KarassMessage = message ?? new KarassMessage();
-            FrameFactory = frameFactory;
+            _karassMessage = message ?? new KarassMessage();
+            _frameFactory = frameFactory;
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
         }
 
         public KanKan(IKarass[] karass, IFrameFactory frameFactory)
         {
-            KarassMessage = new KarassMessage();
-            FrameFactory = frameFactory;
+            _karassMessage = new KarassMessage();
+            _frameFactory = frameFactory;
 
             _allKarassStates = karass.ToList().Select(_ => new KarassState(_)).ToList();
 
@@ -47,7 +42,19 @@ namespace KanKanCore
 
         public void SendMessage(string message)
         {
-            KarassMessage.SetMessage(message);
+            _karassMessage.SetMessage(message);
+        }
+
+        public IKanKanCurrentState GetCurrentState()
+        {
+            return new KanKanCurrentState()
+            {
+                NextFrames = _allKarassStates[_currentKarass].NextFrames,
+                LastFrames = _allKarassStates[_currentKarass].LastFrames,
+                FrameFactory = _frameFactory,
+                KarassMessage = _karassMessage,
+                Frame = _currentFrame
+            };
         }
 
 
@@ -60,50 +67,67 @@ namespace KanKanCore
 
         private bool HasNextFrame(KarassState karassState)
         {
-            Console.WriteLine("a");
+         //Console.WriteLine("a");
             if (KarassStateBehaviour.IsEmptyKarass(karassState.Karass))
             {
-                Console.WriteLine("b");
+                //Console.WriteLine("b");
                 return ProcessEmptyKarass(karassState);
             }
 
             SetNextAndLastFrames(karassState);
-
+            
             for (int index = 0; index < karassState.Karass.FramesCollection.Count; index++)
             {
-                Console.WriteLine("c"+index);
+//                Console.WriteLine("c"+index);
                 if (ShouldSkipFrame(karassState, index))
                 {
                   
                     if (LastFrameCollection(index, karassState))
                     {
-                        Console.WriteLine("d");
+//                        Console.WriteLine("d");
                         return false;
                     }
-                    Console.WriteLine("e");
+//                    Console.WriteLine("e");
                     continue;
                 }
 
+                bool progress = InvokeCurrentFrame(index,
+                    karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
+                    _karassMessage,
+                    karassState.Karass);
+                    _currentFrame = karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)]+1;
+                if (!progress)
+                {
+                    if (LastFrameCollection(index, karassState))
+                    {
+//                        Console.WriteLine("d");
+                        return false;
+                    }
+
+                    continue;
+                }
+
+                
                 KarassStateBehaviour.InvokeSetupActionsOnFirstFrame(
                     karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)], index, karassState.Karass);
 
                 if (HasNotFinishedFrameCollection(karassState, index))
                 {
-                    Console.WriteLine("f");
+//                    Console.WriteLine("f");
                     continue;
                 }
 
                 if (HasFinishedAllFrameCollections())
                 {     
-                    Console.WriteLine("g");
+//                    Console.WriteLine("g");
                     return false;
                 }
-                Console.WriteLine("h");
+//                Console.WriteLine("h");
                 _currentKarass++;
                 return true;
             }
 
-            KarassMessage.ClearMessage();
+            _karassMessage.ClearMessage();
 
             return true;
         }
@@ -128,11 +152,7 @@ namespace KanKanCore
         private bool ShouldSkipFrame(KarassState karassState, int index)
         {
             return KarassStateBehaviour.FrameSetAlreadyFinished(index, karassState.Complete) ||
-                   FrameRequestArrayIsEmpty(karassState, index) ||
-                   !InvokeCurrentFrame(index,
-                       karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)],
-                       KarassMessage,
-                       karassState.Karass);
+                   FrameRequestArrayIsEmpty(karassState, index);
         }
         
         private void SetNextAndLastFrames(KarassState karassState)
@@ -183,7 +203,7 @@ namespace KanKanCore
 
         private bool InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)
         {
-            return FrameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
+            return _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
         }
 
         public void Reset()

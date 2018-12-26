@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using KanKanCore.Factories;
+using KanKanCore.Interface;
+using KanKanCore.KanKan;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Message;
 using KanKanTest.KanKanCoreTests.Factories;
 using KanKanTest.KanKanCoreTests.Mocks.KarassMocks;
@@ -35,7 +36,7 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
         public void KanKanHasSendMessageMethod()
         {
             Karass karass = new KarassDummy();
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, new FrameFactory(new KarassDependencies()));
+            KanKan kanKan = new KanKan(karass, new FrameFactory(new KarassDependencies()));
             kanKan.SendMessage("Cat");
         }
 
@@ -56,7 +57,7 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
                 },
                 _dependencies, 
                _frameFactory);
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
+            KanKan kanKan = new KanKan(karass, _frameFactory);
 
             kanKan.SendMessage(messageOne);
             kanKan.MoveNext();
@@ -86,7 +87,7 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
                 _dependencies, 
                 _frameFactory);
             
-            KanKanCore.KanKan kanKan = new KanKanCore.KanKan(karass, _frameFactory);
+            KanKan kanKan = new KanKan(karass, _frameFactory);
 
             kanKan.SendMessage(message);
             kanKan.MoveNext();
@@ -142,9 +143,9 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
             Karass karassTwo = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassTwoFrameRequest});
             Karass karassThree = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassThreeFrameRequest});
 
-            KanKanCore.KanKan kanKanOne = new KanKanCore.KanKan(karassOne, _frameFactory, karassMessage);
-            KanKanCore.KanKan kanKanTwo = new KanKanCore.KanKan(karassTwo, _frameFactory, karassMessage);
-            KanKanCore.KanKan kanKanThree = new KanKanCore.KanKan(karassThree, _frameFactory, karassMessage);
+            KanKan kanKanOne = new KanKan(karassOne, _frameFactory, karassMessage);
+            KanKan kanKanTwo = new KanKan(karassTwo, _frameFactory, karassMessage);
+            KanKan kanKanThree = new KanKan(karassThree, _frameFactory, karassMessage);
 
             karassMessage.SetMessage(message);
 
