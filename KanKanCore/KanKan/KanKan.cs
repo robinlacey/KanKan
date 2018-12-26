@@ -92,12 +92,7 @@ namespace KanKanCore.KanKan
                     karassState.Karass);
                     _currentFrame = karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)]+1;
                 if (!progress)
-                {
-                    if (LastFrameCollection(index, karassState))
-                    {
-                        return false;
-                    }
-
+                {  
                     continue;
                 }
 

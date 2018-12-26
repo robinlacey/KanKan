@@ -18,15 +18,13 @@ namespace KanKanTestHelper.Run.Until
         public IKanKanCurrentState LastFrame<T>(T payload)
         {
             KanKan.Reset();
+  
             while (KanKan.MoveNext())
             {
-                if (ShouldReturnKanKanState<T>(KanKan.GetCurrentState().LastFrames, payload))
-                {
-                    return KanKan.GetCurrentState();
-                }
+                if (CheckLastFrames(payload, out IKanKanCurrentState lastFrameOne)) {return lastFrameOne;}
             }
 
-            if (CheckLastFramesBeforeKanKanCompletes(payload, out IKanKanCurrentState lastFrame)) {return lastFrame;}
+            if (CheckLastFrames(payload, out IKanKanCurrentState lastFrameTwo)) {return lastFrameTwo;}
 
             throw new NoValidRequestType();
         }
@@ -34,29 +32,25 @@ namespace KanKanTestHelper.Run.Until
         public IKanKanCurrentState NextFrame<T>(T payload)
         {
             KanKan.Reset();
-            
-            if (CheckFirstFramesBeforeKanKanStarts(payload, out IKanKanCurrentState nextFrame)) { return nextFrame;}
-
+           
+            if (CheckNextFrames(payload, out IKanKanCurrentState nextFrameState)) { return nextFrameState;}
             while (KanKan.MoveNext())
             {
-                if (ShouldReturnKanKanState<T>(KanKan.GetCurrentState().NextFrames, payload))
-                {
-                    return KanKan.GetCurrentState();
-                }
+                if (CheckNextFrames(payload, out nextFrameState)) { return nextFrameState;}
             }
             throw new NoValidRequestType();
         }
 
-        private bool CheckFirstFramesBeforeKanKanStarts<T>(T payload, out IKanKanCurrentState nextFrame)
+        private bool CheckNextFrames<T>(T payload, out IKanKanCurrentState nextFrame)
         {
             nextFrame = KanKan.GetCurrentState();
-            return ShouldReturnKanKanState(KanKan.GetCurrentState().NextFrames, payload);
+            return ShouldReturnKanKanState(nextFrame.NextFrames, payload);
         }
 
-        private bool CheckLastFramesBeforeKanKanCompletes<T>(T payload, out IKanKanCurrentState lastFrame)
+        private bool CheckLastFrames<T>(T payload, out IKanKanCurrentState lastFrame)
         {
             lastFrame = KanKan.GetCurrentState();
-            return ShouldReturnKanKanState(KanKan.GetCurrentState().LastFrames, payload);
+            return ShouldReturnKanKanState(lastFrame.LastFrames, payload);
         }
 
         public static bool ShouldReturnKanKanState<T>(List<FrameRequest> frameRequests, T payload)
