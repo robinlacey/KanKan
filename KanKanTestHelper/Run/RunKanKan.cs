@@ -31,11 +31,5 @@ namespace KanKanTestHelper.Run
             KanKan test = ( KanKan) KanKan;
             return KanKan.GetCurrentState();
         }
-
-        private bool UncombinedKarass()
-        {
-            KarassState karassState = (KarassState) KanKan.Current;
-            return karassState.Karass.FramesCollection.Count == 1;
-        }
     }
 }

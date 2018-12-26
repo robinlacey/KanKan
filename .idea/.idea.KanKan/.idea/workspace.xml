@@ -2,72 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5218d0f-b7b9-4263-a497-611193b1eb54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KanKan/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Factories/FrameFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Factories/FrameFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Factories/KarassFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Factories/KarassFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/KanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/KanKan/KanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Dependencies/KarassDependencies.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Dependencies/KarassDependencies.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Frame/KarassFrame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Frame/KarassFrame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Frame/SimpleKarassFrame/SimpleKarassFrame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IDependencies.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IDependencies.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IFrameFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IFrameFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKarass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarassFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKarassFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarassFrame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKarassFrame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKarassMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKarassMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Karass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Karass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/KarassState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/KarassState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/KarassStateBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/KarassStateBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanCore/Karass/Message/KarassMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Karass/Message/KarassMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/AdditionTests/KarassAdditionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/AdditionTests/KarassAdditionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Factories/MockFramesFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Factories/MockFramesFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenMultipleFrameSetsInFrameCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenMultipleFrameSetsInFrameCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenOneFrameSetInFrameCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenOneFrameSetInFrameCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/Degenerates/GivenDuplicateRegistrationInFrameFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/Degenerates/GivenDuplicateRegistrationInFrameFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/Degenerates/GivenUnregisteredDependenciesInFrameFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/Degenerates/GivenUnregisteredDependenciesInFrameFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/FrameTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameTests/FrameTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanCurrentTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanCurrentTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanResetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanResetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanReturnTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/IEnumeratorTests/KanKanReturnTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/KanKanTests/KanKanTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/KanKanTests/KanKanTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/KarassFactoryTests/KarassFactoryGivenAnNestedArrayOfFrames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/KarassFactoryTests/KarassFactoryGivenAnNestedArrayOfFrames.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/MessageTests/KanKanMessageTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/MessageTests/KanKanMessageTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/MessageTests/KarassMessageTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/MessageTests/KarassMessageTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Dependencies/DependenciesDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Dependencies/DependenciesDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Dependencies/KarassDependenciesSpy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Dependencies/KarassDependenciesSpy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KanKan/KanKanDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KanKan/KanKanDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/FrameFactoryDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/FrameFactoryDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/KarassFrameDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/KarassFrameDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/KarassFrameSpy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassFrame/KarassFrameSpy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassMocks/KarassFramesStub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassMocks/KarassFramesStub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassMocks/KarassMessageDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KarassMocks/KarassMessageDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Messages/KarassMessageSpy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/Messages/KarassMessageSpy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/ProgressionTests/GivenASingleFrameSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/ProgressionTests/GivenASingleFrameSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/ProgressionTests/GivenMultipleFrameSetsWhenNextFramesIsUpdated.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/ProgressionTests/GivenMultipleFrameSetsWhenNextFramesIsUpdated.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenMultipleFullKarass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenMultipleFullKarass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenTwoEmptyKarass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenTwoEmptyKarass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenTwoFullKarassWithMatchingFrameCounts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SequentialKarassTests/GivenTwoFullKarassWithMatchingFrameCounts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/KanKanSetupTeardownTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/KanKanSetupTeardownTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/KanKanTeardownTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/KanKanTeardownTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/Setup/KanKanSetupTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/SetupTeardownTests/Setup/KanKanSetupTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/FrameFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/FrameFactoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/KanKanCurrentStateDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/KanKanCurrentStateDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/RunKanKanDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/RunKanKanDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/RunUntilDummy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/RunUntilDummy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/For/ForFramesFrameNumberTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/For/ForFramesFrameNumberTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/For/RunForFramesTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/For/RunForFramesTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/RunTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/RunTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/Until/RunUntilFramesTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Run/Until/RunUntilFramesTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Interface/IKanKanCurrentState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/Interface/IKanKanCurrentState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Interface/IKanKanTestHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/Interface/IKanKanTestHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Interface/IRunKanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/Interface/IRunKanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Interface/IRunUntil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/Interface/IRunUntil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/KanKanTestHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/KanKanTestHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Run/CurrentState/KanKanCurrentState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanCore/KanKan/CurrentState/KanKanCurrentState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanKanTestHelper/Run/Until/RunUntil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KanKanTestHelper/Run/Until/RunUntil.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,7 +149,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/KanKanCurrentStateDummy.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -223,6 +158,24 @@
                 <marker date="1545831229546" expanded="false" signature="6:92" ph="..." />
                 <marker date="1545831229546" expanded="true" signature="142:480" ph="{...}" />
                 <marker date="1545831229546" expanded="true" signature="205:478" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+              <folding>
+                <marker date="1545831541872" expanded="false" signature="6:111" ph="..." />
+                <marker date="1545831541872" expanded="true" signature="143:789" ph="{...}" />
+                <marker date="1545831541872" expanded="true" signature="183:787" ph="{...}" />
+                <marker date="1545831541872" expanded="true" signature="327:403" ph="{...}" />
+                <marker date="1545831541872" expanded="true" signature="455:781" ph="{...}" />
+                <marker date="1545831541872" expanded="true" signature="538:681" ph="{...}" />
+                <marker date="1545831541872" expanded="true" signature="607:667" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -237,20 +190,6 @@
                 <marker date="1545831193631" expanded="false" signature="6:64" ph="..." />
                 <marker date="1545831193631" expanded="true" signature="96:371" ph="{...}" />
                 <marker date="1545831193631" expanded="true" signature="139:369" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/FrameFactoryTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1545831089768" expanded="true" signature="6:249" ph="..." />
-                <marker date="1545831089768" expanded="true" signature="293:752" ph="{...}" />
-                <marker date="1545831089768" expanded="true" signature="330:750" ph="{...}" />
-                <marker date="1545831089768" expanded="true" signature="411:744" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -473,7 +412,6 @@
         <option value="$PROJECT_DIR$/KanKanCore/Karass/Interface/IKanKan.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/Interface/IDependencies.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/Mocks/KanKan/KanKanDummy.cs" />
-        <option value="$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenMultipleFrameSetsInFrameCollection.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/FrameCollectionTests/GivenOneFrameSetInFrameCollection.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKanCoreTests/ProgressionTests/GivenASingleFrameSet.cs" />
@@ -492,6 +430,7 @@
         <option value="$PROJECT_DIR$/KanKanCore/Interface/IKanKanCurrentState.cs" />
         <option value="$PROJECT_DIR$/KanKanCore/KanKan/CurrentState/KanKanCurrentState.cs" />
         <option value="$PROJECT_DIR$/KanKanTest/KanKanTestHelperTests/Mocks/KanKanCurrentStateDummy.cs" />
+        <option value="$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs" />
       </list>
     </option>
   </component>
@@ -639,12 +578,12 @@
       <workItem from="1545516921809" duration="9363000" />
       <workItem from="1545672446275" duration="19058000" />
       <workItem from="1545762484433" duration="12368000" />
-      <workItem from="1545831039230" duration="201000" />
+      <workItem from="1545831039230" duration="379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190377000" />
+    <option name="totallyTimeSpent" value="190555000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,8 +596,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -674,7 +614,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Unit Tests" order="11" sideWeight="0.49284694" visible="true" weight="0.31084338" />
+      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" sideWeight="0.49284694" visible="true" weight="0.31084338" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32913166" />
@@ -985,21 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="33" column="55" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-247">
-          <folding>
-            <marker date="1545829768826" expanded="true" signature="6:111" ph="..." />
-            <marker date="1545829768826" expanded="true" signature="183:983" ph="{...}" />
-            <marker date="1545829768826" expanded="true" signature="327:403" ph="{...}" />
-            <marker date="1545829768826" expanded="true" signature="455:781" ph="{...}" />
-            <marker date="1545829768826" expanded="true" signature="538:681" ph="{...}" />
-            <marker date="1545829768826" expanded="true" signature="607:667" ph="{...}" />
-            <marker date="1545829768826" expanded="true" signature="822:977" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1433,6 +1358,22 @@
             <marker date="1545831229546" expanded="false" signature="6:92" ph="..." />
             <marker date="1545831229546" expanded="true" signature="142:480" ph="{...}" />
             <marker date="1545831229546" expanded="true" signature="205:478" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KanKanTestHelper/Run/RunKanKan.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <marker date="1545831541872" expanded="false" signature="6:111" ph="..." />
+            <marker date="1545831541872" expanded="true" signature="143:789" ph="{...}" />
+            <marker date="1545831541872" expanded="true" signature="183:787" ph="{...}" />
+            <marker date="1545831541872" expanded="true" signature="327:403" ph="{...}" />
+            <marker date="1545831541872" expanded="true" signature="455:781" ph="{...}" />
+            <marker date="1545831541872" expanded="true" signature="538:681" ph="{...}" />
+            <marker date="1545831541872" expanded="true" signature="607:667" ph="{...}" />
           </folding>
         </state>
       </provider>
