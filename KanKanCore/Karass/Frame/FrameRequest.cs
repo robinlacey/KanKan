@@ -4,8 +4,8 @@ namespace KanKanCore.Karass.Frame
 {
     public class FrameRequest
     {
-        public object RequestObject;
-        public Type RequestType;
+        public readonly object RequestObject;
+        public readonly Type RequestType;
 
         public FrameRequest(object frameObject)
         {

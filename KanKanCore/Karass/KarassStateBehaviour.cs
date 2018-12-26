@@ -44,10 +44,7 @@ namespace KanKanCore.Karass
         {
             karassState.Karass.Teardown(index);
             karassState.Complete[index] = true;
-            // False will stop the Karass
             lastFrameCount++;
-            // Abort if all frames have been false
-
             allFramesTornDown = lastFrameCount == karassState.Karass.FramesCollection.Count;
         }
 
@@ -81,11 +78,11 @@ namespace KanKanCore.Karass
             }
         }
 
-        static bool IsLastFrame(int currentFrame, FrameRequest[] allFrames, IKarass karass)
+        private static bool IsLastFrame(int currentFrame, IReadOnlyCollection<FrameRequest> allFrames, IKarass karass)
         {
             if (karass.FramesCollection.Count > 0)
             {
-                return currentFrame > allFrames.Length - 1;
+                return currentFrame > allFrames.Count - 1;
             }
 
             return true;

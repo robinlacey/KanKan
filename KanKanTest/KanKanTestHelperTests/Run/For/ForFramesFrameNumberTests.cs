@@ -27,7 +27,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
             TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
 
             IKanKanCurrentState currentState = kanKanTestHelper.Run.For(frame);
-            Console.WriteLine(currentState.Frame);
             Assert.True(currentState.Frame == 0);
         }
     
@@ -57,7 +56,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                 TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan,new FrameFactoryDummy());
                 
                 int returnFrameCount = kanKanTestHelper.Run.For(frameCount + 10).Frame;
-                Console.WriteLine(returnFrameCount);
                 Assert.True(returnFrameCount == frameCount);
             }
         }
@@ -91,8 +89,6 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                 KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                 TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(kankan, new RunUntilDummy()), kankan, new FrameFactoryDummy());
-                int value = kanKanTestHelper.Run.For(frameCount + 10).Frame;
-                Console.WriteLine(value);
                 Assert.True( kanKanTestHelper.Run.For(frameCount + 10).Frame == frameCount);
             }
 

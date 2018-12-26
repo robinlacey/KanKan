@@ -10,8 +10,8 @@ namespace KanKanCore.Karass
     public class KarassState
     {
         public string ID { get; }
-        public List<FrameRequest> NextFrames { get; set; } = new List<FrameRequest>();
-        public List<FrameRequest> LastFrames { get; set; } = new List<FrameRequest>();
+        public List<FrameRequest> NextFrames { get; private set; } = new List<FrameRequest>();
+        public List<FrameRequest> LastFrames { get; private set; } = new List<FrameRequest>();
 
         public Dictionary<UniqueKarassFrameRequestID, int>
             CurrentFrames = new Dictionary<UniqueKarassFrameRequestID, int>();
@@ -42,7 +42,7 @@ namespace KanKanCore.Karass
 
             for(int i=0;i<Karass.FramesCollection.Count;i++)
             {
-                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i,Karass.FramesCollection[i]), 0);
+                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i), 0);
                 Complete.Add(false);
             }
         }
@@ -51,7 +51,7 @@ namespace KanKanCore.Karass
         {
             for(int i=0;i<Karass.FramesCollection.Count;i++)
             {
-                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i,  Karass.FramesCollection[i]), 0);
+                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i), 0);
                 Complete.Add(false);
             }
         }

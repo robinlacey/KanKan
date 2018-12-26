@@ -1,6 +1,4 @@
 using KanKanCore.Interface;
-using KanKanCore.KanKan;
-using KanKanCore.Karass;
 using KanKanTestHelper.Interface;
 
 namespace KanKanTestHelper.Run
@@ -21,14 +19,12 @@ namespace KanKanTestHelper.Run
             KanKan.Reset();
             for (int i = 0; i < frames; i++)
             {
-               
                if (!KanKan.MoveNext())
                {
                    break;
                }
             }
-
-            KanKan test = ( KanKan) KanKan;
+            
             return KanKan.GetCurrentState();
         }
     }

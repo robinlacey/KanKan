@@ -1,11 +1,11 @@
-using KanKanCore.Karass.Frame;
-
 namespace KanKanCore.Karass.Struct
 {
     public struct UniqueKarassFrameRequestID
     {
-        public readonly string ID;
-        public UniqueKarassFrameRequestID(string id, int index, FrameRequest[] frameRequests)
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private string ID { get; }
+
+        public UniqueKarassFrameRequestID(string id, int index)
         {
             ID = id + index;
         }
