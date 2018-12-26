@@ -1,13 +1,13 @@
-using KanKanCore.Karass.Frame;
-
 namespace KanKanCore.Karass.Struct
 {
     public struct UniqueKarassFrameRequestID
     {
-        public readonly string ID;
-        public UniqueKarassFrameRequestID(string id, int index, FrameRequest[] frameRequests)
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private readonly string _id;
+
+        public UniqueKarassFrameRequestID(string id, int index)
         {
-            ID = id + index;
+            _id = id + index;
         }
     }
 }

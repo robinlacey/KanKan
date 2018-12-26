@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KanKanCore.Exception;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 
 namespace KanKanCore.Karass.Dependencies
 {

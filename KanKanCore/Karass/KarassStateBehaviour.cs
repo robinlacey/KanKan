@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Struct;
 
 namespace KanKanCore.Karass
@@ -28,7 +28,7 @@ namespace KanKanCore.Karass
             }
         }
 
-        public static bool EmptyKarass(IKarass karass)
+        public static bool IsEmptyKarass(IKarass karass)
         {
             return karass.FramesCollection.Count == 0;
         }
@@ -44,10 +44,7 @@ namespace KanKanCore.Karass
         {
             karassState.Karass.Teardown(index);
             karassState.Complete[index] = true;
-            // False will stop the Karass
             lastFrameCount++;
-            // Abort if all frames have been false
-
             allFramesTornDown = lastFrameCount == karassState.Karass.FramesCollection.Count;
         }
 
@@ -71,6 +68,8 @@ namespace KanKanCore.Karass
             }
         }
 
+     
+
         public static void InvokeSetupActionsOnFirstFrame(int currentFrame, int index, IKarass karass)
         {
             if (currentFrame == 0)
@@ -79,14 +78,21 @@ namespace KanKanCore.Karass
             }
         }
 
-        static bool IsLastFrame(int currentFrame, FrameRequest[] allFrames, IKarass karass)
+        private static bool IsLastFrame(int currentFrame, IReadOnlyCollection<FrameRequest> allFrames, IKarass karass)
         {
             if (karass.FramesCollection.Count > 0)
             {
-                return currentFrame > allFrames.Length - 1;
+                return currentFrame > allFrames.Count - 1;
             }
 
             return true;
+        }
+        
+        
+        public static void MoveNextFramesToLastFrames(KarassState karassState)
+        {
+            karassState.LastFrames.Clear();
+            karassState.NextFrames.ForEach(f => karassState.LastFrames.Add(f));
         }
     }
 }

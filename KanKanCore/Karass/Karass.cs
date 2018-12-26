@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 
 // Karass: "We Bokononists believe that humanity is organized into teams, teams that do God's Will without ever discovering what they are doing. Such a team is called a karass by Bokonon"
 // (Cat's Cradle - Kurt Vonnegut)
@@ -18,6 +18,7 @@ namespace KanKanCore.Karass
         public Karass(List<List<Action>> setup, List<List<Action>> teardown,
             List<FrameRequest[]> framesCollection)
         {
+            
             ID = Guid.NewGuid().ToString();
             FramesCollection = framesCollection;
             SetupActions = setup;

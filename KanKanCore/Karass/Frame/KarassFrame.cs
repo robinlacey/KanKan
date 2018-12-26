@@ -1,5 +1,4 @@
-using System;
-using KanKanCore.Karass.Interface;
+using KanKanCore.Interface;
 
 namespace KanKanCore.Karass.Frame
 {
@@ -10,8 +9,8 @@ namespace KanKanCore.Karass.Frame
         public string Message { get; protected set; }
   
         public abstract bool Execute(string message, T payload);
-        
-        public KarassFrame(IDependencies dependencies)
+
+        protected KarassFrame(IDependencies dependencies)
         {
             Dependencies = dependencies;
         }

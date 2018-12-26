@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Interface;
 using KanKanCore.Karass.Struct;
 
 namespace KanKanCore.Karass
@@ -10,14 +10,15 @@ namespace KanKanCore.Karass
     public class KarassState
     {
         public string ID { get; }
-        public List<FrameRequest> NextFrames { get; set; } = new List<FrameRequest>();
+        public List<FrameRequest> NextFrames { get; private set; } = new List<FrameRequest>();
+        public List<FrameRequest> LastFrames { get; private set; } = new List<FrameRequest>();
 
         public Dictionary<UniqueKarassFrameRequestID, int>
             CurrentFrames = new Dictionary<UniqueKarassFrameRequestID, int>();
 
         public readonly List<bool> Complete = new List<bool>();
         public IKarass Karass { get; }
-
+        
         public KarassState(IKarass karass)
         {
             Karass = karass;
@@ -33,6 +34,7 @@ namespace KanKanCore.Karass
         public void Reset()
         {
             NextFrames = new List<FrameRequest>();
+            LastFrames = new List<FrameRequest>();
             CurrentFrames =  new Dictionary<UniqueKarassFrameRequestID, int>();
             Complete.Clear();
 
@@ -40,7 +42,7 @@ namespace KanKanCore.Karass
 
             for(int i=0;i<Karass.FramesCollection.Count;i++)
             {
-                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i,Karass.FramesCollection[i]), 0);
+                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i), 0);
                 Complete.Add(false);
             }
         }
@@ -49,7 +51,7 @@ namespace KanKanCore.Karass
         {
             for(int i=0;i<Karass.FramesCollection.Count;i++)
             {
-                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i,  Karass.FramesCollection[i]), 0);
+                CurrentFrames.Add(new UniqueKarassFrameRequestID(Karass.ID,i), 0);
                 Complete.Add(false);
             }
         }
