@@ -14,6 +14,6 @@ namespace KanKanCore.Karass.Message
           Message = string.Empty;
         }
 
-        public string Message { get; private set; }
+        public string Message { get; private set; } = string.Empty;
     }
 }

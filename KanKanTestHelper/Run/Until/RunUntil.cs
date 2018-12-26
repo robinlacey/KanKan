@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using KanKanCore.Exception;
 using KanKanCore.Interface;
+using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass.Frame;
 using KanKanTestHelper.Exception;
 using KanKanTestHelper.Interface;
@@ -39,6 +42,42 @@ namespace KanKanTestHelper.Run.Until
                 if (CheckNextFrames(payload, out nextFrameState)) { return nextFrameState;}
             }
             throw new NoValidRequestType();
+        }
+
+        public IKanKanCurrentState HasReceived(string message)
+        {
+            
+            while (KanKan.MoveNext())
+            {
+                if (KanKan.GetCurrentState().LastMessage == message)
+                {
+                    return KanKan.GetCurrentState();
+                }
+                
+            }
+            
+            if (KanKan.GetCurrentState().LastMessage == message)
+            {
+                return KanKan.GetCurrentState();
+            }
+            throw new MessageNotReceivedException();
+        }
+
+        public IKanKanCurrentState WillReceive(string message)
+        {
+            if (KanKan.GetCurrentState().NextMessage == message)
+            {
+                return KanKan.GetCurrentState();
+            }
+            while (KanKan.MoveNext())
+            {
+                if (KanKan.GetCurrentState().NextMessage == message)
+                {
+                   return KanKan.GetCurrentState();
+                }
+                
+            }
+           throw new MessageNotReceivedException();
         }
 
         private bool CheckNextFrames<T>(T payload, out IKanKanCurrentState nextFrame)

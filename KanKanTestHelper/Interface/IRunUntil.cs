@@ -7,5 +7,7 @@ namespace KanKanTestHelper.Interface
         IKanKan KanKan { get; }
         IKanKanCurrentState LastFrame<T>(T requestEquals);
         IKanKanCurrentState NextFrame<T>(T requestEquals);
+        IKanKanCurrentState HasReceived(string message);
+        IKanKanCurrentState WillReceive(string message);
     }
 }

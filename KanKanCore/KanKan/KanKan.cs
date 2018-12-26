@@ -18,13 +18,16 @@ namespace KanKanCore.KanKan
         private int _currentFrame;
         
         private readonly List<KarassState> _allKarassStates;
-        private readonly IKarassMessage _karassMessage;
+        protected readonly IKarassMessage _karassMessage;
         private readonly IFrameFactory _frameFactory;
+        private string _nextMessage;
+        private string _lastMessage;
         public KanKan(IKarass karass, IFrameFactory frameFactory, IKarassMessage message = null)
         {
             _karassMessage = message ?? new KarassMessage();
             _frameFactory = frameFactory;
             _allKarassStates = new List<KarassState> {new KarassState(karass)};
+            _nextMessage = _karassMessage.Message;
         }
 
         public KanKan(IReadOnlyList<IKarass> karass, IFrameFactory frameFactory)
@@ -53,20 +56,34 @@ namespace KanKanCore.KanKan
                 LastFrames = _allKarassStates[_currentKarass].LastFrames,
                 FrameFactory = _frameFactory,
                 KarassMessage = _karassMessage,
+                NextMessage = _nextMessage,
+                LastMessage = _lastMessage,
                 Frame = _currentFrame
             };
         }
 
 
-        public bool MoveNext()
+        public virtual bool MoveNext()
         {
-            KarassState karassState = _allKarassStates[_currentKarass];
-            return HasNextFrame(karassState);
+            SetMessages();
+            return HasNextFrame(_allKarassStates[_currentKarass]);;
+        }
+
+        private void SetMessages()
+        {
+            if (_karassMessage.Message == _nextMessage)
+            {
+                _karassMessage.ClearMessage();
+            }
+
+            _lastMessage = _nextMessage;
+            _nextMessage = _karassMessage.Message;
         }
 
 
         private bool HasNextFrame(KarassState karassState)
         {
+            
             if (KarassStateBehaviour.IsEmptyKarass(karassState.Karass))
             {
                 return ProcessEmptyKarass(karassState);
@@ -113,8 +130,7 @@ namespace KanKanCore.KanKan
                 return true;
             }
 
-            _karassMessage.ClearMessage();
-
+            
             return true;
         }
         

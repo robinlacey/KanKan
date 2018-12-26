@@ -9,6 +9,7 @@
       <e p="KanKanCore" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Exception" t="Include">
+          <e p="MessageNotReceivedException.cs" t="Include" />
           <e p="MissingDependencyException.cs" t="Include" />
           <e p="MissingRouteException.cs" t="Include" />
         </e>
@@ -114,6 +115,9 @@
               <e p="KarassDependenciesSpy.cs" t="Include" />
             </e>
             <e p="KanKan" t="Include">
+              <e p="Fake" t="Include">
+                <e p="KanKanSetMessageFake.cs" t="Include" />
+              </e>
               <e p="KanKanDummy.cs" t="Include" />
             </e>
             <e p="KarassFrame" t="Include">
@@ -169,7 +173,12 @@
             </e>
             <e p="RunTests.cs" t="Include" />
             <e p="Until" t="Include">
-              <e p="RunUntilFramesTest.cs" t="Include" />
+              <e p="MessageReceived" t="Include">
+                <e p="RunUntilMessageRecievedTests.cs" t="Include" />
+              </e>
+              <e p="NextLastFramesContains" t="Include">
+                <e p="RunUntilNextAndLastTests.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>

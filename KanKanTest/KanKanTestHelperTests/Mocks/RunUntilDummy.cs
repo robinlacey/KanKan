@@ -15,5 +15,15 @@ namespace KanKanTest.KanKanTestHelperTests.Mocks
         {
             throw new System.NotImplementedException();
         }
+
+        public IKanKanCurrentState HasReceived(string message)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IKanKanCurrentState WillReceive(string message)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

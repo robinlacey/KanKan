@@ -11,5 +11,7 @@ namespace KanKanTest.KanKanTestHelperTests.Mocks
         public int Frame { get; set; }
         public List<FrameRequest> NextFrames { get; set; }
         public List<FrameRequest> LastFrames { get; set; }
+        public string NextMessage { get; }
+        public string LastMessage { get; }
     }
 }

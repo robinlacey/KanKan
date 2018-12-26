@@ -16,25 +16,25 @@ using KanKanTestHelper.Run;
 using KanKanTestHelper.Run.Until;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanTestHelperTests.Run.Until
+namespace KanKanTest.KanKanTestHelperTests.Run.Until.NextLastFramesContains
 {
-    public class RunUntilFramesTest
+    public class RunUntilNextAndLastTests
     {
         [Test]
         public void RunContainsIRunUntil()
         {
             IRunKanKan runKanKan = new RunKanKan(new KanKanDummy(), new RunUntilDummy());
             IRunUntil until = (IRunUntil) runKanKan.Until;
-           Assert.IsNotNull(until);
+            Assert.IsNotNull(until);
         }
-        
+
         [Test]
         public void RunSetsIRunUntilWithConstructor()
         {
             IRunUntil runUntil = new RunUntilDummy();
-            RunKanKan runKanKan = new RunKanKan(new KanKanDummy(),runUntil);
+            RunKanKan runKanKan = new RunKanKan(new KanKanDummy(), runUntil);
             Assert.IsNotNull(runKanKan.Until);
-            Assert.AreSame(runUntil,runKanKan.Until);
+            Assert.AreSame(runUntil, runKanKan.Until);
         }
 
         [Test]
@@ -42,10 +42,10 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
         {
             KanKanDummy kankanDummy = new KanKanDummy();
             IRunUntil runUntil = new RunUntil(kankanDummy);
-            Assert.AreSame(runUntil.KanKan,kankanDummy);
+            Assert.AreSame(runUntil.KanKan, kankanDummy);
         }
 
-        
+
         public class GivenNoFrames
         {
             private readonly IDependencies _dependencies = new KarassDependencies();
@@ -53,6 +53,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             private IFrameFactory _frameFactory;
             private IRunUntil _runUntil;
             private IKanKan _kankan;
+
             [SetUp]
             public void Setup()
             {
@@ -64,12 +65,12 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             public void ThenThrowNoValidRequestTypeException()
             {
                 IKarass karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
-                    new FrameRequest[] {});
-                _kankan = new KanKan(karass,_frameFactory);
+                    new FrameRequest[] { });
+                _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
                 FrameRequest fr = new MockFramesFactory(_frameFactory).GetInvalidFrameRequest();
-                Assert.Throws<NoValidRequestType>(()=>_runUntil.LastFrame(fr));
-                Assert.Throws<NoValidRequestType>(()=>_runUntil.NextFrame(fr));
+                Assert.Throws<NoValidRequestType>(() => _runUntil.LastFrame(fr));
+                Assert.Throws<NoValidRequestType>(() => _runUntil.NextFrame(fr));
             }
         }
 
@@ -78,24 +79,28 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             [Test]
             public void GivenEmptyFrameRequestList()
             {
-                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(),"Scout" ));
+                Assert.False(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(), "Scout"));
             }
-            
+
             [Test]
             public void GivenNoMatchingInRequestList()
             {
-                Assert.False( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){new FrameRequest(42), new FrameRequest(Guid.NewGuid())},"hello" ));
+                Assert.False(RunUntil.ShouldReturnKanKanState(
+                    new List<FrameRequest>() {new FrameRequest(42), new FrameRequest(Guid.NewGuid())}, "hello"));
             }
-            [Test]     
+
+            [Test]
             public void GivenMatchingFrameRequest_ExampleOne()
             {
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest("Scout The Dog")},"Scout The Dog"));
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(42)},42));
+                Assert.True(RunUntil.ShouldReturnKanKanState(
+                    new List<FrameRequest>() {new FrameRequest("Scout The Dog")}, "Scout The Dog"));
+                Assert.True(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>() {new FrameRequest(42)}, 42));
                 Guid testGuid = Guid.NewGuid();
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>(){ new FrameRequest(testGuid)},testGuid));
+                Assert.True(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>() {new FrameRequest(testGuid)},
+                    testGuid));
             }
-            
-            [Test]     
+
+            [Test]
             public void GivenMatchingFrameRequest_ExampleTwo()
             {
                 FrameStructDummy testOne = new FrameStructDummy()
@@ -110,27 +115,27 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 {
                     Test = "A"
                 };
-                
+
                 FrameStructDummy testFour = new FrameStructDummy()
                 {
                     Test = "Dog"
                 };
-                
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
-                {
-                    new FrameRequest(testOne),
-                    new FrameRequest(testTwo),
-                    new FrameRequest(testThree),
-                    new FrameRequest(testFour)
-                },testFour));
 
-                Assert.True( RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
+                Assert.True(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
                 {
                     new FrameRequest(testOne),
                     new FrameRequest(testTwo),
                     new FrameRequest(testThree),
                     new FrameRequest(testFour)
-                },testThree));
+                }, testFour));
+
+                Assert.True(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
+                {
+                    new FrameRequest(testOne),
+                    new FrameRequest(testTwo),
+                    new FrameRequest(testThree),
+                    new FrameRequest(testFour)
+                }, testThree));
 
                 Assert.True(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
                 {
@@ -148,7 +153,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                     new FrameRequest(testFour)
                 }, testOne));
 
-                
+
                 Assert.False(RunUntil.ShouldReturnKanKanState(new List<FrameRequest>()
                 {
                     new FrameRequest(testOne),
@@ -160,10 +165,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                     Test = "Scout is a Cat"
                 }));
             }
-            
-            
         }
-        
+
         public class GivenMatchingTypesInAnyFrames
         {
             private readonly IDependencies _dependencies = new KarassDependencies();
@@ -171,17 +174,16 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
             private IFrameFactory _frameFactory;
             private IRunUntil _runUntil;
             private IKanKan _kankan;
-            
+
             [SetUp]
             public void Setup()
             {
                 _frameFactory = new FrameFactory(_dependencies);
                 IKarassFrame<FrameStructDummy> frameDummy = new KarassFrameDummy<FrameStructDummy>(_dependencies);
-                _dependencies.Register<IKarassFrame<FrameStructDummy>>(()=>frameDummy);
-                _frameFactory.RegisterRoute<FrameStructDummy,IKarassFrame<FrameStructDummy>>();
-               
+                _dependencies.Register<IKarassFrame<FrameStructDummy>>(() => frameDummy);
+                _frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
             }
-           
+
             [Test]
             public void ThenDoesNotThrowException()
             {
@@ -189,20 +191,21 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 {
                     Test = "Scout"
                 };
-                
+
                 IKarass karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
                     new[]
                     {
                         new FrameRequest(test)
                     });
-         
-                
-                _kankan = new KanKan(karass,_frameFactory);
+
+
+                _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
-                
-                Assert.DoesNotThrow(()=>_runUntil.LastFrame(test));
-                Assert.DoesNotThrow(()=>_runUntil.NextFrame(test));
+
+                Assert.DoesNotThrow(() => _runUntil.LastFrame(test));
+                Assert.DoesNotThrow(() => _runUntil.NextFrame(test));
             }
+
 
             [Test]
             public void GivesCorrectFrameNumber_ExampleOne()
@@ -211,21 +214,21 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 {
                     Test = "Scout"
                 };
-                
+
                 IKarass karass = _karassFactory.Get(new List<Action>(), new List<Action>(),
                     new[]
                     {
                         new FrameRequest(test)
                     });
-         
-                
-                _kankan = new KanKan(karass,_frameFactory);
+
+
+                _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
-                
-            Assert.True(_runUntil.NextFrame(test).Frame == 0);
-            Assert.True(_runUntil.LastFrame(test).Frame == 1);
+
+                Assert.True(_runUntil.NextFrame(test).Frame == 0);
+                Assert.True(_runUntil.LastFrame(test).Frame == 1);
             }
-            
+
             [Test]
             public void GivesCorrectFrameNumber_ExampleTwo()
             {
@@ -241,7 +244,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                 {
                     Test = "A"
                 };
-                
+
                 FrameStructDummy testFour = new FrameStructDummy()
                 {
                     Test = "Dog"
@@ -255,14 +258,19 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until
                         new FrameRequest(testThree),
                         new FrameRequest(testFour)
                     });
-         
-                _kankan = new KanKan(karass,_frameFactory);
+
+                _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
-                
-             Assert.True(_runUntil.NextFrame(testOne).Frame ==0);
-             Assert.True(_runUntil.NextFrame(testTwo).Frame ==1);
-             Assert.True(_runUntil.NextFrame(testThree).Frame ==2);
-             Assert.True(_runUntil.NextFrame(testFour).Frame ==3);
+
+                Assert.True(_runUntil.NextFrame(testOne).Frame == 0);
+                Assert.True(_runUntil.NextFrame(testTwo).Frame == 1);
+                Assert.True(_runUntil.NextFrame(testThree).Frame == 2);
+                Assert.True(_runUntil.NextFrame(testFour).Frame == 3);
+
+                Assert.True(_runUntil.LastFrame(testOne).Frame == 1);
+                Assert.True(_runUntil.LastFrame(testTwo).Frame == 2);
+                Assert.True(_runUntil.LastFrame(testThree).Frame == 3);
+                Assert.True(_runUntil.LastFrame(testFour).Frame == 4);
             }
         }
     }
