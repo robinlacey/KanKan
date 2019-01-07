@@ -23,7 +23,7 @@ namespace KanKanTestHelper.Run
                }
             }
             
-            return Until.KanKan.GetCurrentState();
+            return Until.KanKan.Current;
         }
     }
 }

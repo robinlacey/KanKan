@@ -143,10 +143,13 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
             Karass karassTwo = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassTwoFrameRequest});
             Karass karassThree = karassFactory.Get(new List<Action>(), new List<Action>(), new []{karassThreeFrameRequest});
 
-            KanKan kanKanOne = new KanKan(karassOne, _frameFactory, karassMessage);
-            KanKan kanKanTwo = new KanKan(karassTwo, _frameFactory, karassMessage);
-            KanKan kanKanThree = new KanKan(karassThree, _frameFactory, karassMessage);
-
+            KanKan kanKanOne = new KanKan(karassOne, _frameFactory);
+            kanKanOne.SetKarassMessage(karassMessage);
+            KanKan kanKanTwo = new KanKan(karassTwo, _frameFactory);
+            kanKanTwo.SetKarassMessage(karassMessage);
+            KanKan kanKanThree = new KanKan(karassThree, _frameFactory);
+            
+            kanKanThree.SetKarassMessage(karassMessage);
             karassMessage.SetMessage(message);
 
             kanKanOne.MoveNext();

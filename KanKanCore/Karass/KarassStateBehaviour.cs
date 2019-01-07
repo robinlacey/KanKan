@@ -40,7 +40,7 @@ namespace KanKanCore.Karass
         }
 
 
-        private static void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown, KarassState karassState)
+        private static void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown, IKarassState karassState)
         {
             karassState.Karass.Teardown(index);
             karassState.Complete[index] = true;
@@ -54,7 +54,7 @@ namespace KanKanCore.Karass
             int currentFrame,
             ref int lastFrameCount, 
             out bool shouldComplete,
-            KarassState karassState)
+            IKarassState karassState)
         {
             shouldComplete = false;
             
@@ -89,7 +89,7 @@ namespace KanKanCore.Karass
         }
         
         
-        public static void MoveNextFramesToLastFrames(KarassState karassState)
+        public static void MoveNextFramesToLastFrames(IKarassState karassState)
         {
             karassState.LastFrames.Clear();
             karassState.NextFrames.ForEach(f => karassState.LastFrames.Add(f));

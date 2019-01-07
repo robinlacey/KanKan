@@ -18,26 +18,35 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
     public class KanKanTests
     {
         [Test]
+        public void KanKanHasUniqueID()
+        {
+            Assert.False(string.IsNullOrEmpty(new KanKan(new KarassDummy(), null).ID));
+            Assert.False(string.IsNullOrWhiteSpace(new KanKan(new KarassDummy(), null).ID));
+            Assert.False(new KanKan(new KarassDummy(), null).ID == new KanKan(new KarassDummy(), null).ID);
+        }
+
+        [Test]
         public void KanKanAssignsFrameFactory()
         {
             IFrameFactory frameFactory = new FrameFactoryDummy();
             IKanKan kankan = new KanKan(new KarassDummy(), frameFactory);
-            Assert.AreSame(kankan.GetCurrentState().FrameFactory, frameFactory);
+            Assert.AreSame(kankan.Current.FrameFactory, frameFactory);
         }
 
         [Test]
-        public void KanKanAssignKarassMessage()
+        public void KanKanSetKarassMessageAssignsKarassMessage()
         {
             IKarassMessage karassMessage = new KarassMessageDummy();
-            IKanKan kankan = new KanKan(new KarassDummy(), new FrameFactoryDummy(), karassMessage);
-            Assert.AreSame(kankan.GetCurrentState().KarassMessage, karassMessage);
+            IKanKan kankan = new KanKan(new KarassDummy(), new FrameFactoryDummy());
+            kankan.SetKarassMessage(karassMessage);
+            Assert.AreSame(kankan.Current.KarassMessage, karassMessage);
         }
 
         [Test]
         public void KanKanCreatesKarassMessageIfNoneGiven()
         {
             IKanKan kankan = new KanKan(new KarassDummy(), new FrameFactoryDummy());
-            Assert.NotNull(kankan.GetCurrentState().KarassMessage);
+            Assert.NotNull(kankan.Current.KarassMessage);
         }
 
         public class GetKanKanCurrentStateTests
@@ -60,7 +69,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                     });
                     IKanKan kankan = new KanKan(karass, framesFactory);
 
-                    Assert.True(kankan.GetCurrentState().NextFrames.Contains(frameRequest));
+                    Assert.True(kankan.Current.NextFrames.Contains(frameRequest));
                 }
 
                 [Test]
@@ -83,22 +92,22 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
 
                     IKanKan kankan = new KanKan(karass, framesFactory);
 
-                    Assert.True(kankan.GetCurrentState().NextFrames.Contains(frameRequestOne));
-                    Assert.False(kankan.GetCurrentState().NextFrames.Contains(frameRequestTwo));
-                    Assert.False(kankan.GetCurrentState().LastFrames.Any());
+                    Assert.True(kankan.Current.NextFrames.Contains(frameRequestOne));
+                    Assert.False(kankan.Current.NextFrames.Contains(frameRequestTwo));
+                    Assert.False(kankan.Current.LastFrames.Any());
 
                     kankan.MoveNext();
 
-                    Assert.False(kankan.GetCurrentState().NextFrames.Contains(frameRequestOne));
-                    Assert.True(kankan.GetCurrentState().NextFrames.Contains(frameRequestTwo));
+                    Assert.False(kankan.Current.NextFrames.Contains(frameRequestOne));
+                    Assert.True(kankan.Current.NextFrames.Contains(frameRequestTwo));
 
-                    Assert.True(kankan.GetCurrentState().LastFrames.Contains(frameRequestOne));
-                    Assert.False(kankan.GetCurrentState().LastFrames.Contains(frameRequestTwo));
+                    Assert.True(kankan.Current.LastFrames.Contains(frameRequestOne));
+                    Assert.False(kankan.Current.LastFrames.Contains(frameRequestTwo));
 
                     kankan.MoveNext();
-                    Assert.False(kankan.GetCurrentState().NextFrames.Any());
-                    Assert.False(kankan.GetCurrentState().LastFrames.Contains(frameRequestOne));
-                    Assert.True(kankan.GetCurrentState().LastFrames.Contains(frameRequestTwo));
+                    Assert.False(kankan.Current.NextFrames.Any());
+                    Assert.False(kankan.Current.LastFrames.Contains(frameRequestOne));
+                    Assert.True(kankan.Current.LastFrames.Contains(frameRequestTwo));
                 }
             }
 
@@ -111,17 +120,18 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                     public void ThenSetNextMessage(string message)
                     {
                         KarassMessage karassMessage = new KarassMessage();
+                        IKanKan kankan = new KanKan(new KarassDummy(), new FrameFactoryDummy());
                         karassMessage.SetMessage(message);
-                        IKanKan kankan = new KanKan(new KarassDummy(),new FrameFactoryDummy(),karassMessage);
-                        Assert.True(kankan.GetCurrentState().NextMessage == message);
+                        kankan.SetKarassMessage(karassMessage);
+                        Assert.True(kankan.Current.NextMessage == message);
                     }
                 }
 
                 public class GivenMessageSetMidFrames
                 {
-                    [TestCase(1,"Cow")]
-                    [TestCase(2,"Moo")]
-                    [TestCase(3,"Quack")]
+                    [TestCase(1, "Cow")]
+                    [TestCase(2, "Moo")]
+                    [TestCase(3, "Quack")]
                     public void ThenReturnNextMessageBeforeBeingSentToFrames(int frame, string inputMessage)
                     {
                         IDependencies dependencies = new KarassDependencies();
@@ -137,33 +147,36 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                         }
 
                         string frameTwoMessage = string.Empty;
+
                         bool FrameSpyTwo(string message)
                         {
                             frameTwoMessage = message;
                             return true;
                         }
-                        
+
                         string frameThreeMessage = string.Empty;
+
                         bool FrameSpyThree(string message)
                         {
                             frameThreeMessage = message;
                             return true;
                         }
-                        
-                        
+
+
                         string frameFourMessage = string.Empty;
+
                         bool FrameSpyFour(string message)
                         {
                             frameFourMessage = message;
                             return true;
                         }
+
                         FrameRequest frameRequestOne = mockFramesFactory.GetValidFrameRequest(FrameSpyOne);
                         FrameRequest frameRequestTwo = mockFramesFactory.GetValidFrameRequest(FrameSpyTwo);
-                        FrameRequest frameRequestThree= mockFramesFactory.GetValidFrameRequest(FrameSpyThree);
+                        FrameRequest frameRequestThree = mockFramesFactory.GetValidFrameRequest(FrameSpyThree);
                         FrameRequest frameRequestFour = mockFramesFactory.GetValidFrameRequest(FrameSpyFour);
 
-                        
-                        
+
                         KarassFactory karassFactory = new KarassFactory();
                         IKarass karass = karassFactory.Get(new List<Action>(), new List<Action>(), new[]
                         {
@@ -172,9 +185,10 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                             frameRequestThree,
                             frameRequestFour,
                         });
-                        
-                      
-                        KanKanSetMessageFake kankan = new KanKanSetMessageFake(karass, framesFactory,frame,inputMessage);
+
+
+                        KanKanSetMessageFake kankan =
+                            new KanKanSetMessageFake(karass, framesFactory, frame, inputMessage);
 
                         if (frame >= 4)
                         {
@@ -186,8 +200,10 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                         for (int i = 0; i <= 4; i++)
                         {
                             kankan.MoveNext();
-                            CheckFrameForNextAndLastMessage(i, frame, inputMessage, kankan, ref foundLast, ref foundNext);
+                            CheckFrameForNextAndLastMessage(i, frame, inputMessage, kankan, ref foundLast,
+                                ref foundNext);
                         }
+
                         Assert.True(foundNext);
                         Assert.True(foundLast);
                     }
@@ -197,18 +213,18 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                     {
                         if (i == frame && !foundNext)
                         {
-                            foundNext = kankan.GetCurrentState().NextMessage == inputMessage;
-                            Assert.True(kankan.GetCurrentState().LastMessage != inputMessage);
+                            foundNext = kankan.Current.NextMessage == inputMessage;
+                            Assert.True(kankan.Current.LastMessage != inputMessage);
                         }
                         else if ((i == (frame + 1)) && !foundLast)
                         {
-                            foundLast = kankan.GetCurrentState().LastMessage == inputMessage;
-                            Assert.True(kankan.GetCurrentState().NextMessage != inputMessage);
+                            foundLast = kankan.Current.LastMessage == inputMessage;
+                            Assert.True(kankan.Current.NextMessage != inputMessage);
                         }
                         else
                         {
-                            Assert.True(kankan.GetCurrentState().NextMessage == string.Empty);
-                            Assert.True(kankan.GetCurrentState().LastMessage == string.Empty);
+                            Assert.True(kankan.Current.NextMessage == string.Empty);
+                            Assert.True(kankan.Current.LastMessage == string.Empty);
                         }
 
                         return foundNext;
