@@ -249,5 +249,10 @@ namespace KanKanCore.KanKan
         {
             AllKarassStates.ForEach(s=>s.Reset());
         }
+        
+        public static KanKan operator +(KanKan kanKanOne, KanKan kanKanTwo)
+        {
+            return new KanKan(new Karass.Karass(null,null,null), null);
+        }   
     }
 }

@@ -10,25 +10,34 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
         [Test]
         public void KnaKanRunnerIsIEnumerable()
         {
-            IEnumerator kanKanRunner = (IEnumerator) new KanKanRunner();
+            IEnumerator kanKanRunner = new KanKanRunner();
             Assert.NotNull(kanKanRunner);
         } 
         
         [Test]
-        public void KnaKanRunnerCreatesAKarassMessenger()
+        public void KanKanRunnerCreatesAKarassMessenger()
         {
             IKanKanRunner kanKanRunner =  new KanKanRunner();
             Assert.NotNull( kanKanRunner.KarassMessage );
         } 
-        
+        // #1
         // Sets same KarassMessage on all KanKan Added
         
-        // Can run X KanKan at same time, Can Chain KanKan Together (KanKan Adding??? )
+        // #2 
+        // Can run X KanKan at same time, Can Add KanKan Together
+            //  Adding KanKan Together :
+                // Karass are added eg:
+                // K1[0] + K2[0]
+                // K1[1] + K2[1]
+                // K2[3]
+                // K2[4]
+                
+        // #3
         // Will send message to all KanKan
         
-        // Can Assign Triggers to KanKan/KanKan[] which will stop KanKan and Trigger new KanKan 
         
-   
+        // Can Assign Triggers to KanKan/KanKan[] which will stop KanKan and Trigger new KanKan 
+       
         // KanKanRunner will stop when no CurrentKanKan. Needs KanKan on constructor (KanKan, tag)
         
         // Add(KanKan1, string KanKan1Tag)
