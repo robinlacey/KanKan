@@ -20,11 +20,12 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             IKanKanRunner kanKanRunner =  new KanKanRunner();
             Assert.NotNull( kanKanRunner.KarassMessage );
         } 
+        // NOTES : 
         // #1
-        // Sets same KarassMessage on all KanKan Added
+        // Sets same KarassMessage on all KanKan Added 
         
         // #2 
-        // Can run X KanKan at same time, Can Add KanKan Together
+        // Can run X KanKan at same time, Can Add KanKan Together (DONE)
             //  Adding KanKan Together :
                 // Karass are added eg:
                 // K1[0] + K2[0]

@@ -14,7 +14,7 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
             [Test]
             public void GivenNoFramesReturnFalse()
             {
-                Karass karass = new KarassDummy();
+                IKarass karass = new KarassDummy();
                 KanKan kankan = new KanKan(karass,  new FrameFactoryDummy());
                 Assert.False(kankan.MoveNext());
             }

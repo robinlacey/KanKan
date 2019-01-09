@@ -35,7 +35,7 @@ namespace KanKanTest.KanKanCoreTests.MessageTests
         [Test]
         public void KanKanHasSendMessageMethod()
         {
-            Karass karass = new KarassDummy();
+            IKarass karass = new KarassDummy();
             KanKan kanKan = new KanKan(karass, new FrameFactory(new KarassDependencies()));
             kanKan.SendMessage("Cat");
         }

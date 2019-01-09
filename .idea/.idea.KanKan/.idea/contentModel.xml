@@ -9,6 +9,7 @@
       <e p="KanKanCore" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Exception" t="Include">
+          <e p="InvalidKarassTypeException.cs" t="Include" />
           <e p="MessageNotReceivedException.cs" t="Include" />
           <e p="MissingDependencyException.cs" t="Include" />
           <e p="MissingRouteException.cs" t="Include" />
@@ -81,6 +82,7 @@
           </e>
           <e p="Factories" t="Include">
             <e p="MockFramesFactory.cs" t="Include" />
+            <e p="MockKarassFactory.cs" t="Include" />
           </e>
           <e p="FrameCollectionTests" t="Include">
             <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
@@ -147,6 +149,7 @@
             </e>
             <e p="KarassState" t="Include">
               <e p="KarassStateSpy.cs" t="Include" />
+              <e p="KarassStateWithStubbedData.cs" t="Include" />
             </e>
             <e p="Messages" t="Include">
               <e p="KarassMessageSpy.cs" t="Include" />

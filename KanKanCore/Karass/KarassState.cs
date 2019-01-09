@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Struct;
@@ -13,7 +14,8 @@ namespace KanKanCore.Karass
         public List<FrameRequest> NextFrames { get; private set; } = new List<FrameRequest>();
         public List<FrameRequest> LastFrames { get; private set; } = new List<FrameRequest>();
 
-        public Dictionary<UniqueKarassFrameRequestID, int> CurrentFrames { get; private set; } = new Dictionary<UniqueKarassFrameRequestID, int>();
+        public Dictionary<UniqueKarassFrameRequestID, int> CurrentFrames { get; private set; } =
+            new Dictionary<UniqueKarassFrameRequestID, int>();
 
         public List<bool> Complete { get; } = new List<bool>();
         public IKarass Karass { get; }

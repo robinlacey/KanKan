@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass;
@@ -73,9 +74,9 @@ namespace KanKanCore.KanKan
             _nextMessage = KarassMessage.Message;
         }
 
-        public IKanKanCurrentState GetCurrentState()
+        private IKanKanCurrentState GetCurrentState()
         {
-            Console.WriteLine(AllKarassStates.Count);
+            Console.WriteLine(AllKarassStates.Count + " " + _currentKarass + " " + AllKarassStates[_currentKarass].NextFrames.Count);
             return new KanKanCurrentState
             {
                 NextFrames = AllKarassStates[_currentKarass].NextFrames,
@@ -252,7 +253,19 @@ namespace KanKanCore.KanKan
         
         public static KanKan operator +(KanKan kanKanOne, KanKan kanKanTwo)
         {
-            return new KanKan(new Karass.Karass(null,null,null), null);
+            KarassState stateOne = kanKanOne.AllKarassStates[0] as KarassState;
+            KarassState stateTwo = kanKanTwo.AllKarassStates[0] as KarassState;
+            
+            Karass.Karass karassOne = stateOne.Karass as Karass.Karass;
+            Karass.Karass karassTwo = stateTwo.Karass as Karass.Karass;
+
+            if (karassOne == null || karassTwo == null)
+            {
+                throw new InvalidKarassTypeException();
+            }
+
+            IKarass karass = karassOne + karassTwo;
+            return new KanKan(karass, kanKanOne._frameFactory);
         }   
     }
 }

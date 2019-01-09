@@ -63,7 +63,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanTests
                     bool FrameSpy(string message) => false;
                     FrameRequest frameRequest = _mockFramesFactory.GetValidFrameRequest(FrameSpy);
                     KarassFactory karassFactory = new KarassFactory();
-                    IKarass karass = karassFactory.Get(new List<Action>(), new List<Action>(), new FrameRequest[]
+                    IKarass karass = karassFactory.Get(new List<Action>(), new List<Action>(), new[]
                     {
                         frameRequest
                     });
