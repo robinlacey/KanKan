@@ -21,7 +21,7 @@ namespace KanKanCore.KanKan
         private int _currentKarass;
         private int _currentFrame;
 
-        protected List<IKarassState> AllKarassStates;
+        public List<IKarassState> AllKarassStates { get; protected set; }
         protected IKarassMessage KarassMessage = new KarassMessage();
         private readonly IFrameFactory _frameFactory;
         private string _nextMessage;
@@ -153,6 +153,7 @@ namespace KanKanCore.KanKan
                 {     
                     return false;
                 }
+                Console.WriteLine("Moving to next state");
                 _currentKarass++;
                 return true;
             }
@@ -236,8 +237,9 @@ namespace KanKanCore.KanKan
 
         public void Reset()
         {
-            foreach (KarassState data in AllKarassStates)
+            foreach (IKarassState karassState in AllKarassStates)
             {
+                KarassState data = (KarassState) karassState;
                 data.Reset();
             }
         }
@@ -253,19 +255,45 @@ namespace KanKanCore.KanKan
         
         public static KanKan operator +(KanKan kanKanOne, KanKan kanKanTwo)
         {
-            KarassState stateOne = kanKanOne.AllKarassStates[0] as KarassState;
-            KarassState stateTwo = kanKanTwo.AllKarassStates[0] as KarassState;
-            
-            Karass.Karass karassOne = stateOne.Karass as Karass.Karass;
-            Karass.Karass karassTwo = stateTwo.Karass as Karass.Karass;
+            int maxSize = kanKanOne.AllKarassStates.Count > kanKanTwo.AllKarassStates.Count
+                ? kanKanOne.AllKarassStates.Count
+                : kanKanTwo.AllKarassStates.Count;
+            int minSize = kanKanOne.AllKarassStates.Count > kanKanTwo.AllKarassStates.Count
+                ? kanKanTwo.AllKarassStates.Count
+                : kanKanOne.AllKarassStates.Count;
+            IKarass[] karassArray = new IKarass[maxSize];
+            for (int i = 0; i < maxSize; i++)
+            {
+                if (i < minSize)
+                {
+                    IKarass karass = CombineKarassInStatesAtIndex(kanKanOne, kanKanTwo, i);
+                    karassArray[i] = karass;
+                }
+                else
+                {
+                    Karass.Karass karass = (kanKanOne.AllKarassStates.Count > kanKanTwo.AllKarassStates.Count)
+                        ? kanKanOne.AllKarassStates[i].Karass as Karass.Karass
+                        : kanKanTwo.AllKarassStates[i].Karass as Karass.Karass;
+                    
+                    karassArray[i] = karass ?? throw new InvalidKarassTypeException();
+                }
+          
+            }
+         
+            return new KanKan(karassArray, kanKanOne._frameFactory);
+        }
 
+        private static IKarass CombineKarassInStatesAtIndex(KanKan kanKanOne, KanKan kanKanTwo, int i)
+        {
+            Karass.Karass karassOne = kanKanOne.AllKarassStates[i].Karass as Karass.Karass;
+            Karass.Karass karassTwo = kanKanTwo.AllKarassStates[i].Karass as Karass.Karass;
             if (karassOne == null || karassTwo == null)
             {
                 throw new InvalidKarassTypeException();
             }
 
             IKarass karass = karassOne + karassTwo;
-            return new KanKan(karass, kanKanOne._frameFactory);
-        }   
+            return karass;
+        }
     }
 }

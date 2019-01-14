@@ -28,6 +28,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
         public List<FrameRequest> LastFrames { get; }
 
         public string ID { get; }
+        public List<IKarassState> AllKarassStates { get; }
 
         public void SendMessage(string message)
         {
