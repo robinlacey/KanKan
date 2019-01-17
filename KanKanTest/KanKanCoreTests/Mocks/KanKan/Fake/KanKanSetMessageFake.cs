@@ -1,5 +1,4 @@
 using KanKanCore.Interface;
-using KanKanCore.Karass.Message;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Fake
 {

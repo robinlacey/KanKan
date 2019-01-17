@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using KanKanCore.Interface;
-using KanKanCore.Karass;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy
 {

@@ -9,7 +9,6 @@ using KanKanCore.Karass;
 using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanTest.KanKanCoreTests.Factories;
-using KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy;
 using KanKanTest.KanKanCoreTests.Mocks.KarassMocks;
 using NUnit.Framework;
 
@@ -425,9 +424,8 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                                     (numberOfKarassInArrayTwo * frameRequestArrayCountTwo * numberOfFrameRequestsTwo));
                     }
                     
-                    
                     [TestCase(2, 5, 4, 5, 5, 7)]
-                    [TestCase(3, 5, 9, 4, 8, 9)]
+                    [TestCase(3, 7, 9, 4, 8, 9)]
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArrayOne,
                         int numberOfKarassInArrayTwo,
@@ -450,17 +448,15 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
 
 
                         KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
-
+                      
                         for (int i = 0; i < expected - 1; i++)
                         {
-                            Console.WriteLine("index "+i + " " + expected);
                             Assert.True(kanKan.MoveNext());
+                           
                         }
 
                         Assert.False(kanKan.MoveNext());
                     }
-
-                    
                 }
             }
         }

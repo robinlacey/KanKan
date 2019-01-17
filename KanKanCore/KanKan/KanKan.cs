@@ -6,7 +6,6 @@ using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass;
-using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
 using KanKanCore.Karass.Struct;
 
@@ -132,8 +131,10 @@ namespace KanKanCore.KanKan
                         {
                             return false;
                         }
+
+                        _currentKarass++;
                         // Increment next frame and progress.
-                        return HasNextFrame(AllKarassStates[_currentKarass++]);
+                        return HasNextFrame(AllKarassStates[_currentKarass]);
                     }
                     // Keep spinning whist other frames run
                     // eg:
@@ -196,7 +197,6 @@ namespace KanKanCore.KanKan
 
                 if (HasFinishedAllFrameCollections())
                 {
-                    Console.WriteLine( "Returning false #1");
                     return false;
                 }
                 
@@ -229,22 +229,8 @@ namespace KanKanCore.KanKan
             return lastFrame;
         }
 
-        private bool HasFinishedAllFrameCollections()
-        {
-            return AllKarassStates.Count - 1 < _currentKarass + 1;
-        }
+        private bool HasFinishedAllFrameCollections() =>_currentKarass+1 > (AllKarassStates.Count-1);
 
-        private bool HasNotFinishedFrameCollection(IKarassState karassState, int index)
-        {
-            int lastFrameCount = 0;
-            KarassStateBehaviour.InvokeTeardownActionsIfLastFrame(
-                index,
-                KarassStateBehaviour.AddFrame(GetIDAndFrameRequests(karassState, index), karassState.CurrentFrames),
-                ref lastFrameCount,
-                out bool shouldComplete,
-                karassState);
-            return !shouldComplete;
-        }
 
         private bool ShouldSkipFrame(IKarassState karassState, int index)
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using KanKanCore.Karass;
 using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Struct;
-using KanKanTest.KanKanCoreTests.Mocks.KarassMocks;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KarassState
 {
