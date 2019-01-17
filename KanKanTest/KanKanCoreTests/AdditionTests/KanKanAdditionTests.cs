@@ -248,7 +248,7 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenMultipleFrameRequestArrays(
                         int numberOfKarassInArray, int frameRequestArrayCount)
                     {
-                        int frameRequestsInEachArray = 1;
+                        const int frameRequestsInEachArray = 1;
                         int expected = numberOfKarassInArray * frameRequestsInEachArray;
                         Karass[] karassOne =
                             _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArray,
@@ -261,12 +261,9 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
 
                         KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
 
-                        int ticker = 0;
                         for (int i = 0; i < expected - 1; i++)
                         {
-                            bool moveNext = kanKan.MoveNext();
-                            Assert.True(moveNext);
-                            ticker++;
+                            Assert.True(kanKan.MoveNext());
                         }
                         Assert.False(kanKan.MoveNext());
                     }
@@ -291,8 +288,8 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     }
 
                     
-                    [TestCase(2, 5, 3)]
-                    [TestCase(2, 3, 5)]
+                    [TestCase(2, 5, 12)]
+                    [TestCase(2, 3, 15)]
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArray, int frameRequestArrayCount, int numberOfFrameRequests)
                     {
@@ -310,7 +307,6 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
 
                         for (int i = 0; i < expected - 1; i++)
                         {
-                            Console.WriteLine("Ticking KanKan index " + i + " expected" + expected);
                             Assert.True(kanKan.MoveNext());
                         }
 
@@ -372,6 +368,37 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                                      (numberOfKarassInArrayTwo * frameRequestArrayCountTwo)));
                     }
 
+                    [TestCase(4, 3, 5, 6)]
+                    [TestCase(7, 2, 8, 3)]
+                    public void ThenKanKanTicksTheCorrectNumberOfTimesWhenMultipleFrameRequestArrays(
+                        int numberOfKarassInArrayOne,
+                        int numberOfKarassInArrayTwo,
+                        int frameRequestArrayCountOne,
+                        int frameRequestArrayCountTwo)
+                    {
+                        const int frameRequestsInEachArray = 1;
+                        int expected = Math.Max(numberOfKarassInArrayOne, numberOfKarassInArrayTwo) *
+                                       frameRequestsInEachArray;
+                        Karass[] karassOne =
+                            _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArrayOne,
+                                frameRequestArrayCountOne, frameRequestsInEachArray);
+
+                        Karass[] karassTwo =
+                            _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArrayTwo,
+                                frameRequestArrayCountTwo, frameRequestsInEachArray);
+
+
+                        KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
+
+                        for (int i = 0; i < expected - 1; i++)
+                        {
+                            Assert.True(kanKan.MoveNext());
+                        }
+
+                        Assert.False(kanKan.MoveNext());
+                    }
+
+
                     [TestCase(2, 5, 4, 5, 5, 7)]
                     [TestCase(3, 5, 9, 4, 8, 9)]
                     public void ThenThereIsCorrectNumberOfFramesWhenMultipleNumberOfFrameRequests(
@@ -397,6 +424,43 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                                     (numberOfKarassInArrayOne * frameRequestArrayCountOne * numberOfFrameRequestsOne) +
                                     (numberOfKarassInArrayTwo * frameRequestArrayCountTwo * numberOfFrameRequestsTwo));
                     }
+                    
+                    
+                    [TestCase(2, 5, 4, 5, 5, 7)]
+                    [TestCase(3, 5, 9, 4, 8, 9)]
+                    public void ThenKanKanTicksTheCorrectNumberOfTimesWhenWhenMultipleNumberOfFrameRequests(
+                        int numberOfKarassInArrayOne,
+                        int numberOfKarassInArrayTwo,
+                        int frameRequestArrayCountOne,
+                        int frameRequestArrayCountTwo,
+                        int numberOfFrameRequestsOne,
+                        int numberOfFrameRequestsTwo
+                    )
+                    {
+                        int expected = Math.Max(numberOfKarassInArrayOne, numberOfKarassInArrayTwo) *
+                                       Math.Max(numberOfFrameRequestsOne, numberOfFrameRequestsTwo);
+                        
+                        Karass[] karassOne =
+                            _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArrayOne,
+                                frameRequestArrayCountOne, numberOfFrameRequestsOne);
+
+                        Karass[] karassTwo =
+                            _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArrayTwo,
+                                frameRequestArrayCountTwo, numberOfFrameRequestsTwo);
+
+
+                        KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
+
+                        for (int i = 0; i < expected - 1; i++)
+                        {
+                            Console.WriteLine("index "+i + " " + expected);
+                            Assert.True(kanKan.MoveNext());
+                        }
+
+                        Assert.False(kanKan.MoveNext());
+                    }
+
+                    
                 }
             }
         }

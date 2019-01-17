@@ -52,7 +52,7 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
                     bool returnValue = kankan.MoveNext();
                     Assert.True(returnValue);
                 }
-
+                
                 Assert.False(kankan.MoveNext());
             }
         }

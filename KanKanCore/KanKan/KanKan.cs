@@ -127,7 +127,13 @@ namespace KanKanCore.KanKan
                     // If we're at the end of the collection, bail out.
                     if (LastFrameCollection(index, karassState))
                     {
-                        return false;
+
+                        if (LastKarassState())
+                        {
+                            return false;
+                        }
+                        // Increment next frame and progress.
+                        return HasNextFrame(AllKarassStates[_currentKarass++]);
                     }
                     // Keep spinning whist other frames run
                     // eg:
@@ -190,6 +196,7 @@ namespace KanKanCore.KanKan
 
                 if (HasFinishedAllFrameCollections())
                 {
+                    Console.WriteLine( "Returning false #1");
                     return false;
                 }
                 
@@ -198,6 +205,11 @@ namespace KanKanCore.KanKan
                 return true;
             }
              return true;
+        }
+
+        private bool LastKarassState()
+        {
+            return _currentKarass == AllKarassStates.Count - 1;
         }
 
         private static bool LastFrame(IKarassState karassState, int currentFrameNumber, int index)
