@@ -290,13 +290,13 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                                     (2 * numberOfKarassInArray * frameRequestArrayCount * numberOfFrameRequests));
                     }
 
-//
+                    
                     [TestCase(2, 5, 3)]
                     [TestCase(2, 3, 5)]
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArray, int frameRequestArrayCount, int numberOfFrameRequests)
                     {
-                        int expected = numberOfKarassInArray * frameRequestArrayCount;
+                        int expected = numberOfKarassInArray * numberOfFrameRequests;
                         Karass[] karassOne =
                             _mockKarassFactory.GetKarassArrayWithAmountOfData(numberOfKarassInArray,
                                 frameRequestArrayCount, numberOfFrameRequests);
@@ -307,7 +307,6 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
 
 
                         KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
-
 
                         for (int i = 0; i < expected - 1; i++)
                         {
