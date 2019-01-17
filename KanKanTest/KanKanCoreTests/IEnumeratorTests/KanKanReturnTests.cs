@@ -40,10 +40,11 @@ namespace KanKanTest.KanKanCoreTests.IEnumeratorTests
                 Assert.False(kankan.MoveNext());
             }
 
-            [Test]
-            public void WithMultipleFramesReturnCorrectValues()
+            [TestCase(2)]
+            [TestCase(4)]
+            public void WithMultipleFramesReturnCorrectValues(int number)
             {
-                int number = 42;
+               
                 IKarass karass = new KarassNumberOfFramesStub(number);
                 KanKan kankan = new KanKan(karass,   new FrameFactoryDummy());
                 for (int i = 0; i < number - 1; i++)

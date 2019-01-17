@@ -8,7 +8,7 @@ namespace KanKanCore.Interface
         IFrameFactory FrameFactory { get; }
         IKarassMessage KarassMessage { get; }
 
-        int Frame { get; set; }
+        int TotalFramesRun { get; set; }
         List<FrameRequest> NextFrames { get;  }
         List<FrameRequest> LastFrames { get; }
         string NextMessage { get; }

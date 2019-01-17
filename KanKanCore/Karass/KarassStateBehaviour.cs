@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
@@ -40,12 +41,14 @@ namespace KanKanCore.Karass
         }
 
 
-        private static void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown, IKarassState karassState)
+        private static void TeardownKarass(int index, ref int lastFrameCount, out bool allKarassFramesTornDown, IKarassState karassState)
         {
             karassState.Karass.Teardown(index);
             karassState.Complete[index] = true;
             lastFrameCount++;
-            allFramesTornDown = lastFrameCount == karassState.Karass.FramesCollection.Count;
+        allKarassFramesTornDown = (lastFrameCount == karassState.Karass.FramesCollection.Count) ||
+                                  (lastFrameCount == karassState.Karass.FramesCollection[index].Length);
+
         }
 
         
@@ -53,14 +56,29 @@ namespace KanKanCore.Karass
             int index, 
             int currentFrame,
             ref int lastFrameCount, 
-            out bool shouldComplete,
+            out bool allKarassFramesTornDown,
             IKarassState karassState)
         {
-            shouldComplete = false;
-            
-            if (IsLastFrame(currentFrame, karassState.Karass.FramesCollection[index],karassState.Karass))
+            allKarassFramesTornDown = false;
+
+            IReadOnlyCollection<FrameRequest> allFrames = karassState.Karass.FramesCollection[index];
+            bool ret;
+            if (karassState.Karass.FramesCollection.Count > 0)
             {
-                TeardownKarass(index, ref lastFrameCount, out shouldComplete, karassState);
+                ret = currentFrame > allFrames.Count - 1;
+            }
+            else
+            {
+                ret = true;
+            }
+
+            if (ret)
+            { 
+                karassState.Karass.Teardown(index);
+                karassState.Complete[index] = true;
+                lastFrameCount++;
+                allKarassFramesTornDown = (lastFrameCount == karassState.Karass.FramesCollection.Count) ||
+                                                   (lastFrameCount == karassState.Karass.FramesCollection[index].Length);
             }
             else
             {

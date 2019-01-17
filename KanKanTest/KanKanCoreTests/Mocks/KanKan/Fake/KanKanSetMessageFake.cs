@@ -16,7 +16,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Fake
 
         public override bool MoveNext()
         {
-            if (Current.Frame == _onFrame)
+            if (Current.TotalFramesRun == _onFrame)
             {
                KarassMessage.SetMessage(_message);
             }

@@ -8,7 +8,7 @@ namespace KanKanCore.KanKan.CurrentState
     {
         public IFrameFactory FrameFactory { get;  set; }
         public IKarassMessage KarassMessage { get; set; }
-        public int Frame { get; set; }
+        public int TotalFramesRun { get; set; }
         public List<FrameRequest> NextFrames { get; set; }
         public List<FrameRequest> LastFrames { get; set; }
         public string NextMessage { get; set; }

@@ -21,7 +21,7 @@ namespace KanKanTest.KanKanCoreTests.Factories
             List<Action> setup = new List<Action>();
             List<Action> teardown = new List<Action>();
             List<FrameRequest[]> frameRequests = new List<FrameRequest[]>();
-
+           
             for (int i = 0; i < frameRequestArrayCount; i++)
             {
                 frameRequests.Add(new FrameRequest[numberOfFrameRequests]);

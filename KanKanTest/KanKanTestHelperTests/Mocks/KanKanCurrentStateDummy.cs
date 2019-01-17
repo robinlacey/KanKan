@@ -8,7 +8,7 @@ namespace KanKanTest.KanKanTestHelperTests.Mocks
     {
         public IFrameFactory FrameFactory { get; }
         public IKarassMessage KarassMessage { get; }
-        public int Frame { get; set; }
+        public int TotalFramesRun { get; set; }
         public List<FrameRequest> NextFrames { get; set; }
         public List<FrameRequest> LastFrames { get; set; }
         public string NextMessage { get; }

@@ -81,8 +81,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.MessageReceived
                     IRunKanKan runKanKan = new RunKanKan(runUntil);
                     IKanKanTestHelper testHelper = new TestHelper(runKanKan,frameFactory);
                
-                    Assert.True(testHelper.Run.Until.WillReceive(testMessage).Frame == willReceiveFrame);
-                    Assert.True(testHelper.Run.Until.HasReceived(testMessage).Frame == willReceiveFrame+1);
+                    Assert.True(testHelper.Run.Until.WillReceive(testMessage).TotalFramesRun == willReceiveFrame);
+                    Assert.True(testHelper.Run.Until.HasReceived(testMessage).TotalFramesRun == willReceiveFrame+1);
                 }
              
 
