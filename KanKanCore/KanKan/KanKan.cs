@@ -18,9 +18,9 @@ namespace KanKanCore.KanKan
     {
         public string ID { get; }
         public List<IKarassState> AllKarassStates { get; protected set; }
-        
+
         protected IKarassMessage KarassMessage = new KarassMessage();
-       
+
         private int _currentKarass;
         private int _totalFramesRun;
         private string _nextMessage;
@@ -39,7 +39,7 @@ namespace KanKanCore.KanKan
             ID = GetID();
         }
 
-        private  string GetID()
+        private string GetID()
         {
             return Guid.NewGuid().ToString();
         }
@@ -107,12 +107,6 @@ namespace KanKanCore.KanKan
         }
 
 
-        private struct SplitFramesCollection
-        {
-            public List<int> FramesToSkip;
-            public List<int> Frames;
-        }
-
         private SplitFramesCollection SplitCurrentFramesCollection(IKarassState karassState)
         {
             SplitFramesCollection returnFrames = new SplitFramesCollection()
@@ -135,7 +129,7 @@ namespace KanKanCore.KanKan
             return returnFrames;
         }
 
-        
+
         private bool HasNextFrame(IKarassState karassState)
         {
             if (KarassStateBehaviour.IsEmptyKarass(karassState.Karass))
@@ -147,18 +141,18 @@ namespace KanKanCore.KanKan
 
             SplitFramesCollection splitFramesCollection = SplitCurrentFramesCollection(karassState);
 
-            // Deal with skipped frames
+
+            // Process Frames to skip
             for (int index = 0; index < splitFramesCollection.FramesToSkip.Count; index++)
             {
-                // If we're at the end of the collection, bail out.
                 if (LastFrameCollection(index, karassState))
                 {
-                    return ShouldExecuteFirstFrameOfNextKarass();
+                    return ShouldMoveToNextKarass();
                 }
             }
 
+            // Process remaining Frames 
             int frameRequestArraysCompleted = 0;
-            
             for (int i = 0; i < splitFramesCollection.Frames.Count; i++)
             {
                 int index = splitFramesCollection.Frames[i];
@@ -175,7 +169,7 @@ namespace KanKanCore.KanKan
 
                     // Update the dictionary so we can grab the frame next time around
                     karassState.CurrentFrames[frameRequestID] = currentFrameNumber;
-                
+
                     if (LastFrame(karassState, currentFrameNumber, index))
                     {
                         frameRequestArraysCompleted++;
@@ -196,44 +190,25 @@ namespace KanKanCore.KanKan
             return true;
         }
 
-        private  void RunSetupOnFirstFrame(IKarassState karassState, int currentFrameNumber, int index)
+        private void RunSetupOnFirstFrame(IKarassState karassState, int currentFrameNumber, int index)
         {
             if (currentFrameNumber == 0)
             {
                 karassState.Karass.Setup(index);
             }
         }
-        
-        private void IncrementKarassNumber()
-        {
-            _currentKarass++;
-        }
 
-        private bool ShouldExecuteFirstFrameOfNextKarass()
-        {
-            if (LastKarassState())
-            {
-                return false;
-            }
-
-            IncrementKarassNumber();
-            return RunFirstFrameOfNextKarassState();
-        }
+        private void IncrementKarassNumber() => _currentKarass++;
 
         private bool ShouldMoveToNextKarass()
         {
-            if (HasFinishedAllFrameCollections())
+            if (LastKarassState(_currentKarass))
             {
                 return false;
             }
 
             IncrementKarassNumber();
             return true;
-        }
-        
-        private bool RunFirstFrameOfNextKarassState()
-        {
-            return HasNextFrame(AllKarassStates[_currentKarass]);
         }
 
         private void IncrementFrameNumbers(ref int currentFrameNumber)
@@ -242,14 +217,9 @@ namespace KanKanCore.KanKan
             _totalFramesRun = currentFrameNumber;
         }
 
-        private  void AddNextFrame(IKarassState karassState, int index, int currentFrameNumber)
+        private void AddNextFrame(IKarassState karassState, int index, int currentFrameNumber)
         {
             karassState.NextFrames.Add(karassState.Karass.FramesCollection[index][currentFrameNumber]);
-        }
-
-        private bool HasComplete(IKarassState karassState, int frameRequestArraysCompleted)
-        {
-            return  frameRequestArraysCompleted == karassState.Karass.FramesCollection.Count;
         }
 
         private void TeardownKarass(int index, IKarassState karassState)
@@ -258,31 +228,12 @@ namespace KanKanCore.KanKan
             karassState.Complete[index] = true;
         }
 
-        private bool LastKarassState()
-        {
-            return _currentKarass == AllKarassStates.Count - 1;
-        }
-
-        private  bool LastFrame(IKarassState karassState, int currentFrameNumber, int index)
-        {
-            return (karassState.Karass.FramesCollection.Any() &&
-                    currentFrameNumber > karassState.Karass.FramesCollection[index].Length - 1);
-        }
-
-        private bool HasFinishedAllFrameCollections() => _currentKarass + 1 > (AllKarassStates.Count - 1);
-
-
-        private bool ShouldSkipFrame(IKarassState karassState, int index)
-        {
-            return KarassStateBehaviour.FrameSetAlreadyFinished(index, karassState.Complete) ||
-                   FrameRequestArrayIsEmpty(karassState, index);
-        }
-
         private void SetNextAndLastFrames(IKarassState karassState)
         {
             KarassStateBehaviour.MoveNextFramesToLastFrames(karassState);
             karassState.NextFrames.Clear();
         }
+
 
         private bool ProcessEmptyKarass(IKarassState karassState)
         {
@@ -298,22 +249,32 @@ namespace KanKanCore.KanKan
             return MoveNext();
         }
 
-        private bool LastKarass()
-        {
-            return AllKarassStates.Count - 1 < _currentKarass + 1;
-        }
+        private bool HasComplete(IKarassState karassState, int frameRequestArraysCompleted) =>
+            frameRequestArraysCompleted == karassState.Karass.FramesCollection.Count;
 
-        private bool LastFrameCollection(int index, IKarassState karassState)
-        {
-            return index == karassState.Karass.FramesCollection.Count - 1;
-        }
+        private bool LastFrame(IKarassState karassState, int currentFrameNumber, int index) =>
+            (karassState.Karass.FramesCollection.Any() &&
+             currentFrameNumber > karassState.Karass.FramesCollection[index].Length - 1);
 
-        private bool FrameRequestArrayIsEmpty(IKarassState karassState, int index)
-        {
-            return !karassState.Karass.FramesCollection[index].Any() ||
-                   karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)] >
-                   karassState.Karass.FramesCollection[index].Length - 1;
-        }
+        private bool LastKarass() => AllKarassStates.Count - 1 < _currentKarass + 1;
+
+        private bool LastFrameCollection(int index, IKarassState karassState) =>
+            index == karassState.Karass.FramesCollection.Count - 1;
+
+        private bool ShouldSkipFrame(IKarassState karassState, int index) =>
+            KarassStateBehaviour.FrameSetAlreadyFinished(index, karassState.Complete) ||
+            FrameRequestArrayIsEmpty(karassState, index);
+
+        private bool LastKarassState(int currentKarass) => currentKarass == AllKarassStates.Count - 1;
+
+        private bool FrameRequestArrayIsEmpty(IKarassState karassState, int index) =>
+            !karassState.Karass.FramesCollection[index].Any() ||
+            karassState.CurrentFrames[GetIDAndFrameRequests(karassState, index)] >
+            karassState.Karass.FramesCollection[index].Length - 1;
+
+        private bool
+            InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass) =>
+            _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
 
 
         private UniqueKarassFrameRequestID GetIDAndFrameRequests(IKarassState karassState, int index)
@@ -321,10 +282,6 @@ namespace KanKanCore.KanKan
             return new UniqueKarassFrameRequestID(karassState.Karass.ID, index);
         }
 
-        private bool InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)
-        {
-            return _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
-        }
 
         public void Reset()
         {
@@ -384,6 +341,12 @@ namespace KanKanCore.KanKan
 
             IKarass karass = karassOne + karassTwo;
             return karass;
+        }
+
+        private struct SplitFramesCollection
+        {
+            public List<int> FramesToSkip;
+            public List<int> Frames;
         }
     }
 }

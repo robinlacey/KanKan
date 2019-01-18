@@ -133,23 +133,6 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                 }
             }
 
-            private static void CheckCombinedKassStateInKanKan(int karassOneArrayCount, int karassOneFrameRequests,
-                int karassTwoArrayCount,
-                int karassTwoFrameRequests, KanKan kanKanThree)
-            {
-                bool karassOneIsLarger = karassOneFrameRequests > karassTwoFrameRequests;
-                int largerCount = Math.Max(karassOneFrameRequests, karassTwoFrameRequests);
-                int smallerCount = Math.Min(karassOneFrameRequests, karassTwoFrameRequests);
-
-                for (int i = 0; i < largerCount; i++)
-                {
-                    CheckCorrectNextFrameCount(kanKanThree, i, karassOneArrayCount, karassTwoArrayCount,
-                        smallerCount);
-
-                    kanKanThree.MoveNext();
-                }
-            }
-
             private static void CheckCorrectNextFrameCount(KanKan newKanKan, int index, int karassOneArrayCount,
                 int karassTwoArrayCount,
                 int smallestArrayCount)
@@ -287,8 +270,8 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     }
 
                     
-                    [TestCase(2, 5, 12)]
-                    [TestCase(2, 3, 15)]
+                    [TestCase(2, 5, 3)]
+                    [TestCase(2, 3, 5)]
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArray, int frameRequestArrayCount, int numberOfFrameRequests)
                     {
@@ -398,8 +381,8 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     }
 
 
-                    [TestCase(2, 5, 4, 5, 5, 7)]
-                    [TestCase(3, 5, 9, 4, 8, 9)]
+                    [TestCase(2, 3, 4, 5, 4, 3)]
+                    [TestCase(3, 4, 5, 4, 3, 2)]
                     public void ThenThereIsCorrectNumberOfFramesWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArrayOne,
                         int numberOfKarassInArrayTwo,
@@ -424,8 +407,8 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                                     (numberOfKarassInArrayTwo * frameRequestArrayCountTwo * numberOfFrameRequestsTwo));
                     }
                     
-                    [TestCase(2, 5, 4, 5, 5, 7)]
-                    [TestCase(3, 7, 9, 4, 8, 9)]
+                    [TestCase(2, 4, 3, 2, 4, 3)]
+                    [TestCase(3, 5, 3, 4, 3, 3)]
                     public void ThenKanKanTicksTheCorrectNumberOfTimesWhenWhenMultipleNumberOfFrameRequests(
                         int numberOfKarassInArrayOne,
                         int numberOfKarassInArrayTwo,
@@ -448,13 +431,11 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
 
 
                         KanKan kanKan = new KanKan(karassOne, _frameFactory) + new KanKan(karassTwo, _frameFactory);
-                      
                         for (int i = 0; i < expected - 1; i++)
                         {
                             Assert.True(kanKan.MoveNext());
                            
                         }
-
                         Assert.False(kanKan.MoveNext());
                     }
                 }

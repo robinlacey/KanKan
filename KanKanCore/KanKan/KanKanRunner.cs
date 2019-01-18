@@ -6,8 +6,10 @@ namespace KanKanCore.KanKan
 {
     public class KanKanRunner: IKanKanRunner
     {
-        public KanKanRunner()
+        public IKanKan Current { get; }
+        public KanKanRunner(IKanKan kanKan)
         {
+            Current = kanKan;
             KarassMessage = new KarassMessage();
         }
         public bool MoveNext()
@@ -20,7 +22,7 @@ namespace KanKanCore.KanKan
             throw new System.NotImplementedException();
         }
 
-        public IKanKan Current { get; }
+       
 
         object IEnumerator.Current => Current;
 
