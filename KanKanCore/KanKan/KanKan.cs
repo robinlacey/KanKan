@@ -6,6 +6,7 @@ using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.KanKan.CurrentState;
 using KanKanCore.Karass;
+using KanKanCore.Karass.Frame;
 using KanKanCore.Karass.Message;
 using KanKanCore.Karass.Struct;
 
@@ -105,7 +106,36 @@ namespace KanKanCore.KanKan
             _lastMessage = _nextMessage;
             _nextMessage = KarassMessage.Message;
         }
+        
+        
+     
 
+        private struct SplitFramesCollection
+        {
+            public List<int> FramesToSkip;
+            public List<int> Frames;
+        }
+
+        private SplitFramesCollection SplitCurrentFramesCollection(IKarassState karassState)
+        {
+            SplitFramesCollection returnFrames = new SplitFramesCollection()
+            {
+                Frames = new List<int>(),
+                FramesToSkip = new List<int>()
+            };
+            for (int i = 0; i < karassState.Karass.FramesCollection.Count; i++)
+            {
+                if (ShouldSkipFrame(karassState, i))
+                {
+                    returnFrames.FramesToSkip.Add(i);
+                }
+                else
+                {
+                    returnFrames.Frames.Add(i);
+                }
+            }
+            return returnFrames;
+        }
 
         private bool HasNextFrame(IKarassState karassState)
         {
@@ -117,33 +147,30 @@ namespace KanKanCore.KanKan
             SetNextAndLastFrames(karassState);
 
             int frameRequestArraysCompleted = 0;
+
+            SplitFramesCollection splitFramesCollection = SplitCurrentFramesCollection(karassState);
             
-            for (int index = 0; index < karassState.Karass.FramesCollection.Count; index++)
+            // Deal with skipped frames
+            for (int index = 0; index < splitFramesCollection.FramesToSkip.Count; index++)
             {
-                // If we've finished the set or array is empty
-                if (ShouldSkipFrame(karassState, index))
+                // If we're at the end of the collection, bail out.
+                if (LastFrameCollection(index, karassState))
                 {
-                    // If we're at the end of the collection, bail out.
-                    if (LastFrameCollection(index, karassState))
+
+                    if (LastKarassState())
                     {
-
-                        if (LastKarassState())
-                        {
-                            return false;
-                        }
-
-                        _currentKarass++;
-                        // Increment next frame and progress.
-                        return HasNextFrame(AllKarassStates[_currentKarass]);
+                        return false;
                     }
-                    // Keep spinning whist other frames run
-                    // eg:
-                    // [0]==== (done, this state)
-                    // [1]============|current frame| 
-                    // [2]== (done, this state)
-                    continue;
+
+                    _currentKarass++;
+                    // Increment next frame and progress.
+                    return HasNextFrame(AllKarassStates[_currentKarass]);
                 }
-                
+            }
+            
+            for (int i = 0; i < splitFramesCollection.Frames.Count; i++)
+            {
+                int index = splitFramesCollection.Frames[i];
                 // We use a complex struct called UniqueKarassFrameRequestID to reference the correct frame in a dictionary so we can run matching Karass alongside eachtother.
                 UniqueKarassFrameRequestID frameRequestID = GetIDAndFrameRequests(karassState, index);
                 int currentFrameNumber = karassState.CurrentFrames[frameRequestID];
@@ -154,57 +181,67 @@ namespace KanKanCore.KanKan
                 }
 
                 // Run the frame
-                bool progress = InvokeCurrentFrame(index, currentFrameNumber, KarassMessage, karassState.Karass);
-                
-                // We've run a frame, so we increase totalFramesRun. This is used when checking KarassState.
-                _totalFramesRun = currentFrameNumber + 1;
-                
-                // If frame returns a 'false' we stay with it
-                if (!progress)
+                if (InvokeCurrentFrame(index, currentFrameNumber, KarassMessage, karassState.Karass))
                 {
-                    continue;
-                }
-               
-                
-                // Increase the frame number
-                currentFrameNumber ++ ;
-                // Update the dictionary so we can grab the frame next time around
-                karassState.CurrentFrames[frameRequestID] = currentFrameNumber;
+                     IncrementFrameNumbers(ref currentFrameNumber);
+
+                    // Update the dictionary so we can grab the frame next time around
+                    karassState.CurrentFrames[frameRequestID] = currentFrameNumber;
              
-                bool shouldComplete = false;
-
-              
-                // If last frame flag 'should complete'
-                if ( LastFrame(karassState, currentFrameNumber, index))
-                { 
-                    // runs teardown on array number in this Karass
-                    karassState.Karass.Teardown(index);
-                    // Mark this index as complete inside the karassState.
-                    // This allows us to skip the frame on start
-                    karassState.Complete[index] = true;
-                    // Increase ticker
-                    frameRequestArraysCompleted++;
-                    // Are we dome with this karassState.Karass.FramesCollection? Yes if we've torn down all frames
-                    shouldComplete = frameRequestArraysCompleted == karassState.Karass.FramesCollection.Count;
-                }
-                else
-                {
-                  // Otherwise, add the next frame
-                    karassState.NextFrames.Add(karassState.Karass.FramesCollection[index][currentFrameNumber]);
-                }
-
-                if (!shouldComplete) {  continue; }
-
-                if (HasFinishedAllFrameCollections())
-                {
-                    return false;
-                }
                 
-                // Move to the next Karass
-                _currentKarass++;
-                return true;
+                    if ( LastFrame(karassState, currentFrameNumber, index))
+                    {
+                        frameRequestArraysCompleted++;
+                        TeardownKarass(index, karassState);
+                    
+                        if (ShouldComplete(karassState,frameRequestArraysCompleted))
+                        {
+                            if (HasFinishedAllFrameCollections())
+                            {
+                                return false;
+                            }
+                
+                            // Move to the next Karass
+                            _currentKarass++;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        AddNextFrame(karassState, index, currentFrameNumber);
+                    } 
+                }
             }
              return true;
+        }
+
+        private void IncrementFrameNumbers(ref int currentFrameNumber)
+        {
+            currentFrameNumber++;
+            _totalFramesRun = currentFrameNumber;
+         
+        }
+
+        private static void AddNextFrame(IKarassState karassState, int index, int currentFrameNumber)
+        {
+            karassState.NextFrames.Add(karassState.Karass.FramesCollection[index][currentFrameNumber]);
+        }
+
+        private bool ShouldComplete(IKarassState karassState, int frameRequestArraysCompleted)
+        {
+            // Are we dome with this karassState.Karass.FramesCollection? Yes if we've torn down all frames
+            bool shouldComplete = frameRequestArraysCompleted == karassState.Karass.FramesCollection.Count;
+            return shouldComplete;
+        }
+
+        private void TeardownKarass(int index, IKarassState karassState)
+        {
+              
+            // runs teardown on array number in this Karass
+            karassState.Karass.Teardown(index);
+            // Mark this index as complete inside the karassState.
+            // This allows us to skip the frame on start
+            karassState.Complete[index] = true;
         }
 
         private bool LastKarassState()
