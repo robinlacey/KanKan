@@ -1,36 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
+using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Message;
 
 namespace KanKanCore.KanKan
 {
-    public class KanKanRunner: IKanKanRunner
+    public abstract class KanKanRunner : IKanKanRunner
     {
-        public IKanKan Current { get; }
-        public KanKanRunner(IKanKan kanKan)
-        {
-            Current = kanKan;
-            KarassMessage = new KarassMessage();
-        }
-        public bool MoveNext()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Reset()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        public IKanKan Current { get; protected set; }
        
-
+        public IKarassMessage KarassMessage { get; set; }
+        protected bool Paused;
         object IEnumerator.Current => Current;
+        public void Pause(bool pauseState) => Paused = pauseState;
+        public abstract bool MoveNext();
+        public abstract void Reset();
 
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IKarassMessage KarassMessage { get; }
+        public abstract void Run(string tag);
+        public abstract void Dispose();
     }
 }

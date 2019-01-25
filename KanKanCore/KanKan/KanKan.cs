@@ -137,6 +137,7 @@ namespace KanKanCore.KanKan
                 return ProcessEmptyKarass(karassState);
             }
 
+            
             SetNextAndLastFrames(karassState);
 
             SplitFramesCollection splitFramesCollection = SplitCurrentFramesCollection(karassState);
@@ -161,10 +162,11 @@ namespace KanKanCore.KanKan
                 int currentFrameNumber = karassState.CurrentFrames[frameRequestID];
 
                 RunSetupOnFirstFrame(karassState, currentFrameNumber, index);
-
+            
                 // Run the frame
                 if (InvokeCurrentFrame(index, currentFrameNumber, KarassMessage, karassState.Karass))
                 {
+                   
                     IncrementFrameNumbers(ref currentFrameNumber);
 
                     // Update the dictionary so we can grab the frame next time around
@@ -273,9 +275,12 @@ namespace KanKanCore.KanKan
             karassState.Karass.FramesCollection[index].Length - 1;
 
         private bool
-            InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass) =>
-            _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
+            InvokeCurrentFrame(int index, int karassStateCurrentFrame, IKarassMessage message, IKarass karass)
+        {
+            
+           return  _frameFactory.Execute(karass.FramesCollection[index][karassStateCurrentFrame], message.Message);
 
+        }
 
         private UniqueKarassFrameRequestID GetIDAndFrameRequests(IKarassState karassState, int index)
         {

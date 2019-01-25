@@ -9,10 +9,12 @@
       <e p="KanKanCore" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Exception" t="Include">
+          <e p="DuplicateKanKanTag.cs" t="Include" />
           <e p="InvalidKarassTypeException.cs" t="Include" />
           <e p="MessageNotReceivedException.cs" t="Include" />
           <e p="MissingDependencyException.cs" t="Include" />
           <e p="MissingRouteException.cs" t="Include" />
+          <e p="NoKanKanWithTag.cs" t="Include" />
         </e>
         <e p="Factories" t="Include">
           <e p="FrameFactory.cs" t="Include" />
@@ -24,6 +26,8 @@
           <e p="IKanKan.cs" t="Include" />
           <e p="IKanKanCurrentState.cs" t="Include" />
           <e p="IKanKanRunner.cs" t="Include" />
+          <e p="IKanKanSequenceRunner.cs" t="Include" />
+          <e p="IKanKanSingleRunner.cs" t="Include" />
           <e p="IKarass.cs" t="Include" />
           <e p="IKarassFactory.cs" t="Include" />
           <e p="IKarassFrame.cs" t="Include" />
@@ -36,6 +40,8 @@
           </e>
           <e p="KanKan.cs" t="Include" />
           <e p="KanKanRunner.cs" t="Include" />
+          <e p="KanKanSequenceRunner.cs" t="Include" />
+          <e p="KanKanSingleRunner.cs" t="Include" />
         </e>
         <e p="KanKanCore.csproj" t="IncludeRecursive" />
         <e p="Karass" t="Include">
@@ -103,7 +109,22 @@
             <e p="KanKanReturnTests.cs" t="Include" />
           </e>
           <e p="KanKanRunnerTests" t="Include">
-            <e p="KanKanRunnerTests.cs" t="Include" />
+            <e p="AddKanKanTests.cs" t="Include" />
+            <e p="DisposeTests.cs" t="Include" />
+            <e p="DuplicateKanWithTagExceptionTests.cs" t="Include" />
+            <e p="GetKanKanTests.cs" t="Include" />
+            <e p="InitializationTests.cs" t="Include" />
+            <e p="MoveNextTests.cs" t="Include" />
+            <e p="NoKanKanWithTagExceptionTests.cs" t="Include" />
+            <e p="PauseKanKanTests.cs" t="Include" />
+            <e p="ResetTests.cs" t="Include" />
+            <e p="RunKanKanTests.cs" t="Include" />
+            <e p="Sequence" t="Include">
+              <e p="AddKanKanTests.cs" t="Include" />
+              <e p="DisposeTests.cs" t="Include" />
+              <e p="ResetTests.cs" t="Include" />
+              <e p="SequenceTest.cs" t="Include" />
+            </e>
           </e>
           <e p="KanKanTests" t="Include">
             <e p="KanKanTests.cs" t="Include" />
@@ -130,6 +151,7 @@
               </e>
               <e p="KanKanDummy.cs" t="Include" />
               <e p="Spy" t="Include">
+                <e p="KanKanCallCountSpy.cs" t="Include" />
                 <e p="KanKanKarassStatesSpy.cs" t="Include" />
               </e>
             </e>

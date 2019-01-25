@@ -7,7 +7,7 @@ namespace KanKanCore.Karass.Dependencies
 {
     public class KarassDependencies : IDependencies
     {
-        private readonly Dictionary<Type, Func<dynamic>> _dependency = new Dictionary<Type, Func<dynamic>>();
+        public readonly Dictionary<Type, Func<dynamic>> _dependency = new Dictionary<Type, Func<dynamic>>();
 
         public T Get<T>() where T : class
         {
@@ -17,7 +17,7 @@ namespace KanKanCore.Karass.Dependencies
             }
             catch
             {
-                throw new MissingDependencyException();
+                throw new MissingDependencyException(typeof(T));
             }
         }
 
