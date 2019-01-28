@@ -44,16 +44,6 @@ namespace KanKanTest.KanKanCoreTests.FrameTests.Degenerates
             {
                 _frameFactory = new FrameFactory(_dependencies);
             }
-
-            [Test]
-            public void ThenThrowsMissingRouteException()
-            {
-                KarassFrameDummy<FrameStructDummy> dummy = new KarassFrameDummy<FrameStructDummy>(_dependencies);
-                FrameRequest frameRequest = new FrameRequest(new FrameStructDummy());
-                _frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
-                MissingDependencyException missingDependencyException = Assert.Throws<MissingDependencyException>(() => _frameFactory.Execute(frameRequest, String.Empty));
-                Assert.True(missingDependencyException.Message ==  "No dependency found. Register dependency in IDependency.");
-            }
         }
 
         public class WhenRouteHasNotBeenRegisteredDuringGet

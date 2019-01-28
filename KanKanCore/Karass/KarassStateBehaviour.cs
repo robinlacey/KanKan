@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using KanKanCore.Interface;
-using KanKanCore.Karass.Frame;
-using KanKanCore.Karass.Struct;
 
 namespace KanKanCore.Karass
 {
@@ -34,62 +32,7 @@ namespace KanKanCore.Karass
         }
 
 
-        public static int AddFrame(UniqueKarassFrameRequestID frameRequestID, Dictionary<UniqueKarassFrameRequestID, int>currentFrames)
-        {
-            return currentFrames[frameRequestID] += 1;
-        }
-
-
-        private static void TeardownKarass(int index, ref int lastFrameCount, out bool allFramesTornDown, KarassState karassState)
-        {
-            karassState.Karass.Teardown(index);
-            karassState.Complete[index] = true;
-            lastFrameCount++;
-            allFramesTornDown = lastFrameCount == karassState.Karass.FramesCollection.Count;
-        }
-
-        
-        public static void InvokeTeardownActionsIfLastFrame(
-            int index, 
-            int currentFrame,
-            ref int lastFrameCount, 
-            out bool shouldComplete,
-            KarassState karassState)
-        {
-            shouldComplete = false;
-            
-            if (IsLastFrame(currentFrame, karassState.Karass.FramesCollection[index],karassState.Karass))
-            {
-                TeardownKarass(index, ref lastFrameCount, out shouldComplete, karassState);
-            }
-            else
-            {
-                karassState.NextFrames.Add(karassState.Karass.FramesCollection[index][currentFrame]);
-            }
-        }
-
-     
-
-        public static void InvokeSetupActionsOnFirstFrame(int currentFrame, int index, IKarass karass)
-        {
-            if (currentFrame == 0)
-            {
-                karass.Setup(index);
-            }
-        }
-
-        private static bool IsLastFrame(int currentFrame, IReadOnlyCollection<FrameRequest> allFrames, IKarass karass)
-        {
-            if (karass.FramesCollection.Count > 0)
-            {
-                return currentFrame > allFrames.Count - 1;
-            }
-
-            return true;
-        }
-        
-        
-        public static void MoveNextFramesToLastFrames(KarassState karassState)
+        public static void MoveNextFramesToLastFrames(IKarassState karassState)
         {
             karassState.LastFrames.Clear();
             karassState.NextFrames.ForEach(f => karassState.LastFrames.Add(f));

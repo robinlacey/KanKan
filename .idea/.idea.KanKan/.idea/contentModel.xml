@@ -9,9 +9,12 @@
       <e p="KanKanCore" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Exception" t="Include">
+          <e p="DuplicateKanKanTag.cs" t="Include" />
+          <e p="InvalidKarassTypeException.cs" t="Include" />
           <e p="MessageNotReceivedException.cs" t="Include" />
           <e p="MissingDependencyException.cs" t="Include" />
           <e p="MissingRouteException.cs" t="Include" />
+          <e p="NoKanKanWithTag.cs" t="Include" />
         </e>
         <e p="Factories" t="Include">
           <e p="FrameFactory.cs" t="Include" />
@@ -22,16 +25,23 @@
           <e p="IFrameFactory.cs" t="Include" />
           <e p="IKanKan.cs" t="Include" />
           <e p="IKanKanCurrentState.cs" t="Include" />
+          <e p="IKanKanRunner.cs" t="Include" />
+          <e p="IKanKanSequenceRunner.cs" t="Include" />
+          <e p="IKanKanSingleRunner.cs" t="Include" />
           <e p="IKarass.cs" t="Include" />
           <e p="IKarassFactory.cs" t="Include" />
           <e p="IKarassFrame.cs" t="Include" />
           <e p="IKarassMessage.cs" t="Include" />
+          <e p="IKarassState.cs" t="Include" />
         </e>
         <e p="KanKan" t="Include">
           <e p="CurrentState" t="Include">
             <e p="KanKanCurrentState.cs" t="Include" />
           </e>
           <e p="KanKan.cs" t="Include" />
+          <e p="KanKanRunner.cs" t="Include" />
+          <e p="KanKanSequenceRunner.cs" t="Include" />
+          <e p="KanKanSingleRunner.cs" t="Include" />
         </e>
         <e p="KanKanCore.csproj" t="IncludeRecursive" />
         <e p="Karass" t="Include">
@@ -70,6 +80,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="KanKanCoreTests" t="Include">
           <e p="AdditionTests" t="Include">
+            <e p="KanKanAdditionTests.cs" t="Include" />
             <e p="KarassAdditionTests.cs" t="Include" />
           </e>
           <e p="DependenciesTests" t="Include">
@@ -77,6 +88,7 @@
           </e>
           <e p="Factories" t="Include">
             <e p="MockFramesFactory.cs" t="Include" />
+            <e p="MockKarassFactory.cs" t="Include" />
           </e>
           <e p="FrameCollectionTests" t="Include">
             <e p="GivenMultipleFrameSetsInFrameCollection.cs" t="Include" />
@@ -92,8 +104,30 @@
           </e>
           <e p="IEnumeratorTests" t="Include">
             <e p="KanKanCurrentTests.cs" t="Include" />
+            <e p="KanKanDisposeTests.cs" t="Include" />
             <e p="KanKanResetTests.cs" t="Include" />
             <e p="KanKanReturnTests.cs" t="Include" />
+          </e>
+          <e p="KanKanRunnerTests" t="Include">
+            <e p="AddKanKanTests.cs" t="Include" />
+            <e p="DisposeTests.cs" t="Include" />
+            <e p="Exceptions" t="Include">
+              <e p="DuplicateKanWithTagExceptionTests.cs" t="Include" />
+              <e p="NoKanKanWithTagExceptionTests.cs" t="Include" />
+            </e>
+            <e p="GetKanKanTests.cs" t="Include" />
+            <e p="InitializationTests.cs" t="Include" />
+            <e p="PauseKanKanTests.cs" t="Include" />
+            <e p="Sequence" t="Include">
+              <e p="MoveNextTests.cs" t="Include" />
+              <e p="ResetTests.cs" t="Include" />
+              <e p="RunKanKanTests.cs" t="Include" />
+            </e>
+            <e p="Single" t="Include">
+              <e p="MoveNextTests.cs" t="Include" />
+              <e p="ResetTests.cs" t="Include" />
+              <e p="RunKanKanTests.cs" t="Include" />
+            </e>
           </e>
           <e p="KanKanTests" t="Include">
             <e p="KanKanTests.cs" t="Include" />
@@ -119,6 +153,15 @@
                 <e p="KanKanSetMessageFake.cs" t="Include" />
               </e>
               <e p="KanKanDummy.cs" t="Include" />
+              <e p="Spy" t="Include">
+                <e p="KanKanCallCountFake.cs" t="Include" />
+                <e p="KanKanCallCountSpy.cs" t="Include" />
+                <e p="KanKanKarassStatesSpy.cs" t="Include" />
+              </e>
+            </e>
+            <e p="KanKanRunner" t="Include">
+              <e p="KanKanRunnerSpy.cs" t="Include" />
+              <e p="KanKanSingleRunnerSpy.cs" t="Include" />
             </e>
             <e p="KarassFrame" t="Include">
               <e p="FrameFactoryDummy.cs" t="Include" />
@@ -133,6 +176,10 @@
               <e p="KarassFramesStub.cs" t="Include" />
               <e p="KarassMessageDummy.cs" t="Include" />
               <e p="KarassNumberOfFramesStub.cs" t="Include" />
+            </e>
+            <e p="KarassState" t="Include">
+              <e p="KarassStateSpy.cs" t="Include" />
+              <e p="KarassStateWithStubbedData.cs" t="Include" />
             </e>
             <e p="Messages" t="Include">
               <e p="KarassMessageSpy.cs" t="Include" />

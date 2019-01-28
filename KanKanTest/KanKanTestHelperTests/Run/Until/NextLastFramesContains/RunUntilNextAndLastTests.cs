@@ -225,8 +225,8 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.NextLastFramesContains
                 _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
 
-                Assert.True(_runUntil.NextFrame(test).Frame == 0);
-                Assert.True(_runUntil.LastFrame(test).Frame == 1);
+                Assert.True(_runUntil.NextFrame(test).TotalFramesRun == 0);
+                Assert.True(_runUntil.LastFrame(test).TotalFramesRun == 1);
             }
 
             [Test]
@@ -262,15 +262,15 @@ namespace KanKanTest.KanKanTestHelperTests.Run.Until.NextLastFramesContains
                 _kankan = new KanKan(karass, _frameFactory);
                 _runUntil = new RunUntil(_kankan);
 
-                Assert.True(_runUntil.NextFrame(testOne).Frame == 0);
-                Assert.True(_runUntil.NextFrame(testTwo).Frame == 1);
-                Assert.True(_runUntil.NextFrame(testThree).Frame == 2);
-                Assert.True(_runUntil.NextFrame(testFour).Frame == 3);
+                Assert.True(_runUntil.NextFrame(testOne).TotalFramesRun == 0);
+                Assert.True(_runUntil.NextFrame(testTwo).TotalFramesRun == 1);
+                Assert.True(_runUntil.NextFrame(testThree).TotalFramesRun == 2);
+                Assert.True(_runUntil.NextFrame(testFour).TotalFramesRun == 3);
 
-                Assert.True(_runUntil.LastFrame(testOne).Frame == 1);
-                Assert.True(_runUntil.LastFrame(testTwo).Frame == 2);
-                Assert.True(_runUntil.LastFrame(testThree).Frame == 3);
-                Assert.True(_runUntil.LastFrame(testFour).Frame == 4);
+                Assert.True(_runUntil.LastFrame(testOne).TotalFramesRun == 1);
+                Assert.True(_runUntil.LastFrame(testTwo).TotalFramesRun == 2);
+                Assert.True(_runUntil.LastFrame(testThree).TotalFramesRun == 3);
+                Assert.True(_runUntil.LastFrame(testFour).TotalFramesRun == 4);
             }
         }
     }

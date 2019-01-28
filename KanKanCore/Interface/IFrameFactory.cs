@@ -4,7 +4,6 @@ namespace KanKanCore.Interface
 {
     public interface IFrameFactory
     {
-
         IDependencies Dependencies { get; }
         void RegisterRoute<TRequestType, TKarassFrameType>() where TKarassFrameType : IKarassFrame<TRequestType>;
         IKarassFrame<T> Get<T>();

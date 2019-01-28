@@ -46,31 +46,31 @@ namespace KanKanTestHelper.Run.Until
         {
             while (KanKan.MoveNext())
             {
-                if (KanKan.GetCurrentState().LastMessage == message)
+                if (KanKan.Current.LastMessage == message)
                 {
-                    return KanKan.GetCurrentState();
+                    return KanKan.Current;
                 }
                 
             }
             
-            if (KanKan.GetCurrentState().LastMessage == message)
+            if (KanKan.Current.LastMessage == message)
             {
-                return KanKan.GetCurrentState();
+                return KanKan.Current;
             }
             throw new MessageNotReceivedException();
         }
 
         public IKanKanCurrentState WillReceive(string message)
         {
-            if (KanKan.GetCurrentState().NextMessage == message)
+            if (KanKan.Current.NextMessage == message)
             {
-                return KanKan.GetCurrentState();
+                return KanKan.Current;
             }
             while (KanKan.MoveNext())
             {
-                if (KanKan.GetCurrentState().NextMessage == message)
+                if (KanKan.Current.NextMessage == message)
                 {
-                   return KanKan.GetCurrentState();
+                   return KanKan.Current;
                 }
                 
             }
@@ -79,13 +79,13 @@ namespace KanKanTestHelper.Run.Until
 
         private bool CheckNextFrames<T>(T payload, out IKanKanCurrentState nextFrame)
         {
-            nextFrame = KanKan.GetCurrentState();
+            nextFrame = KanKan.Current;
             return ShouldReturnKanKanState(nextFrame.NextFrames, payload);
         }
 
         private bool CheckLastFrames<T>(T payload, out IKanKanCurrentState lastFrame)
         {
-            lastFrame = KanKan.GetCurrentState();
+            lastFrame = KanKan.Current;
             return ShouldReturnKanKanState(lastFrame.LastFrames, payload);
         }
 

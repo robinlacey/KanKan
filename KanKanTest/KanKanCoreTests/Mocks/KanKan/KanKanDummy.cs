@@ -6,15 +6,18 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
 {
     public class KanKanDummy:IKanKan
     {
+        private IKanKanCurrentState _current;
+
         public bool MoveNext()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
         }
+
+        IKanKanCurrentState IEnumerator<IKanKanCurrentState>.Current => _current;
 
         public object Current { get; }
         public IFrameFactory FrameFactory { get; }
@@ -23,12 +26,20 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
         public List<FrameRequest> NextFrames { get; }
         public List<FrameRequest> LastFrames { get; }
 
+        public string ID { get; }
+        public List<IKarassState> AllKarassStates { get; }
+
         public void SendMessage(string message)
         {
             throw new System.NotImplementedException();
         }
 
-        public IKanKanCurrentState GetCurrentState()
+        public void SetKarassMessage(IKarassMessage message)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Dispose()
         {
             throw new System.NotImplementedException();
         }

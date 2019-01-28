@@ -1,11 +1,12 @@
-using System.Collections;
+using System.Collections.Generic;
 
 namespace KanKanCore.Interface
 {
-    public interface IKanKan:IEnumerator
+    public interface IKanKan : IEnumerator<IKanKanCurrentState>
     {
+        string ID { get; }
+        List<IKarassState> AllKarassStates { get; }
         void SendMessage(string message);
-
-        IKanKanCurrentState GetCurrentState();
+        void SetKarassMessage(IKarassMessage message);
     }
 }

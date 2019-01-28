@@ -27,7 +27,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
             TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(new RunUntilDummy(kankan)),new FrameFactoryDummy());
 
             IKanKanCurrentState currentState = kanKanTestHelper.Run.For(frame);
-            Assert.True(currentState.Frame == 0);
+            Assert.True(currentState.TotalFramesRun == 0);
         }
     
         public class InUncombinedKarass
@@ -55,7 +55,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
                 KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                 TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(new RunUntilDummy(kankan)),new FrameFactoryDummy());
                 
-                int returnFrameCount = kanKanTestHelper.Run.For(frameCount + 10).Frame;
+                int returnFrameCount = kanKanTestHelper.Run.For(frameCount + 10).TotalFramesRun;
                 Assert.True(returnFrameCount == frameCount);
             }
         }
@@ -89,7 +89,7 @@ namespace KanKanTest.KanKanTestHelperTests.Run.For
 
                 KanKan kankan = new KanKan(karass, new FrameFactoryDummy());
                 TestHelper kanKanTestHelper = new TestHelper(new RunKanKan(new RunUntilDummy(kankan)), new FrameFactoryDummy());
-                Assert.True( kanKanTestHelper.Run.For(frameCount + 10).Frame == frameCount);
+                Assert.True( kanKanTestHelper.Run.For(frameCount + 10).TotalFramesRun == frameCount);
             }
 
             private static Karass GetKarassWithFrames(int frameCount)

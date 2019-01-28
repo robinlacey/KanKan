@@ -16,6 +16,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KarassMocks
             {
                 frames[i] = mockFramesFactory.GetInvalidFrameRequest();
             }
+           
             return new List<FrameRequest[]>(){frames};
         }
 

@@ -1,5 +1,4 @@
 using KanKanCore.Interface;
-using KanKanCore.Karass.Message;
 
 namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Fake
 {
@@ -8,7 +7,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Fake
         private readonly int _onFrame;
         private readonly string _message;
 
-        public KanKanSetMessageFake(IKarass karass, IFrameFactory frameFactory, int onFrame, string message) : base(karass, frameFactory, new KarassMessage())
+        public KanKanSetMessageFake(IKarass karass, IFrameFactory frameFactory, int onFrame, string message) : base(karass, frameFactory)
         {
             _onFrame = onFrame;
             _message = message;
@@ -16,9 +15,9 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Fake
 
         public override bool MoveNext()
         {
-            if (GetCurrentState().Frame == _onFrame)
+            if (Current.TotalFramesRun == _onFrame)
             {
-               _karassMessage.SetMessage(_message);
+               KarassMessage.SetMessage(_message);
             }
             return base.MoveNext();
         }

@@ -68,7 +68,7 @@ namespace KanKanCore.Factories
             }
             catch (TargetInvocationException)
             {
-                throw new MissingDependencyException();
+                throw new MissingDependencyException(frameRequest.RequestType);
             }
         }
 
@@ -84,7 +84,7 @@ namespace KanKanCore.Factories
             }
             catch (TargetInvocationException)
             {
-                throw new MissingDependencyException();
+                throw new MissingDependencyException(routeType);
             }
         }
 
@@ -99,7 +99,7 @@ namespace KanKanCore.Factories
             }
             catch (TargetInvocationException)
             {
-                throw new MissingDependencyException();
+                throw new MissingDependencyException(routeType);
             }
         }
     }

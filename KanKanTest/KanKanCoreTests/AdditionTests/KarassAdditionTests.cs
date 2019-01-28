@@ -18,6 +18,7 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
     {
         private static KarassFactory KarassFactory => new KarassFactory();
         private static MockFramesFactory MockFramesFactory => new MockFramesFactory(new FrameFactoryDummy());
+
         private static List<List<Action>> CreateActionListWith(Action a) =>
             new List<List<Action>> {new List<Action> {a}};
 
@@ -29,15 +30,17 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                 IDependencies dependencies = new KarassDependencies();
                 IFrameFactory frameFactory = new FrameFactory(dependencies);
                 IKarassFactory karassFactory = new KarassFactory();
-               
-                dependencies.Register<IKarassFrame<FrameStructDummy>>(() => new KarassFrameDummy<FrameStructDummy>(dependencies));
+
+                dependencies.Register<IKarassFrame<FrameStructDummy>>(() =>
+                    new KarassFrameDummy<FrameStructDummy>(dependencies));
 
                 frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
 
 
-                List<Action> setupActions = new List<Action>() {};
-                List<Action> tearDownActions = new List<Action>() {};
-                FrameRequest[] frames = {
+                List<Action> setupActions = new List<Action>();
+                List<Action> tearDownActions = new List<Action>();
+                FrameRequest[] frames =
+                {
                     new FrameRequest(new FrameStructDummy() {Test = "Hello"}),
                     new FrameRequest(new FrameStructDummy() {Test = "My"}),
                     new FrameRequest(new FrameStructDummy() {Test = "Name"}),
@@ -46,7 +49,7 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                 };
 
                 List<Karass> playList = new List<Karass>();
-        
+
                 Karass karassOne = karassFactory.Get(setupActions, tearDownActions, frames);
                 Karass karassTwo = karassFactory.Get(setupActions, tearDownActions, frames);
 
@@ -94,7 +97,7 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     new List<FrameRequest[]>());
 
                 Action setupThree = () => { };
-                Karass karassThree =KarassFactory.Get(
+                Karass karassThree = KarassFactory.Get(
                     CreateActionListWith(setupThree),
                     new List<List<Action>>(),
                     new List<FrameRequest[]>());
@@ -274,15 +277,17 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                 IDependencies dependencies = new KarassDependencies();
                 IFrameFactory frameFactory = new FrameFactory(dependencies);
                 IKarassFactory karassFactory = new KarassFactory();
-               
-                dependencies.Register<IKarassFrame<FrameStructDummy>>(() => new KarassFrameDummy<FrameStructDummy>(dependencies));
+
+                dependencies.Register<IKarassFrame<FrameStructDummy>>(() =>
+                    new KarassFrameDummy<FrameStructDummy>(dependencies));
 
                 frameFactory.RegisterRoute<FrameStructDummy, IKarassFrame<FrameStructDummy>>();
 
 
-                List<Action> setupActions = new List<Action>() {};
-                List<Action> tearDownActions = new List<Action>() {};
-                FrameRequest[] frames = {
+                List<Action> setupActions = new List<Action>();
+                List<Action> tearDownActions = new List<Action>();
+                FrameRequest[] frames =
+                {
                     new FrameRequest(new FrameStructDummy() {Test = "Hello"}),
                     new FrameRequest(new FrameStructDummy() {Test = "My"}),
                     new FrameRequest(new FrameStructDummy() {Test = "Name"}),
@@ -290,16 +295,13 @@ namespace KanKanTest.KanKanCoreTests.AdditionTests
                     new FrameRequest(new FrameStructDummy() {Test = "Robin"}),
                 };
 
-                List<Karass> playList = new List<Karass>();
-        
                 Karass karassOne = karassFactory.Get(setupActions, tearDownActions, frames);
                 Karass karassTwo = karassFactory.Get(setupActions, tearDownActions, frames);
                 Karass karassThree = karassOne + karassTwo;
-                Assert.DoesNotThrow(()=>
+                Assert.DoesNotThrow(() =>
                 {
-                    KanKan kanKan = new KanKan(karassThree,frameFactory);
+                    KanKan kanKan = new KanKan(karassThree, frameFactory);
                 });
-
             }
         }
     }
