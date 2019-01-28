@@ -10,12 +10,11 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
 
         public bool MoveNext()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
         }
 
         IKanKanCurrentState IEnumerator<IKanKanCurrentState>.Current => _current;

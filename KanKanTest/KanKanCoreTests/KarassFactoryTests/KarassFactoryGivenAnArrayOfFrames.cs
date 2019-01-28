@@ -11,7 +11,7 @@ namespace KanKanTest.KanKanCoreTests.KarassFactoryTests
 {
     public class KarassFactoryGivenAnArrayOfFrames
     {
-        private static FrameRequest[] Frames = new FrameRequest[] { };
+        private static FrameRequest[] Frames = { };
 
         public class WhenThereIsASingleSetupAndTeardown
         {

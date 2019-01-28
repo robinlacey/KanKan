@@ -9,7 +9,6 @@ namespace KanKanCore.KanKan
     public abstract class KanKanRunner : IKanKanRunner
     {
         public IKanKan Current { get; protected set; }
-       
         public IKarassMessage KarassMessage { get; set; }
         protected bool Paused;
         object IEnumerator.Current => Current;

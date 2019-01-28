@@ -1,42 +1,38 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using KanKanCore.Exception;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Message;
 
 namespace KanKanCore.KanKan
 {
-    public class KanKanSequenceRunner: KanKanRunner, IKanKanSequenceRunner
+    public class KanKanSequenceRunner : KanKanRunner, IKanKanSequenceRunner
     {
-        private readonly IKanKan[] _kanKanSequence;
+        private IKanKan[] _currentKanKanSequence;
+        private readonly string _constructorTag;
         private int _index;
-        private Dictionary<string,IKanKan[]> _kanKans = new Dictionary<string,IKanKan[]>();
+        protected readonly Dictionary<string, IKanKan[]> KanKans = new Dictionary<string, IKanKan[]>();
 
-        public KanKanSequenceRunner(IKanKan[] kanKan, string tag)
+        public KanKanSequenceRunner(IKanKan[] currentKanKan, string tag)
         {
-            _kanKanSequence = kanKan;
-
-            Current = kanKan[_index];
-            _kanKans.Add(tag, kanKan);
+            _currentKanKanSequence = currentKanKan;
+            _constructorTag = tag;
+            Current = currentKanKan[_index];
+            KanKans.Add(tag, currentKanKan);
             KarassMessage = new KarassMessage();
-            
-        }
-
-        public IKanKan[] Get(string tag)
-        {
-            throw new NotImplementedException();
         }
 
         public void Add(IKanKan[] kanKans, string tag)
         {
-            if (_kanKans.ContainsKey(tag))
+            if (KanKans.ContainsKey(tag))
             {
                 throw new DuplicateKanKanTag(tag);
             }
 
-            _kanKans.Add(tag, kanKans);
+            KanKans.Add(tag, kanKans);
         }
-        
+
         public override bool MoveNext()
         {
             if (Paused)
@@ -44,35 +40,55 @@ namespace KanKanCore.KanKan
                 return true;
             }
 
-            if (_kanKanSequence == null || _kanKanSequence.Length <= 0)
-            {
-                return Current.MoveNext();
-            }
+
             bool returnValue = Current.MoveNext();
-            if (returnValue || (_index >= _kanKanSequence.Length - 1))
+            
+            if (returnValue || (_index >= _currentKanKanSequence.Length - 1))
             {
                 return returnValue;
             }
+            
             _index++;
-            Current = _kanKanSequence[_index];
+            Current = _currentKanKanSequence[_index];
             return true;
-
         }
 
         public override void Reset()
         {
-            throw new NotImplementedException();
+            KanKans.Values.ToList().ForEach(a => a.ToList().ForEach(k => k.Reset()));
+           _currentKanKanSequence = KanKans[_constructorTag];
+           _index = 0;
+           Current = _currentKanKanSequence[0];
+
         }
 
-    
+        public override void Run(string tag)
+        {
+            KanKans.TryGetValue(tag, out IKanKan[] kanKans);
+            if (kanKans != null)
+            {
+                _currentKanKanSequence.ToList().ForEach(k => k.Reset());
+                _currentKanKanSequence = kanKans;
+                _index = 0;
+                Current = kanKans[0];
+            }
+            else
+            {
+                throw new NoKanKanWithTag(tag);
+            }
+        }
+
+        public IKanKan[] Get(string tag)
+        {
+            KanKans.TryGetValue(tag, out IKanKan[] kanKan);
+            return kanKan ?? throw new NoKanKanWithTag(tag);
+        }
+        
+        
         public override void Dispose()
         {
             throw new NotImplementedException();
         }
-        
-        public override void Run(string tag)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
