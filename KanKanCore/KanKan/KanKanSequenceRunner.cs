@@ -7,40 +7,21 @@ using KanKanCore.Karass.Message;
 
 namespace KanKanCore.KanKan
 {
-    public class KanKanSequenceRunner : KanKanRunner, IKanKanSequenceRunner
+    public class KanKanSequenceRunner : KanKanRunner<IKanKan[]>
     {
         private IKanKan[] _currentKanKanSequence;
         private readonly string _constructorTag;
         private int _index;
-        protected readonly Dictionary<string, IKanKan[]> KanKans = new Dictionary<string, IKanKan[]>();
 
-        public KanKanSequenceRunner(IKanKan[] currentKanKan, string tag)
-        {
-            _currentKanKanSequence = currentKanKan;
-            _constructorTag = tag;
-            Current = currentKanKan[_index];
-            KanKans.Add(tag, currentKanKan);
-            KarassMessage = new KarassMessage();
-        }
-
-        public void Add(IKanKan[] kanKans, string tag)
-        {
-            if (KanKans.ContainsKey(tag))
-            {
-                throw new DuplicateKanKanTag(tag);
-            }
-
-            KanKans.Add(tag, kanKans);
-        }
-
+    
+ 
         public override bool MoveNext()
         {
             if (Paused)
             {
                 return true;
             }
-
-
+            
             bool returnValue = Current.MoveNext();
             
             if (returnValue || (_index >= _currentKanKanSequence.Length - 1))
@@ -78,17 +59,11 @@ namespace KanKanCore.KanKan
             }
         }
 
-        public IKanKan[] Get(string tag)
-        {
-            KanKans.TryGetValue(tag, out IKanKan[] kanKan);
-            return kanKan ?? throw new NoKanKanWithTag(tag);
+        public KanKanSequenceRunner(IKanKan[] kankan, string tag) : base(kankan, tag)
+        {            
+            _currentKanKanSequence = kankan;
+            _constructorTag = tag;
+            Current = kankan[_index];
         }
-        
-        
-        public override void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

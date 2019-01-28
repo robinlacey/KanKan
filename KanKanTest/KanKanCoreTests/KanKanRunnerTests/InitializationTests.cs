@@ -20,7 +20,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
         [Test]
         public void KanKanRunnerCreatesAKarassMessenger()
         {
-            IKanKanRunner kanKanRunner = new KanKanSingleRunner(new KanKanDummy(), string.Empty);
+            IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(new KanKanDummy(), string.Empty);
             Assert.NotNull(kanKanRunner.KarassMessage);
         }
 
@@ -28,7 +28,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
         public void KanKanRunnerSetsKanKanFromConstructorAsCurrent()
         {
             IKanKan kanKanDummy = new KanKanDummy();
-            IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanDummy, string.Empty);
+            IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanDummy, string.Empty);
             Assert.AreSame(kanKanRunner.Current, kanKanDummy);
         }
     }

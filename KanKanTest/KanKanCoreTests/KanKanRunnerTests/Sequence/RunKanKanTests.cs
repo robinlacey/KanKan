@@ -28,7 +28,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Sequence
                     IKanKan[] kanKansTwo = {kanKanCallCountSpyThree, kanKanCallCountSpyFour};
 
                    
-                    IKanKanSequenceRunner kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
+                    IKanKanRunner<IKanKan[]> kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
                     kanKanRunner.Add(kanKansTwo, "Dogs");
 
                     kanKanRunner.Run("Dogs");
@@ -60,7 +60,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Sequence
             public void ThenThrowNoKanKanWithTagException()
             {
                 IKanKan[] kanKanDummy = {new KanKanDummy(), new KanKanDummy(), };
-                IKanKanSequenceRunner kanKanRunner = new KanKanSequenceRunner(kanKanDummy, string.Empty);
+                IKanKanRunner<IKanKan[]> kanKanRunner = new KanKanSequenceRunner(kanKanDummy, string.Empty);
                 Assert.Throws<NoKanKanWithTag>(() => { kanKanRunner.Run(Guid.NewGuid().ToString()); });
             }
         }

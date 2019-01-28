@@ -19,7 +19,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Sequence
             IKanKan[] kanKansTwo = {kanKanCallCountSpyTwo, new KanKanDummy(), new KanKanDummy()};
             IKanKan[] kanKansThree = {kanKanCallCountSpyThree, new KanKanDummy(), new KanKanDummy()};
 
-            IKanKanSequenceRunner kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
+            IKanKanRunner<IKanKan[]> kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
             kanKanRunner.Add(kanKansTwo, "Dogs");
             kanKanRunner.Add(kanKansThree, "Cows");
 
@@ -51,7 +51,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Sequence
 
             IKanKan[] kanKansThree = {kanKanCallCountSpyFive, kanKanCallCountSpySix};
 
-            IKanKanSequenceRunner kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
+            IKanKanRunner<IKanKan[]> kanKanRunner = new KanKanSequenceRunner(kanKansOne, "Cats");
             kanKanRunner.Add(kanKansTwo, "Dogs");
             kanKanRunner.Add(kanKansThree, "Cows");
 

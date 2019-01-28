@@ -14,7 +14,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             public void ThenRunnerReturnsTrueAndKanKanMoveNextIsNotExecuted(int pauseFor)
             {
                 KanKanCallCountSpy kanKanCallCountSpy = new KanKanCallCountSpy();
-                IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
+                IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
                 kanKanRunner.MoveNext();
                 Assert.True(kanKanCallCountSpy.MoveNextCallCount == 1);
                 kanKanRunner.Pause(true);
@@ -34,7 +34,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             public void ThenRunnerContinuesToExecuteKanKan(int pauseFor)
             {
                 KanKanCallCountSpy kanKanCallCountSpy = new KanKanCallCountSpy();
-                IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
+                IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
                 kanKanRunner.MoveNext();
                 Assert.True(kanKanCallCountSpy.MoveNextCallCount == 1);
                 kanKanRunner.Pause(true);

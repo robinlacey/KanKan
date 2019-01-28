@@ -3,7 +3,7 @@ using KanKanCore.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
+namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Single
 {
     public class MoveNextTests
     {
@@ -13,7 +13,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             public void TheRunKanKanMoveNextByDefault()
             {
                 KanKanCallCountSpy kanKanCallCountSpy = new KanKanCallCountSpy();
-                IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, string.Empty);
+                IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, string.Empty);
                 kanKanRunner.MoveNext();
                 Assert.True(kanKanCallCountSpy.MoveNextCallCount == 1);
             }

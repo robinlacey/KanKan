@@ -3,7 +3,7 @@ using KanKanCore.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
+namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Single
 {
     public class ResetTests
     {
@@ -14,7 +14,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             KanKanCallCountSpy kanKanCallCountSpyTwo = new KanKanCallCountSpy();
             KanKanCallCountSpy kanKanCallCountSpyThree = new KanKanCallCountSpy();
 
-            IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
+            IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
             kanKanRunner.Add(kanKanCallCountSpyTwo, "Dogs");
             kanKanRunner.Add(kanKanCallCountSpyThree, "Cows");
             kanKanRunner.Reset();
@@ -31,7 +31,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             KanKanCallCountSpy kanKanCallCountSpyTwo = new KanKanCallCountSpy();
             KanKanCallCountSpy kanKanCallCountSpyThree = new KanKanCallCountSpy();
 
-            IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
+            IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
             kanKanRunner.Add(kanKanCallCountSpyTwo, "Dogs");
             kanKanRunner.Add(kanKanCallCountSpyThree, "Cows");
 
@@ -50,7 +50,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
         public void PauseIsDisabled(int pauseFor)
         {
             KanKanCallCountSpy kanKanCallCountSpy = new KanKanCallCountSpy();
-            IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
+            IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpy, "Scout");
             kanKanRunner.MoveNext();
             Assert.True(kanKanCallCountSpy.MoveNextCallCount == 1);
             kanKanRunner.Pause(true);

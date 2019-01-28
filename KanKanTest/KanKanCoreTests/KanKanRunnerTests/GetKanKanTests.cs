@@ -17,7 +17,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
                 public void ThenThrowNoKanKanWithTagException()
                 {
                     IKanKan kanKanDummy = new KanKanDummy();
-                    IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanDummy, String.Empty);
+                    IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanDummy, String.Empty);
                     Assert.Throws<NoKanKanWithTag>(() => { kanKanRunner.Get(Guid.NewGuid().ToString()); });
                 }
             }
@@ -29,7 +29,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
                 {
                     string tag = "Scout The Dog";
                     IKanKan kanKanDummy = new KanKanDummy();
-                    IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanDummy, tag);
+                    IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanDummy, tag);
                     Assert.Throws<DuplicateKanKanTag>(() => { kanKanRunner.Add(new KanKanDummy(), tag); });
                 }
             }
@@ -44,7 +44,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
                 public void ThenGetWillReturnCorrectKanKan(string tag)
                 {
                     IKanKan kanKanDummy = new KanKanDummy();
-                    IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanDummy, tag);
+                    IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanDummy, tag);
                     Assert.AreSame(kanKanRunner.Get(tag), kanKanDummy);
                 }
             }
@@ -58,7 +58,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             {
                 IKanKan kanKanDummy = new KanKanDummy();
 
-                IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(new KanKanDummy(), Guid.NewGuid().ToString());
+                IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(new KanKanDummy(), Guid.NewGuid().ToString());
                 kanKanRunner.Add(kanKanDummy, tag);
                 Assert.AreSame(kanKanRunner.Get(tag), kanKanDummy);
             }

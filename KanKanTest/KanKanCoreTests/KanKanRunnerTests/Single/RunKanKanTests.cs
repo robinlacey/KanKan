@@ -6,7 +6,7 @@ using KanKanTest.KanKanCoreTests.Mocks.KanKan;
 using KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
+namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Single
 {
     public class RunKanKanTests
     {
@@ -20,7 +20,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
                     KanKanCallCountSpy kanKanCallCountSpyOne = new KanKanCallCountSpy();
                     KanKanCallCountSpy kanKanCallCountSpyTwo = new KanKanCallCountSpy();
 
-                    IKanKanSingleRunner kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
+                    IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanCallCountSpyOne, "Cats");
                     kanKanRunner.Add(kanKanCallCountSpyTwo, "Dogs");
 
                     kanKanRunner.Run("Dogs");
@@ -40,7 +40,7 @@ namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
             public void ThenThrowNoKanKanWithTagException()
             {
                 IKanKan kanKanDummy = new KanKanDummy();
-                IKanKanRunner kanKanRunner = new KanKanSingleRunner(kanKanDummy, String.Empty);
+                IKanKanRunner<IKanKan> kanKanRunner = new KanKanSingleRunner(kanKanDummy, String.Empty);
                 Assert.Throws<NoKanKanWithTag>(() => { kanKanRunner.Run(Guid.NewGuid().ToString()); });
             }
         }

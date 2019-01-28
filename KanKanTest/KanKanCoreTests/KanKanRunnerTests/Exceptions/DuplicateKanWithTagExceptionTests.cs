@@ -1,7 +1,7 @@
 using KanKanCore.Exception;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
+namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Exceptions
 {
     public class DuplicateKanWithTagExceptionTests
     {

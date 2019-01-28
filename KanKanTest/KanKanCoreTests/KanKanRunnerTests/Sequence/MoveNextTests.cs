@@ -9,11 +9,11 @@ using NUnit.Framework;
 
 namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Sequence
 {
-    public class SequenceTest
+    public class MoveNextTests
     {
         [TestFixture(1)]
         [TestFixture(4)]
-        public class GivenAnArrayOfKanKan:SequenceTest
+        public class GivenAnArrayOfKanKan:MoveNextTests
         {
           
             private readonly int _arraySize;

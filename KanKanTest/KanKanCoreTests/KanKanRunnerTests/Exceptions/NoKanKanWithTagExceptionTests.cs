@@ -1,8 +1,7 @@
 using KanKanCore.Exception;
-using KanKanCore.Karass.Frame;
 using NUnit.Framework;
 
-namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests
+namespace KanKanTest.KanKanCoreTests.KanKanRunnerTests.Exceptions
 {
     public class NoKanKanWithTagExceptionTests
     {
