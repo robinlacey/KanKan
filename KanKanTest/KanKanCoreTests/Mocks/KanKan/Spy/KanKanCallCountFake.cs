@@ -42,12 +42,10 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy
         public List<IKarassState> AllKarassStates { get; }
         public void SendMessage(string message)
         {
-            throw new System.NotImplementedException();
         }
 
         public void SetKarassMessage(IKarassMessage message)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

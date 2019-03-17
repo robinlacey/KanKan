@@ -12,7 +12,7 @@ namespace KanKanCore.KanKan
         public IKanKan Current { get; protected set; }
         public T ConstructorKanKan { get; }
         public Dictionary<string, T> KanKans { get; }
-        public IKarassMessage KarassMessage { get;  }
+        public IKarassMessage KarassMessage { get; private set; }
         protected bool Paused;
 
         protected KanKanRunner(T kankan, string tag)
@@ -35,7 +35,7 @@ namespace KanKanCore.KanKan
             return kanKan;
         }
 
-        public void Add(T kankan, string tag)
+        public virtual void Add(T kankan, string tag)
         {
             if (KanKans.ContainsKey(tag))
             {
@@ -44,6 +44,12 @@ namespace KanKanCore.KanKan
 
             KanKans.Add(tag, kankan);
         }
+
+        public virtual void SetKarassMessage(IKarassMessage message)
+        {
+            KarassMessage = message;
+        }
+
         public void Dispose()
         {
             KanKans.Clear();
@@ -53,6 +59,5 @@ namespace KanKanCore.KanKan
         public abstract void Reset();
         public abstract void Run(string tag);
 
-      
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using KanKanCore.Exception;
 using KanKanCore.Interface;
 namespace KanKanCore.KanKan
@@ -30,11 +31,24 @@ namespace KanKanCore.KanKan
                 throw new NoKanKanWithTag(tag);
             }
         }
+        
+        public override void Add(IKanKan kankan, string tag)
+        {
+            kankan.SetKarassMessage(KarassMessage);
+            base.Add(kankan,tag);
+        }
+        
+        public override void SetKarassMessage(IKarassMessage message)
+        {
+            Current.SetKarassMessage(message);
+            base.SetKarassMessage(message);
+        }
 
 
         public KanKanSingleRunner(IKanKan kankan, string tag) : base(kankan, tag)
         {
             Current = kankan;
+            Current.SetKarassMessage(KarassMessage);
         }
     }
 }

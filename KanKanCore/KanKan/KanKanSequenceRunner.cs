@@ -42,7 +42,27 @@ namespace KanKanCore.KanKan
            Current = _currentKanKanSequence[0];
 
         }
-
+        public override void Add(IKanKan[] kankan, string tag)
+        {
+            foreach (IKanKan k in kankan)
+            {
+                k.SetKarassMessage(KarassMessage);
+            }
+           
+            base.Add(kankan,tag);
+            
+        }
+        
+        public override void SetKarassMessage(IKarassMessage message)
+        {
+            foreach (IKanKan kankan in _currentKanKanSequence)
+            {
+                kankan.SetKarassMessage(message);
+            }
+           base.SetKarassMessage(message);
+        }
+        
+        
         public override void Run(string tag)
         {
             KanKans.TryGetValue(tag, out IKanKan[] kanKans);
@@ -64,6 +84,10 @@ namespace KanKanCore.KanKan
             _currentKanKanSequence = kankan;
             _constructorTag = tag;
             Current = kankan[_index];
+            foreach (IKanKan kanKan in kankan)
+            {
+                kanKan.SetKarassMessage(KarassMessage);
+            }
         }
     }
 }

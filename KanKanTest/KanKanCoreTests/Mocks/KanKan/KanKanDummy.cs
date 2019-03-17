@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using KanKanCore.Interface;
 using KanKanCore.Karass.Frame;
 
+
 namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
 {
     public class KanKanDummy:IKanKan
@@ -31,17 +32,16 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan
 
         public void SendMessage(string message)
         {
-            throw new System.NotImplementedException();
         }
 
         public void SetKarassMessage(IKarassMessage message)
         {
-            throw new System.NotImplementedException();
+     
         }
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+         
         }
     }
 }

@@ -36,7 +36,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KanKan.Spy
 
         public void SetKarassMessage(IKarassMessage message)
         {
-            throw new System.NotImplementedException();
+           
         }
     }
 }
