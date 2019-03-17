@@ -11,6 +11,7 @@ namespace KanKanCore.Interface
         void Pause(bool pauseState);
         T Get(string tag);
         void Add(T kankan, string tag);
+        void SetKarassMessage(IKarassMessage message);
     }
     
 }
