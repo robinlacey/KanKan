@@ -5,6 +5,6 @@ namespace KanKanCore.Interface
         IDependencies Dependencies { get; }
         TRequestType RequestData { get; }
         string Message { get; }
-        bool MoveToNextFrame(string message, TRequestType payload);
+        bool MoveNextFrame(string message, TRequestType payload);
     }
 }

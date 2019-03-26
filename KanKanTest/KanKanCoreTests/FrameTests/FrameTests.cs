@@ -35,7 +35,7 @@ namespace KanKanTest.KanKanCoreTests.FrameTests
 
             //Act
             IKarassFrame<FrameStructDummy> frame = frameFactory.Get<FrameStructDummy>();
-            frame.MoveToNextFrame(message, frameActionData);
+            frame.MoveNextFrame(message, frameActionData);
 
             
             //Assert

@@ -7,7 +7,7 @@ namespace KanKanCore.Karass.Frame.SimpleKarassFrame
     {
         private readonly Func<string, bool> _simpleMethod;
 
-        public override bool MoveToNextFrame(string message, T payload)
+        public override bool MoveNextFrame(string message, T payload)
         {
             Message = message;
             return _simpleMethod.Invoke(message);

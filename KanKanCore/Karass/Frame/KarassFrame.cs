@@ -8,7 +8,7 @@ namespace KanKanCore.Karass.Frame
         public T RequestData { get; protected set; }
         public string Message { get; protected set; }
   
-        public abstract bool MoveToNextFrame(string message, T payload);
+        public abstract bool MoveNextFrame(string message, T payload);
 
         protected KarassFrame(IDependencies dependencies)
         {

@@ -6,7 +6,7 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KarassFrame
     class KarassFrameSpy<T>:KarassFrame<T>
     {
         public int ExecuteCallCount { get; private set; }
-        public override bool MoveToNextFrame(string message, T payload)
+        public override bool MoveNextFrame(string message, T payload)
         {
             Message = message;
             RequestData = payload;
