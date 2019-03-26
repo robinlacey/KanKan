@@ -66,12 +66,17 @@ namespace KanKanCore.Factories
                         frameRequest.RequestObject
                     });
             }
-            catch (TargetInvocationException)
+            catch (TargetInvocationException e)
             {
-                throw new MissingDependencyException(frameRequest.RequestType);
+                if (e.InnerException is MissingDependencyException)
+                {
+                    throw new MissingDependencyException(frameRequest.RequestType);
+                }
+                
+                throw e.InnerException;
             }
         }
-
+     
         private IKarassFrame<T> GetKarassFrame<T>(Type routeType)
         {
             try
@@ -82,9 +87,14 @@ namespace KanKanCore.Factories
                         .MakeGenericMethod(routeType)
                         .Invoke(Dependencies, Array.Empty<object>());
             }
-            catch (TargetInvocationException)
+            catch (TargetInvocationException e)
             {
-                throw new MissingDependencyException(routeType);
+                if (e.InnerException is MissingDependencyException)
+                {
+                    throw new MissingDependencyException(routeType);
+                }
+                
+                throw e.InnerException;
             }
         }
 
@@ -97,9 +107,14 @@ namespace KanKanCore.Factories
                     .MakeGenericMethod(routeType)
                     .Invoke(Dependencies, Array.Empty<object>());
             }
-            catch (TargetInvocationException)
+            catch (TargetInvocationException e)
             {
-                throw new MissingDependencyException(routeType);
+                if (e.InnerException is MissingDependencyException)
+                {
+                    throw new MissingDependencyException(routeType);
+                }
+                
+                throw e.InnerException;
             }
         }
     }

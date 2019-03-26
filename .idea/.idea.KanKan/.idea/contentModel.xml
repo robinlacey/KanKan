@@ -169,6 +169,7 @@
               <e p="FrameStruct" t="Include">
                 <e p="FrameStructDummy.cs" t="Include" />
               </e>
+              <e p="FrameThrowsExceptionStub.cs" t="Include" />
               <e p="KarassFrameDummy.cs" t="Include" />
               <e p="KarassFrameSpy.cs" t="Include" />
             </e>

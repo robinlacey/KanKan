@@ -1,5 +1,8 @@
+using System;
 using KanKanCore.Factories;
 using KanKanCore.Interface;
+using KanKanCore.KanKan;
+using KanKanCore.Karass.Dependencies;
 using KanKanCore.Karass.Frame;
 using KanKanTest.KanKanCoreTests.Mocks.Dependencies;
 using KanKanTest.KanKanCoreTests.Mocks.KarassFrame;
@@ -10,6 +13,37 @@ namespace KanKanTest.KanKanCoreTests.FrameTests
 {
     public class FrameFactoryTests
     {
+        public class ThrowExceptionTests
+        {
+            public class GivenAnExceptionInFrame
+            {
+                [Test]
+                public void ThenThrowThatException()
+                {
+                    IDependencies dependencies = new KarassDependencies();
+                    IFrameFactory frameFactory = new FrameFactory(dependencies);
+                    
+                    IKarassFrame<string> frame =
+                        new FrameThrowsExceptionStub(new NullReferenceException());
+                    
+                    dependencies.Register<IKarassFrame<string>>(() => frame);
+                    
+                    frameFactory.RegisterRoute<string, IKarassFrame<string>>();
+                    
+                
+
+                    IKarass karass = new KarassFactory().Get(
+                        () => { },
+                        () => { },
+                        new[] {new FrameRequest("String")});
+                     Assert.Throws<NullReferenceException> (()=>
+                     {
+                         
+                         new KanKan(karass, frameFactory).MoveNext();
+                     });
+                }
+            }
+        }
         [Test]
         public void HasRegisterMethodWhichTakesStructIKarassFrame()
         {
