@@ -16,7 +16,6 @@ namespace KanKanTest.KanKanCoreTests.Mocks.KarassFrame
         public string Message { get; }
         public bool MoveNextFrame(string message, string payload)
         {
-            Console.WriteLine("HELLO");
             throw _e;
         }
     }
