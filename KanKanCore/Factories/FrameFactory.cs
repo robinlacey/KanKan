@@ -59,7 +59,7 @@ namespace KanKanCore.Factories
             {
                 return (bool) karassFrameObject
                     .GetType()
-                    .GetMethod("Execute")
+                    .GetMethod("MoveNextFrame")
                     .Invoke(karassFrameObject, new[]
                     {
                         message,
