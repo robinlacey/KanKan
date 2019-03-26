@@ -26,7 +26,7 @@ namespace KanKanTest.KanKanCoreTests.FrameTests
                 }
 
                 SimpleKarassFrame<object> simpleKarassFrame = new SimpleKarassFrame<object>(SimpleFrameSpy, null);
-                simpleKarassFrame.Execute(testMessage, new object());
+                simpleKarassFrame.MoveToNextFrame(testMessage, new object());
                 Assert.True(simpleFrameSpyRun);
                 Assert.True(simpleFrameSpyMessage == testMessage);
             }
