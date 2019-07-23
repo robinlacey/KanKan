@@ -9,7 +9,7 @@ Kan-Kan is an engine agnostic state and actions system.
 
 ## What is it?
 
-A KanKan will run a an action - known as a Karass. Karass can be combined `KarassThree = KarassOne + KarassTwo` to be run in parallel or passed into a KanKan as an Array `new []{ KarassOne, KarassTwo }` to be run sequentially.
+A KanKan will run an action - known as a Karass. Each Karass is made up of a series of Frames which are run sequentially. Karass can be combined `KarassThree = KarassOne + KarassTwo` to be run in parallel or passed into a KanKan as an Array `new []{ KarassOne, KarassTwo }` to be run sequentially. 
 
 
 ### Goals
